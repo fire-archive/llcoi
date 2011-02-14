@@ -170,6 +170,16 @@ DLLEXP void camera_set_focal_length(const char* camera_name, double fl)
     get_camera(camera_name)->setFocalLength(fl);
 }
 
+DLLEXP void camera_set_position(const char* camera_name, const float x, const float y, const float z)
+{
+    get_camera(camera_name)->setPosition(Ogre::Vector3(x, y, z));
+}
+
+DLLEXP void camera_lookat(const char* camera_name, const float x, const float y, const float z)
+{
+    get_camera(camera_name)->lookAt(Ogre::Vector3(x, y, z));
+}
+
 DLLEXP void add_viewport(const char* camera_name)
 {
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->getAutoCreatedWindow();
@@ -190,6 +200,49 @@ DLLEXP void initialise_all_resourcegroups()
 {
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();    
 }
+
+DLLEXP void create_entity(const char* entity_name, const char* mesh_file)
+{
+    Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createEntity(entity_name, mesh_file);
+}
+
+DLLEXP void create_child_scenenode(const char* node_name)
+{
+    Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->getRootSceneNode()->createChildSceneNode(node_name);
+}
+
+DLLEXP void attach_entity_to_scenenode(const char* object_name, const char* node_name)
+{
+    Ogre::MovableObject* object = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->getMovableObject(object_name, "Entity");
+    Ogre::SceneNode* node = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->getSceneNode(node_name);
+    node->attachObject(object);
+}
+
+DLLEXP void set_ambient_light_rgba(const int r, const int g, const int b, const int a)
+{
+    Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->setAmbientLight(Ogre::ColourValue(r, g, b, a));
+}
+
+DLLEXP void set_ambient_light_rgb(const int r, const int g, const int b)
+{
+    Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->setAmbientLight(Ogre::ColourValue(r, g, b));
+}
+
+DLLEXP void create_light(const char* light_name)
+{
+    Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createLight(light_name);
+}
+
+DLLEXP void light_set_position(const char* light_name, const float x, const float y, const float z)
+{
+    Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->getLight(light_name)->setPosition(Ogre::Vector3(x, y, z));
+}
+
+DLLEXP void textureManager_setDefaultNumMipmaps(int number)
+{
+    Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(number);
+}
+
 
 bool do_render = 1;
 
