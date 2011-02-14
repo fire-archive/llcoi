@@ -6,13 +6,14 @@
 #endif
 
 #if defined( WIN32 ) || defined( _WINDOWS )
-INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT )
+INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR strCmdLine, INT nCmdShow)
 #else
 int main(int argc, char *argv[])
 #endif
 {
     engine_options options;
     default_engine_options(&options);
+	options.renderer_s = "Direct3D9";
     options.window_title = "Renderwindow from C";
 
     init_engine(options);
@@ -46,7 +47,6 @@ int main(int argc, char *argv[])
     create_light("mainLight");
     
     light_set_position("mainLight", 20, 80, 50);
-    
     
     render_loop();
 
