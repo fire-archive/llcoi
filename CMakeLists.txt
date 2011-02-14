@@ -15,9 +15,11 @@
 #-----------------------------------------------------------------------------
 #*/
 cmake_minimum_required(VERSION 2.8)
- 
+
 project(llcoi)
- 
+
+include_directories(interface)
+
 add_subdirectory(interface)
 add_subdirectory(test)
 

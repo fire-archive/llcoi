@@ -48,7 +48,7 @@ std::string emptyString = emptyCString;
 std::string strPool[4];  // String pool for avoiding memory allocations of temporary string objects
 
 
-inline const std::string &safeStr( const char *str, int index )
+inline const std::string &safeStr( const char* str, int index )
 {
     if( str != 0x0 ) return strPool[index] = str;
     else return emptyString;
@@ -59,7 +59,7 @@ DLLEXP void release_engine()
     delete Ogre::Root::getSingletonPtr();
 }
 
-DLLEXP void load_ogre_plugin(const char * plugin);
+DLLEXP void load_ogre_plugin(const char* plugin);
 
 static const char * plugin_folder = NULL;
 
@@ -124,61 +124,53 @@ DLLEXP void init_engine(const struct engine_options options)
     }
 }
 
-DLLEXP void load_ogre_plugin(const char * plugin)
+DLLEXP void load_ogre_plugin(const char* plugin)
 {
     Ogre::Root::getSingleton().loadPlugin( Ogre::String(plugin_folder) + 
                            PATH_SEP + plugin );
 }
 
-DLLEXP Ogre::SceneManager * get_scene_manager()
+Ogre::Camera* get_camera(const char* camera_name)
 {
-    Ogre::Root * root = Ogre::Root::getSingletonPtr();
-    return root->getSceneManager("scene-manager");
+    return Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->getCamera(camera_name);
 }
 
-DLLEXP  Ogre::Camera * get_camera(const char * name)
+DLLEXP void create_camera(const char* camera_name)
 {
-    Ogre::Camera * cam = get_scene_manager()->getCamera(name);
-    return cam;
+    Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createCamera(camera_name);
 }
 
-DLLEXP  Ogre::Camera * create_camera(const char * name)
+DLLEXP void camera_set_near_clip_distance(const char* camera_name, double d)
 {
-    Ogre::Camera * cam = get_scene_manager()->createCamera(name);
-    return cam;
+    get_camera(camera_name)->setNearClipDistance( d );
 }
 
-DLLEXP void camera_set_near_clip_distance(Ogre::Camera * camera, double d)
+DLLEXP void camera_set_far_clip_distance(const char* camera_name, double d)
 {
-    camera->setNearClipDistance( d );
+    get_camera(camera_name)->setFarClipDistance( d );
 }
 
-DLLEXP void camera_set_far_clip_distance(Ogre::Camera * camera, double d)
+DLLEXP void camera_set_auto_aspect_ratio(const char* camera_name, bool on)
 {
-    camera->setFarClipDistance( d );
+    get_camera(camera_name)->setAutoAspectRatio(on);
 }
 
-DLLEXP void camera_set_auto_aspect_ratio(Ogre::Camera * camera, bool on)
+DLLEXP void camera_set_fovy(const char* camera_name, float angle)
 {
-    camera->setAutoAspectRatio(on);
+    get_camera(camera_name)->setFOVy((Ogre::Radian)angle);
 }
 
-DLLEXP void camera_set_fovy(Ogre::Camera * cam, Ogre::Degree angle)
+DLLEXP void camera_set_frustum_offset(const char* camera_name, const int offset_x, const int offset_y)
 {
-    cam->setFOVy(angle);
+    get_camera(camera_name)->setFrustumOffset(Ogre::Vector2(offset_x, offset_y));
 }
 
-DLLEXP void camera_set_frustum_offset(Ogre::Camera * cam, const Ogre::Vector2& offset)
+DLLEXP void camera_set_focal_length(const char* camera_name, double fl)
 {
-    cam->setFrustumOffset(offset);
+    get_camera(camera_name)->setFocalLength(fl);
 }
 
-DLLEXP void camera_set_focal_length(Ogre::Camera * cam, double fl)
-{
-    cam->setFocalLength(fl);
-}
-
-DLLEXP void add_viewport(const char * camera_name)
+DLLEXP void add_viewport(const char* camera_name)
 {
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->getAutoCreatedWindow();
     Ogre::Viewport* vp = window->addViewport(get_camera(camera_name));
@@ -189,12 +181,12 @@ DLLEXP void add_viewport(const char * camera_name)
         Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
 }
 
-DLLEXP void add_resource_location(const char * location, const char * type, const char * group)
+DLLEXP void add_resource_location(const char* location, const char* type, const char* group)
 {
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(location, type, group);
 }
 
-DLLEXP void initialize_all_resourcegroups()
+DLLEXP void initialise_all_resourcegroups()
 {
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();    
 }
