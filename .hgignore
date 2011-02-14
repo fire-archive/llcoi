@@ -1,0 +1,5 @@
+glob:build/*
+glob:*~
+glob:.kdev4
+glob:lib/*
+glob:*.kdev4
