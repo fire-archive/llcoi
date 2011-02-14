@@ -54,49 +54,55 @@ inline const std::string &safeStr( const char *str, int index )
     else return emptyString;
 }
 
-DLLEXP int ogre3dInit()
+DLLEXP void release_engine()
 {
-    if( initialized )
-    {   
-        return 1;
-    }
-    initialized = true;
-
-    new Ogre::Root();
-    
-    return 1;
-}
-
-DLLEXP int ogre3dRelease()
-{
-    if( initialized )
-    {   
-        delete Ogre::Root::getSingletonPtr();
-        return 1;
-    }
-    return 1;
+    delete Ogre::Root::getSingletonPtr();
 }
 
 DLLEXP void load_ogre_plugin(const char * plugin);
 
 static const char * plugin_folder = NULL;
 
-DLLEXP void init_engine(const char * renderer_s, const char * plugin_folder_s, int auto_window)
+struct engine_options
 {
-    plugin_folder = plugin_folder_s;
+    char* renderer_s;
+    char* plugin_folder_s;
+    char* window_title;
+    char* log_name;
+    int width, height, auto_window;
+};
+
+DLLEXP void default_engine_options(struct engine_options &options)
+{
+    options.renderer_s = (char*) "OpenGL";
+#ifdef PLATFORM_WIN
+    options.plugin_folder_s = (char*) ".";
+#else
+    options.plugin_folder_s = (char*) "/usr/local/lib/OGRE";
+#endif    
+    options.window_title = (char*) "Renderwindow";
+    options.width = 800;
+    options.height = 600;
+    options.auto_window = 1;
+    options.log_name = (char*) "Ogre.log";
+}
+
+DLLEXP void init_engine(const struct engine_options options)
+{
+    plugin_folder = options.plugin_folder_s;
     // suppress console logging
     Ogre::LogManager * log_man = new Ogre::LogManager();
-    Ogre::Log * vge_log = log_man->createLog("vge.log", true, false);
+    Ogre::Log * vge_log = log_man->createLog(options.log_name, true, false);
     Ogre::Root * root = new Ogre::Root("", "", "");
 
     // default
     const char * renderer = "OpenGL Rendering Subsystem";
     const char * render_plugin = "RenderSystem_GL";
 
-    if (strstr(renderer_s,"Direct") || strstr(renderer_s,"D3D")) {
+    if (strstr(options.renderer_s,"Direct") || strstr(options.renderer_s,"D3D")) {
         renderer = "Direct3D9 Rendering Subsystem";
         render_plugin = "RenderSystem_Direct3D9";
-    } else if (!strstr(renderer_s,"GL"))
+    } else if (!strstr(options.renderer_s,"GL"))
         Ogre::LogManager::getSingleton().logMessage(
             "Can't parse renderer string, using default (OpenGL)");
 
@@ -104,17 +110,17 @@ DLLEXP void init_engine(const char * renderer_s, const char * plugin_folder_s, i
 
     root->getRenderSystemByName( renderer )->setConfigOption("Full Screen", "No");
     root->getRenderSystemByName( renderer )->setConfigOption("VSync", "No");
-    root->getRenderSystemByName( renderer )->setConfigOption("Video Mode", "800 x 600 @ 32-bit");
+    root->getRenderSystemByName( renderer )->setConfigOption("Video Mode", Ogre::StringConverter::toString(options.width) + " x " + Ogre::StringConverter::toString(options.height) + " @ 32-bit");
     
     root->setRenderSystem( root->getRenderSystemByName( renderer ));
     
     Ogre::SceneManager * scene_manager = 
         root->createSceneManager(Ogre::ST_GENERIC, "scene-manager");
 
-    if(auto_window) {
-        root->initialise(true , "VGE");
+    if(options.auto_window) {
+        root->initialise(true , options.window_title);
     }else{
-        root->initialise(false , "VGE");
+        root->initialise(false , options.window_title);
     }
 }
 
@@ -193,10 +199,11 @@ DLLEXP void initialize_all_resourcegroups()
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();    
 }
 
+bool do_render = 1;
 
-DLLEXP int render_loop()
+DLLEXP void render_loop()
 {
-    while(true)
+    while(do_render)
     {
         // Pump window messages for nice behaviour
         Ogre::WindowEventUtilities::messagePump();
@@ -206,7 +213,7 @@ DLLEXP int render_loop()
  
         if(Ogre::Root::getSingletonPtr()->getAutoCreatedWindow()->isClosed())
         {
-            return 0;
+            do_render = 0;
         }
     }
 }

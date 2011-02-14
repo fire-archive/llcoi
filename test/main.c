@@ -1,17 +1,23 @@
-#include "../interface/main.h"
+#include <ogre_interface.h>
 
 int main(void){
 
-    init_engine("OpenGL", "/usr/local/lib/OGRE", 1);
+    engine_options options;
+    default_engine_options(&options);
 
+    options.window_title = "Renderwindow from C";
+
+    init_engine(options);
+    
     create_camera("mycam");
-    camera_set_near_clip_distance(get_camera("mycam"), 10.0);
+    
+    camera_set_near_clip_distance( get_camera("mycam"), 10.0);
+    
     add_viewport("mycam");
 
-    while(render_loop())
-        render_loop();
+    render_loop();
 
-    ogre3dRelease();
+    release_engine();
 
-    return 1;
+    return 0;
 }

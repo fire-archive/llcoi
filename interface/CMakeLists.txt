@@ -18,7 +18,7 @@ cmake_minimum_required(VERSION 2.8)
  
 project(OgreInterface)
  
-set(OGREINTERFACE_VERSION_STRING "0.0.1")
+set(OGREINTERFACE_VERSION_STRING "0.0.2")
 set(abi_version ${OGREINTERFACE_VERSION_STRING})
 
 if(WIN32)
@@ -89,7 +89,7 @@ if (NOT OGRE_BUILD_PLATFORM_IPHONE)
 endif()
  
 set(HDRS
-	./main.h
+	./ogre_interface.h
 )
 
 set(SRCS

@@ -12,13 +12,22 @@
 #   endif
 #endif
 
+typedef struct engine_options
+{
+    char* renderer_s;
+    char* plugin_folder_s;
+    char* window_title;
+    char* log_name;
+    int width, height, auto_window;
+} engine_options;
+
 #ifdef _cplusplus
 
-DLL int ogre3dInit();
+DLL void release_engine();
 
-DLL int ogre3dRelease();
+DLL void default_engine_options(struct engine_options &options);
 
-DLL void init_engine(const char * renderer_s, const char * plugin_folder_s, int auto_window);
+DLL void init_engine(const struct engine_options options);
 
 DLL void load_ogre_plugin(const char * plugin);
 
@@ -42,7 +51,7 @@ DLL void camera_set_focal_length(Ogre::Camera * cam, double fl);
 
 DLL void add_viewport(const char * camera_name);
 
-DLL int render_loop();
+DLL void render_loop();
 
 DLL void add_resource_location(const char * location, const char * type, const char * group);
 
