@@ -20,8 +20,20 @@ typedef double coiReal;
 typedef float coiReal;
 #endif
 
-typedef coiReal coiVector3[3];
-typedef coiReal coiQuaternion[4];
+typedef struct
+{
+    coiReal w;
+    coiReal x;
+    coiReal y;
+    coiReal z;
+} coiQuaternion;
+
+typedef struct
+{
+    coiReal x;
+    coiReal y;
+    coiReal z;
+} coiVector3;
 
 #ifdef _cplusplus
 extern "C" {

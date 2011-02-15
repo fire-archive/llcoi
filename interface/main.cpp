@@ -46,6 +46,22 @@ typedef double coiReal;
 typedef float coiReal;
 #endif
 
+typedef struct
+{
+    coiReal w;
+    coiReal x;
+    coiReal y;
+    coiReal z;
+} coiQuaternion;
+
+typedef struct
+{
+    coiReal x;
+    coiReal y;
+    coiReal z;
+} coiVector3;
+
+
 #define COI_DECLARE_HANDLE(name) typedef struct name##__ { int unused; } *name
 
 COI_DECLARE_HANDLE(coiCameraHandle);
