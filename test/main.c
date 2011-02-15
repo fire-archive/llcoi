@@ -13,7 +13,7 @@ int main(int argc, char *argv[])
 {
     engine_options options;
     default_engine_options(&options);
-	options.renderer_s = "Direct3D9";
+	options.renderer_s = "OpenGL";
     options.window_title = "Renderwindow from C";
 
     init_engine(options);
@@ -22,31 +22,33 @@ int main(int argc, char *argv[])
     add_resource_location("../media/materials/textures", "FileSystem", "General");
     add_resource_location("../media/models", "FileSystem", "General");
 
-    create_camera("mycam");
+    coiCameraHandle myCamera = create_camera("mycam");
+    
+    camera_set_position(myCamera, 0, 0, 80);
 
-    camera_set_position("mycam", 0, 0, 80);
+    camera_lookat(myCamera, 0, 0, -300);
 
-    camera_lookat("mycam", 0, 0, -300);
+    camera_set_near_clip_distance(myCamera, 5);
 
-    camera_set_near_clip_distance("mycam", 5);
+    coiCameraHandle anotherHandle = get_camera("mycam");
+    
+    add_viewport(anotherHandle);
 
-    add_viewport("mycam");
-
-    textureManager_setDefaultNumMipmaps(5);
+    set_default_num_mipmaps(5);
 
     initialise_all_resourcegroups();
 
-    create_entity("OgreHead", "ogrehead.mesh");
+    coiEntityHandle entity = create_entity("OgreHead", "ogrehead.mesh");
 
-    create_child_scenenode("headNode");
+    coiSceneNodeHandle node = create_child_scenenode("headNode");
 
-    attach_entity_to_scenenode("OgreHead", "headNode");
+    attach_entity_to_scenenode(entity, node);
    
     set_ambient_light_rgb(0.5f, 0.5f, 0.5f);
 
-    create_light("mainLight");
+    coiLightHandle light = create_light("mainLight");
 
-    light_set_position("mainLight", 20, 80, 50);
+    light_set_position(light, 20, 80, 50);
 
     render_loop();
 
