@@ -18,6 +18,9 @@ cmake_minimum_required(VERSION 2.8)
 
 project(llcoi)
 
+set(BUILD_ROOTDIR "${CMAKE_CURRENT_BINARY_DIR}")
+set(CMAKE_INSTALL_PREFIX "${BUILD_ROOTDIR}/test/dist")
+
 include_directories(interface)
 
 add_subdirectory(interface)

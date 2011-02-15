@@ -107,14 +107,17 @@ DLLEXP void init_engine(const struct engine_options options)
             "Can't parse renderer string, using default (OpenGL)");
 
     load_ogre_plugin(render_plugin);
-
-    root->getRenderSystemByName( renderer )->setConfigOption("Full Screen", "No");
-    root->getRenderSystemByName( renderer )->setConfigOption("VSync", "No");
-    root->getRenderSystemByName( renderer )->setConfigOption("Video Mode", Ogre::StringConverter::toString(options.width) + " x " + Ogre::StringConverter::toString(options.height) + " @ 32-bit");
+	Ogre::RenderSystem* rs = root->getRenderSystemByName( Ogre::String(renderer) );
+    rs->setConfigOption("Full Screen", "No");
+    rs->setConfigOption("VSync", "No");
+    //rs->setConfigOption("Video Mode", "800 x 600 @ 32-bit");
+    //root->getRenderSystemByName( renderer )->setConfigOption("Video Mode", Ogre::StringConverter::toString(options.width) + " x " + Ogre::StringConverter::toString(options.height) + " @ 32-bit");
     
-    root->setRenderSystem( root->getRenderSystemByName( renderer ));
+    root->setRenderSystem(rs);
     
-    Ogre::SceneManager * scene_manager = 
+    load_ogre_plugin("Plugin_OctreeSceneManager");
+	
+	Ogre::SceneManager * scene_manager = 
         root->createSceneManager(Ogre::ST_GENERIC, "scene-manager");
 
     if(options.auto_window) {
@@ -126,8 +129,16 @@ DLLEXP void init_engine(const struct engine_options options)
 
 DLLEXP void load_ogre_plugin(const char* plugin)
 {
-    Ogre::Root::getSingleton().loadPlugin( Ogre::String(plugin_folder) + 
-                           PATH_SEP + plugin );
+#if defined( WIN32 ) || defined( _WINDOWS )
+Ogre::String pluginString(plugin);
+#ifdef _DEBUG
+	Ogre::Root::getSingleton().loadPlugin(pluginString + Ogre::String("_d"));
+#else
+	Ogre::Root::getSingleton().loadPlugin(plugin);
+#endif
+#else
+	Ogre::Root::getSingleton().loadPlugin( Ogre::String(plugin_folder) + "/" + plugin );
+#endif
 }
 
 Ogre::Camera* get_camera(const char* camera_name)

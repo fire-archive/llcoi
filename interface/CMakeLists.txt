@@ -43,13 +43,7 @@ endif ()
  
 set(CMAKE_DEBUG_POSTFIX "_d")
  
-set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/dist")
- 
 find_package(OGRE REQUIRED)
- 
-if(NOT "${OGRE_VERSION_NAME}" STREQUAL "Byatis")
-  message(SEND_ERROR "You need Ogre 1.8 Byatis to build this.")
-endif()
  
 find_package(OIS REQUIRED)
  
@@ -101,18 +95,30 @@ include_directories( ${OIS_INCLUDE_DIRS}
 	${OGRE_SAMPLES_INCLUDEPATH}
 )
  
+#add_library(OgreInterface STATIC ${HDRS} ${SRCS})
 add_library(OgreInterface SHARED ${HDRS} ${SRCS})
 
 set_target_properties(OgreInterface PROPERTIES DEBUG_POSTFIX _d)
 
-if(WIN32)
-  set_target_properties( OgreInterface PROPERTIES OUTPUT_NAME
-"mylib.${abi_version}" VERSION ${OGREINTERFACE_VERSION_STRING})
-else()
+if(UNIX)
   set_target_properties( OgreInterface PROPERTIES OUTPUT_NAME "OgreInterface" VERSION
 ${OGREINTERFACE_VERSION_STRING} SOVERSION ${abi_version} )
 endif()
 
 target_link_libraries(OgreInterface ${OGRE_LIBRARIES} ${OIS_LIBRARIES})
 
-set(LIBRARY_OUTPUT_PATH  ../../lib)
+set(LIBRARY_OUTPUT_PATH "${BUILD_ROOTDIR}/lib")
+
+# post-build copy for win32
+if(WIN32 AND NOT MINGW)
+	add_custom_command( TARGET OgreInterface PRE_BUILD
+		COMMAND if not exist ..\\test\\dist\\bin mkdir ..\\test\\dist\\bin )
+	add_custom_command( TARGET OgreInterface POST_BUILD
+		COMMAND copy \"$(TargetPath)\" ..\\test\\dist\\bin )
+endif(WIN32 AND NOT MINGW)
+
+if(WIN32)
+	install(TARGETS OgreInterface
+		RUNTIME DESTINATION bin
+		CONFIGURATIONS All)
+endif()
