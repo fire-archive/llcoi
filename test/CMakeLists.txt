@@ -37,9 +37,9 @@ include_directories(${CMAKE_SOURCE_DIR}/interface)
 add_executable(OgreApp WIN32 ${SRCS})
  
 set_target_properties(OgreApp PROPERTIES DEBUG_POSTFIX _d)
- 
+
 target_link_libraries(OgreApp OgreInterface)
- 
+
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/bin)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/media)
  
