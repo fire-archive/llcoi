@@ -22,13 +22,13 @@
 
 #define BUILD_DYNAMIC
 #if defined(BUILD_DYNAMIC)
-#	if defined( WIN32 ) || defined( _WINDOWS )
-#		ifndef OgreInterface_EXPORTS
-#			define DLL __declspec(dllimport)
-#		else
-#			define DLL extern "C" __declspec(dllexport)
-#		endif
-#	else
+#   if defined( WIN32 ) || defined( _WINDOWS )
+#       ifndef OgreInterface_EXPORTS
+#           define DLL __declspec(dllimport)
+#       else
+#           define DLL extern "C" __declspec(dllexport)
+#       endif
+#   else
 #       ifndef OgreInterface_EXPORTS
 #           define DLL
 #       else
@@ -38,9 +38,9 @@
 #               define DLL extern "C"
 #           endif
 #       endif
-#	endif
+#   endif
 #else
-#	define DLL
+#   define DLL
 #endif
 
 #define COI_DECLARE_HANDLE(name) struct name##__ { int unused; }; typedef struct name##__ *name
@@ -49,7 +49,10 @@ COI_DECLARE_HANDLE(CameraHandle);
 COI_DECLARE_HANDLE(EntityHandle);
 COI_DECLARE_HANDLE(SceneNodeHandle);
 COI_DECLARE_HANDLE(LightHandle);
-COI_DECLARE_HANDLE(LightHandleWrong);
+COI_DECLARE_HANDLE(RenderWindowHandle);
+COI_DECLARE_HANDLE(RootHandle);
+COI_DECLARE_HANDLE(RenderSystemHandle);
+COI_DECLARE_HANDLE(SceneManagerHandle);
 
 typedef struct
 {
@@ -75,14 +78,69 @@ typedef struct
     int width, height, auto_window;
 } engine_options;
 
+// Root functions
 DLL void release_engine();
 
 DLL void default_engine_options(engine_options* options);
 
 DLL void init_engine(const engine_options options);
 
+DLL RootHandle create_root(const char* pluginFileName, const char* configFileName, const char* logFileName);
+
+DLL RenderWindowHandle root_initialise(int auto_create_window, const char* render_window_title);
+
+DLL int root_is_initialised();
+
+DLL void save_config();
+
+DLL int restore_config();
+
+DLL int show_config_dialog();
+
+DLL void add_render_system(RenderSystemHandle render_system);
+
+DLL void set_render_system(RenderSystemHandle render_system);
+
+DLL RenderSystemHandle get_render_system();
+
+DLL RenderSystemHandle get_render_system_by_name(const char* render_system_name);
+
 DLL void load_ogre_plugin(const char * plugin);
 
+DLL SceneManagerHandle create_scene_manager(const char* type_name, ...);
+
+DLL SceneManagerHandle get_scene_manager();
+
+DLL SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_name);
+
+
+DLL void render_loop();
+
+
+// SceneManager functions
+DLL void set_default_num_mipmaps(int number);
+
+DLL void set_ambient_light_rgba(const float r, const float g, const float b, const float a);
+
+DLL void set_ambient_light_rgb(const float r, const float g, const float b);
+
+
+DLL void add_viewport(CameraHandle camera_handle);
+
+
+// Scene nodes
+DLL SceneNodeHandle create_child_scenenode(const char* node_name);
+
+DLL void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle);
+
+
+// Resource management
+DLL void add_resource_location(const char* location, const char* type, const char* group);
+
+DLL void initialise_all_resourcegroups();
+
+
+// Camera
 DLL CameraHandle create_camera(const char* name);
 
 DLL CameraHandle get_camera(const char* camera_name);
@@ -103,26 +161,12 @@ DLL void camera_set_position(CameraHandle camera_handle, const float x, const fl
 
 DLL void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z);
 
-DLL void add_viewport(CameraHandle camera_handle);
 
-DLL void render_loop();
-
-DLL void add_resource_location(const char* location, const char* type, const char* group);
-
-DLL void initialise_all_resourcegroups();
-
+// Entity
 DLL EntityHandle create_entity(const char* entity_name, const char* mesh_file);
 
-DLL SceneNodeHandle create_child_scenenode(const char* node_name);
 
-DLL void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle);
-
-DLL void set_ambient_light_rgba(const float r, const float g, const float b, const float a);
-
-DLL void set_ambient_light_rgb(const float r, const float g, const float b);
-
+// Light
 DLL LightHandle create_light(const char* light_name);
 
 DLL void light_set_position(LightHandle light_handle, const float x, const float y, const float z);
-
-DLL void set_default_num_mipmaps(int number);

@@ -20,6 +20,8 @@ void load_ogre_plugin(const char* plugin);
 
 static const char * plugin_folder = NULL;
 
+static Ogre::RenderWindow* activeRenderWindow;
+
 void default_engine_options(engine_options* options)
 {
     options->renderer_s = "OpenGL";
@@ -27,7 +29,7 @@ void default_engine_options(engine_options* options)
     options->plugin_folder_s = ".";
 #else
     options->plugin_folder_s = "/usr/local/lib/OGRE";
-#endif    
+#endif
     options->window_title = "Renderwindow";
     options->width = 800;
     options->height = 600;
@@ -59,27 +61,108 @@ void init_engine(const engine_options options)
     rs->setConfigOption("Full Screen", "No");
     rs->setConfigOption("VSync", "No");
     //rs->setConfigOption("Video Mode", "800 x 600 @ 32-bit");
-    rs->setConfigOption("Video Mode", Ogre::StringConverter::toString(options.width) + " x " + 
-                            Ogre::StringConverter::toString(options.height) + " @ 32-bit");
-    
+    rs->setConfigOption("Video Mode", Ogre::StringConverter::toString(options.width) + " x " +
+                        Ogre::StringConverter::toString(options.height) + " @ 32-bit");
+
     root->setRenderSystem(rs);
-    
+
     load_ogre_plugin("Plugin_OctreeSceneManager");
-    
-    Ogre::SceneManager * scene_manager = 
+
+    Ogre::SceneManager * scene_manager =
         root->createSceneManager(Ogre::ST_GENERIC, "scene-manager");
 
-    if(options.auto_window) {
-        root->initialise(true , options.window_title);
-    }else{
+    if (options.auto_window) {
+        activeRenderWindow = root->initialise(true , options.window_title);
+    } else {
         root->initialise(false , options.window_title);
     }
 }
 
+RenderWindowHandle root_initialise(int auto_create_window, const char* render_window_title)
+{
+    Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->initialise(auto_create_window, render_window_title);
+    return reinterpret_cast<RenderWindowHandle>(window);
+}
+
+DLL int root_is_initialised()
+{
+    if(Ogre::Root::getSingletonPtr()->isInitialised())
+        return 1;
+    return 0;
+}
+
+RootHandle create_root(const char* pluginFileName, const char* configFileName, const char* logFileName)
+{
+    Ogre::Root* root = new Ogre::Root(pluginFileName, configFileName, logFileName);
+    return reinterpret_cast<RootHandle>(root);
+}
+
+void save_config()
+{
+    Ogre::Root::getSingletonPtr()->saveConfig();
+}
+
+int restore_config()
+{
+    if(Ogre::Root::getSingletonPtr()->restoreConfig())
+        return 1;
+    return 0;
+}
+
+int show_config_dialog()
+{
+    if(Ogre::Root::getSingletonPtr()->showConfigDialog())
+        return 1;
+    return 0;
+}
+
+void add_render_system(RenderSystemHandle render_system)
+{
+    Ogre::RenderSystem* rs = reinterpret_cast<Ogre::RenderSystem*>(render_system);
+    Ogre::Root::getSingletonPtr()->addRenderSystem(rs);
+}
+
+void set_render_system(RenderSystemHandle render_system)
+{
+    Ogre::RenderSystem* rs = reinterpret_cast<Ogre::RenderSystem*>(render_system);
+    Ogre::Root::getSingletonPtr()->setRenderSystem(rs);
+}
+
+RenderSystemHandle get_render_system_by_name(const char* render_system_name)
+{
+    Ogre::RenderSystem* rs = Ogre::Root::getSingletonPtr()->getRenderSystemByName(render_system_name);
+    return reinterpret_cast<RenderSystemHandle>(rs);
+}
+
+RenderSystemHandle get_render_system()
+{
+    return reinterpret_cast<RenderSystemHandle>(Ogre::Root::getSingletonPtr()->getRenderSystem());
+}
+
+SceneManagerHandle create_scene_manager(const char* type_name, ...)
+{
+    const char* instance_name = "default";
+    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->createSceneManager(type_name, instance_name);
+    return reinterpret_cast<SceneManagerHandle>(sm);
+}
+
+SceneManagerHandle get_scene_manager()
+{
+    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->getSceneManager("default");
+    return reinterpret_cast<SceneManagerHandle>(sm);
+}
+
+SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_name)
+{
+    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->getSceneManager(scene_manager_instance_name);
+    return reinterpret_cast<SceneManagerHandle>(sm);
+}
+
+
 void load_ogre_plugin(const char* plugin)
 {
 #if defined( WIN32 ) || defined( _WINDOWS )
-Ogre::String pluginString(plugin);
+    Ogre::String pluginString(plugin);
 #ifdef _DEBUG
     Ogre::Root::getSingleton().loadPlugin(pluginString + Ogre::String("_d"));
 #else
@@ -153,7 +236,7 @@ void camera_lookat(CameraHandle camera_handle, const float x, const float y, con
 void add_viewport(CameraHandle camera_handle)
 {
     Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
-    Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->getAutoCreatedWindow();
+    Ogre::RenderWindow* window = activeRenderWindow;
     Ogre::Viewport* vp = window->addViewport(camera);
     vp->setBackgroundColour(Ogre::ColourValue(0,0,0));
 
@@ -169,7 +252,7 @@ void add_resource_location(const char* location, const char* type, const char* g
 
 void initialise_all_resourcegroups()
 {
-    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();    
+    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
 EntityHandle create_entity(const char* entity_name, const char* mesh_file)
@@ -222,15 +305,15 @@ bool do_render = 1;
 
 void render_loop()
 {
-    while(do_render)
+    while (do_render)
     {
         // Pump window messages for nice behaviour
         Ogre::WindowEventUtilities::messagePump();
- 
+
         // Render a frame
         Ogre::Root::getSingletonPtr()->renderOneFrame();
- 
-        if(Ogre::Root::getSingletonPtr()->getAutoCreatedWindow()->isClosed())
+
+        if (Ogre::Root::getSingletonPtr()->getAutoCreatedWindow()->isClosed())
         {
             do_render = 0;
         }
@@ -240,18 +323,18 @@ void render_loop()
 #ifdef PLATFORM_WIN
 BOOL APIENTRY DllMain( HANDLE /*hModule*/, DWORD /*ul_reason_for_call*/, LPVOID /*lpReserved*/ )
 {
-    #if defined( _MSC_VER ) && defined( _DEBUG )
+#if defined( _MSC_VER ) && defined( _DEBUG )
     //_crtBreakAlloc = 1397;
     _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
-    #endif
-    
+#endif
+
     /*switch( ul_reason_for_call )
     {
     case DLL_PROCESS_DETACH:
         _CrtDumpMemoryLeaks();
         break;
     }*/
-    
+
     return TRUE;
 }
 #endif
