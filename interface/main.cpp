@@ -63,6 +63,7 @@ typedef struct
 
 
 #define COI_DECLARE_HANDLE(name) typedef struct name##__ { int unused; } *name
+//#define COI_DECLARE_HANDLE(name) typedef void* name
 
 COI_DECLARE_HANDLE(coiCameraHandle);
 COI_DECLARE_HANDLE(coiSceneNodeHandle);

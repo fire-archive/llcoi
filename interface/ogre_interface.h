@@ -13,6 +13,7 @@
 #endif
 
 #define COI_DECLARE_HANDLE(name) typedef struct name##__ { int unused; } *name
+//#define COI_DECLARE_HANDLE(name) typedef void* name
 
 #ifdef COI_USE_DOUBLE_PRECISION
 typedef double coiReal;
