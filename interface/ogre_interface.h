@@ -29,11 +29,15 @@
 #			define DLL extern "C" __declspec(dllexport)
 #		endif
 #	else
-#		if defined( __GNUC__ ) && __GNUC__ >= 4
-#			define DLL __attribute__ ((visibility("default")))
-#		else
-#			define DLL
-#		endif
+#       ifndef OgreInterface_EXPORTS
+#           define DLL
+#       else
+#           if defined( __GNUC__ ) && __GNUC__ >= 4
+#               define DLL extern "C" __attribute__ ((visibility("default")))
+#           else
+#               define DLL extern "C"
+#           endif
+#       endif
 #	endif
 #else
 #	define DLL
