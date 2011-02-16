@@ -80,7 +80,9 @@ void init_engine(const engine_options options)
 
 RenderWindowHandle root_initialise(int auto_create_window, const char* render_window_title)
 {
-    Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->initialise(true, "FUcklkjds");
+    Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->initialise(auto_create_window, render_window_title);
+	if(auto_create_window)
+		activeRenderWindow = window;
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 
@@ -93,7 +95,7 @@ DLL int root_is_initialised()
 
 RootHandle create_root(const char* pluginFileName, const char* configFileName, const char* logFileName)
 {
-    Ogre::Root* root = new Ogre::Root(pluginFileName, configFileName, logFileName);
+    Ogre::Root* root = new Ogre::Root(Ogre::String(pluginFileName), Ogre::String(configFileName), Ogre::String(logFileName));
     return reinterpret_cast<RootHandle>(root);
 }
 
@@ -181,13 +183,13 @@ void load_ogre_plugin(const char* plugin)
 
 CameraHandle get_camera(const char* camera_name)
 {
-    Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->getCamera(camera_name);
+    Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager("default")->getCamera(camera_name);
     return reinterpret_cast<CameraHandle>(camera);
 }
 
 CameraHandle create_camera(const char* camera_name)
 {
-    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createCamera(camera_name);
+    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager("default")->createCamera(camera_name);
     return reinterpret_cast<CameraHandle>(camera);
 }
 
@@ -263,13 +265,13 @@ void initialise_all_resourcegroups()
 
 EntityHandle create_entity(const char* entity_name, const char* mesh_file)
 {
-    Ogre::Entity* entity = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createEntity(entity_name, mesh_file);
+    Ogre::Entity* entity = Ogre::Root::getSingletonPtr()->getSceneManager("default")->createEntity(entity_name, mesh_file);
     return reinterpret_cast<EntityHandle>(entity);
 }
 
 SceneNodeHandle create_child_scenenode(const char* node_name)
 {
-    Ogre::SceneNode* scenenode = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->getRootSceneNode()->createChildSceneNode(node_name);
+    Ogre::SceneNode* scenenode = Ogre::Root::getSingletonPtr()->getSceneManager("default")->getRootSceneNode()->createChildSceneNode(node_name);
     return reinterpret_cast<SceneNodeHandle>(scenenode);
 }
 
@@ -282,17 +284,17 @@ void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scen
 
 void set_ambient_light_rgba(const float r, const float g, const float b, const float a)
 {
-    Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->setAmbientLight(Ogre::ColourValue(r, g, b, a));
+    Ogre::Root::getSingletonPtr()->getSceneManager("default")->setAmbientLight(Ogre::ColourValue(r, g, b, a));
 }
 
 void set_ambient_light_rgb(const float r, const float g, const float b)
 {
-    Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->setAmbientLight(Ogre::ColourValue(r, g, b));
+    Ogre::Root::getSingletonPtr()->getSceneManager("default")->setAmbientLight(Ogre::ColourValue(r, g, b));
 }
 
 LightHandle create_light(const char* light_name)
 {
-    Ogre::Light* light = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createLight(light_name);
+    Ogre::Light* light = Ogre::Root::getSingletonPtr()->getSceneManager("default")->createLight(light_name);
     return reinterpret_cast<LightHandle>(light);
 }
 

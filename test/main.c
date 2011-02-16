@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 // 
 //     init_engine(options);
 
-    create_root("plugins.cfg", "resources.cfg", "ogre.log");
+    create_root("", "", "ogre.log");
     
     load_ogre_plugin("RenderSystem_GL");
 
@@ -35,14 +35,14 @@ int main(int argc, char *argv[])
     render_system_set_config_option(rendersystem, "Full Screen", "No");
     render_system_set_config_option(rendersystem, "VSync", "No");
     render_system_set_config_option(rendersystem, "Video Mode", "800 x 600 @ 32-bit");
-    
+
     set_render_system(rendersystem);
     
     load_ogre_plugin("Plugin_OctreeSceneManager");
     
-    create_scene_manager("OctreeSceneManager");
-    
     root_initialise(1, "The Ogre Window");
+    
+	create_scene_manager("OctreeSceneManager");
     
     add_resource_location("../media/materials/scripts", "FileSystem", "General");
     add_resource_location("../media/materials/textures", "FileSystem", "General");
