@@ -39,10 +39,13 @@
 #	define DLL
 #endif
 
-#define CameraHandle void*
-#define EntityHandle void*
-#define SceneNodeHandle void*
-#define LightHandle void*
+#define COI_DECLARE_HANDLE(name) struct name##__ { int unused; }; typedef struct name##__ *name
+
+COI_DECLARE_HANDLE(CameraHandle);
+COI_DECLARE_HANDLE(EntityHandle);
+COI_DECLARE_HANDLE(SceneNodeHandle);
+COI_DECLARE_HANDLE(LightHandle);
+COI_DECLARE_HANDLE(LightHandleWrong);
 
 typedef struct
 {
