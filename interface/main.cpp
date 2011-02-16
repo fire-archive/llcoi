@@ -1,4 +1,3 @@
-#define EXPORTING
 #include <ogre_interface.h>
 
 #include <OgreRoot.h>
@@ -25,7 +24,7 @@ inline const std::string &safeStr( const char* str, int index )
     else return emptyString;
 }
 
-DLL void release_engine()
+void release_engine()
 {
     delete Ogre::Root::getSingletonPtr();
 }
@@ -34,22 +33,22 @@ void load_ogre_plugin(const char* plugin);
 
 static const char * plugin_folder = NULL;
 
-DLL void default_engine_options(engine_options &options)
+void default_engine_options(engine_options* options)
 {
-    options.renderer_s = "OpenGL";
+    options->renderer_s = "OpenGL";
 #ifdef PLATFORM_WIN
-    options.plugin_folder_s = ".";
+    options->plugin_folder_s = ".";
 #else
-    options.plugin_folder_s = "/usr/local/lib/OGRE";
+    options->plugin_folder_s = "/usr/local/lib/OGRE";
 #endif    
-    options.window_title = "Renderwindow";
-    options.width = 800;
-    options.height = 600;
-    options.auto_window = 1;
-    options.log_name = (char*) "Ogre.log";
+    options->window_title = "Renderwindow";
+    options->width = 800;
+    options->height = 600;
+    options->auto_window = 1;
+    options->log_name = "Ogre.log";
 }
 
-DLL void init_engine(const engine_options options)
+void init_engine(const engine_options options)
 {
     plugin_folder = options.plugin_folder_s;
     // suppress console logging
@@ -90,7 +89,7 @@ DLL void init_engine(const engine_options options)
     }
 }
 
-DLL void load_ogre_plugin(const char* plugin)
+void load_ogre_plugin(const char* plugin)
 {
 #if defined( WIN32 ) || defined( _WINDOWS )
 Ogre::String pluginString(plugin);
@@ -104,67 +103,67 @@ Ogre::String pluginString(plugin);
 #endif
 }
 
-DLL void* get_camera(const char* camera_name)
+void* get_camera(const char* camera_name)
 {
     Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->getCamera(camera_name);
     return static_cast<void*>(camera);
 }
 
-DLL void* create_camera(const char* camera_name)
+void* create_camera(const char* camera_name)
 {
     Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createCamera(camera_name);
     return static_cast<void*>(camera);
 }
 
-DLL void camera_set_near_clip_distance(void* camera_handle, float d)
+void camera_set_near_clip_distance(void* camera_handle, float d)
 {
     Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setNearClipDistance( d );
 }
 
-DLL void camera_set_far_clip_distance(void* camera_handle, float d)
+void camera_set_far_clip_distance(void* camera_handle, float d)
 {
     Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFarClipDistance( d );
 }
 
-DLL void camera_set_auto_aspect_ratio(void* camera_handle, bool on)
+void camera_set_auto_aspect_ratio(void* camera_handle, bool on)
 {
     Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setAutoAspectRatio(on);
 }
 
-DLL void camera_set_fovy(void* camera_handle, float angle)
+void camera_set_fovy(void* camera_handle, float angle)
 {
     Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFOVy((Ogre::Radian)angle);
 }
 
-DLL void camera_set_frustum_offset(void* camera_handle, const int offset_x, const int offset_y)
+void camera_set_frustum_offset(void* camera_handle, const int offset_x, const int offset_y)
 {
     Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFrustumOffset(Ogre::Vector2(offset_x, offset_y));
 }
 
-DLL void camera_set_focal_length(void* camera_handle, float fl)
+void camera_set_focal_length(void* camera_handle, float fl)
 {
     Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFocalLength(fl);
 }
 
-DLL void camera_set_position(void* camera_handle, const float x, const float y, const float z)
+void camera_set_position(void* camera_handle, const float x, const float y, const float z)
 {
     Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setPosition(Ogre::Vector3(x, y, z));
 }
 
-DLL void camera_lookat(void* camera_handle, const float x, const float y, const float z)
+void camera_lookat(void* camera_handle, const float x, const float y, const float z)
 {
     Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->lookAt(Ogre::Vector3(x, y, z));
 }
 
-DLL void add_viewport(void* camera_handle)
+void add_viewport(void* camera_handle)
 {
     Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->getAutoCreatedWindow();
@@ -176,58 +175,58 @@ DLL void add_viewport(void* camera_handle)
         Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
 }
 
-DLL void add_resource_location(const char* location, const char* type, const char* group)
+void add_resource_location(const char* location, const char* type, const char* group)
 {
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(location, type, group);
 }
 
-DLL void initialise_all_resourcegroups()
+void initialise_all_resourcegroups()
 {
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();    
 }
 
-DLL void* create_entity(const char* entity_name, const char* mesh_file)
+void* create_entity(const char* entity_name, const char* mesh_file)
 {
     Ogre::Entity* entity = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createEntity(entity_name, mesh_file);
     return static_cast<void*>(entity);
 }
 
-DLL void* create_child_scenenode(const char* node_name)
+void* create_child_scenenode(const char* node_name)
 {
     Ogre::SceneNode* scenenode = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->getRootSceneNode()->createChildSceneNode(node_name);
     return static_cast<void*>(scenenode);
 }
 
-DLL void attach_entity_to_scenenode(void* entity_handle, void* scenenode_handle)
+void attach_entity_to_scenenode(void* entity_handle, void* scenenode_handle)
 {
     Ogre::SceneNode* node = static_cast<Ogre::SceneNode*>(scenenode_handle);
     Ogre::MovableObject* object = reinterpret_cast<Ogre::MovableObject*>(entity_handle);
     node->attachObject(object);
 }
 
-DLL void set_ambient_light_rgba(const float r, const float g, const float b, const float a)
+void set_ambient_light_rgba(const float r, const float g, const float b, const float a)
 {
     Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->setAmbientLight(Ogre::ColourValue(r, g, b, a));
 }
 
-DLL void set_ambient_light_rgb(const float r, const float g, const float b)
+void set_ambient_light_rgb(const float r, const float g, const float b)
 {
     Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->setAmbientLight(Ogre::ColourValue(r, g, b));
 }
 
-DLL void* create_light(const char* light_name)
+void* create_light(const char* light_name)
 {
     Ogre::Light* light = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createLight(light_name);
     return static_cast<void*>(light);
 }
 
-DLL void light_set_position(void* light_handle, const float x, const float y, const float z)
+void light_set_position(void* light_handle, const float x, const float y, const float z)
 {
     Ogre::Light* light = static_cast<Ogre::Light*>(light_handle);
     light->setPosition(Ogre::Vector3(x, y, z));
 }
 
-DLL void set_default_num_mipmaps(int number)
+void set_default_num_mipmaps(int number)
 {
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(number);
 }
@@ -235,7 +234,7 @@ DLL void set_default_num_mipmaps(int number)
 
 bool do_render = 1;
 
-DLL void render_loop()
+void render_loop()
 {
     while(do_render)
     {
