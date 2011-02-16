@@ -138,6 +138,8 @@ DLL void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle 
 
 
 // Resource management
+DLL void setup_resources(const char* resources_cfg);
+
 DLL void add_resource_location(const char* location, const char* type, const char* group);
 
 DLL void initialise_all_resourcegroups();

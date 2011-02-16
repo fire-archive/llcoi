@@ -4,6 +4,7 @@
 #include <OgreRenderWindow.h>
 #include <OgreWindowEventUtilities.h>
 #include <OgreCamera.h>
+#include <OgreConfigFile.h>
 
 #include <cstdlib>
 #include <cstring>
@@ -251,6 +252,32 @@ void add_viewport(CameraHandle camera_handle)
     // Alter the camera aspect ratio to match the viewport
     camera->setAspectRatio(
         Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
+}
+
+void setup_resources(const char* resources_cfg)
+{
+    // set up resources
+    // Load resource paths from config file
+    Ogre::ConfigFile cf;
+    cf.load(resources_cfg);
+ 
+    // Go through all sections & settings in the file
+    Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
+ 
+    Ogre::String secName, typeName, archName;
+    while (seci.hasMoreElements())
+    {
+        secName = seci.peekNextKey();
+        Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
+        Ogre::ConfigFile::SettingsMultiMap::iterator i;
+        for (i = settings->begin(); i != settings->end(); ++i)
+        {
+            typeName = i->first;
+            archName = i->second;
+            Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+                archName, typeName, secName);
+        }
+    }
 }
 
 void add_resource_location(const char* location, const char* type, const char* group)
