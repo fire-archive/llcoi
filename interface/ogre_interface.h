@@ -39,6 +39,11 @@
 #	define DLL
 #endif
 
+#define CameraHandle void*
+#define EntityHandle void*
+#define SceneNodeHandle void*
+#define LightHandle void*
+
 typedef struct
 {
     float w;
@@ -71,27 +76,27 @@ DLL void init_engine(const engine_options options);
 
 DLL void load_ogre_plugin(const char * plugin);
 
-DLL void* create_camera(const char* name);
+DLL CameraHandle create_camera(const char* name);
 
-DLL void* get_camera(const char* camera_name);
+DLL CameraHandle get_camera(const char* camera_name);
 
-DLL void camera_set_near_clip_distance(void* camera_handle, float d);
+DLL void camera_set_near_clip_distance(CameraHandle camera_handle, float d);
 
-DLL void camera_set_far_clip_distance(void* camera_handle, float d);
+DLL void camera_set_far_clip_distance(CameraHandle camera_handle, float d);
 
-DLL void camera_set_auto_aspect_ratio(void* camera_handle, int on);
+DLL void camera_set_auto_aspect_ratio(CameraHandle camera_handle, int on);
 
-DLL void camera_set_fovy(void* camera_handle, float angle);
+DLL void camera_set_fovy(CameraHandle camera_handle, float angle);
 
-DLL void camera_set_frustum_offset(void* camera_handle, const int offset_x, const int offset_y);
+DLL void camera_set_frustum_offset(CameraHandle camera_handle, const int offset_x, const int offset_y);
 
-DLL void camera_set_focal_length(void* camera_handle, float fl);
+DLL void camera_set_focal_length(CameraHandle camera_handle, float fl);
 
-DLL void camera_set_position(void* camera_handle, const float x, const float y, const float z);
+DLL void camera_set_position(CameraHandle camera_handle, const float x, const float y, const float z);
 
-DLL void camera_lookat(void* camera_handle, const float x, const float y, const float z);
+DLL void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z);
 
-DLL void add_viewport(void* camera_handle);
+DLL void add_viewport(CameraHandle camera_handle);
 
 DLL void render_loop();
 
@@ -99,18 +104,18 @@ DLL void add_resource_location(const char* location, const char* type, const cha
 
 DLL void initialise_all_resourcegroups();
 
-DLL void* create_entity(const char* entity_name, const char* mesh_file);
+DLL EntityHandle create_entity(const char* entity_name, const char* mesh_file);
 
-DLL void* create_child_scenenode(const char* node_name);
+DLL SceneNodeHandle create_child_scenenode(const char* node_name);
 
-DLL void attach_entity_to_scenenode(void* entity_handle, void* scenenode_handle);
+DLL void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle);
 
 DLL void set_ambient_light_rgba(const float r, const float g, const float b, const float a);
 
 DLL void set_ambient_light_rgb(const float r, const float g, const float b);
 
-DLL void* create_light(const char* light_name);
+DLL LightHandle create_light(const char* light_name);
 
-DLL void light_set_position(void* light_handle, const float x, const float y, const float z);
+DLL void light_set_position(LightHandle light_handle, const float x, const float y, const float z);
 
 DLL void set_default_num_mipmaps(int number);

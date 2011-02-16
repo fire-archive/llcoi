@@ -9,20 +9,7 @@
 #include <cstring>
 #include <string>
 
-using namespace Ogre;
-
 bool initialized;
-
-const char *emptyCString = "";
-std::string emptyString = emptyCString;
-std::string strPool[4];  // String pool for avoiding memory allocations of temporary string objects
-
-
-inline const std::string &safeStr( const char* str, int index )
-{
-    if( str != 0x0 ) return strPool[index] = str;
-    else return emptyString;
-}
 
 void release_engine()
 {

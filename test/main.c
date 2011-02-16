@@ -12,16 +12,16 @@ int main(int argc, char *argv[])
 #endif
 {
 	// C90 requires all vars to be declared at top of function
-	void* myCamera;
-	void* anotherHandle;
-	void* entity;
-	void* node;
-	void* light;
+	CameraHandle myCamera;
+	CameraHandle anotherHandle;
+	EntityHandle entity;
+	SceneNodeHandle node;
+	LightHandle light;
 
 	engine_options options;
     default_engine_options(&options);
 	options.renderer_s = "OpenGL";
-    options.window_title = "Renderwindow from C";
+    options.window_title = "Renderwindow from C - better version";
 
     init_engine(options);
 
