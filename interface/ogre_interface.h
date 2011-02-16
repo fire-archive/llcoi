@@ -49,10 +49,15 @@ typedef struct
     int width, height, auto_window;
 } engine_options;
 
-COI_DECLARE_HANDLE(coiCameraHandle);
-COI_DECLARE_HANDLE(coiSceneNodeHandle);
-COI_DECLARE_HANDLE(coiEntityHandle);
-COI_DECLARE_HANDLE(coiLightHandle);
+#define DECLARE_HANDLE(name) struct name##__ { int name##_unused; }; \
+                             typedef struct name##__ *name
+
+DECLARE_HANDLE(coiSceneNodeHandle);
+DECLARE_HANDLE(coiLightHandle);
+
+struct coiCamera {};
+struct coiEntity {};
+
 
 DLL void release_engine();
 
@@ -62,27 +67,29 @@ DLL void init_engine(const engine_options options);
 
 DLL void load_ogre_plugin(const char * plugin);
 
-DLL coiCameraHandle create_camera(const char* name);
+DLL struct coiCamera* create_camera_ex(const char* name);
 
-DLL coiCameraHandle get_camera(const char* camera_name);
+DLL struct coiCamera* create_camera(const char* name);
 
-DLL void camera_set_near_clip_distance(coiCameraHandle camera_handle, coiReal d);
+DLL struct coiCamera* get_camera(const char* camera_name);
 
-DLL void camera_set_far_clip_distance(coiCameraHandle camera_handle, coiReal d);
+DLL void camera_set_near_clip_distance(struct coiCamera* camera_handle, coiReal d);
 
-DLL void camera_set_auto_aspect_ratio(coiCameraHandle camera_handle, int on);
+DLL void camera_set_far_clip_distance(struct coiCamera* camera_handle, coiReal d);
 
-DLL void camera_set_fovy(coiCameraHandle camera_handle, coiReal angle);
+DLL void camera_set_auto_aspect_ratio(struct coiCamera* camera_handle, int on);
 
-DLL void camera_set_frustum_offset(coiCameraHandle camera_handle, const int offset_x, const int offset_y);
+DLL void camera_set_fovy(struct coiCamera* camera_handle, coiReal angle);
 
-DLL void camera_set_focal_length(coiCameraHandle camera_handle, coiReal fl);
+DLL void camera_set_frustum_offset(struct coiCamera* camera_handle, const int offset_x, const int offset_y);
 
-DLL void camera_set_position(coiCameraHandle camera_handle, const coiReal x, const coiReal y, const coiReal z);
+DLL void camera_set_focal_length(struct coiCamera* camera_handle, coiReal fl);
 
-DLL void camera_lookat(coiCameraHandle camera_handle, const coiReal x, const coiReal y, const coiReal z);
+DLL void camera_set_position(struct coiCamera* camera_handle, const coiReal x, const coiReal y, const coiReal z);
 
-DLL void add_viewport(coiCameraHandle camera_handle);
+DLL void camera_lookat(struct coiCamera* camera_handle, const coiReal x, const coiReal y, const coiReal z);
+
+DLL void add_viewport(struct coiCamera* camera_handle);
 
 DLL void render_loop();
 
@@ -90,11 +97,11 @@ DLL void add_resource_location(const char* location, const char* type, const cha
 
 DLL void initialise_all_resourcegroups();
 
-DLL coiEntityHandle create_entity(const char* entity_name, const char* mesh_file);
+DLL struct coiEntity* create_entity(const char* entity_name, const char* mesh_file);
 
 DLL coiSceneNodeHandle create_child_scenenode(const char* node_name);
 
-DLL void attach_entity_to_scenenode(coiEntityHandle entity_handle, coiSceneNodeHandle scenenode_handle);
+DLL void attach_entity_to_scenenode(struct coiEntity* entity_handle, coiSceneNodeHandle scenenode_handle);
 
 DLL void set_ambient_light_rgba(const float r, const float g, const float b, const float a);
 

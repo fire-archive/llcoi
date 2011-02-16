@@ -22,28 +22,28 @@ int main(int argc, char *argv[])
     add_resource_location("../media/materials/textures", "FileSystem", "General");
     add_resource_location("../media/models", "FileSystem", "General");
 
-    coiCameraHandle myCamera = create_camera("mycam");
-    
+    struct coiCamera* myCamera = create_camera_ex("mycam");
+
     camera_set_position(myCamera, 0, 0, 80);
 
     camera_lookat(myCamera, 0, 0, -300);
 
     camera_set_near_clip_distance(myCamera, 5);
 
-    coiCameraHandle anotherHandle = get_camera("mycam");
-    
+    struct coiEntity* anotherHandle = get_camera("mycam");
+
     add_viewport(anotherHandle);
 
     set_default_num_mipmaps(5);
 
     initialise_all_resourcegroups();
 
-    coiEntityHandle entity = create_entity("OgreHead", "ogrehead.mesh");
+    struct coiEntity* entity = create_entity("OgreHead", "ogrehead.mesh");
 
-    coiSceneNodeHandle node = create_child_scenenode("headNode");
+    coiLightHandle node = create_child_scenenode("headNode");
 
     attach_entity_to_scenenode(entity, node);
-   
+
     set_ambient_light_rgb(0.5f, 0.5f, 0.5f);
 
     coiLightHandle light = create_light("mainLight");
