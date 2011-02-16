@@ -80,7 +80,7 @@ void init_engine(const engine_options options)
 
 RenderWindowHandle root_initialise(int auto_create_window, const char* render_window_title)
 {
-    Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->initialise(auto_create_window, render_window_title);
+    Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->initialise(true, "FUcklkjds");
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 
@@ -139,10 +139,16 @@ RenderSystemHandle get_render_system()
     return reinterpret_cast<RenderSystemHandle>(Ogre::Root::getSingletonPtr()->getRenderSystem());
 }
 
+void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value)
+{
+    Ogre::RenderSystem* rs = reinterpret_cast<Ogre::RenderSystem*>(render_system_handle);
+    rs->setConfigOption(option, value);
+}
+
 SceneManagerHandle create_scene_manager(const char* type_name, ...)
 {
     const char* instance_name = "default";
-    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->createSceneManager(type_name, instance_name);
+    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->createSceneManager(Ogre::String(type_name), Ogre::String(instance_name));
     return reinterpret_cast<SceneManagerHandle>(sm);
 }
 
@@ -301,7 +307,21 @@ void set_default_num_mipmaps(int number)
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(number);
 }
 
-bool do_render = 1;
+int render_one_frame()
+{
+    if(Ogre::Root::getSingletonPtr()->renderOneFrame())
+        return 1;
+    return 0;
+}
+
+int render_one_frame_custom(float time_since_last_frame)
+{
+    if(Ogre::Root::getSingletonPtr()->renderOneFrame(time_since_last_frame))
+        return 1;
+    return 0;
+}
+
+static bool do_render = 1;
 
 void render_loop()
 {

@@ -113,9 +113,13 @@ DLL SceneManagerHandle get_scene_manager();
 
 DLL SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_name);
 
+DLL int render_one_frame();
+
+DLL int render_one_frame_custom(float time_since_last_frame);
 
 DLL void render_loop();
 
+DLL void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value);
 
 // SceneManager functions
 DLL void set_default_num_mipmaps(int number);
@@ -123,7 +127,6 @@ DLL void set_default_num_mipmaps(int number);
 DLL void set_ambient_light_rgba(const float r, const float g, const float b, const float a);
 
 DLL void set_ambient_light_rgb(const float r, const float g, const float b);
-
 
 DLL void add_viewport(CameraHandle camera_handle);
 

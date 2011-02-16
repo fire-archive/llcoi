@@ -17,14 +17,33 @@ int main(int argc, char *argv[])
 	EntityHandle entity;
 	SceneNodeHandle node;
 	LightHandle light;
+    RenderSystemHandle rendersystem;
+    
+// 	engine_options options;
+//     default_engine_options(&options);
+// 	options.renderer_s = "OpenGL";
+//     options.window_title = "Renderwindow from C - better version";
+// 
+//     init_engine(options);
 
-	engine_options options;
-    default_engine_options(&options);
-	options.renderer_s = "OpenGL";
-    options.window_title = "Renderwindow from C - better version";
+    create_root("plugins.cfg", "resources.cfg", "ogre.log");
+    
+    load_ogre_plugin("RenderSystem_GL");
 
-    init_engine(options);
-
+    rendersystem = get_render_system_by_name("OpenGL Rendering Subsystem");
+    
+    render_system_set_config_option(rendersystem, "Full Screen", "No");
+    render_system_set_config_option(rendersystem, "VSync", "No");
+    render_system_set_config_option(rendersystem, "Video Mode", "800 x 600 @ 32-bit");
+    
+    set_render_system(rendersystem);
+    
+    load_ogre_plugin("Plugin_OctreeSceneManager");
+    
+    create_scene_manager("OctreeSceneManager");
+    
+    root_initialise(1, "The Ogre Window");
+    
     add_resource_location("../media/materials/scripts", "FileSystem", "General");
     add_resource_location("../media/materials/textures", "FileSystem", "General");
     add_resource_location("../media/models", "FileSystem", "General");
