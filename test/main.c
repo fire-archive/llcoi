@@ -11,7 +11,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR strCmdLine, INT 
 int main(int argc, char *argv[])
 #endif
 {
-    engine_options options;
+	engine_options options;
     default_engine_options(&options);
 	options.renderer_s = "OpenGL";
     options.window_title = "Renderwindow from C";
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     add_resource_location("../media/materials/textures", "FileSystem", "General");
     add_resource_location("../media/models", "FileSystem", "General");
 
-    struct coiCamera* myCamera = create_camera_ex("mycam");
+    coiCamera myCamera = create_camera_ex("mycam");
 
     camera_set_position(myCamera, 0, 0, 80);
 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
     camera_set_near_clip_distance(myCamera, 5);
 
-    struct coiEntity* anotherHandle = get_camera("mycam");
+    coiEntity anotherHandle = get_camera("mycam");
 
     add_viewport(anotherHandle);
 
@@ -38,9 +38,9 @@ int main(int argc, char *argv[])
 
     initialise_all_resourcegroups();
 
-    struct coiEntity* entity = create_entity("OgreHead", "ogrehead.mesh");
+    coiEntity* entity = create_entity("OgreHead", "ogrehead.mesh");
 
-    coiLightHandle node = create_child_scenenode("headNode");
+    coiSceneNodeHandle node = create_child_scenenode("headNode");
 
     attach_entity_to_scenenode(entity, node);
 

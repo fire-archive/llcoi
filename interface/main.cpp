@@ -1,100 +1,15 @@
+#include <ogre_interface.h>
+
 #include <OgreRoot.h>
 #include <OgreRenderWindow.h>
 #include <OgreWindowEventUtilities.h>
+#include <OgreCamera.h>
 
 #include <cstdlib>
 #include <cstring>
 #include <string>
 
-// Detect platform
-#if defined( WINCE )
-#   if !defined( PLATFORM_WIN_CE )
-#       define PLATFORM_WIN_CE
-#   endif
-#elif defined( WIN32 ) || defined( _WINDOWS )
-#   if !defined( PLATFORM_WIN )
-#       define PLATFORM_WIN
-#       define PATH_SEP "\\"
-#   endif
-#elif defined( __APPLE__ ) || defined( __APPLE_CC__ )
-#   if !defined( PLATFORM_MAC )
-#      define PLATFORM_MAC
-#   endif
-#else
-#   if !defined( PLATFORM_LINUX )
-#       define PLATFORM_LINUX
-#       define PATH_SEP "/"
-#   endif
-#endif
-
-
-#ifndef DLLEXP
-#   ifdef PLATFORM_WIN
-#       define DLLEXP extern "C" __declspec( dllexport )
-#   else
-#       if defined( __GNUC__ ) && __GNUC__ >= 4
-#         define DLLEXP extern "C" __attribute__ ((visibility("default")))
-#       else
-#         define DLLEXP extern "C"
-#       endif
-#   endif
-#endif
-
-#ifdef OGREINTERFACE_USE_DOUBLE_PRECISION
-typedef double coiReal;
-#else
-typedef float coiReal;
-#endif
-
-typedef struct
-{
-    coiReal w;
-    coiReal x;
-    coiReal y;
-    coiReal z;
-} coiQuaternion;
-
-typedef struct
-{
-    coiReal x;
-    coiReal y;
-    coiReal z;
-} coiVector3;
-
-
-#define COI_DECLARE_HANDLE(name) typedef struct name##__ { int unused; } *name
-//#define COI_DECLARE_HANDLE(name) typedef void* name
-#define DECLARE_HANDLE(name) struct name##__ { int name##_unused; }; \
-                             typedef struct name##__ *name
-
-DECLARE_HANDLE(coiSceneNodeHandle);
-DECLARE_HANDLE(coiLightHandle);
-
-class coiCamera
-{
-public:
-    coiCamera(Ogre::Camera* camera){
-        mCamera = camera;
-    }
-    Ogre::Camera* getCamera() {
-        return mCamera;
-    }
-private:
-    Ogre::Camera* mCamera;
-};
-
-class coiEntity
-{
-public:
-    coiEntity(Ogre::Entity* entity){
-        mEntity = entity;
-    }
-    Ogre::Entity* getEntity() {
-        return mEntity;
-    }
-private:
-    Ogre::Entity* mEntity;
-};
+using namespace Ogre;
 
 bool initialized;
 
@@ -109,25 +24,16 @@ inline const std::string &safeStr( const char* str, int index )
     else return emptyString;
 }
 
-DLLEXP void release_engine()
+DLL void release_engine()
 {
     delete Ogre::Root::getSingletonPtr();
 }
 
-DLLEXP void load_ogre_plugin(const char* plugin);
+void load_ogre_plugin(const char* plugin);
 
 static const char * plugin_folder = NULL;
 
-struct engine_options
-{
-    const char* renderer_s;
-    const char* plugin_folder_s;
-    const char* window_title;
-    const char* log_name;
-    int width, height, auto_window;
-};
-
-DLLEXP void default_engine_options(struct engine_options &options)
+DLL void default_engine_options(engine_options &options)
 {
     options.renderer_s = "OpenGL";
 #ifdef PLATFORM_WIN
@@ -142,7 +48,7 @@ DLLEXP void default_engine_options(struct engine_options &options)
     options.log_name = (char*) "Ogre.log";
 }
 
-DLLEXP void init_engine(const struct engine_options options)
+DLL void init_engine(const engine_options options)
 {
     plugin_folder = options.plugin_folder_s;
     // suppress console logging
@@ -183,7 +89,7 @@ DLLEXP void init_engine(const struct engine_options options)
     }
 }
 
-DLLEXP void load_ogre_plugin(const char* plugin)
+DLL void load_ogre_plugin(const char* plugin)
 {
 #if defined( WIN32 ) || defined( _WINDOWS )
 Ogre::String pluginString(plugin);
@@ -197,77 +103,76 @@ Ogre::String pluginString(plugin);
 #endif
 }
 
-DLLEXP coiCamera* get_camera(const char* camera_name)
+DLL coiCamera get_camera(const char* camera_name)
 {
     Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->getCamera(camera_name);
-    coiCamera* cam = new coiCamera(camera);
+    return static_cast<void*>(camera);
+}
+
+DLL coiCamera create_camera(const char* camera_name)
+{
+    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createCamera(camera_name);
+    return (coiCamera)reinterpret_cast<void*>(camera);
+}
+
+DLL coiCamera create_camera_ex(const char* camera_name)
+{
+    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createCamera(camera_name);
+    coiCamera cam = new coiCamera(camera);
     return cam;
 }
 
-DLLEXP coiCamera* create_camera(const char* camera_name)
+DLL void camera_set_near_clip_distance(coiCamera camera_handle, float d)
 {
-    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createCamera(camera_name);
-    return (coiCamera*)reinterpret_cast<void*>(camera);
-}
-
-DLLEXP coiCamera* create_camera_ex(const char* camera_name)
-{
-    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createCamera(camera_name);
-    coiCamera* cam = new coiCamera(camera);
-    return cam;
-}
-
-DLLEXP void camera_set_near_clip_distance(coiCamera* camera_handle, coiReal d)
-{
-    Ogre::Camera* camera = camera_handle->getCamera();//reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setNearClipDistance( d );
 }
 
-DLLEXP void camera_set_far_clip_distance(coiCamera* camera_handle, coiReal d)
+DLL void camera_set_far_clip_distance(coiCamera camera_handle, float d)
 {
-    Ogre::Camera* camera = camera_handle->getCamera();//reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFarClipDistance( d );
 }
 
-DLLEXP void camera_set_auto_aspect_ratio(coiCamera* camera_handle, bool on)
+DLL void camera_set_auto_aspect_ratio(coiCamera camera_handle, bool on)
 {
-    Ogre::Camera* camera = camera_handle->getCamera();//reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setAutoAspectRatio(on);
 }
 
-DLLEXP void camera_set_fovy(coiCamera* camera_handle, coiReal angle)
+DLL void camera_set_fovy(coiCamera camera_handle, float angle)
 {
-    Ogre::Camera* camera = camera_handle->getCamera();//reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFOVy((Ogre::Radian)angle);
 }
 
-DLLEXP void camera_set_frustum_offset(coiCamera* camera_handle, const int offset_x, const int offset_y)
+DLL void camera_set_frustum_offset(coiCamera camera_handle, const int offset_x, const int offset_y)
 {
-    Ogre::Camera* camera = camera_handle->getCamera();//reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFrustumOffset(Ogre::Vector2(offset_x, offset_y));
 }
 
-DLLEXP void camera_set_focal_length(coiCamera* camera_handle, coiReal fl)
+DLL void camera_set_focal_length(coiCamera camera_handle, float fl)
 {
-    Ogre::Camera* camera = camera_handle->getCamera();//reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFocalLength(fl);
 }
 
-DLLEXP void camera_set_position(coiCamera* camera_handle, const coiReal x, const coiReal y, const coiReal z)
+DLL void camera_set_position(coiCamera camera_handle, const float x, const float y, const float z)
 {
-    Ogre::Camera* camera = camera_handle->getCamera();//reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setPosition(Ogre::Vector3(x, y, z));
 }
 
-DLLEXP void camera_lookat(coiCamera* camera_handle, const coiReal x, const coiReal y, const coiReal z)
+DLL void camera_lookat(coiCamera camera_handle, const float x, const float y, const float z)
 {
-    Ogre::Camera* camera = camera_handle->getCamera();//reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->lookAt(Ogre::Vector3(x, y, z));
 }
 
-DLLEXP void add_viewport(coiCamera* camera_handle)
+DLL void add_viewport(coiCamera camera_handle)
 {
-    Ogre::Camera* camera = camera_handle->getCamera();//reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->getAutoCreatedWindow();
     Ogre::Viewport* vp = window->addViewport(camera);
     vp->setBackgroundColour(Ogre::ColourValue(0,0,0));
@@ -277,70 +182,66 @@ DLLEXP void add_viewport(coiCamera* camera_handle)
         Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
 }
 
-DLLEXP void add_resource_location(const char* location, const char* type, const char* group)
+DLL void add_resource_location(const char* location, const char* type, const char* group)
 {
     Ogre::ResourceGroupManager::getSingleton().addResourceLocation(location, type, group);
 }
 
-DLLEXP void initialise_all_resourcegroups()
+DLL void initialise_all_resourcegroups()
 {
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();    
 }
 
-DLLEXP coiEntity* create_entity(const char* entity_name, const char* mesh_file)
+DLL coiEntity create_entity(const char* entity_name, const char* mesh_file)
 {
     Ogre::Entity* entity = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createEntity(entity_name, mesh_file);
-    coiEntity* ent = new coiEntity(entity);
-    return ent;
-//    return (coiEntity*)reinterpret_cast<void*>(entity);
+    return static_cast<void*>(entity);
 }
 
-DLLEXP coiSceneNodeHandle create_child_scenenode(const char* node_name)
+DLL coiSceneNodeHandle create_child_scenenode(const char* node_name)
 {
     Ogre::SceneNode* scenenode = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->getRootSceneNode()->createChildSceneNode(node_name);
     return (coiSceneNodeHandle)reinterpret_cast<void*>(scenenode);
 }
 
-DLLEXP void attach_entity_to_scenenode(coiEntity* entity_handle, coiSceneNodeHandle scenenode_handle)
+DLL void attach_entity_to_scenenode(coiEntity entity_handle, coiSceneNodeHandle scenenode_handle)
 {
     Ogre::SceneNode* node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
-    Ogre::MovableObject* object = reinterpret_cast<Ogre::MovableObject*>(entity_handle->getEntity());
+    Ogre::MovableObject* object = reinterpret_cast<Ogre::MovableObject*>(entity_handle);
     node->attachObject(object);
 }
 
-DLLEXP void set_ambient_light_rgba(const float r, const float g, const float b, const float a)
+DLL void set_ambient_light_rgba(const float r, const float g, const float b, const float a)
 {
     Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->setAmbientLight(Ogre::ColourValue(r, g, b, a));
 }
 
-DLLEXP void set_ambient_light_rgb(const float r, const float g, const float b)
+DLL void set_ambient_light_rgb(const float r, const float g, const float b)
 {
     Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->setAmbientLight(Ogre::ColourValue(r, g, b));
 }
 
-DLLEXP coiLightHandle create_light(const char* light_name)
+DLL coiLightHandle create_light(const char* light_name)
 {
     Ogre::Light* light = Ogre::Root::getSingletonPtr()->getSceneManager("scene-manager")->createLight(light_name);
     return (coiLightHandle)reinterpret_cast<void*>(light);
 }
 
-DLLEXP void light_set_position(coiLightHandle light_handle, const coiReal x, const coiReal y, const coiReal z)
+DLL void light_set_position(coiLightHandle light_handle, const float x, const float y, const float z)
 {
     Ogre::Light* light = reinterpret_cast<Ogre::Light*>(light_handle);
     light->setPosition(Ogre::Vector3(x, y, z));
 }
 
-DLLEXP void set_default_num_mipmaps(int number)
+DLL void set_default_num_mipmaps(int number)
 {
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(number);
 }
 
 
-
-
 bool do_render = 1;
 
-DLLEXP void render_loop()
+DLL void render_loop()
 {
     while(do_render)
     {
