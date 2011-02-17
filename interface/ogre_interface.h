@@ -56,8 +56,7 @@
 #   endif
 #endif
 
-#define BUILD_DYNAMIC
-#if defined(BUILD_DYNAMIC)
+#if defined(LLCOI_BUILD_DYNAMIC)
 #   if defined( WIN32 ) || defined( _WINDOWS )
 #       ifndef OgreInterface_EXPORTS
 #           define DLL __declspec(dllimport)
@@ -76,7 +75,15 @@
 #       endif
 #   endif
 #else
-#   define DLL
+#   if defined( LLCOI_BUILD_STATIC )
+#       if defined( __GNUC__ ) && __GNUC__ >= 4
+#           define DLL extern "C" __attribute__ ((visibility("default")))
+#       else
+#           define DLL extern "C"
+#       endif
+#   else
+#       define DLL
+#   endif
 #endif
 
 #define COI_DECLARE_HANDLE(name) struct name##__ { int unused; }; typedef struct name##__ *name

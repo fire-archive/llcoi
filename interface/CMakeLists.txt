@@ -117,8 +117,15 @@ include_directories(${OGRE_INCLUDE_DIRS}
 	${OGRE_SAMPLES_INCLUDEPATH}
 )
  
-#add_library(OgreInterface STATIC ${HDRS} ${SRCS})
-add_library(OgreInterface SHARED ${HDRS} ${SRCS})
+if(${LLCOI_DYNAMIC_BUILD})
+    add_library(OgreInterface SHARED ${HDRS} ${SRCS})
+    set_target_properties(OgreInterface PROPERTIES 
+        COMPILE_DEFINITIONS LLCOI_BUILD_DYNAMIC)
+else()
+    add_library(OgreInterface STATIC ${HDRS} ${SRCS})
+    set_target_properties(OgreInterface PROPERTIES 
+        COMPILE_DEFINITIONS LLCOI_BUILD_STATIC)
+endif()
 
 set_target_properties(OgreInterface PROPERTIES DEBUG_POSTFIX _d)
 

@@ -18,6 +18,8 @@ cmake_minimum_required(VERSION 2.8)
 
 project(llcoi)
 
+option(LLCOI_DYNAMIC_BUILD "Build OgreInterface as shared library" TRUE)
+
 set(BUILD_ROOTDIR "${CMAKE_CURRENT_BINARY_DIR}")
 set(CMAKE_INSTALL_PREFIX "${BUILD_ROOTDIR}/test/dist")
 
