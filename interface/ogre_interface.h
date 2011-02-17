@@ -102,6 +102,7 @@ COI_DECLARE_HANDLE(RenderWindowHandle);
 COI_DECLARE_HANDLE(RootHandle);
 COI_DECLARE_HANDLE(RenderSystemHandle);
 COI_DECLARE_HANDLE(SceneManagerHandle);
+COI_DECLARE_HANDLE(ViewportHandle);
 
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
@@ -186,7 +187,7 @@ DLL void set_ambient_light_rgba(const float r, const float g, const float b, con
 
 DLL void set_ambient_light_rgb(const float r, const float g, const float b);
 
-DLL void add_viewport(CameraHandle camera_handle);
+DLL ViewportHandle add_viewport(CameraHandle camera_handle);
 
 DLL void scene_manager_log_name();
 
@@ -195,6 +196,13 @@ DLL SceneNodeHandle create_child_scenenode(const char* node_name);
 
 DLL void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle);
 
+
+// Viewports
+DLL void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b);
+
+DLL float viewport_get_width(ViewportHandle viewport_handle);
+
+DLL float viewport_get_height(ViewportHandle viewport_handle);
 
 // Resource management
 DLL void setup_resources(const char* resources_cfg);
@@ -212,6 +220,8 @@ DLL CameraHandle get_camera(const char* camera_name);
 DLL void camera_set_near_clip_distance(CameraHandle camera_handle, float d);
 
 DLL void camera_set_far_clip_distance(CameraHandle camera_handle, float d);
+
+DLL void camera_set_aspect_ratio(CameraHandle camera_handle, float w, float h);
 
 DLL void camera_set_auto_aspect_ratio(CameraHandle camera_handle, int on);
 

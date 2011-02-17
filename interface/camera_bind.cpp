@@ -55,6 +55,12 @@ void camera_set_far_clip_distance(CameraHandle camera_handle, float d)
     camera->setFarClipDistance( d );
 }
 
+void camera_set_aspect_ratio(CameraHandle camera_handle, float w, float h)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    camera->setAspectRatio(Ogre::Real(Ogre::Real(w)/Ogre::Real(h)));
+}
+
 void camera_set_auto_aspect_ratio(CameraHandle camera_handle, bool on)
 {
     Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
@@ -91,14 +97,28 @@ void camera_lookat(CameraHandle camera_handle, const float x, const float y, con
     camera->lookAt(Ogre::Vector3(x, y, z));
 }
 
-void add_viewport(CameraHandle camera_handle)
+ViewportHandle add_viewport(CameraHandle camera_handle)
 {
     Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
     Ogre::RenderWindow* window = activeRenderWindow;
     Ogre::Viewport* vp = window->addViewport(camera);
-    vp->setBackgroundColour(Ogre::ColourValue(0,0,0));
+    return reinterpret_cast<ViewportHandle>(vp);
+}
 
-    // Alter the camera aspect ratio to match the viewport
-    camera->setAspectRatio(
-        Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()));
+void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
+    vp->setBackgroundColour(Ogre::ColourValue(r, g, b));
+}
+
+float viewport_get_width(ViewportHandle viewport_handle)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
+    return vp->getWidth();
+}
+
+float viewport_get_height(ViewportHandle viewport_handle)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
+    return vp->getHeight();
 }

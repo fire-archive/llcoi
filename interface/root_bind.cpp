@@ -183,6 +183,7 @@ void render_system_set_config_option(RenderSystemHandle render_system_handle, co
 RenderWindowHandle create_render_window(const char* name, const int width, const int height, const int full_screen)
 {
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->createRenderWindow(name, width, height, full_screen);
+    activeRenderWindow = window;
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 
@@ -193,6 +194,7 @@ RenderWindowHandle create_render_window_ex(const char* name, const int width, co
     // you *will* need something different on Windows or Mac.
     misc["currentGLContext"] = Ogre::String("True");
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->createRenderWindow(name, width, height, full_screen, &misc);
+    activeRenderWindow = window;
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 

@@ -42,5 +42,6 @@
 void render_window_set_visible(RenderWindowHandle window_handle, int visible)
 {
     Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);
+    window->setActive(true);
     window->setVisible(visible);
 }

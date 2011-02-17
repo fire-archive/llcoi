@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
 	LightHandle light;
     RenderSystemHandle rendersystem;
     RenderWindowHandle renderwindow;
+    ViewportHandle viewport;
     
    ALLEGRO_DISPLAY *display;
 
@@ -74,9 +75,9 @@ int main(int argc, char *argv[])
 
     setup_resources("resources.cfg");
     
-    renderwindow = create_render_window_ex("The RenderWindow", al_get_display_width(display), al_get_display_height(display), 0, "currentGLContext", "True");
+    root_initialise(0, "kjsdfklsdjafklweior");
     
-    render_window_set_visible(renderwindow, 1);
+    renderwindow = create_render_window_ex("The RenderWindow", al_get_display_width(display), al_get_display_height(display), 0, "currentGLContext", "True");
     
     set_default_num_mipmaps(5);
     
@@ -85,16 +86,20 @@ int main(int argc, char *argv[])
     create_scene_manager("OctreeSceneManager", "The SceneManager");
 
     myCamera = create_camera("mycam");
-
+ 
     camera_set_position(myCamera, 0, 0, 80);
-
+ 
     camera_lookat(myCamera, 0, 0, -300);
-
+ 
     camera_set_near_clip_distance(myCamera, 5);
-
+ 
     anotherHandle = get_camera("mycam");
+ 
+    viewport = add_viewport(anotherHandle);
+     
+    viewport_set_background_colour(viewport, 0, 0, 0);
 
-    add_viewport(anotherHandle);
+    camera_set_aspect_ratio(viewport_get_width(viewport), viewport_get_height(viewport));
 
     entity = create_entity("OgreHead", "ogrehead.mesh");
 
@@ -112,7 +117,7 @@ int main(int argc, char *argv[])
 
     //render_loop();
 
-    //release_engine();
+    release_engine();
 
     al_uninstall_system();
 
