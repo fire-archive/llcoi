@@ -147,8 +147,10 @@ if(WIN32 AND NOT MINGW)
 		COMMAND copy \"$(TargetPath)\" ..\\test\\dist\\bin )
 endif(WIN32 AND NOT MINGW)
 
-if(WIN32)
-	install(TARGETS OgreInterface
-		RUNTIME DESTINATION bin
-		CONFIGURATIONS All)
+if(${LLCOI_DYNAMIC_BUILD})
+	if(WIN32)
+		install(TARGETS OgreInterface
+			RUNTIME DESTINATION bin
+			CONFIGURATIONS All)
+	endif()
 endif()

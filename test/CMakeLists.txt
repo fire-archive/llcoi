@@ -53,19 +53,31 @@ set(SRCS
 )
 
 
+if(WIN32)
+	getenv_path(ALLEGRO_HOME)
+	include_directories(${CMAKE_SOURCE_DIR}/interface
+		$ENV{ALLEGRO_HOME}/include/allegro5
+	)
+else()
+	include_directories(${CMAKE_SOURCE_DIR}/interface
+		/usr/local/include/allegro5
+	)
+endif()
 
 
-
-include_directories(${CMAKE_SOURCE_DIR}/interface
-    /usr/local/include/allegro5
-)
 
 add_executable(OgreApp WIN32 ${SRCS})
  
 set_target_properties(OgreApp PROPERTIES DEBUG_POSTFIX _d)
 
-target_link_libraries(OgreApp OgreInterface /usr/local/lib/liballegro_main.so
-)
+if(WIN32)
+	target_link_libraries(OgreApp OgreInterface $ENV{ALLEGRO_HOME}/allegro_main.lib
+	)
+else()
+	target_link_libraries(OgreApp OgreInterface /usr/local/lib/liballegro_main.so
+	)
+endif()
+
 
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/bin)
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/dist/media)
