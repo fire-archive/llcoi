@@ -1,5 +1,8 @@
 #include <ogre_interface.h>
 
+#include <allegro.h>
+#include <allegro_opengl.h>
+
 #if defined( WIN32 ) || defined( _WINDOWS )
 #   define WIN32_LEAN_AND_MEAN
 #   include "windows.h"
@@ -20,25 +23,24 @@ int main(int argc, char *argv[])
     RenderSystemHandle rendersystem;
     RenderWindowHandle renderwindow;
     
-	/*engine_options options;
-    default_engine_options(&options);
-	options.renderer_s = "OpenGL";
-    options.window_title = "Renderwindow from C - better version";
+   ALLEGRO_DISPLAY *display;
 
-    init_engine(options);*/
+   if (!al_init()) {
+      return 1;
+   }
+   al_install_keyboard();
+   al_install_mouse();
 
+   al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_RESIZABLE);
+   display = al_create_display(800, 600);
+   if (!display) {
+      return 1;
+   }
+   al_set_window_title(display, "My window");
+   
     create_root("plugins.cfg", "ogre.cfg", "ogre.log");
-    
-    if(restore_config() || show_config_dialog())
-    {
-        renderwindow = root_initialise(1, "The Ogre Window");
-    }
-    else
-    {
-        return 1;
-    }
-    
-    /*load_ogre_plugin("RenderSystem_GL");
+   
+/*    load_ogre_plugin("RenderSystem_GL");
 
     rendersystem = get_render_system_by_name("OpenGL Rendering Subsystem");
     
@@ -48,18 +50,25 @@ int main(int argc, char *argv[])
 
     set_render_system(rendersystem);
     
-    load_ogre_plugin("Plugin_OctreeSceneManager");
+    load_ogre_plugin("Plugin_OctreeSceneManager");*/
     
-    root_initialise(1, "The Ogre Window");*/
+    if(!(restore_config() || show_config_dialog()))
+    {
+        return 1;
+    }
+
+    setup_resources("resources.cfg");
     
-    /* create_scene_manager("OctreeSceneManager"); */
-	create_scene_manager("OctreeSceneManager", "The SceneManager");
+    renderwindow = create_render_window_ex("The RenderWindow", al_get_display_width(display), al_get_display_height(display), 0, "currentGLContext", "True");
     
-	setup_resources("resources.cfg");
-    /*add_resource_location("../media/materials/scripts", "FileSystem", "General");
-     add_resource_location("../media/materials/textures", "FileSystem", "General");
-     add_resource_location("../media/models", "FileSystem", "General");*/
+    render_window_set_visible(renderwindow, 1);
     
+    set_default_num_mipmaps(5);
+    
+    initialise_all_resourcegroups();
+    
+    create_scene_manager("OctreeSceneManager", "The SceneManager");
+
     myCamera = create_camera("mycam");
 
     camera_set_position(myCamera, 0, 0, 80);
@@ -71,10 +80,6 @@ int main(int argc, char *argv[])
     anotherHandle = get_camera("mycam");
 
     add_viewport(anotherHandle);
-
-    set_default_num_mipmaps(5);
-
-    initialise_all_resourcegroups();
 
     entity = create_entity("OgreHead", "ogrehead.mesh");
 
@@ -88,11 +93,11 @@ int main(int argc, char *argv[])
 
     light_set_position(light, 20, 80, 50);
 
-    //scene_manager_log_name();
-    
-    render_loop();
+    //render_loop();
 
-    release_engine();
+    //release_engine();
 
-    return 0;
+    al_uninstall_system();
+
+   return 0;
 }

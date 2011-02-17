@@ -132,6 +132,12 @@ DLL RootHandle create_root(const char* pluginFileName, const char* configFileNam
 
 DLL RenderWindowHandle root_initialise(int auto_create_window, const char* render_window_title);
 
+DLL RenderWindowHandle create_render_window(const char* name, const int width, const int height, const int full_screen);
+
+DLL RenderWindowHandle create_render_window_ex(const char* name, const int width, const int height, const int full_screen, const char* misc_param, const char* misc_value);
+
+DLL void render_window_set_visible(RenderWindowHandle window_handle, int visible);
+
 DLL int root_is_initialised();
 
 DLL void save_config();

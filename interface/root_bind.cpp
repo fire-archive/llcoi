@@ -180,6 +180,22 @@ void render_system_set_config_option(RenderSystemHandle render_system_handle, co
     rs->setConfigOption(option, value);
 }
 
+RenderWindowHandle create_render_window(const char* name, const int width, const int height, const int full_screen)
+{
+    Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->createRenderWindow(name, width, height, full_screen);
+    return reinterpret_cast<RenderWindowHandle>(window);
+}
+
+RenderWindowHandle create_render_window_ex(const char* name, const int width, const int height, const int full_screen, const char* misc_param, const char* misc_value)
+{
+    Ogre::NameValuePairList misc;
+    // Tell Ogre to use the current GL context.  This works on Linux/GLX but
+    // you *will* need something different on Windows or Mac.
+    misc["currentGLContext"] = Ogre::String("True");
+    Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->createRenderWindow(name, width, height, full_screen, &misc);
+    return reinterpret_cast<RenderWindowHandle>(window);
+}
+
 SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name)
 {
 /*    va_list arg_list;

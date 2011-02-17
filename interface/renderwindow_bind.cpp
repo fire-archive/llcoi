@@ -37,3 +37,10 @@
 #include "ogre_interface.h"
 
 #include <OgreRoot.h>
+#include <OgreRenderWindow.h>
+
+void render_window_set_visible(RenderWindowHandle window_handle, int visible)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);
+    window->setVisible(visible);
+}
