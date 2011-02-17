@@ -112,6 +112,8 @@ set(SRCS
 	./entity_bind.cpp
 	./scenemanager_bind.cpp
 	./scenenode_bind.cpp
+	./camera_bind.cpp
+	./resourcemanager_bind.cpp
 )
  
 include_directories( ${OIS_INCLUDE_DIRS}

@@ -1,5 +1,5 @@
 /******************************************************************************
- * scenemanager_bind.cpp - bindings for Ogre::SceneManager
+ * resourcemanager_bind.cpp - bindings for Ogre::ResourceManager
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
@@ -37,41 +37,40 @@
 #include "ogre_interface.h"
 
 #include <OgreRoot.h>
-#include <OgreRenderWindow.h>
-#include <OgreCamera.h>
+#include <OgreConfigFile.h>
 
-extern const char* active_scene_manager_name;
-
-void set_ambient_light_rgba(const float r, const float g, const float b, const float a)
+void setup_resources(const char* resources_cfg)
 {
-    Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->setAmbientLight(Ogre::ColourValue(r, g, b, a));
+    // set up resources
+    // Load resource paths from config file
+    Ogre::ConfigFile cf;
+    cf.load(resources_cfg);
+ 
+    // Go through all sections & settings in the file
+    Ogre::ConfigFile::SectionIterator seci = cf.getSectionIterator();
+ 
+    Ogre::String secName, typeName, archName;
+    while (seci.hasMoreElements())
+    {
+        secName = seci.peekNextKey();
+        Ogre::ConfigFile::SettingsMultiMap *settings = seci.getNext();
+        Ogre::ConfigFile::SettingsMultiMap::iterator i;
+        for (i = settings->begin(); i != settings->end(); ++i)
+        {
+            typeName = i->first;
+            archName = i->second;
+            Ogre::ResourceGroupManager::getSingleton().addResourceLocation(
+                archName, typeName, secName);
+        }
+    }
 }
 
-void set_ambient_light_rgb(const float r, const float g, const float b)
+void add_resource_location(const char* location, const char* type, const char* group)
 {
-    Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->setAmbientLight(Ogre::ColourValue(r, g, b));
+    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(location, type, group);
 }
 
-CameraHandle create_camera(const char* camera_name)
+void initialise_all_resourcegroups()
 {
-    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->createCamera(camera_name);
-    return reinterpret_cast<CameraHandle>(camera);
-}
-
-CameraHandle get_camera(const char* camera_name)
-{
-    Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->getCamera(camera_name);
-    return reinterpret_cast<CameraHandle>(camera);
-}
-
-LightHandle create_light(const char* light_name)
-{
-    Ogre::Light* light = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->createLight(light_name);
-    return reinterpret_cast<LightHandle>(light);
-}
-
-EntityHandle create_entity(const char* entity_name, const char* mesh_file)
-{
-    Ogre::Entity* entity = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->createEntity(entity_name, mesh_file);
-    return reinterpret_cast<EntityHandle>(entity);
+    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
