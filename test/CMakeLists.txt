@@ -56,6 +56,7 @@ set(SRCS
 if(WIN32)
 	getenv_path(ALLEGRO_HOME)
 	include_directories(${CMAKE_SOURCE_DIR}/interface
+		$ENV{ALLEGRO_HOME}/include
 		$ENV{ALLEGRO_HOME}/include/allegro5
 	)
 else()
@@ -71,8 +72,7 @@ add_executable(OgreApp WIN32 ${SRCS})
 set_target_properties(OgreApp PROPERTIES DEBUG_POSTFIX _d)
 
 if(WIN32)
-	target_link_libraries(OgreApp OgreInterface $ENV{ALLEGRO_HOME}/allegro_main.lib
-	)
+	target_link_libraries(OgreApp OgreInterface $ENV{ALLEGRO_HOME}/lib/allegro.lib $ENV{ALLEGRO_HOME}/lib/allegro_main.lib )
 else()
 	target_link_libraries(OgreApp OgreInterface /usr/local/lib/liballegro_main.so
 	)

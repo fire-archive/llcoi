@@ -21,13 +21,7 @@ int frame_listener_test(float evt_time,float frame_time,int event_type)
 	return 1;
 }
 
-
-
-#if defined( WIN32 ) || defined( _WINDOWS )
-INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR strCmdLine, INT nCmdShow)
-#else
 int main(int argc, char *argv[])
-#endif
 {
 	/* C90 requires all vars to be declared at top of function */
 
@@ -75,7 +69,7 @@ int main(int argc, char *argv[])
 
     setup_resources("resources.cfg");
     
-    root_initialise(0, "kjsdfklsdjafklweior");
+    root_initialise(0, "");
     
     renderwindow = create_render_window_ex("The RenderWindow", al_get_display_width(display), al_get_display_height(display), 0, "currentGLContext", "True");
     
