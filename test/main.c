@@ -11,24 +11,34 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR strCmdLine, INT 
 int main(int argc, char *argv[])
 #endif
 {
-	// C90 requires all vars to be declared at top of function
+	/* C90 requires all vars to be declared at top of function */
 	CameraHandle myCamera;
 	CameraHandle anotherHandle;
 	EntityHandle entity;
 	SceneNodeHandle node;
 	LightHandle light;
     RenderSystemHandle rendersystem;
+    RenderWindowHandle renderwindow;
     
-// 	engine_options options;
-//     default_engine_options(&options);
-// 	options.renderer_s = "OpenGL";
-//     options.window_title = "Renderwindow from C - better version";
-// 
-//     init_engine(options);
+	/*engine_options options;
+    default_engine_options(&options);
+	options.renderer_s = "OpenGL";
+    options.window_title = "Renderwindow from C - better version";
 
-    create_root("", "", "ogre.log");
+    init_engine(options);*/
+
+    create_root("plugins.cfg", "ogre.cfg", "ogre.log");
     
-    load_ogre_plugin("RenderSystem_GL");
+    if(restore_config() || show_config_dialog())
+    {
+        renderwindow = root_initialise(1, "The Ogre Window");
+    }
+    else
+    {
+        return 1;
+    }
+    
+    /*load_ogre_plugin("RenderSystem_GL");
 
     rendersystem = get_render_system_by_name("OpenGL Rendering Subsystem");
     
@@ -40,15 +50,17 @@ int main(int argc, char *argv[])
     
     load_ogre_plugin("Plugin_OctreeSceneManager");
     
-    root_initialise(1, "The Ogre Window");
+    root_initialise(1, "The Ogre Window");*/
     
-	create_scene_manager("OctreeSceneManager");
+    /* create_scene_manager("OctreeSceneManager"); */
+	create_scene_manager("OctreeSceneManager", "The SceneManager");
     
-    add_resource_location("../media/materials/scripts", "FileSystem", "General");
-    add_resource_location("../media/materials/textures", "FileSystem", "General");
-    add_resource_location("../media/models", "FileSystem", "General");
-
-	myCamera = create_camera("mycam");
+	setup_resources("resources.cfg");
+    /*add_resource_location("../media/materials/scripts", "FileSystem", "General");
+     add_resource_location("../media/materials/textures", "FileSystem", "General");
+     add_resource_location("../media/models", "FileSystem", "General");*/
+    
+    myCamera = create_camera("mycam");
 
     camera_set_position(myCamera, 0, 0, 80);
 
@@ -76,6 +88,8 @@ int main(int argc, char *argv[])
 
     light_set_position(light, 20, 80, 50);
 
+    //scene_manager_log_name();
+    
     render_loop();
 
     release_engine();

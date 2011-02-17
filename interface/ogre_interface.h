@@ -107,7 +107,7 @@ DLL RenderSystemHandle get_render_system_by_name(const char* render_system_name)
 
 DLL void load_ogre_plugin(const char * plugin);
 
-DLL SceneManagerHandle create_scene_manager(const char* type_name, ...);
+DLL SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name);
 
 DLL SceneManagerHandle get_scene_manager();
 
@@ -130,6 +130,7 @@ DLL void set_ambient_light_rgb(const float r, const float g, const float b);
 
 DLL void add_viewport(CameraHandle camera_handle);
 
+DLL void scene_manager_log_name();
 
 // Scene nodes
 DLL SceneNodeHandle create_child_scenenode(const char* node_name);
