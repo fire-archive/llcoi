@@ -65,12 +65,6 @@ set(CMAKE_DEBUG_POSTFIX "_d")
  
 find_package(OGRE REQUIRED)
  
-find_package(OIS REQUIRED)
- 
-if(NOT OIS_FOUND)
-	message(SEND_ERROR "Failed to find OIS.")
-endif()
- 
 # Find Boost
 if (NOT OGRE_BUILD_PLATFORM_IPHONE)
 	if (WIN32 OR APPLE)
@@ -114,10 +108,12 @@ set(SRCS
 	./scenenode_bind.cpp
 	./camera_bind.cpp
 	./resourcemanager_bind.cpp
+	./renderwindow_bind.cpp
+	./rendersystem_bind.cpp
+	./light_bind.cpp
 )
  
-include_directories( ${OIS_INCLUDE_DIRS}
-	${OGRE_INCLUDE_DIRS}
+include_directories(${OGRE_INCLUDE_DIRS}
 	${OGRE_SAMPLES_INCLUDEPATH}
 )
  
@@ -131,7 +127,7 @@ if(UNIX)
 ${OGREINTERFACE_VERSION_STRING} SOVERSION ${abi_version} )
 endif()
 
-target_link_libraries(OgreInterface ${OGRE_LIBRARIES} ${OIS_LIBRARIES})
+target_link_libraries(OgreInterface ${OGRE_LIBRARIES})
 
 set(LIBRARY_OUTPUT_PATH "${BUILD_ROOTDIR}/lib")
 
