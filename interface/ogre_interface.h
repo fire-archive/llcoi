@@ -86,6 +86,12 @@
 #   endif
 #endif
 
+//defines
+#define EVENT_FRAME_STARTED 1
+#define EVENT_FRAME_RENDERING_QUEUED 2
+#define EVENT_FRAME_ENDED 4
+
+
 #define COI_DECLARE_HANDLE(name) struct name##__ { int unused; }; typedef struct name##__ *name
 
 COI_DECLARE_HANDLE(CameraHandle);
@@ -96,6 +102,9 @@ COI_DECLARE_HANDLE(RenderWindowHandle);
 COI_DECLARE_HANDLE(RootHandle);
 COI_DECLARE_HANDLE(RenderSystemHandle);
 COI_DECLARE_HANDLE(SceneManagerHandle);
+
+// listener typedefs
+typedef int(*FrameListenerEvent)(float,float,int);
 
 typedef struct
 {
@@ -225,3 +234,9 @@ DLL EntityHandle create_entity(const char* entity_name, const char* mesh_file);
 DLL LightHandle create_light(const char* light_name);
 
 DLL void light_set_position(LightHandle light_handle, const float x, const float y, const float z);
+
+
+// FrameListener
+DLL void add_frame_listener(FrameListenerEvent frame_event,int frame_event_type);
+
+DLL void remove_frame_listener(FrameListenerEvent frame_event);
