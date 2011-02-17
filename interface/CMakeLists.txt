@@ -112,7 +112,6 @@ set(SRCS
 	./entity_bind.cpp
 	./scenemanager_bind.cpp
 	./scenenode_bind.cpp
-	./allegro_bind.cpp
 )
  
 include_directories( ${OIS_INCLUDE_DIRS}
