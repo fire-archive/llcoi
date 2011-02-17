@@ -99,7 +99,7 @@ int main(int argc, char *argv[])
      
     viewport_set_background_colour(viewport, 0, 0, 0);
 
-    camera_set_aspect_ratio(viewport_get_width(viewport), viewport_get_height(viewport));
+    camera_set_aspect_ratio(anotherHandle, viewport_get_width(viewport), viewport_get_height(viewport));
 
     entity = create_entity("OgreHead", "ogrehead.mesh");
 
@@ -113,7 +113,7 @@ int main(int argc, char *argv[])
 
     light_set_position(light, 20, 80, 50);
 
-		add_frame_listener(frame_listener_test,EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
+    add_frame_listener(frame_listener_test,EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
 
     //render_loop();
 

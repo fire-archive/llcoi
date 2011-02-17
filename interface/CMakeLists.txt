@@ -111,6 +111,7 @@ set(SRCS
 	./renderwindow_bind.cpp
 	./rendersystem_bind.cpp
 	./light_bind.cpp
+	./framelistener_bind.cpp
 )
  
 include_directories(${OGRE_INCLUDE_DIRS}
