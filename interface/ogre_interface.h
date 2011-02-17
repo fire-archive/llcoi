@@ -1,5 +1,5 @@
 /******************************************************************************
- * ogre_interface.h - main include file for clients
+ * ogre_interface.h - main include file for C clients
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
