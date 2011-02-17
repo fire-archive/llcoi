@@ -87,13 +87,11 @@ int main(int argc, char *argv[])
  
     camera_set_near_clip_distance(myCamera, 5);
  
-    anotherHandle = get_camera("mycam");
- 
-    viewport = add_viewport(anotherHandle);
+    viewport = add_viewport(myCamera);
      
     viewport_set_background_colour(viewport, 0, 0, 0);
 
-    camera_set_aspect_ratio(anotherHandle, viewport_get_width(viewport), viewport_get_height(viewport));
+    camera_set_aspect_ratio(myCamera, viewport_get_width(viewport), viewport_get_height(viewport));
 
     entity = create_entity("OgreHead", "ogrehead.mesh");
 
