@@ -108,6 +108,11 @@ set(HDRS
 
 set(SRCS
 	./main.cpp
+	./root_bind.cpp
+	./entity_bind.cpp
+	./scenemanager_bind.cpp
+	./scenenode_bind.cpp
+	./allegro_bind.cpp
 )
  
 include_directories( ${OIS_INCLUDE_DIRS}
