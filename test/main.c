@@ -2,11 +2,26 @@
 
 #include <allegro.h>
 #include <allegro_opengl.h>
+#include <math.h>
 
 #if defined( WIN32 ) || defined( _WINDOWS )
 #   define WIN32_LEAN_AND_MEAN
 #   include "windows.h"
 #endif
+
+CameraHandle myCamera;
+
+float tiny_timer=0;
+
+int frame_listener_test(float evt_time,float frame_time,int event_type)
+{
+	tiny_timer+=frame_time;
+	camera_set_position(myCamera,cos(tiny_timer)*100,50,sin(tiny_timer)*100);
+	camera_lookat(myCamera,0,0,0);
+	return 1;
+}
+
+
 
 #if defined( WIN32 ) || defined( _WINDOWS )
 INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR strCmdLine, INT nCmdShow)
@@ -15,7 +30,7 @@ int main(int argc, char *argv[])
 #endif
 {
 	/* C90 requires all vars to be declared at top of function */
-	CameraHandle myCamera;
+
 	CameraHandle anotherHandle;
 	EntityHandle entity;
 	SceneNodeHandle node;
@@ -92,6 +107,8 @@ int main(int argc, char *argv[])
     light = create_light("mainLight");
 
     light_set_position(light, 20, 80, 50);
+
+		add_frame_listener(frame_listener_test,EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
 
     //render_loop();
 
