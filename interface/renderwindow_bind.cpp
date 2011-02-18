@@ -1,5 +1,5 @@
 /******************************************************************************
- * renderwindow_bind.cpp - bindings for Ogre::ResourceManager
+ * renderwindow_bind.cpp - bindings for Ogre::RenderWindow
  ******************************************************************************
  * This file is part of
  *     __ __              _ 

@@ -1,5 +1,5 @@
 /******************************************************************************
- * light_bind.cpp - bindings for Ogre::ResourceManager
+ * light_bind.cpp - bindings for Ogre::Light
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
