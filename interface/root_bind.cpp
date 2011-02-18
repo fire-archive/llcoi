@@ -187,7 +187,18 @@ RenderWindowHandle create_render_window(const char* name, const int width, const
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 
-RenderWindowHandle create_render_window_ex(const char* name, const int width, const int height, const int full_screen, const char* misc_param, const char* misc_value)
+DLL RenderWindowHandle create_render_window_hwnd(const char* name, const int width, const int height, const int full_screen, void* hwnd)
+{
+    Ogre::NameValuePairList misc;
+    // Tell Ogre to use the current GL context.  This works on Linux/GLX but
+    // you *will* need something different on Windows or Mac.
+    misc["parentWindowHandle"] = Ogre::StringConverter::toString(reinterpret_cast<unsigned long>(hwnd));
+    Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->createRenderWindow(name, width, height, full_screen, &misc);
+    activeRenderWindow = window;
+    return reinterpret_cast<RenderWindowHandle>(window);
+}
+
+RenderWindowHandle create_render_window_gl_context(const char* name, const int width, const int height, const int full_screen)
 {
     Ogre::NameValuePairList misc;
     // Tell Ogre to use the current GL context.  This works on Linux/GLX but
@@ -254,6 +265,11 @@ int render_one_frame_custom(float time_since_last_frame)
     return 0;
 }
 
+void pump_messages()
+{
+	Ogre::WindowEventUtilities::messagePump();
+}
+
 static bool do_render = 1;
 
 void render_loop()
@@ -266,7 +282,7 @@ void render_loop()
         // Render a frame
         Ogre::Root::getSingletonPtr()->renderOneFrame();
 
-        if (Ogre::Root::getSingletonPtr()->getAutoCreatedWindow()->isClosed())
+        if (activeRenderWindow->isClosed())
         {
             do_render = 0;
         }

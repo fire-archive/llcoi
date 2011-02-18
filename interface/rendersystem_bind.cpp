@@ -37,3 +37,4 @@
 #include "ogre_interface.h"
 
 #include <OgreRoot.h>
+#include <OgreRenderSystem.h>

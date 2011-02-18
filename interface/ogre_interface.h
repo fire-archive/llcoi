@@ -144,7 +144,11 @@ DLL RenderWindowHandle root_initialise(int auto_create_window, const char* rende
 
 DLL RenderWindowHandle create_render_window(const char* name, const int width, const int height, const int full_screen);
 
-DLL RenderWindowHandle create_render_window_ex(const char* name, const int width, const int height, const int full_screen, const char* misc_param, const char* misc_value);
+DLL RenderWindowHandle create_render_window_gl_context(const char* name, const int width, const int height, const int full_screen);
+
+DLL RenderWindowHandle create_render_window_hwnd(const char* name, const int width, const int height, const int full_screen, void* hwnd);
+
+DLL unsigned int render_window_get_hwnd(RenderWindowHandle window_handle);
 
 DLL void render_window_set_visible(RenderWindowHandle window_handle, int visible);
 
@@ -177,6 +181,8 @@ DLL int render_one_frame();
 DLL int render_one_frame_custom(float time_since_last_frame);
 
 DLL void render_loop();
+
+DLL void pump_messages();
 
 DLL void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value);
 

@@ -45,3 +45,11 @@ void render_window_set_visible(RenderWindowHandle window_handle, int visible)
     window->setActive(true);
     window->setVisible(visible);
 }
+
+size_t render_window_get_hwnd(RenderWindowHandle window_handle)
+{
+	size_t windowHnd = 0;
+	Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);
+	window->getCustomAttribute("WINDOW", &windowHnd);
+	return windowHnd;
+}
