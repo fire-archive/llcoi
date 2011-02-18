@@ -37,8 +37,8 @@ int main(int argc, char *argv[])
 	int keep_going = 1;
 
 	ALLEGRO_DISPLAY *display;
-	ALLEGRO_EVENT_QUEUE *event_queue;
-	ALLEGRO_EVENT event;
+	//ALLEGRO_EVENT_QUEUE *event_queue;
+	//ALLEGRO_EVENT event;
 	ALLEGRO_KEYBOARD_STATE kbdstate;
 
 	if (!al_init()) {
@@ -119,7 +119,7 @@ int main(int argc, char *argv[])
 
 	light_set_position(light, 20, 80, 50);
 
-	//add_frame_listener(frame_listener_test,EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
+	add_frame_listener(frame_listener_test,EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
 
 	//render_loop();
 
