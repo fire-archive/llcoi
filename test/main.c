@@ -56,7 +56,7 @@ int main(int argc, char *argv[])
 #if defined(PLATFORM_LINUX)
     al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_RESIZABLE);
 #else
-    al_set_new_display_flags(ALLEGRO_OPENGL);
+    al_set_new_display_flags(ALLEGRO_WINDOWED);
 #endif
 	
     display = al_create_display(800, 600);

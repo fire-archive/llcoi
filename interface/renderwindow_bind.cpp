@@ -74,12 +74,10 @@ RenderWindowHandle create_render_window(const char* name, const int width, const
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 
-DLL RenderWindowHandle create_render_window_hwnd(const char* name, const int width, const int height, const int full_screen, void* hwnd)
+DLL RenderWindowHandle create_render_window_hwnd(const char* name, const int width, const int height, const int full_screen, unsigned int hwnd)
 {
     Ogre::NameValuePairList misc;
-    // Tell Ogre to use the current GL context.  This works on Linux/GLX but
-    // you *will* need something different on Windows or Mac.
-    misc["parentWindowHandle"] = Ogre::StringConverter::toString(reinterpret_cast<unsigned long>(hwnd));
+    misc["externalWindowHandle"] = Ogre::StringConverter::toString(hwnd);
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->createRenderWindow(name, width, height, full_screen, &misc);
     activeRenderWindow = window;
 	window->setActive(true);
