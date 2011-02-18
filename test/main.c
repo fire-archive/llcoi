@@ -53,10 +53,65 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+#include <ogre_interface.h>
+
+#include <allegro.h>
+#include <allegro_opengl.h>
+#include <math.h>
+
+#if defined( WIN32 ) || defined( _WINDOWS )
+#   define WIN32_LEAN_AND_MEAN
+#   include <allegro_windows.h>
+#   include "windows.h"
+#endif
+
+CameraHandle myCamera;
+float tiny_timer=0;
+
+int frame_listener_test(float evt_time,float frame_time,int event_type)
+{
+    tiny_timer+=frame_time;
+    camera_set_position(myCamera,cos(tiny_timer)*100,50,sin(tiny_timer)*100);
+    camera_lookat(myCamera,0,0,0);
+    return 1;
+}
+
+int main(int argc, char *argv[])
+{
+    /* C90 requires all vars to be declared at top of function */
+
+    EntityHandle entity;
+    SceneNodeHandle node;
+    LightHandle light;
+    RenderSystemHandle rendersystem;
+    RenderWindowHandle renderwindow;
+    ViewportHandle viewport;
+    
+#if defined( WIN32 ) || defined( _WINDOWS )
+    HWND hwnd = NULL;
+#endif
+    
+    int keep_going = 1;
+
+    ALLEGRO_DISPLAY *display;
+    //ALLEGRO_EVENT_QUEUE *event_queue;
+    //ALLEGRO_EVENT event;
+    ALLEGRO_KEYBOARD_STATE kbdstate;
+
+    if (!al_init()) {
+        return 1;
+    }
+    if (!al_install_keyboard()) {
+        return 1;
+    }
+    if (!al_install_mouse()) {
+        return 1;
+    }
+
 #if defined(PLATFORM_LINUX)
     al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_RESIZABLE);
 #else
-    al_set_new_display_flags(ALLEGRO_WINDOWED);
+    al_set_new_display_flags(ALLEGRO_OPENGL);
 #endif
 	
     display = al_create_display(800, 600);
