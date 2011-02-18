@@ -118,7 +118,9 @@ int main(int argc, char *argv[])
 
             case OI_KEYDOWN:
                 // Keyboard button down
-                keep_going = 0;
+                //WTF?? Better way to check this, please..
+                if(evt.key.keysym.sym == OIK_ESC)
+                    keep_going = 0;
                 break;
 
             default:
