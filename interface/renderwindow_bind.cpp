@@ -39,6 +39,8 @@
 #include <OgreRoot.h>
 #include <OgreRenderWindow.h>
 
+extern Ogre::RenderWindow* activeRenderWindow;
+
 void render_window_set_visible(RenderWindowHandle window_handle, int visible)
 {
     Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);
@@ -52,4 +54,15 @@ size_t render_window_get_hwnd(RenderWindowHandle window_handle)
 	Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);
 	window->getCustomAttribute("WINDOW", &windowHnd);
 	return windowHnd;
+}
+
+void render_window_update(RenderWindowHandle window_handle, int swap_buffers)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);
+    window->update(swap_buffers);
+}
+
+void current_window_update(int swap_buffers)
+{
+    activeRenderWindow->update(swap_buffers);
 }

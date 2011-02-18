@@ -152,6 +152,10 @@ DLL unsigned int render_window_get_hwnd(RenderWindowHandle window_handle);
 
 DLL void render_window_set_visible(RenderWindowHandle window_handle, int visible);
 
+DLL void render_window_update(RenderWindowHandle window_handle, int swap_buffers);
+
+DLL void current_window_update(int swap_buffers);
+
 DLL int root_is_initialised();
 
 DLL void save_config();

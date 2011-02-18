@@ -2,11 +2,11 @@
 
 #include <allegro.h>
 #include <allegro_opengl.h>
-#include <allegro_windows.h>
 #include <math.h>
 
 #if defined( WIN32 ) || defined( _WINDOWS )
 #   define WIN32_LEAN_AND_MEAN
+#   include <allegro_windows.h>
 #   include "windows.h"
 #endif
 
@@ -33,8 +33,10 @@ int main(int argc, char *argv[])
 	RenderSystemHandle rendersystem;
 	RenderWindowHandle renderwindow;
 	ViewportHandle viewport;
+#if defined( WIN32 ) || defined( _WINDOWS )
 	HWND hwnd = NULL;
-	int keep_going = 1;
+#endif
+    int keep_going = 1;
 
 	ALLEGRO_DISPLAY *display;
 	//ALLEGRO_EVENT_QUEUE *event_queue;
@@ -51,8 +53,10 @@ int main(int argc, char *argv[])
 		return 1;
 	}
 
-	//al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_RESIZABLE);
-	display = al_create_display(800, 600);
+#if !defined( WIN32 ) || !defined( _WINDOWS )
+	al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_RESIZABLE);
+#endif
+    display = al_create_display(800, 600);
 	if (!display) {
 		return 1;
 	}
@@ -83,9 +87,12 @@ int main(int argc, char *argv[])
 
 	root_initialise(0, "");
 
+#if defined( WIN32 ) || defined( _WINDOWS )
 	hwnd = al_get_win_window_handle(display);
-
 	renderwindow = create_render_window_hwnd("The RenderWindow", al_get_display_width(display), al_get_display_height(display), 0, hwnd);
+#else
+    renderwindow = create_render_window_gl_context("The RenderWindow", al_get_display_width(display), al_get_display_height(display), 0);
+#endif
 
 	set_default_num_mipmaps(5);
 
@@ -169,7 +176,15 @@ int main(int argc, char *argv[])
 		//         break;
 		//   }
 		pump_messages();
-		render_one_frame();
+
+#if !defined( WIN32 ) || !defined( _WINDOWS )
+        current_window_update(0);
+#endif
+        render_one_frame();
+        
+#if !defined( WIN32 ) || !defined( _WINDOWS )
+        al_flip_display();
+#endif
 	}
 
 	release_engine();
