@@ -54,15 +54,14 @@ set(SRCS
 
 
 if(WIN32)
-	getenv_path(ALLEGRO_HOME)
-	include_directories(${CMAKE_SOURCE_DIR}/interface
-		$ENV{ALLEGRO_HOME}/include
-		$ENV{ALLEGRO_HOME}/include/allegro5
-	)
+    getenv_path(OPENINPUT_HOME)
+    include_directories(${CMAKE_SOURCE_DIR}/interface
+        $ENV{OPENINPUT_HOME}/include
+    )
 else()
-	include_directories(${CMAKE_SOURCE_DIR}/interface
-		/usr/local/include/allegro5
-	)
+    include_directories(${CMAKE_SOURCE_DIR}/interface
+        /usr/local/include/openinput
+    )
 endif()
 
 
@@ -72,9 +71,9 @@ add_executable(OgreApp WIN32 ${SRCS})
 set_target_properties(OgreApp PROPERTIES DEBUG_POSTFIX _d)
 
 if(WIN32)
-	target_link_libraries(OgreApp OgreInterface $ENV{ALLEGRO_HOME}/lib/allegro.lib)
+    target_link_libraries(OgreApp OgreInterface $ENV{OPENINPUT_HOME}/lib/openinput.lib)
 else()
-	target_link_libraries(OgreApp OgreInterface /usr/local/lib/liballegro_main.so
+    target_link_libraries(OgreApp OgreInterface /usr/local/lib/libopeninput.so
 	)
 endif()
 
@@ -168,4 +167,3 @@ if(UNIX)
 	)
  
 endif(UNIX)
-

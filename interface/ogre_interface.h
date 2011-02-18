@@ -146,7 +146,7 @@ DLL RenderWindowHandle create_render_window(const char* name, const int width, c
 
 DLL RenderWindowHandle create_render_window_gl_context(const char* name, const int width, const int height, const int full_screen);
 
-DLL RenderWindowHandle create_render_window_hwnd(const char* name, const int width, const int height, const int full_screen, unsigned int hwnd);
+DLL RenderWindowHandle create_render_window_hwnd(const char* name, const int width, const int height, const int full_screen, void* hwnd);
 
 DLL unsigned int render_window_get_hwnd(RenderWindowHandle window_handle);
 
@@ -159,6 +159,8 @@ DLL void current_window_update(int swap_buffers);
 DLL void render_window_resize(unsigned int width, unsigned int height);
 
 DLL void render_window_moved_or_resized();
+
+DLL int render_window_closed();
 
 DLL int root_is_initialised();
 
