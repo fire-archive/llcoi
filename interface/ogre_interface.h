@@ -223,7 +223,7 @@ DLL void initialise_all_resourcegroups();
 
 
 // Camera
-DLL CameraHandle create_camera(const char* name);
+DLL CameraHandle create_camera(const char* camera_name);
 
 DLL CameraHandle get_camera(const char* camera_name);
 

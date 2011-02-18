@@ -97,28 +97,14 @@ void camera_lookat(CameraHandle camera_handle, const float x, const float y, con
     camera->lookAt(Ogre::Vector3(x, y, z));
 }
 
-ViewportHandle add_viewport(CameraHandle camera_handle)
+CameraHandle create_camera(const char* camera_name)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
-    Ogre::RenderWindow* window = activeRenderWindow;
-    Ogre::Viewport* vp = window->addViewport(camera);
-    return reinterpret_cast<ViewportHandle>(vp);
+    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->createCamera(camera_name);
+    return reinterpret_cast<CameraHandle>(camera);
 }
 
-void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b)
+CameraHandle get_camera(const char* camera_name)
 {
-    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
-    vp->setBackgroundColour(Ogre::ColourValue(r, g, b));
-}
-
-float viewport_get_width(ViewportHandle viewport_handle)
-{
-    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
-    return vp->getWidth();
-}
-
-float viewport_get_height(ViewportHandle viewport_handle)
-{
-    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
-    return vp->getHeight();
+    Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->getCamera(camera_name);
+    return reinterpret_cast<CameraHandle>(camera);
 }

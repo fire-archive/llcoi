@@ -1,5 +1,5 @@
 /******************************************************************************
- * rendersystem_bind.cpp - bindings for Ogre::ResourceManager
+ * viewport_bind.cpp - bindings for Ogre::Viewport
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
@@ -37,33 +37,35 @@
 #include "ogre_interface.h"
 
 #include <OgreRoot.h>
-#include <OgreRenderSystem.h>
+#include <OgreViewport.h>
+#include <OgreRenderWindow.h>
+#include <OgreCamera.h>
 
-void add_render_system(RenderSystemHandle render_system)
+extern Ogre::RenderWindow* activeRenderWindow;
+
+ViewportHandle add_viewport(CameraHandle camera_handle)
 {
-    Ogre::RenderSystem* rs = reinterpret_cast<Ogre::RenderSystem*>(render_system);
-    Ogre::Root::getSingletonPtr()->addRenderSystem(rs);
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::RenderWindow* window = activeRenderWindow;
+    Ogre::Viewport* vp = window->addViewport(camera);
+    return reinterpret_cast<ViewportHandle>(vp);
 }
 
-void set_render_system(RenderSystemHandle render_system)
+void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b)
 {
-    Ogre::RenderSystem* rs = reinterpret_cast<Ogre::RenderSystem*>(render_system);
-    Ogre::Root::getSingletonPtr()->setRenderSystem(rs);
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
+    vp->setBackgroundColour(Ogre::ColourValue(r, g, b));
 }
 
-RenderSystemHandle get_render_system_by_name(const char* render_system_name)
+float viewport_get_width(ViewportHandle viewport_handle)
 {
-    Ogre::RenderSystem* rs = Ogre::Root::getSingletonPtr()->getRenderSystemByName(render_system_name);
-    return reinterpret_cast<RenderSystemHandle>(rs);
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
+    return vp->getWidth();
 }
 
-RenderSystemHandle get_render_system()
+float viewport_get_height(ViewportHandle viewport_handle)
 {
-    return reinterpret_cast<RenderSystemHandle>(Ogre::Root::getSingletonPtr()->getRenderSystem());
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
+    return vp->getHeight();
 }
 
-void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value)
-{
-    Ogre::RenderSystem* rs = reinterpret_cast<Ogre::RenderSystem*>(render_system_handle);
-    rs->setConfigOption(option, value);
-}

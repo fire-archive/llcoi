@@ -52,26 +52,30 @@ void set_ambient_light_rgb(const float r, const float g, const float b)
     Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->setAmbientLight(Ogre::ColourValue(r, g, b));
 }
 
-CameraHandle create_camera(const char* camera_name)
+SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name)
 {
-    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->createCamera(camera_name);
-    return reinterpret_cast<CameraHandle>(camera);
+/*    va_list arg_list;
+    const char* instance_name = NULL;
+    va_start(arg_list, type_name);
+    instance_name = va_arg(arg_list, const char*);
+    va_end(arg_list);
+
+    if(instance_name == NULL) instance_name = "default";*/
+    
+    active_scene_manager_name = instance_name;
+    
+    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->createSceneManager(Ogre::String(type_name), Ogre::String(instance_name));
+    return reinterpret_cast<SceneManagerHandle>(sm);
 }
 
-CameraHandle get_camera(const char* camera_name)
+SceneManagerHandle get_scene_manager()
 {
-    Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->getCamera(camera_name);
-    return reinterpret_cast<CameraHandle>(camera);
+    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name);
+    return reinterpret_cast<SceneManagerHandle>(sm);
 }
 
-LightHandle create_light(const char* light_name)
+SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_name)
 {
-    Ogre::Light* light = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->createLight(light_name);
-    return reinterpret_cast<LightHandle>(light);
-}
-
-EntityHandle create_entity(const char* entity_name, const char* mesh_file)
-{
-    Ogre::Entity* entity = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->createEntity(entity_name, mesh_file);
-    return reinterpret_cast<EntityHandle>(entity);
+    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->getSceneManager(scene_manager_instance_name);
+    return reinterpret_cast<SceneManagerHandle>(sm);
 }

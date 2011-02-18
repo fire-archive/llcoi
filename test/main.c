@@ -16,180 +16,178 @@ float tiny_timer=0;
 
 int frame_listener_test(float evt_time,float frame_time,int event_type)
 {
-	tiny_timer+=frame_time;
-	camera_set_position(myCamera,cos(tiny_timer)*100,50,sin(tiny_timer)*100);
-	camera_lookat(myCamera,0,0,0);
-	return 1;
+    tiny_timer+=frame_time;
+    camera_set_position(myCamera,cos(tiny_timer)*100,50,sin(tiny_timer)*100);
+    camera_lookat(myCamera,0,0,0);
+    return 1;
 }
 
 int main(int argc, char *argv[])
 {
-	/* C90 requires all vars to be declared at top of function */
+    /* C90 requires all vars to be declared at top of function */
 
-	CameraHandle anotherHandle;
-	EntityHandle entity;
-	SceneNodeHandle node;
-	LightHandle light;
-	RenderSystemHandle rendersystem;
-	RenderWindowHandle renderwindow;
-	ViewportHandle viewport;
+    CameraHandle anotherHandle;
+    EntityHandle entity;
+    SceneNodeHandle node;
+    LightHandle light;
+    RenderSystemHandle rendersystem;
+    RenderWindowHandle renderwindow;
+    ViewportHandle viewport;
+    
 #if defined( WIN32 ) || defined( _WINDOWS )
-	HWND hwnd = NULL;
+    HWND hwnd = NULL;
 #endif
+    
     int keep_going = 1;
 
-	ALLEGRO_DISPLAY *display;
-	//ALLEGRO_EVENT_QUEUE *event_queue;
-	//ALLEGRO_EVENT event;
-	ALLEGRO_KEYBOARD_STATE kbdstate;
+    ALLEGRO_DISPLAY *display;
+    //ALLEGRO_EVENT_QUEUE *event_queue;
+    //ALLEGRO_EVENT event;
+    ALLEGRO_KEYBOARD_STATE kbdstate;
 
-	if (!al_init()) {
-		return 1;
-	}
-	if (!al_install_keyboard()) {
-		return 1;
-	}
-	if (!al_install_mouse()) {
-		return 1;
-	}
+    if (!al_init()) {
+        return 1;
+    }
+    if (!al_install_keyboard()) {
+        return 1;
+    }
+    if (!al_install_mouse()) {
+        return 1;
+    }
 
-#if !defined( WIN32 ) || !defined( _WINDOWS )
-	al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_RESIZABLE);
+#if defined(PLATFORM_LINUX)
+    al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_RESIZABLE);
 #endif
+
     display = al_create_display(800, 600);
-	if (!display) {
-		return 1;
-	}
-	al_set_window_title(display, "My window");
+    if (!display) {
+        return 1;
+    }
+    al_set_window_title(display, "My window");
 
-	al_hide_mouse_cursor(display);
+    al_hide_mouse_cursor(display);
+    al_grab_mouse(display);
 
-	create_root("plugins.cfg", "ogre.cfg", "ogre.log");
+    create_root("plugins.cfg", "ogre.cfg", "ogre.log");
 
-	/*    load_ogre_plugin("RenderSystem_GL");
+    if (!(restore_config() || show_config_dialog()))
+    {
+        return 1;
+    }
 
-	rendersystem = get_render_system_by_name("OpenGL Rendering Subsystem");
+    setup_resources("resources.cfg");
 
-	render_system_set_config_option(rendersystem, "Full Screen", "No");
-	render_system_set_config_option(rendersystem, "VSync", "No");
-	render_system_set_config_option(rendersystem, "Video Mode", "800 x 600 @ 32-bit");
-
-	set_render_system(rendersystem);
-
-	load_ogre_plugin("Plugin_OctreeSceneManager");*/
-
-	if(!(restore_config() || show_config_dialog()))
-	{
-		return 1;
-	}
-
-	setup_resources("resources.cfg");
-
-	root_initialise(0, "");
+    root_initialise(0, "");
 
 #if defined( WIN32 ) || defined( _WINDOWS )
-	hwnd = al_get_win_window_handle(display);
-	renderwindow = create_render_window_hwnd("The RenderWindow", al_get_display_width(display), al_get_display_height(display), 0, hwnd);
+    hwnd = al_get_win_window_handle(display);
+    renderwindow = create_render_window_hwnd("The RenderWindow", al_get_display_width(display), al_get_display_height(display), 0, hwnd);
 #else
     renderwindow = create_render_window_gl_context("The RenderWindow", al_get_display_width(display), al_get_display_height(display), 0);
 #endif
 
-	set_default_num_mipmaps(5);
+    set_default_num_mipmaps(5);
 
-	initialise_all_resourcegroups();
+    initialise_all_resourcegroups();
 
-	create_scene_manager("OctreeSceneManager", "The SceneManager");
+    create_scene_manager("OctreeSceneManager", "The SceneManager");
 
-	myCamera = create_camera("mycam");
+    myCamera = create_camera("mycam");
 
-	camera_set_position(myCamera, 0, 0, 80);
+    camera_set_position(myCamera, 0, 0, 80);
 
-	camera_lookat(myCamera, 0, 0, -300);
+    camera_lookat(myCamera, 0, 0, -300);
 
-	camera_set_near_clip_distance(myCamera, 5);
+    camera_set_near_clip_distance(myCamera, 5);
 
-	viewport = add_viewport(myCamera);
+    viewport = add_viewport(myCamera);
 
-	viewport_set_background_colour(viewport, 0, 0, 0);
+    viewport_set_background_colour(viewport, 0, 0, 0);
 
-	camera_set_aspect_ratio(myCamera, viewport_get_width(viewport), viewport_get_height(viewport));
+    camera_set_aspect_ratio(myCamera, viewport_get_width(viewport), viewport_get_height(viewport));
 
-	entity = create_entity("OgreHead", "ogrehead.mesh");
+    entity = create_entity("OgreHead", "ogrehead.mesh");
 
-	node = create_child_scenenode("headNode");
+    node = create_child_scenenode("headNode");
 
-	attach_entity_to_scenenode(entity, node);
+    attach_entity_to_scenenode(entity, node);
 
-	set_ambient_light_rgb(0.5f, 0.5f, 0.5f);
+    set_ambient_light_rgb(0.5f, 0.5f, 0.5f);
 
-	light = create_light("mainLight");
+    light = create_light("mainLight");
 
-	light_set_position(light, 20, 80, 50);
+    light_set_position(light, 20, 80, 50);
 
-	add_frame_listener(frame_listener_test,EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
+    add_frame_listener(frame_listener_test,EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
 
-	//render_loop();
+    //render_loop();
 
-	//event_queue = al_create_event_queue();
-	//if (!event_queue) {
-	//   return 1;
-	//}
+    //event_queue = al_create_event_queue();
+    //if (!event_queue) {
+    //   return 1;
+    //}
 
-	//al_register_event_source(event_queue, al_get_keyboard_event_source());
-	//al_register_event_source(event_queue, al_get_display_event_source(display));
+    //al_register_event_source(event_queue, al_get_keyboard_event_source());
+    //al_register_event_source(event_queue, al_get_display_event_source(display));
 
-	while (keep_going) {
-		/* Take the next event out of the event queue, and store it in `event'. */
-		//al_wait_for_event(event_queue, &event);
+    while (keep_going) {
+        /* Take the next event out of the event queue, and store it in `event'. */
+        //al_wait_for_event(event_queue, &event);
 
-		/* Check what type of event we got and act accordingly.  ALLEGRO_EVENT
-		* is a union type and interpretation of its contents is dependent on
-		* the event type, which is given by the 'type' field.
-		*
-		* Each event also comes from an event source and has a timestamp.
-		* These are accessible through the 'any.source' and 'any.timestamp'
-		* fields respectively, e.g. 'event.any.timestamp'
-		*/
-		al_get_keyboard_state(&kbdstate);
-		if (al_key_down(&kbdstate, ALLEGRO_KEY_ESCAPE)) {
-			keep_going = 0;
-		}
-		//   switch (event.type) {
+        /* Check what type of event we got and act accordingly.  ALLEGRO_EVENT
+        * is a union type and interpretation of its contents is dependent on
+        * the event type, which is given by the 'type' field.
+        *
+        * Each event also comes from an event source and has a timestamp.
+        * These are accessible through the 'any.source' and 'any.timestamp'
+        * fields respectively, e.g. 'event.any.timestamp'
+        */
+        al_get_keyboard_state(&kbdstate);
+        if (al_key_down(&kbdstate, ALLEGRO_KEY_ESCAPE)) {
+            keep_going = 0;
+        }
+        if (al_key_down(&kbdstate, ALLEGRO_KEY_F1)) {
+            al_ungrab_mouse();
+        }
+        if (al_key_down(&kbdstate, ALLEGRO_KEY_F2)) {
+            al_grab_mouse(display);
+        }
+        //   switch (event.type) {
 
-		//      /* ALLEGRO_EVENT_KEY_DOWN - a keyboard key was pressed.
-		//       */
-		//      case ALLEGRO_EVENT_KEY_DOWN:
-		//         if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
-		//            keep_going = 0;
-		//         }
-		//         break;
+        //      /* ALLEGRO_EVENT_KEY_DOWN - a keyboard key was pressed.
+        //       */
+        //      case ALLEGRO_EVENT_KEY_DOWN:
+        //         if (event.keyboard.keycode == ALLEGRO_KEY_ESCAPE) {
+        //            keep_going = 0;
+        //         }
+        //         break;
 
-		//      /* ALLEGRO_EVENT_DISPLAY_CLOSE - the window close button was pressed.
-		//       */
-		//      case ALLEGRO_EVENT_DISPLAY_CLOSE:
-		//         keep_going = 0;
+        //      /* ALLEGRO_EVENT_DISPLAY_CLOSE - the window close button was pressed.
+        //       */
+        //      case ALLEGRO_EVENT_DISPLAY_CLOSE:
+        //         keep_going = 0;
 
-		//      /* We received an event of some type we don't know about.
-		//       * Just ignore it.
-		//       */
-		//      default:
-		//         break;
-		//   }
-		pump_messages();
+        //      /* We received an event of some type we don't know about.
+        //       * Just ignore it.
+        //       */
+        //      default:
+        //         break;
+        //   }
 
-#if !defined( WIN32 ) || !defined( _WINDOWS )
-        current_window_update(0);
-#endif
+        pump_messages();// Needed ??
+
+#if defined( WIN32 ) || defined( _WINDOWS )
         render_one_frame();
-        
-#if !defined( WIN32 ) || !defined( _WINDOWS )
+#else
+        current_window_update(0);
+        render_one_frame();
         al_flip_display();
 #endif
-	}
+    }
 
-	release_engine();
+    release_engine();
 
-	al_uninstall_system();
+    al_uninstall_system();
 
-	return 0;
+    return 0;
 }

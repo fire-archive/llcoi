@@ -34,4 +34,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
+#include "ogre_interface.h"
 
+#include <OgreRoot.h>
+#include <OgreEntity.h>
+
+extern const char* active_scene_manager_name;
+
+EntityHandle create_entity(const char* entity_name, const char* mesh_file)
+{
+    Ogre::Entity* entity = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->createEntity(entity_name, mesh_file);
+    return reinterpret_cast<EntityHandle>(entity);
+}
