@@ -11,7 +11,6 @@
 #endif
 
 CameraHandle myCamera;
-
 float tiny_timer=0;
 
 int frame_listener_test(float evt_time,float frame_time,int event_type)
@@ -26,7 +25,6 @@ int main(int argc, char *argv[])
 {
     /* C90 requires all vars to be declared at top of function */
 
-    CameraHandle anotherHandle;
     EntityHandle entity;
     SceneNodeHandle node;
     LightHandle light;
@@ -57,16 +55,15 @@ int main(int argc, char *argv[])
 
 #if defined(PLATFORM_LINUX)
     al_set_new_display_flags(ALLEGRO_OPENGL | ALLEGRO_RESIZABLE);
+#else
+    al_set_new_display_flags(ALLEGRO_OPENGL);
 #endif
-
+	
     display = al_create_display(800, 600);
     if (!display) {
         return 1;
     }
     al_set_window_title(display, "My window");
-
-    al_hide_mouse_cursor(display);
-    al_grab_mouse(display);
 
     create_root("plugins.cfg", "ogre.cfg", "ogre.log");
 
@@ -75,9 +72,12 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    setup_resources("resources.cfg");
+    al_hide_mouse_cursor(display);
+    al_grab_mouse(display);
+    
+	setup_resources("resources.cfg");
 
-    root_initialise(0, "");
+    root_initialise(0, "hmm");
 
 #if defined( WIN32 ) || defined( _WINDOWS )
     hwnd = al_get_win_window_handle(display);
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
 
     viewport_set_background_colour(viewport, 0, 0, 0);
 
-    camera_set_aspect_ratio(myCamera, viewport_get_width(viewport), viewport_get_height(viewport));
+    camera_set_aspect_ratio(myCamera, al_get_display_width(display), al_get_display_height(display));
 
     entity = create_entity("OgreHead", "ogrehead.mesh");
 
@@ -119,6 +119,8 @@ int main(int argc, char *argv[])
     light_set_position(light, 20, 80, 50);
 
     add_frame_listener(frame_listener_test,EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
+	//render_window_resize(1024, 768);
+	render_window_moved_or_resized();
 
     //render_loop();
 
@@ -174,7 +176,7 @@ int main(int argc, char *argv[])
         //         break;
         //   }
 
-        pump_messages();// Needed ??
+        pump_messages();
 
 #if defined( WIN32 ) || defined( _WINDOWS )
         render_one_frame();

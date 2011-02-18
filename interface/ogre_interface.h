@@ -156,6 +156,10 @@ DLL void render_window_update(RenderWindowHandle window_handle, int swap_buffers
 
 DLL void current_window_update(int swap_buffers);
 
+DLL void render_window_resize(unsigned int width, unsigned int height);
+
+DLL void render_window_moved_or_resized();
+
 DLL int root_is_initialised();
 
 DLL void save_config();

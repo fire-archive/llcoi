@@ -82,6 +82,7 @@ DLL RenderWindowHandle create_render_window_hwnd(const char* name, const int wid
     misc["parentWindowHandle"] = Ogre::StringConverter::toString(reinterpret_cast<unsigned long>(hwnd));
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->createRenderWindow(name, width, height, full_screen, &misc);
     activeRenderWindow = window;
+	window->setActive(true);
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 
@@ -95,3 +96,14 @@ RenderWindowHandle create_render_window_gl_context(const char* name, const int w
     activeRenderWindow = window;
     return reinterpret_cast<RenderWindowHandle>(window);
 }
+
+void render_window_resize(unsigned int width, unsigned int height)
+{
+	activeRenderWindow->resize(width, height);
+}
+
+void render_window_moved_or_resized()
+{
+	activeRenderWindow->windowMovedOrResized();
+}
+
