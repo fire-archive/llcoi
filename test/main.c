@@ -4,6 +4,10 @@
 #   include <openinput.h>
 #endif
 
+#if defined(LLCOI_TEST_USE_ALLEGRO)
+#   include <allegro.h>
+#endif
+
 #include <math.h>
 #include <stdio.h>
 

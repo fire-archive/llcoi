@@ -39,7 +39,7 @@ cmake_minimum_required(VERSION 2.8)
 project(llcoi)
 
 option(LLCOI_DYNAMIC_BUILD "Build OgreInterface as shared library" TRUE)
-option(LLCOI_TEST_USE_ALLEGRO "Build Test program with Allegro (otherwise use OpenInput)" TRUE)
+option(LLCOI_TEST_USE_ALLEGRO "Build Test program with Allegro instead of OpenInput)" FALSE)
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmakemodules;${CMAKE_MODULE_PATH}")
 
