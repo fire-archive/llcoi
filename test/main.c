@@ -1,6 +1,8 @@
 #include <ogre_interface.h>
 
-#include <openinput.h>
+#if defined(LLCOI_TEST_USE_OPENINPUT)
+#   include <openinput.h>
+#endif
 
 #include <math.h>
 #include <stdio.h>
@@ -9,7 +11,9 @@
 #   define WIN32_LEAN_AND_MEAN
 #   include "windows.h"
 #else
+#if defined(LLCOI_TEST_USE_OPENINPUT)
 #include <X11/Xlib.h>
+#endif
 #endif
 
 CameraHandle myCamera;
@@ -34,6 +38,7 @@ int main(int argc, char *argv[])
     RenderWindowHandle renderwindow;
     ViewportHandle viewport;
     
+#if defined(LLCOI_TEST_USE_OPENINPUT)
     // Openinput
     oi_event evt;
     char openinput_window_params[100];
@@ -44,6 +49,7 @@ int main(int argc, char *argv[])
     Window win;
     unsigned int scrn;
 #endif
+#endif //LLCOI_TEST_USE_OPENINPUT
     
     int keep_going = 1;
 
@@ -92,6 +98,7 @@ int main(int argc, char *argv[])
 
     add_frame_listener(frame_listener_test,EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
 
+#if defined(LLCOI_TEST_USE_OPENINPUT)
     windowHnd = render_window_get_hwnd(renderwindow);
 
 #if defined(PLATFORM_LINUX)
@@ -138,6 +145,7 @@ int main(int argc, char *argv[])
     }
 
     oi_close();
+#endif //LLCOI_TEST_USE_OPENINPUT
     
     release_engine();
 
