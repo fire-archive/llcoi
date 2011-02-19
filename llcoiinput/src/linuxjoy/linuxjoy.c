@@ -22,7 +22,7 @@
 /* ******************************************************************** */
 
 // Includes
-#include "config.h"
+//#include "config.h"
 #include "openinput.h"
 #include <sys/types.h>
 #include <sys/stat.h>

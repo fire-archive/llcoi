@@ -59,7 +59,8 @@ if(${LLCOI_TEST_USE_ALLEGRO})
     )
 else()
     find_package(OPENINPUT)
-    include_directories(${OPENINPUT_INCLUDE_DIR}
+    include_directories(
+        ${OPENINPUT_INCLUDE_DIR}
         ${CMAKE_SOURCE_DIR}/interface
     )
 endif()
