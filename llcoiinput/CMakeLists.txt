@@ -38,9 +38,6 @@ cmake_minimum_required(VERSION 2.8)
 
 project(llcoiInput)
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmakemodules;${CMAKE_MODULE_PATH}")
-set(BUILD_ROOTDIR "${CMAKE_CURRENT_BINARY_DIR}")
-
 set(LLCOIINPUT_VERSION_STRING "0.0.1")
 set(abi_version ${LLCOIINPUT_VERSION_STRING})
 
