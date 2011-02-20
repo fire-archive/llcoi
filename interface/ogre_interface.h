@@ -106,7 +106,6 @@ COI_DECLARE_HANDLE(ViewportHandle);
 
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
-
 typedef void(*WindowListenerEvent)(RenderWindowHandle);
 
 typedef struct

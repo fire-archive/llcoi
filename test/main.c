@@ -128,6 +128,10 @@ int main(int argc, char *argv[])
     
     oi_init(openinput_window_params, 0);
     
+    log_message("***************************");
+    log_message("*** All Systems online! ***");
+    log_message("***************************");
+    
     //render_loop();
     while (keep_going)
     {
@@ -164,7 +168,7 @@ int main(int argc, char *argv[])
     oi_close();
 #endif //LLCOI_TEST_USE_OPENINPUT
     
-	//remove_window_listener(renderwindow);
+	remove_window_listener(renderwindow);
 
     release_engine();
 
