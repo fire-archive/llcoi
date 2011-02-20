@@ -1,5 +1,7 @@
 #include <ogre_interface.h>
 
+#define LLCOI_TEST_USE_OPENINPUT 1
+
 #if defined(LLCOI_TEST_USE_OPENINPUT)
 #   include <openinput.h>
 #endif
@@ -31,7 +33,11 @@ int frame_listener_test(float evt_time,float frame_time,int event_type)
     return 1;
 }
 
+#if defined(LLCOI_TEST_USE_OPENINPUT) && defined(PLATFORM_WIN)
+INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR strCmdLine, INT nCmdShow)
+#else
 int main(int argc, char *argv[])
+#endif
 {
     /* C90 requires all vars to be declared at top of function */
 

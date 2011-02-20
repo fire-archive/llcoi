@@ -58,19 +58,11 @@ if(${LLCOI_TEST_USE_ALLEGRO})
         ${CMAKE_SOURCE_DIR}/interface
     )
 else()
-	if(WIN32)
-		include_directories(
-			${CMAKE_SOURCE_DIR}/interface
-			${CMAKE_SOURCE_DIR}/llcoiinput/include
-			${CMAKE_SOURCE_DIR}/llcoiinput/src
-		)
-	else()
-		find_package(OPENINPUT)
-		include_directories(
-			${OPENINPUT_INCLUDE_DIR}
-			${CMAKE_SOURCE_DIR}/interface
-		)
-	endif()
+	find_package(OPENINPUT)
+	include_directories(
+		${OPENINPUT_INCLUDE_DIR}
+		${CMAKE_SOURCE_DIR}/interface
+	)
 endif()
 
 
@@ -86,17 +78,10 @@ if(${LLCOI_TEST_USE_ALLEGRO})
     set_target_properties(OgreApp PROPERTIES 
         COMPILE_DEFINITIONS LLCOI_TEST_USE_ALLEGRO)
 else()
-	if(WIN32)
-		target_link_libraries(OgreApp
-			OgreInterface 
-			llcoiInput
-		)
-	else()
-		target_link_libraries(OgreApp
-			OgreInterface 
-			${OPENINPUT_LIBRARIES}
-		)
-	endif()
+	target_link_libraries(OgreApp
+		OgreInterface 
+		${OPENINPUT_LIBRARIES}
+	)
     set_target_properties(OgreApp PROPERTIES 
         COMPILE_DEFINITIONS LLCOI_TEST_USE_OPENINPUT)
 endif()

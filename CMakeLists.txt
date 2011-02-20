@@ -49,6 +49,5 @@ set(CMAKE_INSTALL_PREFIX "${BUILD_ROOTDIR}/test/dist")
 include_directories(interface)
 
 add_subdirectory(interface)
-add_subdirectory(llcoiinput)
-add_subdirectory(test)
 
+add_subdirectory(test)
