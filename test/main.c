@@ -1,9 +1,10 @@
 #include <ogre_interface.h>
+#include <ois_interface.h>
 
-#define LLCOI_TEST_USE_OPENINPUT 1
+#undef LLCOI_TEST_USE_OPENINPUT
 
 #if defined(LLCOI_TEST_USE_OPENINPUT)
-#   include <openinput.h>
+//#   include <openinput.h>
 #endif
 
 #if defined(LLCOI_TEST_USE_ALLEGRO)
@@ -18,11 +19,13 @@
 #   include "windows.h"
 #else
 #if defined(LLCOI_TEST_USE_OPENINPUT)
-#include <X11/Xlib.h>
+//#include <X11/Xlib.h>
 #endif
 #endif
 
 CameraHandle myCamera;
+KeyboardInputHandle keyboard;
+MouseInputHandle mouse;
 float tiny_timer=0;
 
 void window_event_listener_test(RenderWindowHandle window_handle)
@@ -52,7 +55,7 @@ int main(int argc, char *argv[])
     RenderSystemHandle rendersystem;
     RenderWindowHandle renderwindow;
     ViewportHandle viewport;
-    
+
 #if defined(LLCOI_TEST_USE_OPENINPUT)
     // Openinput
     oi_event evt;
@@ -115,6 +118,30 @@ int main(int argc, char *argv[])
 
 	add_window_listener(renderwindow, window_event_listener_test);
 
+    create_input_system(render_window_get_hwnd(renderwindow));
+    keyboard = create_keyboard_object(0);
+    mouse = create_mouse_object(0);
+    
+    while(keep_going)
+    {
+        keyboard_capture(keyboard);
+        mouse_capture(mouse);
+
+        if(keyboard_is_key_down(keyboard, KC_ESCAPE))
+            keep_going = 0;
+        
+        // Pump window messages for nice behaviour
+        pump_messages();
+        // Render a frame
+        render_one_frame();
+
+        if (render_window_closed())
+        {
+            keep_going = 0;
+        }
+        
+    }
+    
 #if defined(LLCOI_TEST_USE_OPENINPUT)
     windowHnd = render_window_get_hwnd(renderwindow);
 
@@ -170,6 +197,9 @@ int main(int argc, char *argv[])
     
 	remove_window_listener(renderwindow);
 
+    destroy_keyboard_object(keyboard);
+    destroy_mouse_object(mouse);
+    destroy_input_system();
     release_engine();
 
     return 0;

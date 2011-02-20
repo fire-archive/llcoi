@@ -78,7 +78,7 @@ void destroy_keyboard_object(KeyboardInputHandle keyboard_handle)
 	input_manager->destroyInputObject(keyboard);
 }
 
-int is_key_down(KeyboardInputHandle keyboard_handle, KeyCode key_code)
+int keyboard_is_key_down(KeyboardInputHandle keyboard_handle, enum KeyCode key_code)
 {
     OIS::Keyboard* keyboard = reinterpret_cast<OIS::Keyboard*>(keyboard_handle);
     if(keyboard->isKeyDown((OIS::KeyCode)key_code))
@@ -86,7 +86,7 @@ int is_key_down(KeyboardInputHandle keyboard_handle, KeyCode key_code)
     return 0;
 }
 
-int keyboard_is_modifier_down(KeyboardInputHandle keyboard_handle, const Key_Modifier key_modifier)
+int keyboard_is_modifier_down(KeyboardInputHandle keyboard_handle, Key_Modifier key_modifier)
 {
     OIS::Keyboard* keyboard = reinterpret_cast<OIS::Keyboard*>(keyboard_handle);
     if(keyboard->isModifierDown((OIS::Keyboard::Modifier)key_modifier))
@@ -94,7 +94,7 @@ int keyboard_is_modifier_down(KeyboardInputHandle keyboard_handle, const Key_Mod
     return 0;
 }
 
-const MouseState& mouse_get_state(MouseInputHandle mouse_handle)
+MouseState mouse_get_state(MouseInputHandle mouse_handle)
 {
     OIS::Mouse* mouse = reinterpret_cast<OIS::Mouse*>(mouse_handle);
     OIS::MouseState state = mouse->getMouseState();

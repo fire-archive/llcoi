@@ -201,7 +201,7 @@ enum MouseButtonID
 
 typedef struct 
 {
-    const KeyCode key;
+    enum KeyCode key;
     unsigned int text;
 } KeyEvent;
 
@@ -245,11 +245,11 @@ DLL void destroy_mouse_object(MouseInputHandle mouse_handle);
 
 DLL void destroy_keyboard_object(KeyboardInputHandle keyboard_handle);
 
-DLL int is_key_down(KeyboardInputHandle keyboard_handle, KeyCode key_code);
+DLL int keyboard_is_key_down(KeyboardInputHandle keyboard_handle, enum KeyCode key_code);
 
-DLL int keyboard_is_modifier_down(KeyboardInputHandle keyboard_handle, const Key_Modifier key_modifier);
+DLL int keyboard_is_modifier_down(KeyboardInputHandle keyboard_handle, enum Key_Modifier key_modifier);
 
-DLL const MouseState& mouse_get_state(MouseInputHandle mouse_handle);
+DLL MouseState mouse_get_state(MouseInputHandle mouse_handle);
 
 DLL void mouse_set_buffered(MouseInputHandle mouse_handle, int buffered);
 
