@@ -64,7 +64,8 @@ endif ()
 set(CMAKE_DEBUG_POSTFIX "_d")
  
 find_package(OGRE REQUIRED)
- 
+find_package(OIS REQUIRED)
+
 # Find Boost
 if (NOT OGRE_BUILD_PLATFORM_IPHONE)
 	if (WIN32 OR APPLE)
@@ -98,10 +99,12 @@ endif()
  
 set(HDRS
 	./ogre_interface.h
+	./ois_interface.h
 )
 
 set(SRCS
 	./main.cpp
+	./ois_bind.cpp
 	./root_bind.cpp
 	./entity_bind.cpp
 	./scenemanager_bind.cpp
@@ -116,7 +119,7 @@ set(SRCS
 	./movableobject_bind.cpp
 )
  
-include_directories(${OGRE_INCLUDE_DIRS}
+include_directories(${OGRE_INCLUDE_DIRS} ${OIS_INCLUDE_DIRS}
 	${OGRE_SAMPLES_INCLUDEPATH}
 )
  
@@ -137,7 +140,7 @@ if(UNIX)
 ${OGREINTERFACE_VERSION_STRING} SOVERSION ${abi_version} )
 endif()
 
-target_link_libraries(OgreInterface ${OGRE_LIBRARIES})
+target_link_libraries(OgreInterface ${OGRE_LIBRARIES} ${OIS_LIBRARIES})
 
 set(LIBRARY_OUTPUT_PATH "${BUILD_ROOTDIR}/lib")
 
