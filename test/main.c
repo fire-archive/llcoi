@@ -28,43 +28,6 @@ float tiny_timer=0;
 void window_event_listener_test(RenderWindowHandle window_handle)
 {
 	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
-	log_message("I was called when the window closed!");
 }
 
 int frame_listener_test(float evt_time,float frame_time,int event_type)

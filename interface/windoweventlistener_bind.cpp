@@ -42,6 +42,7 @@
 
 // this is a binding class, it has 1 function pointer for 
 // window event listening, it gets called if not null
+// Only supports one window event listener - for now
 class WindowEventListenerBind : public Ogre::WindowEventListener
 {
 public:
@@ -53,7 +54,6 @@ public:
 
 	void windowClosed(Ogre::RenderWindow* rw)
 	{
-		Ogre::LogManager::getSingletonPtr()->logMessage("I was called!");
 		if (windowClosedHandle) 
 			windowClosedHandle(reinterpret_cast<RenderWindowHandle>(rw));
 	}
