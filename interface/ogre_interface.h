@@ -107,6 +107,8 @@ COI_DECLARE_HANDLE(ViewportHandle);
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
 
+typedef void(*WindowListenerEvent)(RenderWindowHandle);
+
 typedef struct
 {
     float w;
@@ -196,6 +198,8 @@ DLL void pump_messages();
 
 DLL void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value);
 
+DLL void log_message(const char* message);
+
 // SceneManager functions
 DLL void set_default_num_mipmaps(int number);
 
@@ -266,3 +270,8 @@ DLL void light_set_position(LightHandle light_handle, const float x, const float
 DLL void add_frame_listener(FrameListenerEvent frame_event,int frame_event_type);
 
 DLL void remove_frame_listener(FrameListenerEvent frame_event);
+
+// WindowListener
+DLL void add_window_listener(RenderWindowHandle window_handle, WindowListenerEvent window_event);
+
+DLL void remove_window_listener(RenderWindowHandle window_handle);

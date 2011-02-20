@@ -1,5 +1,5 @@
 /******************************************************************************
- * main.cpp - C++ code - main entries
+ * windoweventlistener_bind.cpp - bindings for Ogre::WindowEventListener
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
@@ -34,61 +34,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include <ogre_interface.h>
+#include "ogre_interface.h"
 
+#include <vector>
 #include <OgreRoot.h>
+#include <OgreWindowEventUtilities.h>
 
-
-const char* active_scene_manager_name;
-const char * plugin_folder = "/usr/local/lib/OGRE";
-
-Ogre::RenderWindow* activeRenderWindow;
-bool initialized;
-
-void log_message(const char* message)
+// this is a binding class, it has 1 function pointer for 
+// window event listening, it gets called if not null
+class WindowEventListenerBind : public Ogre::WindowEventListener
 {
-	Ogre::LogManager::getSingletonPtr()->logMessage(message);
+public:
+	WindowEventListenerBind(WindowListenerEvent wc)
+		: windowClosedHandle(wc)
+	{
+
+	}
+
+	void windowClosed(Ogre::RenderWindow* rw)
+	{
+		Ogre::LogManager::getSingletonPtr()->logMessage("I was called!");
+		if (windowClosedHandle) 
+			windowClosedHandle(reinterpret_cast<RenderWindowHandle>(rw));
+	}
+
+	WindowListenerEvent windowClosedHandle;
+};
+
+WindowEventListenerBind *windowEventListener;
+
+void add_window_listener(RenderWindowHandle window_handle, WindowListenerEvent window_event)
+{
+	windowEventListener = new WindowEventListenerBind(window_event);
+	
+	Ogre::WindowEventUtilities::addWindowEventListener(reinterpret_cast<Ogre::RenderWindow*>(window_handle), windowEventListener);
 }
 
-SceneNodeHandle create_child_scenenode(const char* node_name)
+void remove_window_listener(RenderWindowHandle window_handle)
 {
-    Ogre::SceneNode* scenenode = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->getRootSceneNode()->createChildSceneNode(node_name);
-    return reinterpret_cast<SceneNodeHandle>(scenenode);
+	Ogre::WindowEventUtilities::removeWindowEventListener(reinterpret_cast<Ogre::RenderWindow*>(window_handle), windowEventListener);
 }
-
-void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle)
-{
-    Ogre::SceneNode* node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
-    Ogre::MovableObject* object = reinterpret_cast<Ogre::MovableObject*>(entity_handle);
-    node->attachObject(object);
-}
-
-void light_set_position(LightHandle light_handle, const float x, const float y, const float z)
-{
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(light_handle);
-    light->setPosition(Ogre::Vector3(x, y, z));
-}
-
-void set_default_num_mipmaps(int number)
-{
-    Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(number);
-}
-
-#ifdef PLATFORM_WIN
-BOOL APIENTRY DllMain( HANDLE /*hModule*/, DWORD /*ul_reason_for_call*/, LPVOID /*lpReserved*/ )
-{
-#if defined( _MSC_VER ) && defined( _DEBUG )
-    //_crtBreakAlloc = 1397;
-    _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
-#endif
-
-    /*switch( ul_reason_for_call )
-    {
-    case DLL_PROCESS_DETACH:
-        _CrtDumpMemoryLeaks();
-        break;
-    }*/
-
-    return TRUE;
-}
-#endif

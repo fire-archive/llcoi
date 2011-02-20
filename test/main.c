@@ -25,6 +25,48 @@
 CameraHandle myCamera;
 float tiny_timer=0;
 
+void window_event_listener_test(RenderWindowHandle window_handle)
+{
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+	log_message("I was called when the window closed!");
+}
+
 int frame_listener_test(float evt_time,float frame_time,int event_type)
 {
     tiny_timer+=frame_time;
@@ -108,6 +150,8 @@ int main(int argc, char *argv[])
 
     add_frame_listener(frame_listener_test,EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
 
+	add_window_listener(renderwindow, window_event_listener_test);
+
 #if defined(LLCOI_TEST_USE_OPENINPUT)
     windowHnd = render_window_get_hwnd(renderwindow);
 
@@ -157,6 +201,8 @@ int main(int argc, char *argv[])
     oi_close();
 #endif //LLCOI_TEST_USE_OPENINPUT
     
+	//remove_window_listener(renderwindow);
+
     release_engine();
 
     return 0;

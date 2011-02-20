@@ -117,6 +117,7 @@ set(SRCS
 	./framelistener_bind.cpp
 	./viewport_bind.cpp
 	./movableobject_bind.cpp
+	./windoweventlistener_bind.cpp
 )
  
 include_directories(${OGRE_INCLUDE_DIRS} ${OIS_INCLUDE_DIRS}
