@@ -38,3 +38,18 @@
 
 #include "ogre_interface.h"
 
+COI_DECLARE_HANDLE(InputSystemHandle);
+COI_DECLARE_HANDLE(MouseInputHandle);
+COI_DECLARE_HANDLE(KeyboardInputHandle);
+
+DLL void create_input_system(unsigned int window_handle);
+
+DLL void destroy_input_system();
+
+DLL MouseInputHandle create_mouse_object();
+
+DLL KeyboardInputHandle create_keyboard_object();
+
+DLL void destroy_mouse_object(MouseInputHandle mouse_handle);
+
+DLL void destroy_keyboard_object(KeyboardInputHandle keyboard_handle);

@@ -37,3 +37,43 @@
 #include "ogre_interface.h"
 #include "ois_interface.h"
 
+#include <OISMouse.h>
+#include <OISKeyboard.h>
+#include <OISJoyStick.h>
+#include <OISInputManager.h>
+
+OIS::InputManager* input_manager = 0;
+
+void create_input_system(unsigned int window_handle)
+{
+	input_manager = OIS::InputManager::createInputSystem(window_handle);
+}
+
+void destroy_input_system()
+{
+	OIS::InputManager::destroyInputSystem(input_manager);
+}
+
+MouseInputHandle create_mouse_object()
+{
+	OIS::Mouse* mouse = static_cast<OIS::Mouse*>(input_manager->createInputObject( OIS::OISMouse, true ));
+	return reinterpret_cast<MouseInputHandle>(mouse);
+}
+
+KeyboardInputHandle create_keyboard_object()
+{
+	OIS::Keyboard* keyboard = static_cast<OIS::Keyboard*>(input_manager->createInputObject( OIS::OISKeyboard, true ));
+	return reinterpret_cast<KeyboardInputHandle>(keyboard);
+}
+
+void destroy_mouse_object(MouseInputHandle mouse_handle)
+{
+	OIS::Mouse* mouse = reinterpret_cast<OIS::Mouse*>(mouse_handle);
+	input_manager->destroyInputObject(mouse);
+}
+
+void destroy_keyboard_object(KeyboardInputHandle keyboard_handle)
+{
+	OIS::Keyboard* keyboard = reinterpret_cast<OIS::Keyboard*>(keyboard_handle);
+	input_manager->destroyInputObject(keyboard);
+}
