@@ -1,5 +1,5 @@
 #/******************************************************************************
-# * CMakeLists.txt - OgreInterface CMake script
+# * CMakeLists.txt - llcoi CMake script
 # ******************************************************************************
 # * This file is part of
 # *     __ __              _ 
@@ -36,7 +36,7 @@
 # ******************************************************************************/
 cmake_minimum_required(VERSION 2.8)
  
-project(OgreInterface)
+project(llcoi)
  
 set(OGREINTERFACE_VERSION_STRING "0.2.2")
 set(abi_version ${OGREINTERFACE_VERSION_STRING})
@@ -125,38 +125,47 @@ include_directories(${OGRE_INCLUDE_DIRS} ${OIS_INCLUDE_DIRS}
 )
  
 if(${LLCOI_DYNAMIC_BUILD})
-    add_library(OgreInterface SHARED ${HDRS} ${SRCS})
-    set_target_properties(OgreInterface PROPERTIES 
+    add_library(llcoi SHARED ${HDRS} ${SRCS})
+    set_target_properties(llcoi PROPERTIES 
         COMPILE_DEFINITIONS LLCOI_BUILD_DYNAMIC)
 else()
-    add_library(OgreInterface STATIC ${HDRS} ${SRCS})
-    set_target_properties(OgreInterface PROPERTIES 
+    add_library(llcoi STATIC ${HDRS} ${SRCS})
+    set_target_properties(llcoi PROPERTIES 
         COMPILE_DEFINITIONS LLCOI_BUILD_STATIC)
 endif()
 
-set_target_properties(OgreInterface PROPERTIES DEBUG_POSTFIX _d)
+set_target_properties(llcoi PROPERTIES DEBUG_POSTFIX _d)
 
 if(UNIX)
-  set_target_properties( OgreInterface PROPERTIES OUTPUT_NAME "OgreInterface" VERSION
+  set_target_properties( llcoi PROPERTIES OUTPUT_NAME "llcoi" VERSION
 ${OGREINTERFACE_VERSION_STRING} SOVERSION ${abi_version} )
 endif()
 
-target_link_libraries(OgreInterface ${OGRE_LIBRARIES} ${OIS_LIBRARIES})
+target_link_libraries(llcoi ${OGRE_LIBRARIES} ${OIS_LIBRARIES})
 
 set(LIBRARY_OUTPUT_PATH "${BUILD_ROOTDIR}/lib")
 
 # post-build copy for win32
 if(WIN32 AND NOT MINGW)
-	add_custom_command( TARGET OgreInterface PRE_BUILD
+	add_custom_command( TARGET llcoi PRE_BUILD
 		COMMAND if not exist ..\\test\\dist\\bin mkdir ..\\test\\dist\\bin )
-	add_custom_command( TARGET OgreInterface POST_BUILD
+	add_custom_command( TARGET llcoi POST_BUILD
 		COMMAND copy \"$(TargetPath)\" ..\\test\\dist\\bin )
 endif(WIN32 AND NOT MINGW)
 
 if(${LLCOI_DYNAMIC_BUILD})
 	if(WIN32)
-		install(TARGETS OgreInterface
+		install(TARGETS llcoi
 			RUNTIME DESTINATION bin
 			CONFIGURATIONS All)
 	endif()
+    if(UNIX)
+        install(TARGETS llcoi
+            LIBRARY DESTINATION lib
+            CONFIGURATIONS RelWithDebInfo Release)
+        install(FILES
+            ogre_interface.h
+            ois_interface.h
+        DESTINATION ${CMAKE_INSTALL_PREFIX}/include/llcoi)
+    endif()
 endif()

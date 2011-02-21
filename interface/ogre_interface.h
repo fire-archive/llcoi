@@ -58,13 +58,13 @@
 
 #if defined(LLCOI_BUILD_DYNAMIC)
 #   if defined( WIN32 ) || defined( _WINDOWS )
-#       ifndef OgreInterface_EXPORTS
+#       ifndef llcoi_EXPORTS
 #           define DLL __declspec(dllimport)
 #       else
 #           define DLL extern "C" __declspec(dllexport)
 #       endif
 #   else
-#       ifndef OgreInterface_EXPORTS
+#       ifndef llcoi_EXPORTS
 #           define DLL
 #       else
 #           if defined( __GNUC__ ) && __GNUC__ >= 4

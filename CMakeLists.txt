@@ -36,7 +36,7 @@
 # ******************************************************************************/
 cmake_minimum_required(VERSION 2.8)
 
-project(llcoi)
+project(llcoi_project)
 
 option(LLCOI_DYNAMIC_BUILD "Build OgreInterface as shared library" TRUE)
 option(LLCOI_TEST_USE_ALLEGRO "Build Test program with Allegro instead of OpenInput)" FALSE)
@@ -44,7 +44,7 @@ option(LLCOI_TEST_USE_ALLEGRO "Build Test program with Allegro instead of OpenIn
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmakemodules;${CMAKE_MODULE_PATH}")
 
 set(BUILD_ROOTDIR "${CMAKE_CURRENT_BINARY_DIR}")
-set(CMAKE_INSTALL_PREFIX "${BUILD_ROOTDIR}/test/dist")
+#set(CMAKE_INSTALL_PREFIX "${BUILD_ROOTDIR}/test/dist")
 
 include_directories(interface)
 
