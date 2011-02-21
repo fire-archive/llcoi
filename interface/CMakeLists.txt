@@ -38,7 +38,7 @@ cmake_minimum_required(VERSION 2.8)
  
 project(llcoi)
  
-set(OGREINTERFACE_VERSION_STRING "0.2.2")
+set(OGREINTERFACE_VERSION_STRING "0.2.6")
 set(abi_version ${OGREINTERFACE_VERSION_STRING})
 
 if(WIN32)
