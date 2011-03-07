@@ -40,13 +40,12 @@
 #include <OgreViewport.h>
 #include <OgreRenderWindow.h>
 #include <OgreCamera.h>
-
-extern Ogre::RenderWindow* activeRenderWindow;
+#include "ogre_manager.h"
 
 ViewportHandle add_viewport(CameraHandle camera_handle)
 {
     Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
-    Ogre::RenderWindow* window = activeRenderWindow;
+    Ogre::RenderWindow* window = OgreManager::getSingletonPtr()->getActiveRenderWindow();
     Ogre::Viewport* vp = window->addViewport(camera);
     return reinterpret_cast<ViewportHandle>(vp);
 }

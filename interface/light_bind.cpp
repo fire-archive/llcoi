@@ -38,11 +38,10 @@
 
 #include <OgreRoot.h>
 #include <OgreLight.h>
-
-extern const char* active_scene_manager_name;
+#include "ogre_manager.h"
 
 LightHandle create_light(const char* light_name)
 {
-    Ogre::Light* light = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->createLight(light_name);
+    Ogre::Light* light = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->createLight(light_name);
     return reinterpret_cast<LightHandle>(light);
 }

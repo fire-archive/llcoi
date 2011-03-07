@@ -37,13 +37,8 @@
 #include <ogre_interface.h>
 
 #include <OgreRoot.h>
-
-
-const char* active_scene_manager_name;
-const char * plugin_folder = "/usr/local/lib/OGRE";
-
-Ogre::RenderWindow* activeRenderWindow;
-bool initialized;
+#include <OgreEntity.h>
+#include "ogre_manager.h"
 
 void log_message(const char* message)
 {
@@ -52,14 +47,14 @@ void log_message(const char* message)
 
 SceneNodeHandle create_child_scenenode(const char* node_name)
 {
-    Ogre::SceneNode* scenenode = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->getRootSceneNode()->createChildSceneNode(node_name);
+    Ogre::SceneNode* scenenode = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->getRootSceneNode()->createChildSceneNode(node_name);
     return reinterpret_cast<SceneNodeHandle>(scenenode);
 }
 
 void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle)
 {
+    Ogre::Entity* object = reinterpret_cast<Ogre::Entity*>(entity_handle);
     Ogre::SceneNode* node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
-    Ogre::MovableObject* object = reinterpret_cast<Ogre::MovableObject*>(entity_handle);
     node->attachObject(object);
 }
 

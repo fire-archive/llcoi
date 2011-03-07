@@ -39,17 +39,16 @@
 #include <OgreRoot.h>
 #include <OgreRenderWindow.h>
 #include <OgreCamera.h>
-
-extern const char* active_scene_manager_name;
+#include "ogre_manager.h"
 
 void set_ambient_light_rgba(const float r, const float g, const float b, const float a)
 {
-    Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->setAmbientLight(Ogre::ColourValue(r, g, b, a));
+    Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->setAmbientLight(Ogre::ColourValue(r, g, b, a));
 }
 
 void set_ambient_light_rgb(const float r, const float g, const float b)
 {
-    Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->setAmbientLight(Ogre::ColourValue(r, g, b));
+    Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->setAmbientLight(Ogre::ColourValue(r, g, b));
 }
 
 SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name)
@@ -62,7 +61,7 @@ SceneManagerHandle create_scene_manager(const char* type_name, const char* insta
 
     if(instance_name == NULL) instance_name = "default";*/
     
-    active_scene_manager_name = instance_name;
+    OgreManager::getSingletonPtr()->set_active_scene_manager_name(instance_name);
     
     Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->createSceneManager(Ogre::String(type_name), Ogre::String(instance_name));
     return reinterpret_cast<SceneManagerHandle>(sm);
@@ -70,7 +69,7 @@ SceneManagerHandle create_scene_manager(const char* type_name, const char* insta
 
 SceneManagerHandle get_scene_manager()
 {
-    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name);
+    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name());
     return reinterpret_cast<SceneManagerHandle>(sm);
 }
 

@@ -100,6 +100,7 @@ endif()
 set(HDRS
 	./ogre_interface.h
 	./ois_interface.h
+	./ogre_manager.h
 )
 
 set(SRCS

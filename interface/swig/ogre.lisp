@@ -4,6 +4,23 @@
 ;;; Do not make changes to this file unless you know what you are doing--modify
 ;;; the SWIG interface file instead.
 
+(in-package :ogre)
+
+(define-foreign-library libllcoi
+    (:unix (:or "libllcoi.so.3" "libllcoi.so"))
+    (t (:default "libllcoi")))
+
+(defun load-foreign-libraries ()
+  (use-foreign-library libllcoi)
+  (format t "~&[ogre] foreign library libllcoi loaded~%"))
+
+
+(load-foreign-libraries)
+
+(in-package :ogre)
+
+
+
 
 ;;;SWIG wrapper code starts here
 
@@ -52,10 +69,6 @@
 
 ;;;SWIG wrapper code ends here
 
-
-(cl:defconstant #.(swig-lispify "PATH_SEP" 'constant) "/")
-
-(cl:export '#.(swig-lispify "PATH_SEP" 'constant))
 
 (cl:defconstant #.(swig-lispify "EVENT_FRAME_STARTED" 'constant) 1)
 

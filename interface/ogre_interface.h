@@ -52,7 +52,6 @@
 #else
 #   if !defined( PLATFORM_LINUX )
 #       define PLATFORM_LINUX
-#       define PATH_SEP "/"
 #   endif
 #endif
 

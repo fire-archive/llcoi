@@ -39,7 +39,7 @@
 #include <OgreRoot.h>
 #include <OgreRenderWindow.h>
 
-extern Ogre::RenderWindow* activeRenderWindow;
+#include "ogre_manager.h"
 
 void render_window_set_visible(RenderWindowHandle window_handle, int visible)
 {
@@ -64,13 +64,13 @@ void render_window_update(RenderWindowHandle window_handle, int swap_buffers)
 
 void current_window_update(int swap_buffers)
 {
-    activeRenderWindow->update(swap_buffers);
+    OgreManager::getSingletonPtr()->getActiveRenderWindow()->update(swap_buffers);
 }
 
 RenderWindowHandle create_render_window(const char* name, const int width, const int height, const int full_screen)
 {
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->createRenderWindow(name, width, height, full_screen);
-    activeRenderWindow = window;
+    OgreManager::getSingletonPtr()->setActiveRenderWindow(window);
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 
@@ -79,7 +79,7 @@ DLL RenderWindowHandle create_render_window_hwnd(const char* name, const int wid
     Ogre::NameValuePairList misc;
     misc["parentWindowHandle"] = Ogre::StringConverter::toString(hwnd);
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->createRenderWindow(name, width, height, full_screen, &misc);
-    activeRenderWindow = window;
+    OgreManager::getSingletonPtr()->setActiveRenderWindow(window);
 	window->setActive(true);
     return reinterpret_cast<RenderWindowHandle>(window);
 }
@@ -91,23 +91,23 @@ RenderWindowHandle create_render_window_gl_context(const char* name, const int w
     // you *will* need something different on Windows or Mac.
     misc["currentGLContext"] = Ogre::String("True");
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->createRenderWindow(name, width, height, full_screen, &misc);
-    activeRenderWindow = window;
+    OgreManager::getSingletonPtr()->setActiveRenderWindow(window);
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 
 void render_window_resize(unsigned int width, unsigned int height)
 {
-	activeRenderWindow->resize(width, height);
+	OgreManager::getSingletonPtr()->getActiveRenderWindow()->resize(width, height);
 }
 
 void render_window_moved_or_resized()
 {
-	activeRenderWindow->windowMovedOrResized();
+	OgreManager::getSingletonPtr()->getActiveRenderWindow()->windowMovedOrResized();
 }
 
 int render_window_closed()
 {
-    if(activeRenderWindow->isClosed())
+    if(OgreManager::getSingletonPtr()->getActiveRenderWindow()->isClosed())
         return 1;
     return 0;
 }

@@ -39,9 +39,7 @@
 #include <OgreRoot.h>
 #include <OgreRenderWindow.h>
 #include <OgreCamera.h>
-
-extern const char* active_scene_manager_name;
-extern Ogre::RenderWindow* activeRenderWindow;
+#include "ogre_manager.h"
 
 void camera_set_near_clip_distance(CameraHandle camera_handle, float d)
 {
@@ -99,12 +97,12 @@ void camera_lookat(CameraHandle camera_handle, const float x, const float y, con
 
 CameraHandle create_camera(const char* camera_name)
 {
-    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->createCamera(camera_name);
+    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->createCamera(camera_name);
     return reinterpret_cast<CameraHandle>(camera);
 }
 
 CameraHandle get_camera(const char* camera_name)
 {
-    Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager(active_scene_manager_name)->getCamera(camera_name);
+    Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->getCamera(camera_name);
     return reinterpret_cast<CameraHandle>(camera);
 }

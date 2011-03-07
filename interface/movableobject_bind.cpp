@@ -38,5 +38,4 @@
 
 #include <OgreRoot.h>
 #include <OgreMovableObject.h>
-
-extern const char* active_scene_manager_name;
+#include "ogre_manager.h"

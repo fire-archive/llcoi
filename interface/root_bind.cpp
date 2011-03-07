@@ -40,13 +40,9 @@
 #include <OgreRenderWindow.h>
 #include <OgreWindowEventUtilities.h>
 #include <OgreConfigFile.h>
+#include "ogre_manager.h"
 
-extern const char* active_scene_manager_name;
-extern const char * plugin_folder;
-
-extern Ogre::RenderWindow* activeRenderWindow;
-extern bool initialized;
-
+template<> OgreManager* Ogre::Singleton<OgreManager>::ms_Singleton = 0;
 
 void load_ogre_plugin(const char* plugin);
 
@@ -67,7 +63,9 @@ void default_engine_options(engine_options* options)
 
 void init_engine(const engine_options options)
 {
-    plugin_folder = options.plugin_folder_s;
+    new OgreManager();
+    
+    OgreManager::getSingletonPtr()->set_plugin_folder(options.plugin_folder_s);
     // suppress console logging
     Ogre::LogManager * log_man = new Ogre::LogManager();
     Ogre::Log * vge_log = log_man->createLog(options.log_name, true, false);
@@ -100,7 +98,7 @@ void init_engine(const engine_options options)
         root->createSceneManager(Ogre::ST_GENERIC, "scene-manager");
 
     if (options.auto_window) {
-        activeRenderWindow = root->initialise(true , options.window_title);
+        OgreManager::getSingletonPtr()->setActiveRenderWindow(root->initialise(true , options.window_title));
     } else {
         root->initialise(false , options.window_title);
     }
@@ -115,7 +113,7 @@ RenderWindowHandle root_initialise(int auto_create_window, const char* render_wi
 {
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->initialise(auto_create_window, render_window_title);
     if(auto_create_window)
-        activeRenderWindow = window;
+        OgreManager::getSingletonPtr()->setActiveRenderWindow(window);
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 
@@ -128,6 +126,7 @@ DLL int root_is_initialised()
 
 RootHandle create_root(const char* pluginFileName, const char* configFileName, const char* logFileName)
 {
+    new OgreManager();
     Ogre::Root* root = new Ogre::Root(Ogre::String(pluginFileName), Ogre::String(configFileName), Ogre::String(logFileName));
     return reinterpret_cast<RootHandle>(root);
 }
@@ -161,7 +160,7 @@ void load_ogre_plugin(const char* plugin)
     Ogre::Root::getSingleton().loadPlugin(plugin);
 #endif
 #else
-    Ogre::Root::getSingleton().loadPlugin( Ogre::String(plugin_folder) + "/" + plugin );
+    Ogre::Root::getSingleton().loadPlugin( Ogre::String(OgreManager::getSingletonPtr()->get_plugin_folder()) + "/" + plugin );
 #endif
 }
 
@@ -196,7 +195,7 @@ void render_loop()
         // Render a frame
         Ogre::Root::getSingletonPtr()->renderOneFrame();
 
-        if (activeRenderWindow->isClosed())
+        if (OgreManager::getSingletonPtr()->getActiveRenderWindow()->isClosed())
         {
             do_render = 0;
         }
