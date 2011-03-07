@@ -4,3 +4,6 @@ glob:.kdev4
 glob:lib/*
 glob:*.kdev4
 glob:openinput/*
+glob:interface/media/*
+glob:interface/swig/*.cfg
+glob:interface/swig/*.log
