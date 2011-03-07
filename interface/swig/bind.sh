@@ -1,1 +1,1 @@
-swig -cffi -module llcoi interface.i
+swig -cffi -swig-lisp -module ogre interface.i
