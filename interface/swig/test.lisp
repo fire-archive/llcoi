@@ -26,7 +26,7 @@
 
 (setq *camerahandle* (ogre:create-camera "myCam"))
 
-(ogre:camera-set-position *camerahandle* 0.0 0.0 80.0)
+(ogre:camera-set-position *camerahandle* 0.0 0.0 280.0)
 
 (ogre:camera-lookat *camerahandle* 0.0 0.0 -300.0)
 

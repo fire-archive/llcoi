@@ -70,6 +70,9 @@
 ;;;SWIG wrapper code ends here
 
 
+#+sbcl(sb-ext::set-floating-point-modes :traps nil)
+
+
 (cl:defconstant #.(swig-lispify "EVENT_FRAME_STARTED" 'constant) 1)
 
 (cl:export '#.(swig-lispify "EVENT_FRAME_STARTED" 'constant))
