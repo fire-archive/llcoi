@@ -10,6 +10,8 @@
 (defparameter *mouse* nil)
 (defparameter *keyboard* nil)
 
+(defconstant KC_ESCAPE #.#x01)
+
 (ogre:create-root "plugins.cfg" "ogre.cfg" "ogre.log")
 
 (ogre:restore-config)
@@ -52,11 +54,11 @@
 
 ;;(ogre:render-window-update *windowhandle* 1)
 
-;;(setq *windowhwnd* (ogre:render-window-get-hwnd *windowhandle*))
+(setq *windowhwnd* (ogre:render-window-get-hwnd *windowhandle*))
 
-;;(ogre:create-input-system *windowhwnd*);
+(ogre:create-input-system *windowhwnd*);
 
-;;(setq *keyboard* (ogre:create-keyboard-object 0))
+(setq *keyboard* (ogre:create-keyboard-object 0))
 
 ;;(setq *mouse* (ogre:create-mouse-object 0))
 
@@ -64,12 +66,12 @@
 
 ;;(ogre:render-loop)
 
-(let ((n 0))
-    (loop
-      (when (> n 4000) (return))
-        (ogre:pump-messages)
-        (ogre:render-one-frame)
-      (incf n)))
+(loop
+    (if (= (ogre:keyboard-is-key-down *keyboard* KC_ESCAPE) 1) (return))
+    (ogre:keyboard-capture *keyboard*)
+    (ogre:pump-messages)
+    (ogre:render-one-frame)
+)
 
 (ogre:release-engine)
 

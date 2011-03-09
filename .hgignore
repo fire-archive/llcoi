@@ -7,3 +7,5 @@ glob:openinput/*
 glob:interface/media/*
 glob:interface/swig/*.cfg
 glob:interface/swig/*.log
+glob:*.fasl
+glob:interface/swig/ogredocs/*
