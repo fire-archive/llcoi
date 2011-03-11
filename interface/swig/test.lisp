@@ -1,3 +1,4 @@
+#! /usr/local/bin/lisp-script
 (require 'ogre)
 
 (defparameter *windowhandle* nil)
