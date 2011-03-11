@@ -9,8 +9,8 @@
 (defparameter *lighthandle* nil)
 (defparameter *mouse* nil)
 (defparameter *keyboard* nil)
+(defparameter *timer* 0)
 
-(defconstant KC_ESCAPE #.#x01)
 
 (ogre:create-root "plugins.cfg" "ogre.cfg" "ogre.log")
 
@@ -28,9 +28,11 @@
 
 (setq *camerahandle* (ogre:create-camera "myCam"))
 
-(ogre:camera-set-position *camerahandle* 0.0 0.0 280.0)
+(ogre:camera-set-position *camerahandle* 0.0 0.0 500.0)
 
 (ogre:camera-lookat *camerahandle* 0.0 0.0 -300.0)
+
+(ogre:camera-set-near-clip-distance *camerahandle* 5.0)
 
 (setq *viewporthandle* (ogre:add-viewport *camerahandle*))
 
@@ -52,22 +54,32 @@
 
 (ogre:log-message "Hello World from Lisp")
 
-;;(ogre:render-window-update *windowhandle* 1)
-
 (setq *windowhwnd* (ogre:render-window-get-hwnd *windowhandle*))
 
 (ogre:create-input-system *windowhwnd*);
 
 (setq *keyboard* (ogre:create-keyboard-object 0))
 
-;;(setq *mouse* (ogre:create-mouse-object 0))
 
-;;(ogre:render-one-frame)
+(cffi:defcallback framequeued :int
+    ((evt_time :float)
+    (frame_time :float)
+    (event_type :int))
+        (setq *timer* (+ *timer* frame_time))
+        (let ((x (* (cos *timer*) 100.0))
+            (y 50.0)
+            (z (* (sin *timer*) 100.0)))
+                (ogre:camera-set-position *camerahandle* x y z)
+                (ogre::camera-lookat *camerahandle* 0.0 0.0 0.0))
+    (if (= (ogre:keyboard-is-key-down *keyboard* :+KC-ESCAPE+) 1) 0 1)
+)
+
+(ogre:add-frame-listener (cffi:callback framequeued) 2)
 
 ;;(ogre:render-loop)
 
 (loop
-    (if (= (ogre:keyboard-is-key-down *keyboard* KC_ESCAPE) 1) (return))
+    (if (= (ogre:keyboard-is-key-down *keyboard* :+KC-ESCAPE+) 1) (return))
     (ogre:keyboard-capture *keyboard*)
     (ogre:pump-messages)
     (ogre:render-one-frame)

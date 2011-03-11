@@ -193,7 +193,10 @@ void render_loop()
         Ogre::WindowEventUtilities::messagePump();
 
         // Render a frame
-        Ogre::Root::getSingletonPtr()->renderOneFrame();
+        if(!Ogre::Root::getSingletonPtr()->renderOneFrame())
+        {
+            do_render = 0;
+        }
 
         if (OgreManager::getSingletonPtr()->getActiveRenderWindow()->isClosed())
         {
