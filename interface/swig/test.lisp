@@ -1,4 +1,3 @@
-#! /usr/local/bin/lisp-script
 (require 'ogre)
 
 (defparameter *windowhandle* nil)
@@ -11,6 +10,7 @@
 (defparameter *mouse* nil)
 (defparameter *keyboard* nil)
 (defparameter *timer* 0)
+(defparameter *use-mouse* T)
 
 
 (ogre:create-root "plugins.cfg" "ogre.cfg" "ogre.log")
@@ -61,6 +61,15 @@
 
 (setq *keyboard* (ogre:create-keyboard-object 0))
 
+(if *use-mouse*
+    (setq *mouse* (ogre:create-mouse-object 0)))
+
+
+(defun handle-input (frametime)
+    (ogre:keyboard-capture *keyboard*)
+    (if *use-mouse*
+        (ogre:mouse-capture *mouse*))
+    (if (= (ogre:keyboard-is-key-down *keyboard* :+KC-ESCAPE+) 1) 0 1))
 
 (cffi:defcallback framequeued :int
     ((evt_time :float)
@@ -72,19 +81,12 @@
             (z (* (sin *timer*) 100.0)))
                 (ogre:camera-set-position *camerahandle* x y z)
                 (ogre::camera-lookat *camerahandle* 0.0 0.0 0.0))
-    (if (= (ogre:keyboard-is-key-down *keyboard* :+KC-ESCAPE+) 1) 0 1)
+                (handle-input frame_time)
 )
 
 (ogre:add-frame-listener (cffi:callback framequeued) 2)
 
-;;(ogre:render-loop)
-
-(loop
-    (if (= (ogre:keyboard-is-key-down *keyboard* :+KC-ESCAPE+) 1) (return))
-    (ogre:keyboard-capture *keyboard*)
-    (ogre:pump-messages)
-    (ogre:render-one-frame)
-)
+(ogre:render-loop)
 
 (ogre:release-engine)
 
