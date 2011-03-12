@@ -106,3 +106,97 @@ CameraHandle get_camera(const char* camera_name)
     Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->getCamera(camera_name);
     return reinterpret_cast<CameraHandle>(camera);
 }
+
+/*
+Ogre::Camera::Listener
+Ogre::Camera::Camera(std::string const&, Ogre::SceneManager*)
+Ogre::Camera::~Camera()
+Ogre::Camera::addListener(Ogre::Camera::Listener*)
+Ogre::Camera::removeListener(Ogre::Camera::Listener*)
+Ogre::Camera::getSceneManager() const
+Ogre::Camera::setPolygonMode(Ogre::PolygonMode)
+Ogre::Camera::getPolygonMode() const
+Ogre::Camera::setPosition(float, float, float)
+Ogre::Camera::setPosition(Ogre::Vector3 const&)
+Ogre::Camera::getPosition() const
+Ogre::Camera::move(Ogre::Vector3 const&)
+Ogre::Camera::moveRelative(Ogre::Vector3 const&)
+Ogre::Camera::setDirection(float, float, float)
+Ogre::Camera::setDirection(Ogre::Vector3 const&)
+Ogre::Camera::getDirection() const
+Ogre::Camera::getUp() const
+Ogre::Camera::getRight() const
+Ogre::Camera::lookAt(Ogre::Vector3 const&)
+Ogre::Camera::lookAt(float, float, float)
+Ogre::Camera::roll(Ogre::Radian const&)
+Ogre::Camera::yaw(Ogre::Radian const&)
+Ogre::Camera::pitch(Ogre::Radian const&)
+Ogre::Camera::rotate(Ogre::Vector3 const&, Ogre::Radian const&)
+Ogre::Camera::rotate(Ogre::Quaternion const&)
+Ogre::Camera::setFixedYawAxis(bool, Ogre::Vector3 const&)
+Ogre::Camera::getOrientation() const
+Ogre::Camera::setOrientation(Ogre::Quaternion const&)
+Ogre::Camera::_renderScene(Ogre::Viewport*, bool)
+Ogre::Camera::_notifyRenderedFaces(unsigned int)
+Ogre::Camera::_notifyRenderedBatches(unsigned int)
+Ogre::Camera::_getNumRenderedFaces() const
+Ogre::Camera::_getNumRenderedBatches() const
+Ogre::Camera::getDerivedOrientation() const
+Ogre::Camera::getDerivedPosition() const
+Ogre::Camera::getDerivedDirection() const
+Ogre::Camera::getDerivedUp() const
+Ogre::Camera::getDerivedRight() const
+Ogre::Camera::getRealOrientation() const
+Ogre::Camera::getRealPosition() const
+Ogre::Camera::getRealDirection() const
+Ogre::Camera::getRealUp() const
+Ogre::Camera::getRealRight() const
+Ogre::Camera::getMovableType() const
+Ogre::Camera::setAutoTracking(bool, Ogre::SceneNode*, Ogre::Vector3 const&)
+Ogre::Camera::setLodBias(float)
+Ogre::Camera::getLodBias() const
+Ogre::Camera::setLodCamera(Ogre::Camera const*)
+Ogre::Camera::getLodCamera() const
+Ogre::Camera::getCameraToViewportRay(float, float) const
+Ogre::Camera::getCameraToViewportRay(float, float, Ogre::Ray*) const
+Ogre::Camera::getCameraToViewportBoxVolume(float, float, float, float, bool)
+Ogre::Camera::getCameraToViewportBoxVolume(float, float, float, float, Ogre::PlaneBoundedVolume*, bool)
+Ogre::Camera::_getLodBiasInverse() const
+Ogre::Camera::_autoTrack()
+Ogre::Camera::setWindow(float, float, float, float)
+Ogre::Camera::resetWindow()
+Ogre::Camera::isWindowSet() const
+Ogre::Camera::getWindowPlanes() const
+Ogre::Camera::getBoundingRadius() const
+Ogre::Camera::getAutoTrackTarget() const
+Ogre::Camera::getAutoTrackOffset() const
+Ogre::Camera::getViewport() const
+Ogre::Camera::_notifyViewport(Ogre::Viewport*)
+Ogre::Camera::setAutoAspectRatio(bool)
+Ogre::Camera::getAutoAspectRatio() const
+Ogre::Camera::setCullingFrustum(Ogre::Frustum*)
+Ogre::Camera::getCullingFrustum() const
+Ogre::Camera::forwardIntersect(Ogre::Plane const&, std::vector<Ogre::Vector4, Ogre::STLAllocator<Ogre::Vector4, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > >*) const
+Ogre::Camera::isVisible(Ogre::AxisAlignedBox const&, Ogre::FrustumPlane*) const
+Ogre::Camera::isVisible(Ogre::Sphere const&, Ogre::FrustumPlane*) const
+Ogre::Camera::isVisible(Ogre::Vector3 const&, Ogre::FrustumPlane*) const
+Ogre::Camera::getWorldSpaceCorners() const
+Ogre::Camera::getFrustumPlane(unsigned short) const
+Ogre::Camera::projectSphere(Ogre::Sphere const&, float*, float*, float*, float*) const
+Ogre::Camera::getNearClipDistance() const
+Ogre::Camera::getFarClipDistance() const
+Ogre::Camera::getViewMatrix() const
+Ogre::Camera::getViewMatrix(bool) const
+Ogre::Camera::setUseRenderingDistance(bool)
+Ogre::Camera::getUseRenderingDistance() const
+Ogre::Camera::synchroniseBaseSettingsWith(Ogre::Camera const*)
+Ogre::Camera::getPositionForViewUpdate() const
+Ogre::Camera::getOrientationForViewUpdate() const
+Ogre::Camera::Listener::operator=(Ogre::Camera::Listener const&)
+Ogre::Camera::Listener::Listener(Ogre::Camera::Listener const&)
+Ogre::Camera::Listener::Listener()
+Ogre::Camera::Listener::~Listener()
+Ogre::Camera::Listener::cameraPreRenderScene(Ogre::Camera*)
+Ogre::Camera::Listener::cameraPostRenderScene(Ogre::Camera*)
+Ogre::Camera::Listener::cameraDestroyed(Ogre::Camera*)
+*/

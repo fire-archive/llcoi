@@ -204,3 +204,92 @@ void render_loop()
         }
     }
 }
+
+/*
+Ogre::Root::Root(std::string const&, std::string const&, std::string const&)
+Ogre::Root::~Root()
+Ogre::Root::saveConfig()
+Ogre::Root::restoreConfig()
+Ogre::Root::showConfigDialog()
+Ogre::Root::addRenderSystem(Ogre::RenderSystem*)
+Ogre::Root::getAvailableRenderers()
+Ogre::Root::getRenderSystemByName(std::string const&)
+Ogre::Root::setRenderSystem(Ogre::RenderSystem*)
+Ogre::Root::getRenderSystem()
+Ogre::Root::initialise(bool, std::string const&, std::string const&)
+Ogre::Root::isInitialised() const
+Ogre::Root::useCustomRenderSystemCapabilities(Ogre::RenderSystemCapabilities*)
+Ogre::Root::getRemoveRenderQueueStructuresOnClear() const
+Ogre::Root::setRemoveRenderQueueStructuresOnClear(bool)
+Ogre::Root::addSceneManagerFactory(Ogre::SceneManagerFactory*)
+Ogre::Root::removeSceneManagerFactory(Ogre::SceneManagerFactory*)
+Ogre::Root::getSceneManagerMetaData(std::string const&) const
+Ogre::Root::getSceneManagerMetaDataIterator() const
+Ogre::Root::createSceneManager(std::string const&, std::string const&)
+Ogre::Root::createSceneManager(unsigned short, std::string const&)
+Ogre::Root::destroySceneManager(Ogre::SceneManager*)
+Ogre::Root::getSceneManager(std::string const&) const
+Ogre::Root::hasSceneManager(std::string const&) const
+Ogre::Root::getSceneManagerIterator()
+Ogre::Root::getTextureManager()
+Ogre::Root::getMeshManager()
+Ogre::Root::getErrorDescription(long)
+Ogre::Root::addFrameListener(Ogre::FrameListener*)
+Ogre::Root::removeFrameListener(Ogre::FrameListener*)
+Ogre::Root::queueEndRendering()
+Ogre::Root::startRendering()
+Ogre::Root::renderOneFrame()
+Ogre::Root::renderOneFrame(float)
+Ogre::Root::shutdown()
+Ogre::Root::addResourceLocation(std::string const&, std::string const&, std::string const&, bool)
+Ogre::Root::removeResourceLocation(std::string const&, std::string const&)
+Ogre::Root::createFileStream(std::string const&, std::string const&, bool, std::string const&)
+Ogre::Root::openFileStream(std::string const&, std::string const&, std::string const&)
+Ogre::Root::convertColourValue(Ogre::ColourValue const&, unsigned int*)
+Ogre::Root::getAutoCreatedWindow()
+Ogre::Root::createRenderWindow(std::string const&, unsigned int, unsigned int, bool, std::map<std::string, std::string, std::less<std::string>, Ogre::STLAllocator<std::pair<std::string const, std::string>, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > > const*)
+Ogre::Root::createRenderWindows(std::vector<Ogre::RenderWindowDescription, Ogre::STLAllocator<Ogre::RenderWindowDescription, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > > const&, std::vector<Ogre::RenderWindow*, Ogre::STLAllocator<Ogre::RenderWindow*, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > >&)
+Ogre::Root::detachRenderTarget(Ogre::RenderTarget*)
+Ogre::Root::detachRenderTarget(std::string const&)
+Ogre::Root::getRenderTarget(std::string const&)
+Ogre::Root::loadPlugin(std::string const&)
+Ogre::Root::unloadPlugin(std::string const&)
+Ogre::Root::installPlugin(Ogre::Plugin*)
+Ogre::Root::uninstallPlugin(Ogre::Plugin*)
+Ogre::Root::getInstalledPlugins() const
+Ogre::Root::getTimer()
+Ogre::Root::_fireFrameStarted(Ogre::FrameEvent&)
+Ogre::Root::_fireFrameRenderingQueued(Ogre::FrameEvent&)
+Ogre::Root::_fireFrameEnded(Ogre::FrameEvent&)
+Ogre::Root::_fireFrameStarted()
+Ogre::Root::_fireFrameRenderingQueued()
+Ogre::Root::_fireFrameEnded()
+Ogre::Root::getNextFrameNumber() const
+Ogre::Root::_getCurrentSceneManager() const
+Ogre::Root::_pushCurrentSceneManager(Ogre::SceneManager*)
+Ogre::Root::_popCurrentSceneManager(Ogre::SceneManager*)
+Ogre::Root::_updateAllRenderTargets()
+Ogre::Root::_updateAllRenderTargets(Ogre::FrameEvent&)
+Ogre::Root::createRenderQueueInvocationSequence(std::string const&)
+Ogre::Root::getRenderQueueInvocationSequence(std::string const&)
+Ogre::Root::destroyRenderQueueInvocationSequence(std::string const&)
+Ogre::Root::destroyAllRenderQueueInvocationSequences()
+Ogre::Root::getSingleton()
+Ogre::Root::getSingletonPtr()
+Ogre::Root::clearEventTimes()
+Ogre::Root::setFrameSmoothingPeriod(float)
+Ogre::Root::getFrameSmoothingPeriod() const
+Ogre::Root::addMovableObjectFactory(Ogre::MovableObjectFactory*, bool)
+Ogre::Root::removeMovableObjectFactory(Ogre::MovableObjectFactory*)
+Ogre::Root::hasMovableObjectFactory(std::string const&) const
+Ogre::Root::getMovableObjectFactory(std::string const&)
+Ogre::Root::_allocateNextMovableObjectTypeFlag()
+Ogre::Root::getMovableObjectFactoryIterator() const
+Ogre::Root::getDisplayMonitorCount() const
+Ogre::Root::getWorkQueue() const
+Ogre::Root::setWorkQueue(Ogre::WorkQueue*)
+Ogre::Root::setBlendIndicesGpuRedundant(bool)
+Ogre::Root::isBlendIndicesGpuRedundant() const
+Ogre::Root::setBlendWeightsGpuRedundant(bool)
+Ogre::Root::isBlendWeightsGpuRedundant() const
+*/

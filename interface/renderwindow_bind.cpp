@@ -111,3 +111,32 @@ int render_window_closed()
         return 1;
     return 0;
 }
+
+/*
+Ogre::RenderWindow::operator=(Ogre::RenderWindow const&)
+Ogre::RenderWindow::RenderWindow(Ogre::RenderWindow const&)
+Ogre::RenderWindow::RenderWindow()
+Ogre::RenderWindow::create(std::string const&, unsigned int, unsigned int, bool, std::map<std::string, std::string, std::less<std::string>, Ogre::STLAllocator<std::pair<std::string const, std::string>, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > > const*)
+Ogre::RenderWindow::setFullscreen(bool, unsigned int, unsigned int)
+Ogre::RenderWindow::destroy()
+Ogre::RenderWindow::resize(unsigned int, unsigned int)
+Ogre::RenderWindow::windowMovedOrResized()
+Ogre::RenderWindow::reposition(int, int)
+Ogre::RenderWindow::isVisible() const
+Ogre::RenderWindow::setVisible(bool)
+Ogre::RenderWindow::isHidden() const
+Ogre::RenderWindow::setHidden(bool)
+Ogre::RenderWindow::setVSyncEnabled(bool)
+Ogre::RenderWindow::isVSyncEnabled() const
+Ogre::RenderWindow::setVSyncInterval(unsigned int)
+Ogre::RenderWindow::getVSyncInterval() const
+Ogre::RenderWindow::isActive() const
+Ogre::RenderWindow::isClosed() const
+Ogre::RenderWindow::isPrimary() const
+Ogre::RenderWindow::isFullScreen() const
+Ogre::RenderWindow::getMetrics(unsigned int&, unsigned int&, unsigned int&, int&, int&)
+Ogre::RenderWindow::suggestPixelFormat() const
+Ogre::RenderWindow::isDeactivatedOnFocusChange() const
+Ogre::RenderWindow::setDeactivateOnFocusChange(bool)
+Ogre::RenderWindow::~RenderWindow()
+*/

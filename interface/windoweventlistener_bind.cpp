@@ -74,3 +74,17 @@ void remove_window_listener(RenderWindowHandle window_handle)
 {
 	Ogre::WindowEventUtilities::removeWindowEventListener(reinterpret_cast<Ogre::RenderWindow*>(window_handle), windowEventListener);
 }
+
+/*
+Ogre::WindowEventUtilities::_msListeners
+Ogre::WindowEventUtilities::_msWindows
+Ogre::WindowEventUtilities::~WindowEventUtilities()
+Ogre::WindowEventUtilities::operator=(Ogre::WindowEventUtilities const&)
+Ogre::WindowEventUtilities::WindowEventUtilities(Ogre::WindowEventUtilities const&)
+Ogre::WindowEventUtilities::WindowEventUtilities()
+Ogre::WindowEventUtilities::messagePump()
+Ogre::WindowEventUtilities::addWindowEventListener(Ogre::RenderWindow*, Ogre::WindowEventListener*)
+Ogre::WindowEventUtilities::removeWindowEventListener(Ogre::RenderWindow*, Ogre::WindowEventListener*)
+Ogre::WindowEventUtilities::_addRenderWindow(Ogre::RenderWindow*)
+Ogre::WindowEventUtilities::_removeRenderWindow(Ogre::RenderWindow*)
+*/

@@ -74,3 +74,49 @@ void initialise_all_resourcegroups()
 {
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
+
+/*
+Ogre::ResourceManager::ResourcePool
+Ogre::ResourceManager::ResourceManager()
+Ogre::ResourceManager::~ResourceManager()
+Ogre::ResourceManager::create(std::string const&, std::string const&, bool, Ogre::ManualResourceLoader*, std::map<std::string, std::string, std::less<std::string>, Ogre::STLAllocator<std::pair<std::string const, std::string>, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > > const*)
+Ogre::ResourceManager::createOrRetrieve(std::string const&, std::string const&, bool, Ogre::ManualResourceLoader*, std::map<std::string, std::string, std::less<std::string>, Ogre::STLAllocator<std::pair<std::string const, std::string>, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > > const*)
+Ogre::ResourceManager::setMemoryBudget(unsigned int)
+Ogre::ResourceManager::getMemoryBudget() const
+Ogre::ResourceManager::getMemoryUsage() const
+Ogre::ResourceManager::unload(std::string const&)
+Ogre::ResourceManager::unload(unsigned long long)
+Ogre::ResourceManager::unloadAll(bool)
+Ogre::ResourceManager::reloadAll(bool)
+Ogre::ResourceManager::unloadUnreferencedResources(bool)
+Ogre::ResourceManager::reloadUnreferencedResources(bool)
+Ogre::ResourceManager::remove(Ogre::SharedPtr<Ogre::Resource>&)
+Ogre::ResourceManager::remove(std::string const&)
+Ogre::ResourceManager::remove(unsigned long long)
+Ogre::ResourceManager::removeAll()
+Ogre::ResourceManager::removeUnreferencedResources(bool)
+Ogre::ResourceManager::getByName(std::string const&, std::string const&)
+Ogre::ResourceManager::getByHandle(unsigned long long)
+Ogre::ResourceManager::resourceExists(std::string const&)
+Ogre::ResourceManager::resourceExists(unsigned long long)
+Ogre::ResourceManager::_notifyResourceTouched(Ogre::Resource*)
+Ogre::ResourceManager::_notifyResourceLoaded(Ogre::Resource*)
+Ogre::ResourceManager::_notifyResourceUnloaded(Ogre::Resource*)
+Ogre::ResourceManager::prepare(std::string const&, std::string const&, bool, Ogre::ManualResourceLoader*, std::map<std::string, std::string, std::less<std::string>, Ogre::STLAllocator<std::pair<std::string const, std::string>, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > > const*, bool)
+Ogre::ResourceManager::load(std::string const&, std::string const&, bool, Ogre::ManualResourceLoader*, std::map<std::string, std::string, std::less<std::string>, Ogre::STLAllocator<std::pair<std::string const, std::string>, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > > const*, bool)
+Ogre::ResourceManager::getScriptPatterns() const
+Ogre::ResourceManager::parseScript(Ogre::SharedPtr<Ogre::DataStream>&, std::string const&)
+Ogre::ResourceManager::getLoadingOrder() const
+Ogre::ResourceManager::getResourceType() const
+Ogre::ResourceManager::setVerbose(bool)
+Ogre::ResourceManager::getVerbose()
+Ogre::ResourceManager::getResourcePool(std::string const&)
+Ogre::ResourceManager::destroyResourcePool(Ogre::ResourceManager::ResourcePool*)
+Ogre::ResourceManager::destroyResourcePool(std::string const&)
+Ogre::ResourceManager::destroyAllResourcePools()
+Ogre::ResourceManager::getResourceIterator()
+Ogre::ResourceManager::ResourcePool::ResourcePool(std::string const&)
+Ogre::ResourceManager::ResourcePool::~ResourcePool()
+Ogre::ResourceManager::ResourcePool::getName() const
+Ogre::ResourceManager::ResourcePool::clear()
+*/
