@@ -46,6 +46,9 @@ EntityHandle create_entity(const char* entity_name, const char* mesh_file)
     return reinterpret_cast<EntityHandle>(entity);
 }
 
+// How do we handle the fact that Ogre::Entity is an Ogre::MovableObject ?
+// Duplicate?
+
 /*
 Ogre::Entity::operator=(Ogre::Entity const&)
 Ogre::Entity::Entity(Ogre::Entity const&)
