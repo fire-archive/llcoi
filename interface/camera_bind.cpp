@@ -83,12 +83,16 @@ void camera_set_focal_length(CameraHandle camera_handle, float fl)
     camera->setFocalLength(fl);
 }
 
+// Ogre::Camera::setPosition(float, float, float)
+// Ogre::Camera::setPosition(Ogre::Vector3 const&)
 void camera_set_position(CameraHandle camera_handle, const float x, const float y, const float z)
 {
     Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
     camera->setPosition(Ogre::Vector3(x, y, z));
 }
 
+// Ogre::Camera::lookAt(Ogre::Vector3 const&)
+// Ogre::Camera::lookAt(float, float, float)
 void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z)
 {
     Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
@@ -116,8 +120,6 @@ Ogre::Camera::removeListener(Ogre::Camera::Listener*)
 Ogre::Camera::getSceneManager() const
 Ogre::Camera::setPolygonMode(Ogre::PolygonMode)
 Ogre::Camera::getPolygonMode() const
-Ogre::Camera::setPosition(float, float, float)
-Ogre::Camera::setPosition(Ogre::Vector3 const&)
 Ogre::Camera::getPosition() const
 Ogre::Camera::move(Ogre::Vector3 const&)
 Ogre::Camera::moveRelative(Ogre::Vector3 const&)
@@ -126,8 +128,6 @@ Ogre::Camera::setDirection(Ogre::Vector3 const&)
 Ogre::Camera::getDirection() const
 Ogre::Camera::getUp() const
 Ogre::Camera::getRight() const
-Ogre::Camera::lookAt(Ogre::Vector3 const&)
-Ogre::Camera::lookAt(float, float, float)
 Ogre::Camera::roll(Ogre::Radian const&)
 Ogre::Camera::yaw(Ogre::Radian const&)
 Ogre::Camera::pitch(Ogre::Radian const&)

@@ -214,6 +214,41 @@ DLL SceneNodeHandle create_child_scenenode(const char* node_name);
 
 DLL void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle);
 
+DLL void scenenode_update(SceneNodeHandle scenenode_handle, int update_children, int parent_has_changed);
+
+DLL void scenenode_update_bounds(SceneNodeHandle scenenode_handle);
+
+DLL EntityHandle scenenode_get_attached_entity_int(SceneNodeHandle scenenode_handle, int entity_index);
+
+DLL EntityHandle scenenode_get_attached_entity(SceneNodeHandle scenenode_handle, const char* entity_name);
+
+DLL int scenenode_num_attached_objects(SceneNodeHandle scenenode_handle);
+
+DLL void scenenode_detach_entity_int(SceneNodeHandle scenenode_handle, int entity_index);
+
+DLL void scenenode_detach_entity(SceneNodeHandle scenenode_handle, EntityHandle entity_handle);
+
+DLL void scenenode_detach_entity_string(SceneNodeHandle scenenode_handle, const char* entity_name);
+
+DLL void scenenode_detach_all_objects(SceneNodeHandle scenenode_handle);
+
+DLL int scenenode_is_in_scenegraph(SceneNodeHandle scenenode_handle);
+
+DLL void scenenode_notify_rootnode(SceneNodeHandle scenenode_handle);
+
+DLL void scenenode_show_boundingbox(SceneNodeHandle scenenode_handle, int show_boundingbox);
+
+DLL void scenenode_hide_boundingbox(SceneNodeHandle scenenode_handle, int hide_boundingbox);
+
+DLL int scenenode_get_show_boundingbox(SceneNodeHandle scenenode_handle);
+
+DLL SceneNodeHandle scenenode_get_parent_scenenode(SceneNodeHandle scenenode_handle);
+
+DLL void scenenode_set_visible(SceneNodeHandle scenenode_handle, int visible, int cascade);
+
+DLL void scenenode_flip_visibility(SceneNodeHandle scenenode_handle, int cascade);
+
+DLL void scenenode_set_debug_display_enabled(SceneNodeHandle scenenode_handle, int enabled, int cascade);
 
 // Viewports
 DLL void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b);
