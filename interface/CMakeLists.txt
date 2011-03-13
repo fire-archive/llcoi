@@ -111,7 +111,7 @@ set(SRCS
 	./scenemanager_bind.cpp
 	./scenenode_bind.cpp
 	./camera_bind.cpp
-	./resourcemanager_bind.cpp
+	./resourcegroupmanager_bind.cpp
 	./renderwindow_bind.cpp
 	./rendersystem_bind.cpp
 	./light_bind.cpp

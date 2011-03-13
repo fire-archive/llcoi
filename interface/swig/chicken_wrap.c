@@ -1142,6 +1142,10 @@ SWIGEXPORT void SWIG_init(C_word, C_word, C_word) C_noret;
 }
 #endif
 
+
+#include </usr/local/include/llcoi/ogre_interface.h>
+#include </usr/local/include/llcoi/ois_interface.h>
+
 static const int swig_const_EVENT_FRAME_STARTED = 1;
 static const int swig_const_EVENT_FRAME_RENDERING_QUEUED = 2;
 static const int swig_const_EVENT_FRAME_ENDED = 4;

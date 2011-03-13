@@ -250,7 +250,6 @@ Ogre::SceneNode::getAutoTrackLocalDirection()
 Ogre::SceneNode::_autoTrack()
 Ogre::SceneNode::getDebugRenderable()
 */
-
 /*
 Ogre::Node::Listener
 Ogre::Node::DebugRenderable
