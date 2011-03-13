@@ -244,11 +244,20 @@ DLL int scenenode_get_show_boundingbox(SceneNodeHandle scenenode_handle);
 
 DLL SceneNodeHandle scenenode_get_parent_scenenode(SceneNodeHandle scenenode_handle);
 
-DLL void scenenode_set_visible(SceneNodeHandle scenenode_handle, int visible, int cascade);
+DLL void scenenode_set_visible(SceneNodeHandle scenenode_handle, int visible);
 
-DLL void scenenode_flip_visibility(SceneNodeHandle scenenode_handle, int cascade);
+DLL void scenenode_set_visible_ex(SceneNodeHandle scenenode_handle, int visible, int cascade);
 
-DLL void scenenode_set_debug_display_enabled(SceneNodeHandle scenenode_handle, int enabled, int cascade);
+DLL void scenenode_flip_visibility(SceneNodeHandle scenenode_handle);
+
+DLL void scenenode_flip_visibility_ex(SceneNodeHandle scenenode_handle, int cascade);
+
+DLL void scenenode_set_debug_display_enabled(SceneNodeHandle scenenode_handle, int enabled);
+
+DLL void scenenode_set_debug_display_enabled_ex(SceneNodeHandle scenenode_handle, int enabled, int cascade);
+
+DLL SceneManagerHandle scenenode_get_creator(SceneNodeHandle scenenode_handle);
+
 
 // Viewports
 DLL void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b);

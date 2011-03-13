@@ -414,6 +414,132 @@
 
 (cl:export '#.(swig-lispify "attach_entity_to_scenenode" 'function))
 
+(cffi:defcfun ("scenenode_update" #.(swig-lispify "scenenode_update" 'function)) :void
+  (scenenode_handle :pointer)
+  (update_children :int)
+  (parent_has_changed :int))
+
+(cl:export '#.(swig-lispify "scenenode_update" 'function))
+
+(cffi:defcfun ("scenenode_update_bounds" #.(swig-lispify "scenenode_update_bounds" 'function)) :void
+  (scenenode_handle :pointer))
+
+(cl:export '#.(swig-lispify "scenenode_update_bounds" 'function))
+
+(cffi:defcfun ("scenenode_get_attached_entity_int" #.(swig-lispify "scenenode_get_attached_entity_int" 'function)) :pointer
+  (scenenode_handle :pointer)
+  (entity_index :int))
+
+(cl:export '#.(swig-lispify "scenenode_get_attached_entity_int" 'function))
+
+(cffi:defcfun ("scenenode_get_attached_entity" #.(swig-lispify "scenenode_get_attached_entity" 'function)) :pointer
+  (scenenode_handle :pointer)
+  (entity_name :string))
+
+(cl:export '#.(swig-lispify "scenenode_get_attached_entity" 'function))
+
+(cffi:defcfun ("scenenode_num_attached_objects" #.(swig-lispify "scenenode_num_attached_objects" 'function)) :int
+  (scenenode_handle :pointer))
+
+(cl:export '#.(swig-lispify "scenenode_num_attached_objects" 'function))
+
+(cffi:defcfun ("scenenode_detach_entity_int" #.(swig-lispify "scenenode_detach_entity_int" 'function)) :void
+  (scenenode_handle :pointer)
+  (entity_index :int))
+
+(cl:export '#.(swig-lispify "scenenode_detach_entity_int" 'function))
+
+(cffi:defcfun ("scenenode_detach_entity" #.(swig-lispify "scenenode_detach_entity" 'function)) :void
+  (scenenode_handle :pointer)
+  (entity_handle :pointer))
+
+(cl:export '#.(swig-lispify "scenenode_detach_entity" 'function))
+
+(cffi:defcfun ("scenenode_detach_entity_string" #.(swig-lispify "scenenode_detach_entity_string" 'function)) :void
+  (scenenode_handle :pointer)
+  (entity_name :string))
+
+(cl:export '#.(swig-lispify "scenenode_detach_entity_string" 'function))
+
+(cffi:defcfun ("scenenode_detach_all_objects" #.(swig-lispify "scenenode_detach_all_objects" 'function)) :void
+  (scenenode_handle :pointer))
+
+(cl:export '#.(swig-lispify "scenenode_detach_all_objects" 'function))
+
+(cffi:defcfun ("scenenode_is_in_scenegraph" #.(swig-lispify "scenenode_is_in_scenegraph" 'function)) :int
+  (scenenode_handle :pointer))
+
+(cl:export '#.(swig-lispify "scenenode_is_in_scenegraph" 'function))
+
+(cffi:defcfun ("scenenode_notify_rootnode" #.(swig-lispify "scenenode_notify_rootnode" 'function)) :void
+  (scenenode_handle :pointer))
+
+(cl:export '#.(swig-lispify "scenenode_notify_rootnode" 'function))
+
+(cffi:defcfun ("scenenode_show_boundingbox" #.(swig-lispify "scenenode_show_boundingbox" 'function)) :void
+  (scenenode_handle :pointer)
+  (show_boundingbox :int))
+
+(cl:export '#.(swig-lispify "scenenode_show_boundingbox" 'function))
+
+(cffi:defcfun ("scenenode_hide_boundingbox" #.(swig-lispify "scenenode_hide_boundingbox" 'function)) :void
+  (scenenode_handle :pointer)
+  (hide_boundingbox :int))
+
+(cl:export '#.(swig-lispify "scenenode_hide_boundingbox" 'function))
+
+(cffi:defcfun ("scenenode_get_show_boundingbox" #.(swig-lispify "scenenode_get_show_boundingbox" 'function)) :int
+  (scenenode_handle :pointer))
+
+(cl:export '#.(swig-lispify "scenenode_get_show_boundingbox" 'function))
+
+(cffi:defcfun ("scenenode_get_parent_scenenode" #.(swig-lispify "scenenode_get_parent_scenenode" 'function)) :pointer
+  (scenenode_handle :pointer))
+
+(cl:export '#.(swig-lispify "scenenode_get_parent_scenenode" 'function))
+
+(cffi:defcfun ("scenenode_set_visible" #.(swig-lispify "scenenode_set_visible" 'function)) :void
+  (scenenode_handle :pointer)
+  (visible :int))
+
+(cl:export '#.(swig-lispify "scenenode_set_visible" 'function))
+
+(cffi:defcfun ("scenenode_set_visible_ex" #.(swig-lispify "scenenode_set_visible_ex" 'function)) :void
+  (scenenode_handle :pointer)
+  (visible :int)
+  (cascade :int))
+
+(cl:export '#.(swig-lispify "scenenode_set_visible_ex" 'function))
+
+(cffi:defcfun ("scenenode_flip_visibility" #.(swig-lispify "scenenode_flip_visibility" 'function)) :void
+  (scenenode_handle :pointer))
+
+(cl:export '#.(swig-lispify "scenenode_flip_visibility" 'function))
+
+(cffi:defcfun ("scenenode_flip_visibility_ex" #.(swig-lispify "scenenode_flip_visibility_ex" 'function)) :void
+  (scenenode_handle :pointer)
+  (cascade :int))
+
+(cl:export '#.(swig-lispify "scenenode_flip_visibility_ex" 'function))
+
+(cffi:defcfun ("scenenode_set_debug_display_enabled" #.(swig-lispify "scenenode_set_debug_display_enabled" 'function)) :void
+  (scenenode_handle :pointer)
+  (enabled :int))
+
+(cl:export '#.(swig-lispify "scenenode_set_debug_display_enabled" 'function))
+
+(cffi:defcfun ("scenenode_set_debug_display_enabled_ex" #.(swig-lispify "scenenode_set_debug_display_enabled_ex" 'function)) :void
+  (scenenode_handle :pointer)
+  (enabled :int)
+  (cascade :int))
+
+(cl:export '#.(swig-lispify "scenenode_set_debug_display_enabled_ex" 'function))
+
+(cffi:defcfun ("scenenode_get_creator" #.(swig-lispify "scenenode_get_creator" 'function)) :pointer
+  (scenenode_handle :pointer))
+
+(cl:export '#.(swig-lispify "scenenode_get_creator" 'function))
+
 (cffi:defcfun ("viewport_set_background_colour" #.(swig-lispify "viewport_set_background_colour" 'function)) :void
   (viewport_handle :pointer)
   (r :float)

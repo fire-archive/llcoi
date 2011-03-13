@@ -174,24 +174,52 @@ SceneNodeHandle scenenode_get_parent_scenenode(SceneNodeHandle scenenode_handle)
 }
 
 // Ogre::SceneNode::setVisible(bool, bool)
-void scenenode_set_visible(SceneNodeHandle scenenode_handle, int visible, int cascade)
+void scenenode_set_visible(SceneNodeHandle scenenode_handle, int visible)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->setVisible(visible);
+}
+
+// Ogre::SceneNode::setVisible(bool, bool)
+void scenenode_set_visible_ex(SceneNodeHandle scenenode_handle, int visible, int cascade)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->setVisible(visible, cascade);
 }
 
 // Ogre::SceneNode::flipVisibility(bool)
-void scenenode_flip_visibility(SceneNodeHandle scenenode_handle, int cascade)
+void scenenode_flip_visibility(SceneNodeHandle scenenode_handle)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->flipVisibility();
+}
+
+// Ogre::SceneNode::flipVisibility(bool)
+void scenenode_flip_visibility_ex(SceneNodeHandle scenenode_handle, int cascade)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->flipVisibility(cascade);
 }
 
 // Ogre::SceneNode::setDebugDisplayEnabled(bool, bool)
-void scenenode_set_debug_display_enabled(SceneNodeHandle scenenode_handle, int enabled, int cascade)
+void scenenode_set_debug_display_enabled(SceneNodeHandle scenenode_handle, int enabled)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->setDebugDisplayEnabled(enabled);
+}
+
+// Ogre::SceneNode::setDebugDisplayEnabled(bool, bool)
+void scenenode_set_debug_display_enabled_ex(SceneNodeHandle scenenode_handle, int enabled, int cascade)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->setDebugDisplayEnabled(enabled, cascade);
+}
+
+// Ogre::SceneNode::getCreator() const
+SceneManagerHandle scenenode_get_creator(SceneNodeHandle scenenode_handle)
+{
+    Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle)->getCreator();
+    return reinterpret_cast<SceneManagerHandle>(scene_manager);
 }
 
 
@@ -205,7 +233,6 @@ Ogre::SceneNode::_findVisibleObjects(Ogre::Camera*, Ogre::RenderQueue*, Ogre::Vi
 Ogre::SceneNode::_getWorldAABB() const
 Ogre::SceneNode::getAttachedObjectIterator()
 Ogre::SceneNode::getAttachedObjectIterator() const
-Ogre::SceneNode::getCreator() const
 Ogre::SceneNode::removeAndDestroyChild(std::string const&)
 Ogre::SceneNode::removeAndDestroyChild(unsigned short)
 Ogre::SceneNode::removeAndDestroyAllChildren()

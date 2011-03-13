@@ -4525,6 +4525,644 @@ static void _wrap_attach_entity_to_scenenode (C_word argc, C_word closure, C_wor
 }
 
 
+static void _wrap_scenenode_update(C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_update (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  C_trace("scenenode-update");
+  if (argc!=5) C_bad_argc(argc,5);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
+  }
+  arg2 = (int) C_num_to_int (scm2); 
+  if (!C_swig_is_number (scm3)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #3 is not of type 'int'");
+  }
+  arg3 = (int) C_num_to_int (scm3); 
+  scenenode_update(arg1,arg2,arg3);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_update_bounds(C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_update_bounds (C_word argc, C_word closure, C_word continuation, C_word scm1) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  
+  C_trace("scenenode-update-bounds");
+  if (argc!=3) C_bad_argc(argc,3);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  scenenode_update_bounds(arg1);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_get_attached_entity_int(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_get_attached_entity_int (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int arg2 ;
+  EntityHandle result;
+  
+  C_trace("scenenode-get-attached-entity-int");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
+  }
+  arg2 = (int) C_num_to_int (scm2); 
+  result = (EntityHandle)scenenode_get_attached_entity_int(arg1,arg2);
+  {
+    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_EntityHandle__, 0);
+  }{
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_get_attached_entity(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_get_attached_entity (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  char *arg2 = (char *) 0 ;
+  EntityHandle result;
+  
+  C_trace("scenenode-get-attached-entity");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  {
+    if (scm2 == C_SCHEME_FALSE) {
+      arg2 = NULL;
+    }
+    else {
+      if (!C_swig_is_string (scm2)) {
+        swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'char *'");
+      }
+      arg2 = (char *) SWIG_MakeString (scm2);
+    }
+  }
+  result = (EntityHandle)scenenode_get_attached_entity(arg1,(char const *)arg2);
+  {
+    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_EntityHandle__, 0);
+  }if (arg2 != NULL) {
+    free (arg2); 
+  }
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_num_attached_objects(C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_num_attached_objects (C_word argc, C_word closure, C_word continuation, C_word scm1) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int result;
+  
+  C_trace("scenenode-num-attached-objects");
+  if (argc!=3) C_bad_argc(argc,3);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  result = (int)scenenode_num_attached_objects(arg1);
+  
+  resultobj = C_fix ((int) (result));
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_detach_entity_int(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_detach_entity_int (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int arg2 ;
+  
+  C_trace("scenenode-detach-entity-int");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
+  }
+  arg2 = (int) C_num_to_int (scm2); 
+  scenenode_detach_entity_int(arg1,arg2);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_detach_entity(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_detach_entity (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  EntityHandle arg2 = (EntityHandle) 0 ;
+  
+  C_trace("scenenode-detach-entity");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  {
+    arg2 = (EntityHandle)SWIG_MustGetPtr(scm2, SWIGTYPE_p_EntityHandle__, 2, 0);
+  }
+  scenenode_detach_entity(arg1,arg2);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_detach_entity_string(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_detach_entity_string (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  char *arg2 = (char *) 0 ;
+  
+  C_trace("scenenode-detach-entity-string");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  {
+    if (scm2 == C_SCHEME_FALSE) {
+      arg2 = NULL;
+    }
+    else {
+      if (!C_swig_is_string (scm2)) {
+        swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'char *'");
+      }
+      arg2 = (char *) SWIG_MakeString (scm2);
+    }
+  }
+  scenenode_detach_entity_string(arg1,(char const *)arg2);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  if (arg2 != NULL) {
+    free (arg2); 
+  }
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_detach_all_objects(C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_detach_all_objects (C_word argc, C_word closure, C_word continuation, C_word scm1) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  
+  C_trace("scenenode-detach-all-objects");
+  if (argc!=3) C_bad_argc(argc,3);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  scenenode_detach_all_objects(arg1);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_is_in_scenegraph(C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_is_in_scenegraph (C_word argc, C_word closure, C_word continuation, C_word scm1) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int result;
+  
+  C_trace("scenenode-is-in-scenegraph");
+  if (argc!=3) C_bad_argc(argc,3);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  result = (int)scenenode_is_in_scenegraph(arg1);
+  
+  resultobj = C_fix ((int) (result));
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_notify_rootnode(C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_notify_rootnode (C_word argc, C_word closure, C_word continuation, C_word scm1) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  
+  C_trace("scenenode-notify-rootnode");
+  if (argc!=3) C_bad_argc(argc,3);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  scenenode_notify_rootnode(arg1);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_show_boundingbox(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_show_boundingbox (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int arg2 ;
+  
+  C_trace("scenenode-show-boundingbox");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
+  }
+  arg2 = (int) C_num_to_int (scm2); 
+  scenenode_show_boundingbox(arg1,arg2);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_hide_boundingbox(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_hide_boundingbox (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int arg2 ;
+  
+  C_trace("scenenode-hide-boundingbox");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
+  }
+  arg2 = (int) C_num_to_int (scm2); 
+  scenenode_hide_boundingbox(arg1,arg2);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_get_show_boundingbox(C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_get_show_boundingbox (C_word argc, C_word closure, C_word continuation, C_word scm1) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int result;
+  
+  C_trace("scenenode-get-show-boundingbox");
+  if (argc!=3) C_bad_argc(argc,3);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  result = (int)scenenode_get_show_boundingbox(arg1);
+  
+  resultobj = C_fix ((int) (result));
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_get_parent_scenenode(C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_get_parent_scenenode (C_word argc, C_word closure, C_word continuation, C_word scm1) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  SceneNodeHandle result;
+  
+  C_trace("scenenode-get-parent-scenenode");
+  if (argc!=3) C_bad_argc(argc,3);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  result = (SceneNodeHandle)scenenode_get_parent_scenenode(arg1);
+  {
+    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_SceneNodeHandle__, 0);
+  }{
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_set_visible(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_set_visible (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int arg2 ;
+  
+  C_trace("scenenode-set-visible");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
+  }
+  arg2 = (int) C_num_to_int (scm2); 
+  scenenode_set_visible(arg1,arg2);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_set_visible_ex(C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_set_visible_ex (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  C_trace("scenenode-set-visible-ex");
+  if (argc!=5) C_bad_argc(argc,5);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
+  }
+  arg2 = (int) C_num_to_int (scm2); 
+  if (!C_swig_is_number (scm3)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #3 is not of type 'int'");
+  }
+  arg3 = (int) C_num_to_int (scm3); 
+  scenenode_set_visible_ex(arg1,arg2,arg3);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_flip_visibility(C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_flip_visibility (C_word argc, C_word closure, C_word continuation, C_word scm1) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  
+  C_trace("scenenode-flip-visibility");
+  if (argc!=3) C_bad_argc(argc,3);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  scenenode_flip_visibility(arg1);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_flip_visibility_ex(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_flip_visibility_ex (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int arg2 ;
+  
+  C_trace("scenenode-flip-visibility-ex");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
+  }
+  arg2 = (int) C_num_to_int (scm2); 
+  scenenode_flip_visibility_ex(arg1,arg2);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_set_debug_display_enabled(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_set_debug_display_enabled (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int arg2 ;
+  
+  C_trace("scenenode-set-debug-display-enabled");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
+  }
+  arg2 = (int) C_num_to_int (scm2); 
+  scenenode_set_debug_display_enabled(arg1,arg2);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_set_debug_display_enabled_ex(C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_set_debug_display_enabled_ex (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  int arg2 ;
+  int arg3 ;
+  
+  C_trace("scenenode-set-debug-display-enabled-ex");
+  if (argc!=5) C_bad_argc(argc,5);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
+  }
+  arg2 = (int) C_num_to_int (scm2); 
+  if (!C_swig_is_number (scm3)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #3 is not of type 'int'");
+  }
+  arg3 = (int) C_num_to_int (scm3); 
+  scenenode_set_debug_display_enabled_ex(arg1,arg2,arg3);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_get_creator(C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_get_creator (C_word argc, C_word closure, C_word continuation, C_word scm1) {
+  C_word resultobj;
+  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  SceneManagerHandle result;
+  
+  C_trace("scenenode-get-creator");
+  if (argc!=3) C_bad_argc(argc,3);
+  {
+    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+  }
+  result = (SceneManagerHandle)scenenode_get_creator(arg1);
+  {
+    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_SceneManagerHandle__, 0);
+  }{
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
 static void _wrap_viewport_set_background_colour(C_word,C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_viewport_set_background_colour (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3, C_word scm4) {
   C_word resultobj;
@@ -10192,7 +10830,7 @@ extern "C" {
     *(return_vec++) = C_VECTOR_TYPE | 0;
 #endif
     
-    a = C_alloc(2*328+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(3)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(13));
+    a = C_alloc(2*350+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(33)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(35)+C_SIZEOF_INTERNED_SYMBOL(38)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(3)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(13));
     
     
     sym = C_intern (&a, 19, "EVENT-FRAME-STARTED");
@@ -10421,6 +11059,50 @@ extern "C" {
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_create_child_scenenode, tmp=(C_word)a, a+=2, tmp));
     sym = C_intern (&a, 26, "attach-entity-to-scenenode");
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_attach_entity_to_scenenode, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 16, "scenenode-update");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_update, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 23, "scenenode-update-bounds");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_update_bounds, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 33, "scenenode-get-attached-entity-int");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_get_attached_entity_int, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 29, "scenenode-get-attached-entity");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_get_attached_entity, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 30, "scenenode-num-attached-objects");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_num_attached_objects, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 27, "scenenode-detach-entity-int");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_detach_entity_int, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 23, "scenenode-detach-entity");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_detach_entity, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 30, "scenenode-detach-entity-string");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_detach_entity_string, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 28, "scenenode-detach-all-objects");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_detach_all_objects, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 26, "scenenode-is-in-scenegraph");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_is_in_scenegraph, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 25, "scenenode-notify-rootnode");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_notify_rootnode, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 26, "scenenode-show-boundingbox");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_show_boundingbox, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 26, "scenenode-hide-boundingbox");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_hide_boundingbox, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 30, "scenenode-get-show-boundingbox");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_get_show_boundingbox, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 30, "scenenode-get-parent-scenenode");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_get_parent_scenenode, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 21, "scenenode-set-visible");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_set_visible, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 24, "scenenode-set-visible-ex");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_set_visible_ex, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 25, "scenenode-flip-visibility");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_flip_visibility, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 28, "scenenode-flip-visibility-ex");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_flip_visibility_ex, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 35, "scenenode-set-debug-display-enabled");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_set_debug_display_enabled, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 38, "scenenode-set-debug-display-enabled-ex");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_set_debug_display_enabled_ex, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 21, "scenenode-get-creator");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_get_creator, tmp=(C_word)a, a+=2, tmp));
     sym = C_intern (&a, 30, "viewport-set-background-colour");
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_viewport_set_background_colour, tmp=(C_word)a, a+=2, tmp));
     sym = C_intern (&a, 18, "viewport-get-width");
