@@ -109,6 +109,7 @@ void release_engine()
     delete Ogre::Root::getSingletonPtr();
 }
 
+// Ogre::Root::initialise(bool, std::string const&, std::string const&)
 RenderWindowHandle root_initialise(int auto_create_window, const char* render_window_title)
 {
     Ogre::RenderWindow* window = Ogre::Root::getSingletonPtr()->initialise(auto_create_window, render_window_title);
@@ -117,6 +118,7 @@ RenderWindowHandle root_initialise(int auto_create_window, const char* render_wi
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 
+// Ogre::Root::isInitialised() const
 DLL int root_is_initialised()
 {
     if(Ogre::Root::getSingletonPtr()->isInitialised())
@@ -124,6 +126,7 @@ DLL int root_is_initialised()
     return 0;
 }
 
+// Ogre::Root::Root(std::string const&, std::string const&, std::string const&)
 RootHandle create_root(const char* pluginFileName, const char* configFileName, const char* logFileName)
 {
     new OgreManager();
@@ -136,6 +139,7 @@ void save_config()
     Ogre::Root::getSingletonPtr()->saveConfig();
 }
 
+// Ogre::Root::restoreConfig()
 int restore_config()
 {
     if(Ogre::Root::getSingletonPtr()->restoreConfig())
@@ -143,6 +147,7 @@ int restore_config()
     return 0;
 }
 
+// Ogre::Root::showConfigDialog()
 int show_config_dialog()
 {
     if(Ogre::Root::getSingletonPtr()->showConfigDialog())
@@ -150,6 +155,7 @@ int show_config_dialog()
     return 0;
 }
 
+// Ogre::Root::loadPlugin(std::string const&)
 void load_ogre_plugin(const char* plugin)
 {
 #if defined( WIN32 ) || defined( _WINDOWS )
@@ -164,6 +170,7 @@ void load_ogre_plugin(const char* plugin)
 #endif
 }
 
+// Ogre::Root::renderOneFrame()
 int render_one_frame()
 {
     if(Ogre::Root::getSingletonPtr()->renderOneFrame())
@@ -171,7 +178,8 @@ int render_one_frame()
     return 0;
 }
 
-int render_one_frame_custom(float time_since_last_frame)
+// Ogre::Root::renderOneFrame(float)
+int render_one_frame_ex(float time_since_last_frame)
 {
     if(Ogre::Root::getSingletonPtr()->renderOneFrame(time_since_last_frame))
         return 1;
@@ -206,18 +214,13 @@ void render_loop()
 }
 
 /*
-Ogre::Root::Root(std::string const&, std::string const&, std::string const&)
 Ogre::Root::~Root()
 Ogre::Root::saveConfig()
-Ogre::Root::restoreConfig()
-Ogre::Root::showConfigDialog()
 Ogre::Root::addRenderSystem(Ogre::RenderSystem*)
 Ogre::Root::getAvailableRenderers()
 Ogre::Root::getRenderSystemByName(std::string const&)
 Ogre::Root::setRenderSystem(Ogre::RenderSystem*)
 Ogre::Root::getRenderSystem()
-Ogre::Root::initialise(bool, std::string const&, std::string const&)
-Ogre::Root::isInitialised() const
 Ogre::Root::useCustomRenderSystemCapabilities(Ogre::RenderSystemCapabilities*)
 Ogre::Root::getRemoveRenderQueueStructuresOnClear() const
 Ogre::Root::setRemoveRenderQueueStructuresOnClear(bool)
@@ -238,8 +241,6 @@ Ogre::Root::addFrameListener(Ogre::FrameListener*)
 Ogre::Root::removeFrameListener(Ogre::FrameListener*)
 Ogre::Root::queueEndRendering()
 Ogre::Root::startRendering()
-Ogre::Root::renderOneFrame()
-Ogre::Root::renderOneFrame(float)
 Ogre::Root::shutdown()
 Ogre::Root::addResourceLocation(std::string const&, std::string const&, std::string const&, bool)
 Ogre::Root::removeResourceLocation(std::string const&, std::string const&)
@@ -252,7 +253,6 @@ Ogre::Root::createRenderWindows(std::vector<Ogre::RenderWindowDescription, Ogre:
 Ogre::Root::detachRenderTarget(Ogre::RenderTarget*)
 Ogre::Root::detachRenderTarget(std::string const&)
 Ogre::Root::getRenderTarget(std::string const&)
-Ogre::Root::loadPlugin(std::string const&)
 Ogre::Root::unloadPlugin(std::string const&)
 Ogre::Root::installPlugin(Ogre::Plugin*)
 Ogre::Root::uninstallPlugin(Ogre::Plugin*)

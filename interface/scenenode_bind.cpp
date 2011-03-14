@@ -44,6 +44,9 @@
 
 // SceneNode is going to carry Node's code - we'll duplicate for Bone
 
+//TODO: need to have a function which translates to/from Ogre::Node::TransformSpace
+
+
 // Maybe this would be enough? One could set position and orientation afterwards..
 // Ogre::SceneNode::createChildSceneNode(Ogre::Vector3 const&, Ogre::Quaternion const&)
 // Ogre::SceneNode::createChildSceneNode(std::string const&, Ogre::Vector3 const&, Ogre::Quaternion const&)
@@ -222,6 +225,69 @@ SceneManagerHandle scenenode_get_creator(SceneNodeHandle scenenode_handle)
     return reinterpret_cast<SceneManagerHandle>(scene_manager);
 }
 
+// Ogre::SceneNode::setDirection(float, float, float, Ogre::Node::TransformSpace, Ogre::Vector3 const&)
+void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->setDirection(x, y, z);
+}
+
+// Ogre::Node::setOrientation(float, float, float, float)
+void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, float x, float y, float z)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->setOrientation(w, x, y, z);
+}
+
+//Ogre::Node::setPosition(float, float, float)
+void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, float z)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->setPosition(x, y, z);
+}
+
+// Ogre::SceneNode::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
+// Ogre::Node::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
+void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->yaw(Ogre::Radian(radians));
+}
+
+// Ogre::Node::setScale(float, float, float)
+void scenenode_set_scale(SceneNodeHandle scenenode_handle, float x, float y, float z)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->setScale(x, y, z);
+}
+
+// Ogre::Node::scale(float, float, float)
+void scenenode_scale(SceneNodeHandle scenenode_handle, float x, float y, float z)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->scale(x, y, z);
+}
+
+// Ogre::Node::translate(float, float, float, Ogre::Node::TransformSpace)
+void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, float z)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->translate(x, y, z);
+}
+
+// Ogre::Node::roll(Ogre::Radian const&, Ogre::Node::TransformSpace)
+void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->roll(Ogre::Radian(radians));
+}
+
+// Ogre::Node::pitch(Ogre::Radian const&, Ogre::Node::TransformSpace)
+void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->pitch(Ogre::Radian(radians));
+}
 
 /*
 Ogre::SceneNode::operator=(Ogre::SceneNode const&)
@@ -239,8 +305,6 @@ Ogre::SceneNode::removeAndDestroyAllChildren()
 Ogre::SceneNode::_addBoundingBoxToQueue(Ogre::RenderQueue*)
 Ogre::SceneNode::findLights(Ogre::HashedVector<Ogre::Light*>&, float, unsigned int) const
 Ogre::SceneNode::setFixedYawAxis(bool, Ogre::Vector3 const&)
-Ogre::SceneNode::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
-Ogre::SceneNode::setDirection(float, float, float, Ogre::Node::TransformSpace, Ogre::Vector3 const&)
 Ogre::SceneNode::setDirection(Ogre::Vector3 const&, Ogre::Node::TransformSpace, Ogre::Vector3 const&)
 Ogre::SceneNode::lookAt(Ogre::Vector3 const&, Ogre::Node::TransformSpace, Ogre::Vector3 const&)
 Ogre::SceneNode::setAutoTracking(bool, Ogre::SceneNode*, Ogre::Vector3 const&, Ogre::Vector3 const&)
@@ -262,27 +326,19 @@ Ogre::Node::getName() const
 Ogre::Node::getParent() const
 Ogre::Node::getOrientation() const
 Ogre::Node::setOrientation(Ogre::Quaternion const&)
-Ogre::Node::setOrientation(float, float, float, float)
 Ogre::Node::resetOrientation()
 Ogre::Node::setPosition(Ogre::Vector3 const&)
-Ogre::Node::setPosition(float, float, float)
 Ogre::Node::getPosition() const
 Ogre::Node::setScale(Ogre::Vector3 const&)
-Ogre::Node::setScale(float, float, float)
 Ogre::Node::getScale() const
 Ogre::Node::setInheritOrientation(bool)
 Ogre::Node::getInheritOrientation() const
 Ogre::Node::setInheritScale(bool)
 Ogre::Node::getInheritScale() const
 Ogre::Node::scale(Ogre::Vector3 const&)
-Ogre::Node::scale(float, float, float)
 Ogre::Node::translate(Ogre::Vector3 const&, Ogre::Node::TransformSpace)
-Ogre::Node::translate(float, float, float, Ogre::Node::TransformSpace)
 Ogre::Node::translate(Ogre::Matrix3 const&, Ogre::Vector3 const&, Ogre::Node::TransformSpace)
 Ogre::Node::translate(Ogre::Matrix3 const&, float, float, float, Ogre::Node::TransformSpace)
-Ogre::Node::roll(Ogre::Radian const&, Ogre::Node::TransformSpace)
-Ogre::Node::pitch(Ogre::Radian const&, Ogre::Node::TransformSpace)
-Ogre::Node::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
 Ogre::Node::rotate(Ogre::Vector3 const&, Ogre::Radian const&, Ogre::Node::TransformSpace)
 Ogre::Node::rotate(Ogre::Quaternion const&, Ogre::Node::TransformSpace)
 Ogre::Node::getLocalAxes() const

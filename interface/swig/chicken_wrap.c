@@ -3246,19 +3246,19 @@ static void _wrap_render_one_frame (C_word argc, C_word closure, C_word continua
 }
 
 
-static void _wrap_render_one_frame_custom(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_render_one_frame_custom (C_word argc, C_word closure, C_word continuation, C_word scm1) {
+static void _wrap_render_one_frame_ex(C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_render_one_frame_ex (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
   float arg1 ;
   int result;
   
-  C_trace("render-one-frame-custom");
+  C_trace("render-one-frame-ex");
   if (argc!=3) C_bad_argc(argc,3);
   if (!C_swig_is_number (scm1)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #1 is not of type 'float'");
   }
   arg1 = (float) C_c_double (scm1); 
-  result = (int)render_one_frame_custom(arg1);
+  result = (int)render_one_frame_ex(arg1);
   
   resultobj = C_fix ((int) (result));
   {
@@ -4240,6 +4240,332 @@ static void _wrap_scenenode_get_creator (C_word argc, C_word closure, C_word con
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
     resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }{
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_set_direction(C_word,C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_set_direction (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3, C_word scm4) {
+  C_word resultobj;
+  void *arg1 = (void *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  
+  C_trace("scenenode-set-direction");
+  if (argc!=6) C_bad_argc(argc,6);
+  {
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
+  }
+  arg2 = (float) C_c_double (scm2); 
+  if (!C_swig_is_number (scm3)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #3 is not of type 'float'");
+  }
+  arg3 = (float) C_c_double (scm3); 
+  if (!C_swig_is_number (scm4)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #4 is not of type 'float'");
+  }
+  arg4 = (float) C_c_double (scm4); 
+  scenenode_set_direction(arg1,arg2,arg3,arg4);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_set_orientation(C_word,C_word,C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_set_orientation (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3, C_word scm4, C_word scm5) {
+  C_word resultobj;
+  void *arg1 = (void *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  float arg5 ;
+  
+  C_trace("scenenode-set-orientation");
+  if (argc!=7) C_bad_argc(argc,7);
+  {
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
+  }
+  arg2 = (float) C_c_double (scm2); 
+  if (!C_swig_is_number (scm3)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #3 is not of type 'float'");
+  }
+  arg3 = (float) C_c_double (scm3); 
+  if (!C_swig_is_number (scm4)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #4 is not of type 'float'");
+  }
+  arg4 = (float) C_c_double (scm4); 
+  if (!C_swig_is_number (scm5)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #5 is not of type 'float'");
+  }
+  arg5 = (float) C_c_double (scm5); 
+  scenenode_set_orientation(arg1,arg2,arg3,arg4,arg5);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_set_position(C_word,C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_set_position (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3, C_word scm4) {
+  C_word resultobj;
+  void *arg1 = (void *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  
+  C_trace("scenenode-set-position");
+  if (argc!=6) C_bad_argc(argc,6);
+  {
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
+  }
+  arg2 = (float) C_c_double (scm2); 
+  if (!C_swig_is_number (scm3)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #3 is not of type 'float'");
+  }
+  arg3 = (float) C_c_double (scm3); 
+  if (!C_swig_is_number (scm4)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #4 is not of type 'float'");
+  }
+  arg4 = (float) C_c_double (scm4); 
+  scenenode_set_position(arg1,arg2,arg3,arg4);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_yaw(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_yaw (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  void *arg1 = (void *) 0 ;
+  float arg2 ;
+  
+  C_trace("scenenode-yaw");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
+  }
+  arg2 = (float) C_c_double (scm2); 
+  scenenode_yaw(arg1,arg2);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_set_scale(C_word,C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_set_scale (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3, C_word scm4) {
+  C_word resultobj;
+  void *arg1 = (void *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  
+  C_trace("scenenode-set-scale");
+  if (argc!=6) C_bad_argc(argc,6);
+  {
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
+  }
+  arg2 = (float) C_c_double (scm2); 
+  if (!C_swig_is_number (scm3)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #3 is not of type 'float'");
+  }
+  arg3 = (float) C_c_double (scm3); 
+  if (!C_swig_is_number (scm4)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #4 is not of type 'float'");
+  }
+  arg4 = (float) C_c_double (scm4); 
+  scenenode_set_scale(arg1,arg2,arg3,arg4);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_scale(C_word,C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_scale (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3, C_word scm4) {
+  C_word resultobj;
+  void *arg1 = (void *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  
+  C_trace("scenenode-scale");
+  if (argc!=6) C_bad_argc(argc,6);
+  {
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
+  }
+  arg2 = (float) C_c_double (scm2); 
+  if (!C_swig_is_number (scm3)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #3 is not of type 'float'");
+  }
+  arg3 = (float) C_c_double (scm3); 
+  if (!C_swig_is_number (scm4)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #4 is not of type 'float'");
+  }
+  arg4 = (float) C_c_double (scm4); 
+  scenenode_scale(arg1,arg2,arg3,arg4);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_translate(C_word,C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_translate (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3, C_word scm4) {
+  C_word resultobj;
+  void *arg1 = (void *) 0 ;
+  float arg2 ;
+  float arg3 ;
+  float arg4 ;
+  
+  C_trace("scenenode-translate");
+  if (argc!=6) C_bad_argc(argc,6);
+  {
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
+  }
+  arg2 = (float) C_c_double (scm2); 
+  if (!C_swig_is_number (scm3)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #3 is not of type 'float'");
+  }
+  arg3 = (float) C_c_double (scm3); 
+  if (!C_swig_is_number (scm4)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #4 is not of type 'float'");
+  }
+  arg4 = (float) C_c_double (scm4); 
+  scenenode_translate(arg1,arg2,arg3,arg4);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_roll(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_roll (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  void *arg1 = (void *) 0 ;
+  float arg2 ;
+  
+  C_trace("scenenode-roll");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
+  }
+  arg2 = (float) C_c_double (scm2); 
+  scenenode_roll(arg1,arg2);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
+    C_word func;
+    SWIG_Chicken_FindCreateProxy(func, resultobj)
+    if (C_swig_is_closurep(func))
+    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
+    else
+    C_kontinue(continuation, resultobj);
+  }
+}
+
+
+static void _wrap_scenenode_pitch(C_word,C_word,C_word,C_word,C_word) C_noret;
+static void _wrap_scenenode_pitch (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
+  C_word resultobj;
+  void *arg1 = (void *) 0 ;
+  float arg2 ;
+  
+  C_trace("scenenode-pitch");
+  if (argc!=4) C_bad_argc(argc,4);
+  {
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
+  }
+  if (!C_swig_is_number (scm2)) {
+    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
+  }
+  arg2 = (float) C_c_double (scm2); 
+  scenenode_pitch(arg1,arg2);
+  
+  resultobj = C_SCHEME_UNDEFINED;
+  {
     C_word func;
     SWIG_Chicken_FindCreateProxy(func, resultobj)
     if (C_swig_is_closurep(func))
@@ -9885,7 +10211,7 @@ extern "C" {
     *(return_vec++) = C_VECTOR_TYPE | 0;
 #endif
     
-    a = C_alloc(2*323+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(33)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(35)+C_SIZEOF_INTERNED_SYMBOL(38)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(3)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(13));
+    a = C_alloc(2*332+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(33)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(35)+C_SIZEOF_INTERNED_SYMBOL(38)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(3)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(13));
     
     
     sym = C_intern (&a, 19, "EVENT-FRAME-STARTED");
@@ -10018,8 +10344,8 @@ extern "C" {
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_get_scene_manager_by_name, tmp=(C_word)a, a+=2, tmp));
     sym = C_intern (&a, 16, "render-one-frame");
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_render_one_frame, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 23, "render-one-frame-custom");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_render_one_frame_custom, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 19, "render-one-frame-ex");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_render_one_frame_ex, tmp=(C_word)a, a+=2, tmp));
     sym = C_intern (&a, 11, "render-loop");
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_render_loop, tmp=(C_word)a, a+=2, tmp));
     sym = C_intern (&a, 13, "pump-messages");
@@ -10086,6 +10412,24 @@ extern "C" {
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_set_debug_display_enabled_ex, tmp=(C_word)a, a+=2, tmp));
     sym = C_intern (&a, 21, "scenenode-get-creator");
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_get_creator, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 23, "scenenode-set-direction");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_set_direction, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 25, "scenenode-set-orientation");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_set_orientation, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 22, "scenenode-set-position");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_set_position, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 13, "scenenode-yaw");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_yaw, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 19, "scenenode-set-scale");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_set_scale, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 15, "scenenode-scale");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_scale, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 19, "scenenode-translate");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_translate, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 14, "scenenode-roll");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_roll, tmp=(C_word)a, a+=2, tmp));
+    sym = C_intern (&a, 15, "scenenode-pitch");
+    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_scenenode_pitch, tmp=(C_word)a, a+=2, tmp));
     sym = C_intern (&a, 30, "viewport-set-background-colour");
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_viewport_set_background_colour, tmp=(C_word)a, a+=2, tmp));
     sym = C_intern (&a, 18, "viewport-get-width");

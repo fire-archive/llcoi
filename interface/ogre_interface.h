@@ -86,6 +86,9 @@
 #endif
 
 //defines
+
+#define coiReal float
+
 #define EVENT_FRAME_STARTED 1
 #define EVENT_FRAME_RENDERING_QUEUED 2
 #define EVENT_FRAME_ENDED 4
@@ -199,7 +202,7 @@ DLL SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_insta
 
 DLL int render_one_frame();
 
-DLL int render_one_frame_custom(float time_since_last_frame);
+DLL int render_one_frame_ex(float time_since_last_frame);
 
 DLL void render_loop();
 
@@ -269,6 +272,23 @@ DLL void scenenode_set_debug_display_enabled_ex(SceneNodeHandle scenenode_handle
 
 DLL SceneManagerHandle scenenode_get_creator(SceneNodeHandle scenenode_handle);
 
+DLL void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z);
+
+DLL void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, float x, float y, float z);
+
+DLL void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, float z);
+
+DLL void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians);
+
+DLL void scenenode_set_scale(SceneNodeHandle scenenode_handle, float x, float y, float z);
+
+DLL void scenenode_scale(SceneNodeHandle scenenode_handle, float x, float y, float z);
+
+DLL void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, float z);
+
+DLL void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians);
+
+DLL void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians);
 
 // Viewports
 DLL void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b);
