@@ -85,69 +85,6 @@
 
 (cl:export '#.(swig-lispify "EVENT_FRAME_ENDED" 'constant))
 
-(cffi:defcstruct #.(swig-lispify "CameraHandle__" 'classname)
-	(#.(swig-lispify "unused" 'slotname) :int))
-
-(cl:export '#.(swig-lispify "CameraHandle__" 'classname))
-
-(cl:export '#.(swig-lispify "unused" 'slotname))
-
-(cffi:defcstruct #.(swig-lispify "EntityHandle__" 'classname)
-	(#.(swig-lispify "unused" 'slotname) :int))
-
-(cl:export '#.(swig-lispify "EntityHandle__" 'classname))
-
-(cl:export '#.(swig-lispify "unused" 'slotname))
-
-(cffi:defcstruct #.(swig-lispify "SceneNodeHandle__" 'classname)
-	(#.(swig-lispify "unused" 'slotname) :int))
-
-(cl:export '#.(swig-lispify "SceneNodeHandle__" 'classname))
-
-(cl:export '#.(swig-lispify "unused" 'slotname))
-
-(cffi:defcstruct #.(swig-lispify "LightHandle__" 'classname)
-	(#.(swig-lispify "unused" 'slotname) :int))
-
-(cl:export '#.(swig-lispify "LightHandle__" 'classname))
-
-(cl:export '#.(swig-lispify "unused" 'slotname))
-
-(cffi:defcstruct #.(swig-lispify "RenderWindowHandle__" 'classname)
-	(#.(swig-lispify "unused" 'slotname) :int))
-
-(cl:export '#.(swig-lispify "RenderWindowHandle__" 'classname))
-
-(cl:export '#.(swig-lispify "unused" 'slotname))
-
-(cffi:defcstruct #.(swig-lispify "RootHandle__" 'classname)
-	(#.(swig-lispify "unused" 'slotname) :int))
-
-(cl:export '#.(swig-lispify "RootHandle__" 'classname))
-
-(cl:export '#.(swig-lispify "unused" 'slotname))
-
-(cffi:defcstruct #.(swig-lispify "RenderSystemHandle__" 'classname)
-	(#.(swig-lispify "unused" 'slotname) :int))
-
-(cl:export '#.(swig-lispify "RenderSystemHandle__" 'classname))
-
-(cl:export '#.(swig-lispify "unused" 'slotname))
-
-(cffi:defcstruct #.(swig-lispify "SceneManagerHandle__" 'classname)
-	(#.(swig-lispify "unused" 'slotname) :int))
-
-(cl:export '#.(swig-lispify "SceneManagerHandle__" 'classname))
-
-(cl:export '#.(swig-lispify "unused" 'slotname))
-
-(cffi:defcstruct #.(swig-lispify "ViewportHandle__" 'classname)
-	(#.(swig-lispify "unused" 'slotname) :int))
-
-(cl:export '#.(swig-lispify "ViewportHandle__" 'classname))
-
-(cl:export '#.(swig-lispify "unused" 'slotname))
-
 (cffi:defcstruct #.(swig-lispify "coiQuaternion" 'classname)
 	(#.(swig-lispify "w" 'slotname) :float)
 	(#.(swig-lispify "x" 'slotname) :float)

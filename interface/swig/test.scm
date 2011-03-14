@@ -19,8 +19,8 @@
 
 (setup-resources "resources.cfg")
 
-;;(set! *windowhandle* (root-initialise 1 "therenderwindow"))
-(root-initialise 1 "therenderwindow")
+(set! *windowhandle* (root-initialise 1 "therenderwindow"))
+;;(root-initialise 1 "therenderwindow")
 
 (release-engine)
 

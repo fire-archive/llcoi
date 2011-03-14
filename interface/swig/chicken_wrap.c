@@ -1082,15 +1082,6 @@ static C_word SWIG_Chicken_ApplyResults(C_word num, C_word closure, C_word resul
 }
 #endif
 
-static swig_chicken_clientdata _swig_chicken_clientdataCameraHandle__ = { 0 };
-static swig_chicken_clientdata _swig_chicken_clientdataEntityHandle__ = { 0 };
-static swig_chicken_clientdata _swig_chicken_clientdataSceneNodeHandle__ = { 0 };
-static swig_chicken_clientdata _swig_chicken_clientdataLightHandle__ = { 0 };
-static swig_chicken_clientdata _swig_chicken_clientdataRenderWindowHandle__ = { 0 };
-static swig_chicken_clientdata _swig_chicken_clientdataRootHandle__ = { 0 };
-static swig_chicken_clientdata _swig_chicken_clientdataRenderSystemHandle__ = { 0 };
-static swig_chicken_clientdata _swig_chicken_clientdataSceneManagerHandle__ = { 0 };
-static swig_chicken_clientdata _swig_chicken_clientdataViewportHandle__ = { 0 };
 static swig_chicken_clientdata _swig_chicken_clientdatacoiQuaternion = { 0 };
 static swig_chicken_clientdata _swig_chicken_clientdatacoiVector3 = { 0 };
 static swig_chicken_clientdata _swig_chicken_clientdataengine_options = { 0 };
@@ -1104,27 +1095,19 @@ static swig_chicken_clientdata _swig_chicken_clientdataMouseState = { 0 };
 /* -------- TYPES TABLE (BEGIN) -------- */
 
 #define SWIGTYPE_p_Axis swig_types[0]
-#define SWIGTYPE_p_CameraHandle__ swig_types[1]
-#define SWIGTYPE_p_EntityHandle__ swig_types[2]
-#define SWIGTYPE_p_InputSystemHandle__ swig_types[3]
-#define SWIGTYPE_p_KeyEvent swig_types[4]
-#define SWIGTYPE_p_KeyboardInputHandle__ swig_types[5]
-#define SWIGTYPE_p_LightHandle__ swig_types[6]
-#define SWIGTYPE_p_MouseInputHandle__ swig_types[7]
-#define SWIGTYPE_p_MouseState swig_types[8]
-#define SWIGTYPE_p_RenderSystemHandle__ swig_types[9]
-#define SWIGTYPE_p_RenderWindowHandle__ swig_types[10]
-#define SWIGTYPE_p_RootHandle__ swig_types[11]
-#define SWIGTYPE_p_SceneManagerHandle__ swig_types[12]
-#define SWIGTYPE_p_SceneNodeHandle__ swig_types[13]
-#define SWIGTYPE_p_ViewportHandle__ swig_types[14]
-#define SWIGTYPE_p_coiQuaternion swig_types[15]
-#define SWIGTYPE_p_coiVector3 swig_types[16]
-#define SWIGTYPE_p_engine_options swig_types[17]
-#define SWIGTYPE_p_f_float_float_int__int swig_types[18]
-#define SWIGTYPE_p_f_p_struct_RenderWindowHandle____void swig_types[19]
-static swig_type_info *swig_types[21];
-static swig_module_info swig_module = {swig_types, 20, 0, 0, 0, 0};
+#define SWIGTYPE_p_InputSystemHandle__ swig_types[1]
+#define SWIGTYPE_p_KeyEvent swig_types[2]
+#define SWIGTYPE_p_KeyboardInputHandle__ swig_types[3]
+#define SWIGTYPE_p_MouseInputHandle__ swig_types[4]
+#define SWIGTYPE_p_MouseState swig_types[5]
+#define SWIGTYPE_p_coiQuaternion swig_types[6]
+#define SWIGTYPE_p_coiVector3 swig_types[7]
+#define SWIGTYPE_p_engine_options swig_types[8]
+#define SWIGTYPE_p_f_float_float_int__int swig_types[9]
+#define SWIGTYPE_p_f_p_void__void swig_types[10]
+#define SWIGTYPE_p_void swig_types[11]
+static swig_type_info *swig_types[13];
+static swig_module_info swig_module = {swig_types, 12, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -1358,906 +1341,6 @@ static void _wrap_EVENT_FRAME_ENDED(C_word argc, C_word closure, C_word continua
   
   resultobj = C_fix ((int) (swig_const_EVENT_FRAME_ENDED));
   
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_CameraHandle___unused_set(C_word,C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_CameraHandle___unused_set (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
-  C_word resultobj;
-  struct CameraHandle__ *arg1 = (struct CameraHandle__ *) 0 ;
-  int arg2 ;
-  
-  C_trace("CameraHandle---unused-set");
-  if (argc!=4) C_bad_argc(argc,4);
-  {
-    arg1 = (struct CameraHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
-  }
-  if (!C_swig_is_number (scm2)) {
-    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
-  }
-  arg2 = (int) C_num_to_int (scm2); 
-  if (arg1) (arg1)->unused = arg2;
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_CameraHandle___unused_get(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_CameraHandle___unused_get (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct CameraHandle__ *arg1 = (struct CameraHandle__ *) 0 ;
-  int result;
-  
-  C_trace("CameraHandle---unused-get");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct CameraHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
-  }
-  result = (int) ((arg1)->unused);
-  
-  resultobj = C_fix ((int) (result));
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_new_CameraHandle__(C_word,C_word,C_word) C_noret;
-static void _wrap_new_CameraHandle__ (C_word argc, C_word closure, C_word continuation) {
-  C_word resultobj;
-  struct CameraHandle__ *result = 0 ;
-  
-  C_trace("new-CameraHandle--");
-  if (argc!=2) C_bad_argc(argc,2);
-  result = (struct CameraHandle__ *)calloc(1, sizeof(struct CameraHandle__));
-  {
-    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_CameraHandle__, 1);
-  }{
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_delete_CameraHandle__(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_delete_CameraHandle__ (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct CameraHandle__ *arg1 = (struct CameraHandle__ *) 0 ;
-  
-  C_trace("delete-CameraHandle--");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct CameraHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, SWIG_POINTER_DISOWN);
-  }
-  free((char *) arg1);
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_EntityHandle___unused_set(C_word,C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_EntityHandle___unused_set (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
-  C_word resultobj;
-  struct EntityHandle__ *arg1 = (struct EntityHandle__ *) 0 ;
-  int arg2 ;
-  
-  C_trace("EntityHandle---unused-set");
-  if (argc!=4) C_bad_argc(argc,4);
-  {
-    arg1 = (struct EntityHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_EntityHandle__, 1, 0);
-  }
-  if (!C_swig_is_number (scm2)) {
-    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
-  }
-  arg2 = (int) C_num_to_int (scm2); 
-  if (arg1) (arg1)->unused = arg2;
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_EntityHandle___unused_get(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_EntityHandle___unused_get (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct EntityHandle__ *arg1 = (struct EntityHandle__ *) 0 ;
-  int result;
-  
-  C_trace("EntityHandle---unused-get");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct EntityHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_EntityHandle__, 1, 0);
-  }
-  result = (int) ((arg1)->unused);
-  
-  resultobj = C_fix ((int) (result));
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_new_EntityHandle__(C_word,C_word,C_word) C_noret;
-static void _wrap_new_EntityHandle__ (C_word argc, C_word closure, C_word continuation) {
-  C_word resultobj;
-  struct EntityHandle__ *result = 0 ;
-  
-  C_trace("new-EntityHandle--");
-  if (argc!=2) C_bad_argc(argc,2);
-  result = (struct EntityHandle__ *)calloc(1, sizeof(struct EntityHandle__));
-  {
-    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_EntityHandle__, 1);
-  }{
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_delete_EntityHandle__(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_delete_EntityHandle__ (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct EntityHandle__ *arg1 = (struct EntityHandle__ *) 0 ;
-  
-  C_trace("delete-EntityHandle--");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct EntityHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_EntityHandle__, 1, SWIG_POINTER_DISOWN);
-  }
-  free((char *) arg1);
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_SceneNodeHandle___unused_set(C_word,C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_SceneNodeHandle___unused_set (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
-  C_word resultobj;
-  struct SceneNodeHandle__ *arg1 = (struct SceneNodeHandle__ *) 0 ;
-  int arg2 ;
-  
-  C_trace("SceneNodeHandle---unused-set");
-  if (argc!=4) C_bad_argc(argc,4);
-  {
-    arg1 = (struct SceneNodeHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
-  }
-  if (!C_swig_is_number (scm2)) {
-    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
-  }
-  arg2 = (int) C_num_to_int (scm2); 
-  if (arg1) (arg1)->unused = arg2;
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_SceneNodeHandle___unused_get(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_SceneNodeHandle___unused_get (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct SceneNodeHandle__ *arg1 = (struct SceneNodeHandle__ *) 0 ;
-  int result;
-  
-  C_trace("SceneNodeHandle---unused-get");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct SceneNodeHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
-  }
-  result = (int) ((arg1)->unused);
-  
-  resultobj = C_fix ((int) (result));
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_new_SceneNodeHandle__(C_word,C_word,C_word) C_noret;
-static void _wrap_new_SceneNodeHandle__ (C_word argc, C_word closure, C_word continuation) {
-  C_word resultobj;
-  struct SceneNodeHandle__ *result = 0 ;
-  
-  C_trace("new-SceneNodeHandle--");
-  if (argc!=2) C_bad_argc(argc,2);
-  result = (struct SceneNodeHandle__ *)calloc(1, sizeof(struct SceneNodeHandle__));
-  {
-    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_SceneNodeHandle__, 1);
-  }{
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_delete_SceneNodeHandle__(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_delete_SceneNodeHandle__ (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct SceneNodeHandle__ *arg1 = (struct SceneNodeHandle__ *) 0 ;
-  
-  C_trace("delete-SceneNodeHandle--");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct SceneNodeHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, SWIG_POINTER_DISOWN);
-  }
-  free((char *) arg1);
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_LightHandle___unused_set(C_word,C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_LightHandle___unused_set (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
-  C_word resultobj;
-  struct LightHandle__ *arg1 = (struct LightHandle__ *) 0 ;
-  int arg2 ;
-  
-  C_trace("LightHandle---unused-set");
-  if (argc!=4) C_bad_argc(argc,4);
-  {
-    arg1 = (struct LightHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_LightHandle__, 1, 0);
-  }
-  if (!C_swig_is_number (scm2)) {
-    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
-  }
-  arg2 = (int) C_num_to_int (scm2); 
-  if (arg1) (arg1)->unused = arg2;
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_LightHandle___unused_get(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_LightHandle___unused_get (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct LightHandle__ *arg1 = (struct LightHandle__ *) 0 ;
-  int result;
-  
-  C_trace("LightHandle---unused-get");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct LightHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_LightHandle__, 1, 0);
-  }
-  result = (int) ((arg1)->unused);
-  
-  resultobj = C_fix ((int) (result));
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_new_LightHandle__(C_word,C_word,C_word) C_noret;
-static void _wrap_new_LightHandle__ (C_word argc, C_word closure, C_word continuation) {
-  C_word resultobj;
-  struct LightHandle__ *result = 0 ;
-  
-  C_trace("new-LightHandle--");
-  if (argc!=2) C_bad_argc(argc,2);
-  result = (struct LightHandle__ *)calloc(1, sizeof(struct LightHandle__));
-  {
-    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_LightHandle__, 1);
-  }{
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_delete_LightHandle__(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_delete_LightHandle__ (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct LightHandle__ *arg1 = (struct LightHandle__ *) 0 ;
-  
-  C_trace("delete-LightHandle--");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct LightHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_LightHandle__, 1, SWIG_POINTER_DISOWN);
-  }
-  free((char *) arg1);
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_RenderWindowHandle___unused_set(C_word,C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_RenderWindowHandle___unused_set (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
-  C_word resultobj;
-  struct RenderWindowHandle__ *arg1 = (struct RenderWindowHandle__ *) 0 ;
-  int arg2 ;
-  
-  C_trace("RenderWindowHandle---unused-set");
-  if (argc!=4) C_bad_argc(argc,4);
-  {
-    arg1 = (struct RenderWindowHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderWindowHandle__, 1, 0);
-  }
-  if (!C_swig_is_number (scm2)) {
-    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
-  }
-  arg2 = (int) C_num_to_int (scm2); 
-  if (arg1) (arg1)->unused = arg2;
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_RenderWindowHandle___unused_get(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_RenderWindowHandle___unused_get (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct RenderWindowHandle__ *arg1 = (struct RenderWindowHandle__ *) 0 ;
-  int result;
-  
-  C_trace("RenderWindowHandle---unused-get");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct RenderWindowHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderWindowHandle__, 1, 0);
-  }
-  result = (int) ((arg1)->unused);
-  
-  resultobj = C_fix ((int) (result));
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_new_RenderWindowHandle__(C_word,C_word,C_word) C_noret;
-static void _wrap_new_RenderWindowHandle__ (C_word argc, C_word closure, C_word continuation) {
-  C_word resultobj;
-  struct RenderWindowHandle__ *result = 0 ;
-  
-  C_trace("new-RenderWindowHandle--");
-  if (argc!=2) C_bad_argc(argc,2);
-  result = (struct RenderWindowHandle__ *)calloc(1, sizeof(struct RenderWindowHandle__));
-  {
-    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_RenderWindowHandle__, 1);
-  }{
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_delete_RenderWindowHandle__(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_delete_RenderWindowHandle__ (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct RenderWindowHandle__ *arg1 = (struct RenderWindowHandle__ *) 0 ;
-  
-  C_trace("delete-RenderWindowHandle--");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct RenderWindowHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderWindowHandle__, 1, SWIG_POINTER_DISOWN);
-  }
-  free((char *) arg1);
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_RootHandle___unused_set(C_word,C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_RootHandle___unused_set (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
-  C_word resultobj;
-  struct RootHandle__ *arg1 = (struct RootHandle__ *) 0 ;
-  int arg2 ;
-  
-  C_trace("RootHandle---unused-set");
-  if (argc!=4) C_bad_argc(argc,4);
-  {
-    arg1 = (struct RootHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RootHandle__, 1, 0);
-  }
-  if (!C_swig_is_number (scm2)) {
-    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
-  }
-  arg2 = (int) C_num_to_int (scm2); 
-  if (arg1) (arg1)->unused = arg2;
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_RootHandle___unused_get(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_RootHandle___unused_get (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct RootHandle__ *arg1 = (struct RootHandle__ *) 0 ;
-  int result;
-  
-  C_trace("RootHandle---unused-get");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct RootHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RootHandle__, 1, 0);
-  }
-  result = (int) ((arg1)->unused);
-  
-  resultobj = C_fix ((int) (result));
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_new_RootHandle__(C_word,C_word,C_word) C_noret;
-static void _wrap_new_RootHandle__ (C_word argc, C_word closure, C_word continuation) {
-  C_word resultobj;
-  struct RootHandle__ *result = 0 ;
-  
-  C_trace("new-RootHandle--");
-  if (argc!=2) C_bad_argc(argc,2);
-  result = (struct RootHandle__ *)calloc(1, sizeof(struct RootHandle__));
-  {
-    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_RootHandle__, 1);
-  }{
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_delete_RootHandle__(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_delete_RootHandle__ (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct RootHandle__ *arg1 = (struct RootHandle__ *) 0 ;
-  
-  C_trace("delete-RootHandle--");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct RootHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RootHandle__, 1, SWIG_POINTER_DISOWN);
-  }
-  free((char *) arg1);
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_RenderSystemHandle___unused_set(C_word,C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_RenderSystemHandle___unused_set (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
-  C_word resultobj;
-  struct RenderSystemHandle__ *arg1 = (struct RenderSystemHandle__ *) 0 ;
-  int arg2 ;
-  
-  C_trace("RenderSystemHandle---unused-set");
-  if (argc!=4) C_bad_argc(argc,4);
-  {
-    arg1 = (struct RenderSystemHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderSystemHandle__, 1, 0);
-  }
-  if (!C_swig_is_number (scm2)) {
-    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
-  }
-  arg2 = (int) C_num_to_int (scm2); 
-  if (arg1) (arg1)->unused = arg2;
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_RenderSystemHandle___unused_get(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_RenderSystemHandle___unused_get (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct RenderSystemHandle__ *arg1 = (struct RenderSystemHandle__ *) 0 ;
-  int result;
-  
-  C_trace("RenderSystemHandle---unused-get");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct RenderSystemHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderSystemHandle__, 1, 0);
-  }
-  result = (int) ((arg1)->unused);
-  
-  resultobj = C_fix ((int) (result));
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_new_RenderSystemHandle__(C_word,C_word,C_word) C_noret;
-static void _wrap_new_RenderSystemHandle__ (C_word argc, C_word closure, C_word continuation) {
-  C_word resultobj;
-  struct RenderSystemHandle__ *result = 0 ;
-  
-  C_trace("new-RenderSystemHandle--");
-  if (argc!=2) C_bad_argc(argc,2);
-  result = (struct RenderSystemHandle__ *)calloc(1, sizeof(struct RenderSystemHandle__));
-  {
-    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_RenderSystemHandle__, 1);
-  }{
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_delete_RenderSystemHandle__(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_delete_RenderSystemHandle__ (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct RenderSystemHandle__ *arg1 = (struct RenderSystemHandle__ *) 0 ;
-  
-  C_trace("delete-RenderSystemHandle--");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct RenderSystemHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderSystemHandle__, 1, SWIG_POINTER_DISOWN);
-  }
-  free((char *) arg1);
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_SceneManagerHandle___unused_set(C_word,C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_SceneManagerHandle___unused_set (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
-  C_word resultobj;
-  struct SceneManagerHandle__ *arg1 = (struct SceneManagerHandle__ *) 0 ;
-  int arg2 ;
-  
-  C_trace("SceneManagerHandle---unused-set");
-  if (argc!=4) C_bad_argc(argc,4);
-  {
-    arg1 = (struct SceneManagerHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneManagerHandle__, 1, 0);
-  }
-  if (!C_swig_is_number (scm2)) {
-    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
-  }
-  arg2 = (int) C_num_to_int (scm2); 
-  if (arg1) (arg1)->unused = arg2;
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_SceneManagerHandle___unused_get(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_SceneManagerHandle___unused_get (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct SceneManagerHandle__ *arg1 = (struct SceneManagerHandle__ *) 0 ;
-  int result;
-  
-  C_trace("SceneManagerHandle---unused-get");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct SceneManagerHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneManagerHandle__, 1, 0);
-  }
-  result = (int) ((arg1)->unused);
-  
-  resultobj = C_fix ((int) (result));
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_new_SceneManagerHandle__(C_word,C_word,C_word) C_noret;
-static void _wrap_new_SceneManagerHandle__ (C_word argc, C_word closure, C_word continuation) {
-  C_word resultobj;
-  struct SceneManagerHandle__ *result = 0 ;
-  
-  C_trace("new-SceneManagerHandle--");
-  if (argc!=2) C_bad_argc(argc,2);
-  result = (struct SceneManagerHandle__ *)calloc(1, sizeof(struct SceneManagerHandle__));
-  {
-    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_SceneManagerHandle__, 1);
-  }{
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_delete_SceneManagerHandle__(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_delete_SceneManagerHandle__ (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct SceneManagerHandle__ *arg1 = (struct SceneManagerHandle__ *) 0 ;
-  
-  C_trace("delete-SceneManagerHandle--");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct SceneManagerHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneManagerHandle__, 1, SWIG_POINTER_DISOWN);
-  }
-  free((char *) arg1);
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_ViewportHandle___unused_set(C_word,C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_ViewportHandle___unused_set (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
-  C_word resultobj;
-  struct ViewportHandle__ *arg1 = (struct ViewportHandle__ *) 0 ;
-  int arg2 ;
-  
-  C_trace("ViewportHandle---unused-set");
-  if (argc!=4) C_bad_argc(argc,4);
-  {
-    arg1 = (struct ViewportHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_ViewportHandle__, 1, 0);
-  }
-  if (!C_swig_is_number (scm2)) {
-    swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
-  }
-  arg2 = (int) C_num_to_int (scm2); 
-  if (arg1) (arg1)->unused = arg2;
-  
-  resultobj = C_SCHEME_UNDEFINED;
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_ViewportHandle___unused_get(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_ViewportHandle___unused_get (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct ViewportHandle__ *arg1 = (struct ViewportHandle__ *) 0 ;
-  int result;
-  
-  C_trace("ViewportHandle---unused-get");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct ViewportHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_ViewportHandle__, 1, 0);
-  }
-  result = (int) ((arg1)->unused);
-  
-  resultobj = C_fix ((int) (result));
-  {
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_new_ViewportHandle__(C_word,C_word,C_word) C_noret;
-static void _wrap_new_ViewportHandle__ (C_word argc, C_word closure, C_word continuation) {
-  C_word resultobj;
-  struct ViewportHandle__ *result = 0 ;
-  
-  C_trace("new-ViewportHandle--");
-  if (argc!=2) C_bad_argc(argc,2);
-  result = (struct ViewportHandle__ *)calloc(1, sizeof(struct ViewportHandle__));
-  {
-    C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_ViewportHandle__, 1);
-  }{
-    C_word func;
-    SWIG_Chicken_FindCreateProxy(func, resultobj)
-    if (C_swig_is_closurep(func))
-    ((C_proc4)(void *)C_block_item(func, 0))(4,func,continuation,resultobj,C_SCHEME_FALSE);
-    else
-    C_kontinue(continuation, resultobj);
-  }
-}
-
-
-static void _wrap_delete_ViewportHandle__(C_word,C_word,C_word,C_word) C_noret;
-static void _wrap_delete_ViewportHandle__ (C_word argc, C_word closure, C_word continuation, C_word scm1) {
-  C_word resultobj;
-  struct ViewportHandle__ *arg1 = (struct ViewportHandle__ *) 0 ;
-  
-  C_trace("delete-ViewportHandle--");
-  if (argc!=3) C_bad_argc(argc,3);
-  {
-    arg1 = (struct ViewportHandle__ *)SWIG_MustGetPtr(scm1, SWIGTYPE_p_ViewportHandle__, 1, SWIG_POINTER_DISOWN);
-  }
-  free((char *) arg1);
-  
-  resultobj = C_SCHEME_UNDEFINED;
   {
     C_word func;
     SWIG_Chicken_FindCreateProxy(func, resultobj)
@@ -3360,7 +2443,7 @@ static void _wrap_create_root (C_word argc, C_word closure, C_word continuation,
   char *arg1 = (char *) 0 ;
   char *arg2 = (char *) 0 ;
   char *arg3 = (char *) 0 ;
-  RootHandle result;
+  void *result = 0 ;
   
   C_trace("create-root");
   if (argc!=5) C_bad_argc(argc,5);
@@ -3397,10 +2480,10 @@ static void _wrap_create_root (C_word argc, C_word closure, C_word continuation,
       arg3 = (char *) SWIG_MakeString (scm3);
     }
   }
-  result = (RootHandle)create_root((char const *)arg1,(char const *)arg2,(char const *)arg3);
+  result = (void *)create_root((char const *)arg1,(char const *)arg2,(char const *)arg3);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_RootHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -3426,7 +2509,7 @@ static void _wrap_root_initialise (C_word argc, C_word closure, C_word continuat
   C_word resultobj;
   int arg1 ;
   char *arg2 = (char *) 0 ;
-  RenderWindowHandle result;
+  void *result = 0 ;
   
   C_trace("root-initialise");
   if (argc!=4) C_bad_argc(argc,4);
@@ -3445,10 +2528,10 @@ static void _wrap_root_initialise (C_word argc, C_word closure, C_word continuat
       arg2 = (char *) SWIG_MakeString (scm2);
     }
   }
-  result = (RenderWindowHandle)root_initialise(arg1,(char const *)arg2);
+  result = (void *)root_initialise(arg1,(char const *)arg2);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_RenderWindowHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg2 != NULL) {
     free (arg2); 
   }
@@ -3470,7 +2553,7 @@ static void _wrap_create_render_window (C_word argc, C_word closure, C_word cont
   int arg2 ;
   int arg3 ;
   int arg4 ;
-  RenderWindowHandle result;
+  void *result = 0 ;
   
   C_trace("create-render-window");
   if (argc!=6) C_bad_argc(argc,6);
@@ -3497,10 +2580,10 @@ static void _wrap_create_render_window (C_word argc, C_word closure, C_word cont
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #4 is not of type 'int'");
   }
   arg4 = (int) C_num_to_int (scm4); 
-  result = (RenderWindowHandle)create_render_window((char const *)arg1,arg2,arg3,arg4);
+  result = (void *)create_render_window((char const *)arg1,arg2,arg3,arg4);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_RenderWindowHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -3522,7 +2605,7 @@ static void _wrap_create_render_window_gl_context (C_word argc, C_word closure, 
   int arg2 ;
   int arg3 ;
   int arg4 ;
-  RenderWindowHandle result;
+  void *result = 0 ;
   
   C_trace("create-render-window-gl-context");
   if (argc!=6) C_bad_argc(argc,6);
@@ -3549,10 +2632,10 @@ static void _wrap_create_render_window_gl_context (C_word argc, C_word closure, 
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #4 is not of type 'int'");
   }
   arg4 = (int) C_num_to_int (scm4); 
-  result = (RenderWindowHandle)create_render_window_gl_context((char const *)arg1,arg2,arg3,arg4);
+  result = (void *)create_render_window_gl_context((char const *)arg1,arg2,arg3,arg4);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_RenderWindowHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -3575,7 +2658,7 @@ static void _wrap_create_render_window_hwnd (C_word argc, C_word closure, C_word
   int arg3 ;
   int arg4 ;
   unsigned long arg5 ;
-  RenderWindowHandle result;
+  void *result = 0 ;
   
   C_trace("create-render-window-hwnd");
   if (argc!=7) C_bad_argc(argc,7);
@@ -3606,10 +2689,10 @@ static void _wrap_create_render_window_hwnd (C_word argc, C_word closure, C_word
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #5 is not of type 'unsigned long'");
   }
   arg5 = (unsigned long) C_num_to_unsigned_long (scm5); 
-  result = (RenderWindowHandle)create_render_window_hwnd((char const *)arg1,arg2,arg3,arg4,arg5);
+  result = (void *)create_render_window_hwnd((char const *)arg1,arg2,arg3,arg4,arg5);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_RenderWindowHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -3627,13 +2710,13 @@ static void _wrap_create_render_window_hwnd (C_word argc, C_word closure, C_word
 static void _wrap_render_window_get_hwnd(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_render_window_get_hwnd (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  RenderWindowHandle arg1 = (RenderWindowHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   unsigned int result;
   
   C_trace("render-window-get-hwnd");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (RenderWindowHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderWindowHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   result = (unsigned int)render_window_get_hwnd(arg1);
   
@@ -3655,13 +2738,13 @@ static void _wrap_render_window_get_hwnd (C_word argc, C_word closure, C_word co
 static void _wrap_render_window_set_visible(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_render_window_set_visible (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  RenderWindowHandle arg1 = (RenderWindowHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   
   C_trace("render-window-set-visible");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (RenderWindowHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderWindowHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -3684,13 +2767,13 @@ static void _wrap_render_window_set_visible (C_word argc, C_word closure, C_word
 static void _wrap_render_window_update(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_render_window_update (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  RenderWindowHandle arg1 = (RenderWindowHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   
   C_trace("render-window-update");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (RenderWindowHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderWindowHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -3892,12 +2975,12 @@ static void _wrap_show_config_dialog (C_word argc, C_word closure, C_word contin
 static void _wrap_add_render_system(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_add_render_system (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  RenderSystemHandle arg1 = (RenderSystemHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   
   C_trace("add-render-system");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (RenderSystemHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderSystemHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   add_render_system(arg1);
   
@@ -3916,12 +2999,12 @@ static void _wrap_add_render_system (C_word argc, C_word closure, C_word continu
 static void _wrap_set_render_system(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_set_render_system (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  RenderSystemHandle arg1 = (RenderSystemHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   
   C_trace("set-render-system");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (RenderSystemHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderSystemHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   set_render_system(arg1);
   
@@ -3940,14 +3023,14 @@ static void _wrap_set_render_system (C_word argc, C_word closure, C_word continu
 static void _wrap_get_render_system(C_word,C_word,C_word) C_noret;
 static void _wrap_get_render_system (C_word argc, C_word closure, C_word continuation) {
   C_word resultobj;
-  RenderSystemHandle result;
+  void *result = 0 ;
   
   C_trace("get-render-system");
   if (argc!=2) C_bad_argc(argc,2);
-  result = (RenderSystemHandle)get_render_system();
+  result = (void *)get_render_system();
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_RenderSystemHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }{
     C_word func;
     SWIG_Chicken_FindCreateProxy(func, resultobj)
@@ -3963,7 +3046,7 @@ static void _wrap_get_render_system_by_name(C_word,C_word,C_word,C_word) C_noret
 static void _wrap_get_render_system_by_name (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
   char *arg1 = (char *) 0 ;
-  RenderSystemHandle result;
+  void *result = 0 ;
   
   C_trace("get-render-system-by-name");
   if (argc!=3) C_bad_argc(argc,3);
@@ -3978,10 +3061,10 @@ static void _wrap_get_render_system_by_name (C_word argc, C_word closure, C_word
       arg1 = (char *) SWIG_MakeString (scm1);
     }
   }
-  result = (RenderSystemHandle)get_render_system_by_name((char const *)arg1);
+  result = (void *)get_render_system_by_name((char const *)arg1);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_RenderSystemHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -4036,7 +3119,7 @@ static void _wrap_create_scene_manager (C_word argc, C_word closure, C_word cont
   C_word resultobj;
   char *arg1 = (char *) 0 ;
   char *arg2 = (char *) 0 ;
-  SceneManagerHandle result;
+  void *result = 0 ;
   
   C_trace("create-scene-manager");
   if (argc!=4) C_bad_argc(argc,4);
@@ -4062,10 +3145,10 @@ static void _wrap_create_scene_manager (C_word argc, C_word closure, C_word cont
       arg2 = (char *) SWIG_MakeString (scm2);
     }
   }
-  result = (SceneManagerHandle)create_scene_manager((char const *)arg1,(char const *)arg2);
+  result = (void *)create_scene_manager((char const *)arg1,(char const *)arg2);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_SceneManagerHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -4086,14 +3169,14 @@ static void _wrap_create_scene_manager (C_word argc, C_word closure, C_word cont
 static void _wrap_get_scene_manager(C_word,C_word,C_word) C_noret;
 static void _wrap_get_scene_manager (C_word argc, C_word closure, C_word continuation) {
   C_word resultobj;
-  SceneManagerHandle result;
+  void *result = 0 ;
   
   C_trace("get-scene-manager");
   if (argc!=2) C_bad_argc(argc,2);
-  result = (SceneManagerHandle)get_scene_manager();
+  result = (void *)get_scene_manager();
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_SceneManagerHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }{
     C_word func;
     SWIG_Chicken_FindCreateProxy(func, resultobj)
@@ -4109,7 +3192,7 @@ static void _wrap_get_scene_manager_by_name(C_word,C_word,C_word,C_word) C_noret
 static void _wrap_get_scene_manager_by_name (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
   char *arg1 = (char *) 0 ;
-  SceneManagerHandle result;
+  void *result = 0 ;
   
   C_trace("get-scene-manager-by-name");
   if (argc!=3) C_bad_argc(argc,3);
@@ -4124,10 +3207,10 @@ static void _wrap_get_scene_manager_by_name (C_word argc, C_word closure, C_word
       arg1 = (char *) SWIG_MakeString (scm1);
     }
   }
-  result = (SceneManagerHandle)get_scene_manager_by_name((char const *)arg1);
+  result = (void *)get_scene_manager_by_name((char const *)arg1);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_SceneManagerHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -4232,14 +3315,14 @@ static void _wrap_pump_messages (C_word argc, C_word closure, C_word continuatio
 static void _wrap_render_system_set_config_option(C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_render_system_set_config_option (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3) {
   C_word resultobj;
-  RenderSystemHandle arg1 = (RenderSystemHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   char *arg2 = (char *) 0 ;
   char *arg3 = (char *) 0 ;
   
   C_trace("render-system-set-config-option");
   if (argc!=5) C_bad_argc(argc,5);
   {
-    arg1 = (RenderSystemHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderSystemHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   {
     if (scm2 == C_SCHEME_FALSE) {
@@ -4421,18 +3504,18 @@ static void _wrap_set_ambient_light_rgb (C_word argc, C_word closure, C_word con
 static void _wrap_add_viewport(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_add_viewport (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  CameraHandle arg1 = (CameraHandle) 0 ;
-  ViewportHandle result;
+  void *arg1 = (void *) 0 ;
+  void *result = 0 ;
   
   C_trace("add-viewport");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (CameraHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
-  result = (ViewportHandle)add_viewport(arg1);
+  result = (void *)add_viewport(arg1);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_ViewportHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }{
     C_word func;
     SWIG_Chicken_FindCreateProxy(func, resultobj)
@@ -4468,7 +3551,7 @@ static void _wrap_create_child_scenenode(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_create_child_scenenode (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
   char *arg1 = (char *) 0 ;
-  SceneNodeHandle result;
+  void *result = 0 ;
   
   C_trace("create-child-scenenode");
   if (argc!=3) C_bad_argc(argc,3);
@@ -4483,10 +3566,10 @@ static void _wrap_create_child_scenenode (C_word argc, C_word closure, C_word co
       arg1 = (char *) SWIG_MakeString (scm1);
     }
   }
-  result = (SceneNodeHandle)create_child_scenenode((char const *)arg1);
+  result = (void *)create_child_scenenode((char const *)arg1);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_SceneNodeHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -4504,16 +3587,16 @@ static void _wrap_create_child_scenenode (C_word argc, C_word closure, C_word co
 static void _wrap_attach_entity_to_scenenode(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_attach_entity_to_scenenode (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  EntityHandle arg1 = (EntityHandle) 0 ;
-  SceneNodeHandle arg2 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
+  void *arg2 = (void *) 0 ;
   
   C_trace("attach-entity-to-scenenode");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (EntityHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_EntityHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   {
-    arg2 = (SceneNodeHandle)SWIG_MustGetPtr(scm2, SWIGTYPE_p_SceneNodeHandle__, 2, 0);
+    arg2 = (void *)SWIG_MustGetPtr(scm2, NULL, 2, 0);
   }
   attach_entity_to_scenenode(arg1,arg2);
   
@@ -4532,14 +3615,14 @@ static void _wrap_attach_entity_to_scenenode (C_word argc, C_word closure, C_wor
 static void _wrap_scenenode_update(C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_update (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   int arg3 ;
   
   C_trace("scenenode-update");
   if (argc!=5) C_bad_argc(argc,5);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -4566,12 +3649,12 @@ static void _wrap_scenenode_update (C_word argc, C_word closure, C_word continua
 static void _wrap_scenenode_update_bounds(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_update_bounds (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   
   C_trace("scenenode-update-bounds");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   scenenode_update_bounds(arg1);
   
@@ -4590,23 +3673,23 @@ static void _wrap_scenenode_update_bounds (C_word argc, C_word closure, C_word c
 static void _wrap_scenenode_get_attached_entity_int(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_get_attached_entity_int (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
-  EntityHandle result;
+  void *result = 0 ;
   
   C_trace("scenenode-get-attached-entity-int");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
   }
   arg2 = (int) C_num_to_int (scm2); 
-  result = (EntityHandle)scenenode_get_attached_entity_int(arg1,arg2);
+  result = (void *)scenenode_get_attached_entity_int(arg1,arg2);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_EntityHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }{
     C_word func;
     SWIG_Chicken_FindCreateProxy(func, resultobj)
@@ -4621,14 +3704,14 @@ static void _wrap_scenenode_get_attached_entity_int (C_word argc, C_word closure
 static void _wrap_scenenode_get_attached_entity(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_get_attached_entity (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   char *arg2 = (char *) 0 ;
-  EntityHandle result;
+  void *result = 0 ;
   
   C_trace("scenenode-get-attached-entity");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   {
     if (scm2 == C_SCHEME_FALSE) {
@@ -4641,10 +3724,10 @@ static void _wrap_scenenode_get_attached_entity (C_word argc, C_word closure, C_
       arg2 = (char *) SWIG_MakeString (scm2);
     }
   }
-  result = (EntityHandle)scenenode_get_attached_entity(arg1,(char const *)arg2);
+  result = (void *)scenenode_get_attached_entity(arg1,(char const *)arg2);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_EntityHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg2 != NULL) {
     free (arg2); 
   }
@@ -4662,13 +3745,13 @@ static void _wrap_scenenode_get_attached_entity (C_word argc, C_word closure, C_
 static void _wrap_scenenode_num_attached_objects(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_num_attached_objects (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int result;
   
   C_trace("scenenode-num-attached-objects");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   result = (int)scenenode_num_attached_objects(arg1);
   
@@ -4687,13 +3770,13 @@ static void _wrap_scenenode_num_attached_objects (C_word argc, C_word closure, C
 static void _wrap_scenenode_detach_entity_int(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_detach_entity_int (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   
   C_trace("scenenode-detach-entity-int");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -4716,16 +3799,16 @@ static void _wrap_scenenode_detach_entity_int (C_word argc, C_word closure, C_wo
 static void _wrap_scenenode_detach_entity(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_detach_entity (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
-  EntityHandle arg2 = (EntityHandle) 0 ;
+  void *arg1 = (void *) 0 ;
+  void *arg2 = (void *) 0 ;
   
   C_trace("scenenode-detach-entity");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   {
-    arg2 = (EntityHandle)SWIG_MustGetPtr(scm2, SWIGTYPE_p_EntityHandle__, 2, 0);
+    arg2 = (void *)SWIG_MustGetPtr(scm2, NULL, 2, 0);
   }
   scenenode_detach_entity(arg1,arg2);
   
@@ -4744,13 +3827,13 @@ static void _wrap_scenenode_detach_entity (C_word argc, C_word closure, C_word c
 static void _wrap_scenenode_detach_entity_string(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_detach_entity_string (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   char *arg2 = (char *) 0 ;
   
   C_trace("scenenode-detach-entity-string");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   {
     if (scm2 == C_SCHEME_FALSE) {
@@ -4783,12 +3866,12 @@ static void _wrap_scenenode_detach_entity_string (C_word argc, C_word closure, C
 static void _wrap_scenenode_detach_all_objects(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_detach_all_objects (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   
   C_trace("scenenode-detach-all-objects");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   scenenode_detach_all_objects(arg1);
   
@@ -4807,13 +3890,13 @@ static void _wrap_scenenode_detach_all_objects (C_word argc, C_word closure, C_w
 static void _wrap_scenenode_is_in_scenegraph(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_is_in_scenegraph (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int result;
   
   C_trace("scenenode-is-in-scenegraph");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   result = (int)scenenode_is_in_scenegraph(arg1);
   
@@ -4832,12 +3915,12 @@ static void _wrap_scenenode_is_in_scenegraph (C_word argc, C_word closure, C_wor
 static void _wrap_scenenode_notify_rootnode(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_notify_rootnode (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   
   C_trace("scenenode-notify-rootnode");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   scenenode_notify_rootnode(arg1);
   
@@ -4856,13 +3939,13 @@ static void _wrap_scenenode_notify_rootnode (C_word argc, C_word closure, C_word
 static void _wrap_scenenode_show_boundingbox(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_show_boundingbox (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   
   C_trace("scenenode-show-boundingbox");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -4885,13 +3968,13 @@ static void _wrap_scenenode_show_boundingbox (C_word argc, C_word closure, C_wor
 static void _wrap_scenenode_hide_boundingbox(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_hide_boundingbox (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   
   C_trace("scenenode-hide-boundingbox");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -4914,13 +3997,13 @@ static void _wrap_scenenode_hide_boundingbox (C_word argc, C_word closure, C_wor
 static void _wrap_scenenode_get_show_boundingbox(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_get_show_boundingbox (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int result;
   
   C_trace("scenenode-get-show-boundingbox");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   result = (int)scenenode_get_show_boundingbox(arg1);
   
@@ -4939,18 +4022,18 @@ static void _wrap_scenenode_get_show_boundingbox (C_word argc, C_word closure, C
 static void _wrap_scenenode_get_parent_scenenode(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_get_parent_scenenode (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
-  SceneNodeHandle result;
+  void *arg1 = (void *) 0 ;
+  void *result = 0 ;
   
   C_trace("scenenode-get-parent-scenenode");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
-  result = (SceneNodeHandle)scenenode_get_parent_scenenode(arg1);
+  result = (void *)scenenode_get_parent_scenenode(arg1);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_SceneNodeHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }{
     C_word func;
     SWIG_Chicken_FindCreateProxy(func, resultobj)
@@ -4965,13 +4048,13 @@ static void _wrap_scenenode_get_parent_scenenode (C_word argc, C_word closure, C
 static void _wrap_scenenode_set_visible(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_set_visible (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   
   C_trace("scenenode-set-visible");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -4994,14 +4077,14 @@ static void _wrap_scenenode_set_visible (C_word argc, C_word closure, C_word con
 static void _wrap_scenenode_set_visible_ex(C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_set_visible_ex (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   int arg3 ;
   
   C_trace("scenenode-set-visible-ex");
   if (argc!=5) C_bad_argc(argc,5);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -5028,12 +4111,12 @@ static void _wrap_scenenode_set_visible_ex (C_word argc, C_word closure, C_word 
 static void _wrap_scenenode_flip_visibility(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_flip_visibility (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   
   C_trace("scenenode-flip-visibility");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   scenenode_flip_visibility(arg1);
   
@@ -5052,13 +4135,13 @@ static void _wrap_scenenode_flip_visibility (C_word argc, C_word closure, C_word
 static void _wrap_scenenode_flip_visibility_ex(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_flip_visibility_ex (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   
   C_trace("scenenode-flip-visibility-ex");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -5081,13 +4164,13 @@ static void _wrap_scenenode_flip_visibility_ex (C_word argc, C_word closure, C_w
 static void _wrap_scenenode_set_debug_display_enabled(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_set_debug_display_enabled (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   
   C_trace("scenenode-set-debug-display-enabled");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -5110,14 +4193,14 @@ static void _wrap_scenenode_set_debug_display_enabled (C_word argc, C_word closu
 static void _wrap_scenenode_set_debug_display_enabled_ex(C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_set_debug_display_enabled_ex (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   int arg3 ;
   
   C_trace("scenenode-set-debug-display-enabled-ex");
   if (argc!=5) C_bad_argc(argc,5);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -5144,18 +4227,18 @@ static void _wrap_scenenode_set_debug_display_enabled_ex (C_word argc, C_word cl
 static void _wrap_scenenode_get_creator(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_scenenode_get_creator (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  SceneNodeHandle arg1 = (SceneNodeHandle) 0 ;
-  SceneManagerHandle result;
+  void *arg1 = (void *) 0 ;
+  void *result = 0 ;
   
   C_trace("scenenode-get-creator");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (SceneNodeHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_SceneNodeHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
-  result = (SceneManagerHandle)scenenode_get_creator(arg1);
+  result = (void *)scenenode_get_creator(arg1);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_SceneManagerHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }{
     C_word func;
     SWIG_Chicken_FindCreateProxy(func, resultobj)
@@ -5170,7 +4253,7 @@ static void _wrap_scenenode_get_creator (C_word argc, C_word closure, C_word con
 static void _wrap_viewport_set_background_colour(C_word,C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_viewport_set_background_colour (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3, C_word scm4) {
   C_word resultobj;
-  ViewportHandle arg1 = (ViewportHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   float arg2 ;
   float arg3 ;
   float arg4 ;
@@ -5178,7 +4261,7 @@ static void _wrap_viewport_set_background_colour (C_word argc, C_word closure, C
   C_trace("viewport-set-background-colour");
   if (argc!=6) C_bad_argc(argc,6);
   {
-    arg1 = (ViewportHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_ViewportHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
@@ -5209,13 +4292,13 @@ static void _wrap_viewport_set_background_colour (C_word argc, C_word closure, C
 static void _wrap_viewport_get_width(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_viewport_get_width (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  ViewportHandle arg1 = (ViewportHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   float result;
   
   C_trace("viewport-get-width");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (ViewportHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_ViewportHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   result = (float)viewport_get_width(arg1);
   
@@ -5237,13 +4320,13 @@ static void _wrap_viewport_get_width (C_word argc, C_word closure, C_word contin
 static void _wrap_viewport_get_height(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_viewport_get_height (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  ViewportHandle arg1 = (ViewportHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   float result;
   
   C_trace("viewport-get-height");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (ViewportHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_ViewportHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   result = (float)viewport_get_height(arg1);
   
@@ -5386,7 +4469,7 @@ static void _wrap_create_camera(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_create_camera (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
   char *arg1 = (char *) 0 ;
-  CameraHandle result;
+  void *result = 0 ;
   
   C_trace("create-camera");
   if (argc!=3) C_bad_argc(argc,3);
@@ -5401,10 +4484,10 @@ static void _wrap_create_camera (C_word argc, C_word closure, C_word continuatio
       arg1 = (char *) SWIG_MakeString (scm1);
     }
   }
-  result = (CameraHandle)create_camera((char const *)arg1);
+  result = (void *)create_camera((char const *)arg1);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_CameraHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -5423,7 +4506,7 @@ static void _wrap_get_camera(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_get_camera (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
   char *arg1 = (char *) 0 ;
-  CameraHandle result;
+  void *result = 0 ;
   
   C_trace("get-camera");
   if (argc!=3) C_bad_argc(argc,3);
@@ -5438,10 +4521,10 @@ static void _wrap_get_camera (C_word argc, C_word closure, C_word continuation, 
       arg1 = (char *) SWIG_MakeString (scm1);
     }
   }
-  result = (CameraHandle)get_camera((char const *)arg1);
+  result = (void *)get_camera((char const *)arg1);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_CameraHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -5459,13 +4542,13 @@ static void _wrap_get_camera (C_word argc, C_word closure, C_word continuation, 
 static void _wrap_camera_set_near_clip_distance(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_camera_set_near_clip_distance (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  CameraHandle arg1 = (CameraHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   float arg2 ;
   
   C_trace("camera-set-near-clip-distance");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (CameraHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
@@ -5488,13 +4571,13 @@ static void _wrap_camera_set_near_clip_distance (C_word argc, C_word closure, C_
 static void _wrap_camera_set_far_clip_distance(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_camera_set_far_clip_distance (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  CameraHandle arg1 = (CameraHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   float arg2 ;
   
   C_trace("camera-set-far-clip-distance");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (CameraHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
@@ -5517,14 +4600,14 @@ static void _wrap_camera_set_far_clip_distance (C_word argc, C_word closure, C_w
 static void _wrap_camera_set_aspect_ratio(C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_camera_set_aspect_ratio (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3) {
   C_word resultobj;
-  CameraHandle arg1 = (CameraHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   float arg2 ;
   float arg3 ;
   
   C_trace("camera-set-aspect-ratio");
   if (argc!=5) C_bad_argc(argc,5);
   {
-    arg1 = (CameraHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
@@ -5551,13 +4634,13 @@ static void _wrap_camera_set_aspect_ratio (C_word argc, C_word closure, C_word c
 static void _wrap_camera_set_auto_aspect_ratio(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_camera_set_auto_aspect_ratio (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  CameraHandle arg1 = (CameraHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   
   C_trace("camera-set-auto-aspect-ratio");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (CameraHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -5580,13 +4663,13 @@ static void _wrap_camera_set_auto_aspect_ratio (C_word argc, C_word closure, C_w
 static void _wrap_camera_set_fovy(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_camera_set_fovy (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  CameraHandle arg1 = (CameraHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   float arg2 ;
   
   C_trace("camera-set-fovy");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (CameraHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
@@ -5609,14 +4692,14 @@ static void _wrap_camera_set_fovy (C_word argc, C_word closure, C_word continuat
 static void _wrap_camera_set_frustum_offset(C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_camera_set_frustum_offset (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3) {
   C_word resultobj;
-  CameraHandle arg1 = (CameraHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   int arg2 ;
   int arg3 ;
   
   C_trace("camera-set-frustum-offset");
   if (argc!=5) C_bad_argc(argc,5);
   {
-    arg1 = (CameraHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'int'");
@@ -5643,13 +4726,13 @@ static void _wrap_camera_set_frustum_offset (C_word argc, C_word closure, C_word
 static void _wrap_camera_set_focal_length(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_camera_set_focal_length (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  CameraHandle arg1 = (CameraHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   float arg2 ;
   
   C_trace("camera-set-focal-length");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (CameraHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
@@ -5672,7 +4755,7 @@ static void _wrap_camera_set_focal_length (C_word argc, C_word closure, C_word c
 static void _wrap_camera_set_position(C_word,C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_camera_set_position (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3, C_word scm4) {
   C_word resultobj;
-  CameraHandle arg1 = (CameraHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   float arg2 ;
   float arg3 ;
   float arg4 ;
@@ -5680,7 +4763,7 @@ static void _wrap_camera_set_position (C_word argc, C_word closure, C_word conti
   C_trace("camera-set-position");
   if (argc!=6) C_bad_argc(argc,6);
   {
-    arg1 = (CameraHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
@@ -5711,7 +4794,7 @@ static void _wrap_camera_set_position (C_word argc, C_word closure, C_word conti
 static void _wrap_camera_lookat(C_word,C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_camera_lookat (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3, C_word scm4) {
   C_word resultobj;
-  CameraHandle arg1 = (CameraHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   float arg2 ;
   float arg3 ;
   float arg4 ;
@@ -5719,7 +4802,7 @@ static void _wrap_camera_lookat (C_word argc, C_word closure, C_word continuatio
   C_trace("camera-lookat");
   if (argc!=6) C_bad_argc(argc,6);
   {
-    arg1 = (CameraHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_CameraHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
@@ -5752,7 +4835,7 @@ static void _wrap_create_entity (C_word argc, C_word closure, C_word continuatio
   C_word resultobj;
   char *arg1 = (char *) 0 ;
   char *arg2 = (char *) 0 ;
-  EntityHandle result;
+  void *result = 0 ;
   
   C_trace("create-entity");
   if (argc!=4) C_bad_argc(argc,4);
@@ -5778,10 +4861,10 @@ static void _wrap_create_entity (C_word argc, C_word closure, C_word continuatio
       arg2 = (char *) SWIG_MakeString (scm2);
     }
   }
-  result = (EntityHandle)create_entity((char const *)arg1,(char const *)arg2);
+  result = (void *)create_entity((char const *)arg1,(char const *)arg2);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_EntityHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -5803,7 +4886,7 @@ static void _wrap_create_light(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_create_light (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
   char *arg1 = (char *) 0 ;
-  LightHandle result;
+  void *result = 0 ;
   
   C_trace("create-light");
   if (argc!=3) C_bad_argc(argc,3);
@@ -5818,10 +4901,10 @@ static void _wrap_create_light (C_word argc, C_word closure, C_word continuation
       arg1 = (char *) SWIG_MakeString (scm1);
     }
   }
-  result = (LightHandle)create_light((char const *)arg1);
+  result = (void *)create_light((char const *)arg1);
   {
     C_word *known_space = C_alloc(C_SIZEOF_SWIG_POINTER);
-    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_LightHandle__, 0);
+    resultobj = SWIG_NewPointerObj(result, SWIGTYPE_p_void, 0);
   }if (arg1 != NULL) {
     free (arg1); 
   }
@@ -5839,7 +4922,7 @@ static void _wrap_create_light (C_word argc, C_word closure, C_word continuation
 static void _wrap_light_set_position(C_word,C_word,C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_light_set_position (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2, C_word scm3, C_word scm4) {
   C_word resultobj;
-  LightHandle arg1 = (LightHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   float arg2 ;
   float arg3 ;
   float arg4 ;
@@ -5847,7 +4930,7 @@ static void _wrap_light_set_position (C_word argc, C_word closure, C_word contin
   C_trace("light-set-position");
   if (argc!=6) C_bad_argc(argc,6);
   {
-    arg1 = (LightHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_LightHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   if (!C_swig_is_number (scm2)) {
     swig_barf (SWIG_BARF1_BAD_ARGUMENT_TYPE, "Argument #2 is not of type 'float'");
@@ -5931,16 +5014,16 @@ static void _wrap_remove_frame_listener (C_word argc, C_word closure, C_word con
 static void _wrap_add_window_listener(C_word,C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_add_window_listener (C_word argc, C_word closure, C_word continuation, C_word scm1, C_word scm2) {
   C_word resultobj;
-  RenderWindowHandle arg1 = (RenderWindowHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   WindowListenerEvent arg2 = (WindowListenerEvent) 0 ;
   
   C_trace("add-window-listener");
   if (argc!=4) C_bad_argc(argc,4);
   {
-    arg1 = (RenderWindowHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderWindowHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   {
-    arg2 = (WindowListenerEvent)SWIG_MustGetPtr(scm2, SWIGTYPE_p_f_p_struct_RenderWindowHandle____void, 2, 0);
+    arg2 = (WindowListenerEvent)SWIG_MustGetPtr(scm2, SWIGTYPE_p_f_p_void__void, 2, 0);
   }
   add_window_listener(arg1,arg2);
   
@@ -5959,12 +5042,12 @@ static void _wrap_add_window_listener (C_word argc, C_word closure, C_word conti
 static void _wrap_remove_window_listener(C_word,C_word,C_word,C_word) C_noret;
 static void _wrap_remove_window_listener (C_word argc, C_word closure, C_word continuation, C_word scm1) {
   C_word resultobj;
-  RenderWindowHandle arg1 = (RenderWindowHandle) 0 ;
+  void *arg1 = (void *) 0 ;
   
   C_trace("remove-window-listener");
   if (argc!=3) C_bad_argc(argc,3);
   {
-    arg1 = (RenderWindowHandle)SWIG_MustGetPtr(scm1, SWIGTYPE_p_RenderWindowHandle__, 1, 0);
+    arg1 = (void *)SWIG_MustGetPtr(scm1, NULL, 1, 0);
   }
   remove_window_listener(arg1);
   
@@ -10481,91 +9564,59 @@ static void _wrap_mouse_capture (C_word argc, C_word closure, C_word continuatio
 /* -------- TYPE CONVERSION AND EQUIVALENCE RULES (BEGIN) -------- */
 
 static swig_type_info _swigt__p_Axis = {"_p_Axis", "Axis *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_CameraHandle__ = {"_p_CameraHandle__", "CameraHandle__ *|struct CameraHandle__ *|CameraHandle", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_EntityHandle__ = {"_p_EntityHandle__", "EntityHandle__ *|struct EntityHandle__ *|EntityHandle", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_InputSystemHandle__ = {"_p_InputSystemHandle__", "InputSystemHandle__ *|struct InputSystemHandle__ *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_KeyEvent = {"_p_KeyEvent", "KeyEvent *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_KeyboardInputHandle__ = {"_p_KeyboardInputHandle__", "KeyboardInputHandle|struct KeyboardInputHandle__ *|KeyboardInputHandle__ *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_LightHandle__ = {"_p_LightHandle__", "LightHandle|struct LightHandle__ *|LightHandle__ *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MouseInputHandle__ = {"_p_MouseInputHandle__", "MouseInputHandle|struct MouseInputHandle__ *|MouseInputHandle__ *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_MouseState = {"_p_MouseState", "MouseState *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_RenderSystemHandle__ = {"_p_RenderSystemHandle__", "RenderSystemHandle__ *|struct RenderSystemHandle__ *|RenderSystemHandle", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_RenderWindowHandle__ = {"_p_RenderWindowHandle__", "RenderWindowHandle__ *|struct RenderWindowHandle__ *|RenderWindowHandle", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_RootHandle__ = {"_p_RootHandle__", "RootHandle|struct RootHandle__ *|RootHandle__ *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_SceneManagerHandle__ = {"_p_SceneManagerHandle__", "SceneManagerHandle|struct SceneManagerHandle__ *|SceneManagerHandle__ *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_SceneNodeHandle__ = {"_p_SceneNodeHandle__", "SceneNodeHandle__ *|struct SceneNodeHandle__ *|SceneNodeHandle", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_ViewportHandle__ = {"_p_ViewportHandle__", "ViewportHandle|struct ViewportHandle__ *|ViewportHandle__ *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_coiQuaternion = {"_p_coiQuaternion", "coiQuaternion *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_coiVector3 = {"_p_coiVector3", "coiVector3 *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_engine_options = {"_p_engine_options", "engine_options *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_f_float_float_int__int = {"_p_f_float_float_int__int", "int (*)(float,float,int)|FrameListenerEvent", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_f_p_struct_RenderWindowHandle____void = {"_p_f_p_struct_RenderWindowHandle____void", "void (*)(struct RenderWindowHandle__ *)|WindowListenerEvent", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_f_p_void__void = {"_p_f_p_void__void", "void (*)(void *)|WindowListenerEvent", 0, 0, (void*)0, 0};
+static swig_type_info _swigt__p_void = {"_p_void", "void *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Axis,
-  &_swigt__p_CameraHandle__,
-  &_swigt__p_EntityHandle__,
   &_swigt__p_InputSystemHandle__,
   &_swigt__p_KeyEvent,
   &_swigt__p_KeyboardInputHandle__,
-  &_swigt__p_LightHandle__,
   &_swigt__p_MouseInputHandle__,
   &_swigt__p_MouseState,
-  &_swigt__p_RenderSystemHandle__,
-  &_swigt__p_RenderWindowHandle__,
-  &_swigt__p_RootHandle__,
-  &_swigt__p_SceneManagerHandle__,
-  &_swigt__p_SceneNodeHandle__,
-  &_swigt__p_ViewportHandle__,
   &_swigt__p_coiQuaternion,
   &_swigt__p_coiVector3,
   &_swigt__p_engine_options,
   &_swigt__p_f_float_float_int__int,
-  &_swigt__p_f_p_struct_RenderWindowHandle____void,
+  &_swigt__p_f_p_void__void,
+  &_swigt__p_void,
 };
 
 static swig_cast_info _swigc__p_Axis[] = {  {&_swigt__p_Axis, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_CameraHandle__[] = {  {&_swigt__p_CameraHandle__, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_EntityHandle__[] = {  {&_swigt__p_EntityHandle__, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_InputSystemHandle__[] = {  {&_swigt__p_InputSystemHandle__, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_KeyEvent[] = {  {&_swigt__p_KeyEvent, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_KeyboardInputHandle__[] = {  {&_swigt__p_KeyboardInputHandle__, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_LightHandle__[] = {  {&_swigt__p_LightHandle__, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MouseInputHandle__[] = {  {&_swigt__p_MouseInputHandle__, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_MouseState[] = {  {&_swigt__p_MouseState, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_RenderSystemHandle__[] = {  {&_swigt__p_RenderSystemHandle__, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_RenderWindowHandle__[] = {  {&_swigt__p_RenderWindowHandle__, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_RootHandle__[] = {  {&_swigt__p_RootHandle__, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_SceneManagerHandle__[] = {  {&_swigt__p_SceneManagerHandle__, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_SceneNodeHandle__[] = {  {&_swigt__p_SceneNodeHandle__, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_ViewportHandle__[] = {  {&_swigt__p_ViewportHandle__, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_coiQuaternion[] = {  {&_swigt__p_coiQuaternion, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_coiVector3[] = {  {&_swigt__p_coiVector3, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_engine_options[] = {  {&_swigt__p_engine_options, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_f_float_float_int__int[] = {  {&_swigt__p_f_float_float_int__int, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_f_p_struct_RenderWindowHandle____void[] = {  {&_swigt__p_f_p_struct_RenderWindowHandle____void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_f_p_void__void[] = {  {&_swigt__p_f_p_void__void, 0, 0, 0},{0, 0, 0, 0}};
+static swig_cast_info _swigc__p_void[] = {  {&_swigt__p_void, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Axis,
-  _swigc__p_CameraHandle__,
-  _swigc__p_EntityHandle__,
   _swigc__p_InputSystemHandle__,
   _swigc__p_KeyEvent,
   _swigc__p_KeyboardInputHandle__,
-  _swigc__p_LightHandle__,
   _swigc__p_MouseInputHandle__,
   _swigc__p_MouseState,
-  _swigc__p_RenderSystemHandle__,
-  _swigc__p_RenderWindowHandle__,
-  _swigc__p_RootHandle__,
-  _swigc__p_SceneManagerHandle__,
-  _swigc__p_SceneNodeHandle__,
-  _swigc__p_ViewportHandle__,
   _swigc__p_coiQuaternion,
   _swigc__p_coiVector3,
   _swigc__p_engine_options,
   _swigc__p_f_float_float_int__int,
-  _swigc__p_f_p_struct_RenderWindowHandle____void,
+  _swigc__p_f_p_void__void,
+  _swigc__p_void,
 };
 
 
@@ -10834,7 +9885,7 @@ extern "C" {
     *(return_vec++) = C_VECTOR_TYPE | 0;
 #endif
     
-    a = C_alloc(2*350+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(33)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(35)+C_SIZEOF_INTERNED_SYMBOL(38)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(3)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(13));
+    a = C_alloc(2*323+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(34)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(31)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(33)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(27)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(26)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(24)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(35)+C_SIZEOF_INTERNED_SYMBOL(38)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(28)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(30)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(29)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(32)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(11)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(6)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(13)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(7)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(9)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(10)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(17)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(5)+C_SIZEOF_INTERNED_SYMBOL(4)+C_SIZEOF_INTERNED_SYMBOL(3)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(12)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(8)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(14)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(19)+C_SIZEOF_INTERNED_SYMBOL(22)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(23)+C_SIZEOF_INTERNED_SYMBOL(20)+C_SIZEOF_INTERNED_SYMBOL(25)+C_SIZEOF_INTERNED_SYMBOL(15)+C_SIZEOF_INTERNED_SYMBOL(18)+C_SIZEOF_INTERNED_SYMBOL(21)+C_SIZEOF_INTERNED_SYMBOL(16)+C_SIZEOF_INTERNED_SYMBOL(13));
     
     
     sym = C_intern (&a, 19, "EVENT-FRAME-STARTED");
@@ -10843,78 +9894,6 @@ extern "C" {
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_EVENT_FRAME_RENDERING_QUEUED, tmp=(C_word)a, a+=2, tmp));
     sym = C_intern (&a, 17, "EVENT-FRAME-ENDED");
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_EVENT_FRAME_ENDED, tmp=(C_word)a, a+=2, tmp));
-    SWIG_TypeClientData(SWIGTYPE_p_CameraHandle__, (void *) &_swig_chicken_clientdataCameraHandle__);
-    sym = C_intern (&a, 25, "CameraHandle---unused-set");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_CameraHandle___unused_set, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 25, "CameraHandle---unused-get");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_CameraHandle___unused_get, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 18, "new-CameraHandle--");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_new_CameraHandle__, tmp=(C_word)a, a+=2, tmp));
-    ((swig_chicken_clientdata *)(SWIGTYPE_p_CameraHandle__->clientdata))->destroy = (swig_chicken_destructor) _wrap_delete_CameraHandle__;
-    SWIG_TypeClientData(SWIGTYPE_p_EntityHandle__, (void *) &_swig_chicken_clientdataEntityHandle__);
-    sym = C_intern (&a, 25, "EntityHandle---unused-set");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_EntityHandle___unused_set, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 25, "EntityHandle---unused-get");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_EntityHandle___unused_get, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 18, "new-EntityHandle--");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_new_EntityHandle__, tmp=(C_word)a, a+=2, tmp));
-    ((swig_chicken_clientdata *)(SWIGTYPE_p_EntityHandle__->clientdata))->destroy = (swig_chicken_destructor) _wrap_delete_EntityHandle__;
-    SWIG_TypeClientData(SWIGTYPE_p_SceneNodeHandle__, (void *) &_swig_chicken_clientdataSceneNodeHandle__);
-    sym = C_intern (&a, 28, "SceneNodeHandle---unused-set");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_SceneNodeHandle___unused_set, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 28, "SceneNodeHandle---unused-get");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_SceneNodeHandle___unused_get, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 21, "new-SceneNodeHandle--");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_new_SceneNodeHandle__, tmp=(C_word)a, a+=2, tmp));
-    ((swig_chicken_clientdata *)(SWIGTYPE_p_SceneNodeHandle__->clientdata))->destroy = (swig_chicken_destructor) _wrap_delete_SceneNodeHandle__;
-    SWIG_TypeClientData(SWIGTYPE_p_LightHandle__, (void *) &_swig_chicken_clientdataLightHandle__);
-    sym = C_intern (&a, 24, "LightHandle---unused-set");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_LightHandle___unused_set, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 24, "LightHandle---unused-get");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_LightHandle___unused_get, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 17, "new-LightHandle--");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_new_LightHandle__, tmp=(C_word)a, a+=2, tmp));
-    ((swig_chicken_clientdata *)(SWIGTYPE_p_LightHandle__->clientdata))->destroy = (swig_chicken_destructor) _wrap_delete_LightHandle__;
-    SWIG_TypeClientData(SWIGTYPE_p_RenderWindowHandle__, (void *) &_swig_chicken_clientdataRenderWindowHandle__);
-    sym = C_intern (&a, 31, "RenderWindowHandle---unused-set");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_RenderWindowHandle___unused_set, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 31, "RenderWindowHandle---unused-get");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_RenderWindowHandle___unused_get, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 24, "new-RenderWindowHandle--");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_new_RenderWindowHandle__, tmp=(C_word)a, a+=2, tmp));
-    ((swig_chicken_clientdata *)(SWIGTYPE_p_RenderWindowHandle__->clientdata))->destroy = (swig_chicken_destructor) _wrap_delete_RenderWindowHandle__;
-    SWIG_TypeClientData(SWIGTYPE_p_RootHandle__, (void *) &_swig_chicken_clientdataRootHandle__);
-    sym = C_intern (&a, 23, "RootHandle---unused-set");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_RootHandle___unused_set, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 23, "RootHandle---unused-get");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_RootHandle___unused_get, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 16, "new-RootHandle--");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_new_RootHandle__, tmp=(C_word)a, a+=2, tmp));
-    ((swig_chicken_clientdata *)(SWIGTYPE_p_RootHandle__->clientdata))->destroy = (swig_chicken_destructor) _wrap_delete_RootHandle__;
-    SWIG_TypeClientData(SWIGTYPE_p_RenderSystemHandle__, (void *) &_swig_chicken_clientdataRenderSystemHandle__);
-    sym = C_intern (&a, 31, "RenderSystemHandle---unused-set");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_RenderSystemHandle___unused_set, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 31, "RenderSystemHandle---unused-get");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_RenderSystemHandle___unused_get, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 24, "new-RenderSystemHandle--");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_new_RenderSystemHandle__, tmp=(C_word)a, a+=2, tmp));
-    ((swig_chicken_clientdata *)(SWIGTYPE_p_RenderSystemHandle__->clientdata))->destroy = (swig_chicken_destructor) _wrap_delete_RenderSystemHandle__;
-    SWIG_TypeClientData(SWIGTYPE_p_SceneManagerHandle__, (void *) &_swig_chicken_clientdataSceneManagerHandle__);
-    sym = C_intern (&a, 31, "SceneManagerHandle---unused-set");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_SceneManagerHandle___unused_set, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 31, "SceneManagerHandle---unused-get");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_SceneManagerHandle___unused_get, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 24, "new-SceneManagerHandle--");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_new_SceneManagerHandle__, tmp=(C_word)a, a+=2, tmp));
-    ((swig_chicken_clientdata *)(SWIGTYPE_p_SceneManagerHandle__->clientdata))->destroy = (swig_chicken_destructor) _wrap_delete_SceneManagerHandle__;
-    SWIG_TypeClientData(SWIGTYPE_p_ViewportHandle__, (void *) &_swig_chicken_clientdataViewportHandle__);
-    sym = C_intern (&a, 27, "ViewportHandle---unused-set");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_ViewportHandle___unused_set, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 27, "ViewportHandle---unused-get");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_ViewportHandle___unused_get, tmp=(C_word)a, a+=2, tmp));
-    sym = C_intern (&a, 20, "new-ViewportHandle--");
-    C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_new_ViewportHandle__, tmp=(C_word)a, a+=2, tmp));
-    ((swig_chicken_clientdata *)(SWIGTYPE_p_ViewportHandle__->clientdata))->destroy = (swig_chicken_destructor) _wrap_delete_ViewportHandle__;
     SWIG_TypeClientData(SWIGTYPE_p_coiQuaternion, (void *) &_swig_chicken_clientdatacoiQuaternion);
     sym = C_intern (&a, 19, "coiQuaternion-w-set");
     C_mutate ((C_word*)sym+1, (*a=C_CLOSURE_TYPE|1, a[1]=(C_word)_wrap_coiQuaternion_w_set, tmp=(C_word)a, a+=2, tmp));
