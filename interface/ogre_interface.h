@@ -115,11 +115,14 @@
 #define RenderSystemHandle void*
 #define SceneManagerHandle void*
 #define ViewportHandle void*
+#define LogManagerHandle void*
+#define LogHandle void*
 
 
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
 typedef void(*WindowListenerEvent)(RenderWindowHandle);
+
 
 typedef struct
 {
@@ -144,6 +147,24 @@ typedef struct
     const char* log_name;
     int width, height, auto_window;
 } engine_options;
+
+
+typedef enum 
+{
+    LL_LOW = 1,
+    LL_NORMAL = 2,
+    LL_BOREME = 3
+} logging_level;
+
+typedef enum 
+{
+    LML_TRIVIAL = 1,
+    LML_NORMAL = 2,
+    LML_CRITICAL = 3
+} log_message_level;
+
+typedef void(*LogListenerEvent)(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
+
 
 // Root functions
 DLL void release_engine();
@@ -348,3 +369,43 @@ DLL void remove_frame_listener(FrameListenerEvent frame_event);
 DLL void add_window_listener(RenderWindowHandle window_handle, WindowListenerEvent window_event);
 
 DLL void remove_window_listener(RenderWindowHandle window_handle);
+
+// LogManager
+DLL LogManagerHandle create_log_manager();
+
+// LogManager::getSingletonPtr
+DLL LogManagerHandle get_log_manager();
+
+//LogManager::getLog
+DLL LogHandle logmanager_get_log(const char* name);
+
+//LogManager::getDefaultLog
+DLL LogHandle logmanager_get_default_log();
+
+//LogManager::setDefaultLog
+DLL LogHandle logmanager_set_default_log(LogHandle log_handle);
+
+//LogManager::createLog
+DLL LogHandle logmanager_create_log(const char* name, int default_log, int debugger_output, int suppress_file_output);
+
+// n.b., Allows for finer grained control over the log messages at the cost of
+// having to supply all these variables. If you don't need this control,
+// use log_message above.
+//LogManager::logMessage
+DLL void logmanager_log_message(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
+
+//LogManager::destroyLog
+DLL void logmanager_set_log_detail(logging_level lvl);
+
+// XXX: How should we handle functions with multiple overloads?
+// e.g., this can take either an Ogre::String or a Log*
+//LogManager::destroyLog
+DLL void logmanager_destroy_log(const char* name);
+
+DLL void logmanager_destroy_log_by_handle(LogHandle log_handle);
+
+//Log::addListener
+DLL void add_log_listener(LogListenerEvent log_event, LogHandle log_handle);
+
+//Log::removeListener
+DLL void remove_log_listener(LogListenerEvent log_event, LogHandle log_handle);
