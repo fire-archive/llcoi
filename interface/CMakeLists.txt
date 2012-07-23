@@ -115,6 +115,8 @@ set(SRCS
 	./renderwindow_bind.cpp
 	./rendersystem_bind.cpp
 	./light_bind.cpp
+	./logmanager_bind.cpp
+	./log_bind.cpp
 	./framelistener_bind.cpp
 	./viewport_bind.cpp
 	./movableobject_bind.cpp
