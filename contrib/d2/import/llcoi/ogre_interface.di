@@ -55,6 +55,10 @@ alias void* RootHandle;
 alias void* RenderSystemHandle;
 alias void* SceneManagerHandle;
 alias void* ViewportHandle;
+alias void* LogManagerHandle;
+alias void* LogHandle;
+
+
 
 // listener typedefs
 alias int function(float,float,int) FrameListenerEvent;
@@ -84,6 +88,22 @@ struct engine_options
     const char* log_name;
     int width, height, auto_window;
 };
+
+enum logging_level
+{
+    LL_LOW = 1,
+    LL_NORMAL = 2,
+    LL_BOREME = 3
+};
+
+enum log_message_level
+{
+    LML_TRIVIAL = 1,
+    LML_NORMAL = 2,
+    LML_CRITICAL = 3
+};
+
+alias void function(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message) LogListenerEvent;
 
 
 // Root functions
@@ -289,3 +309,42 @@ void remove_frame_listener(FrameListenerEvent frame_event);
 void add_window_listener(RenderWindowHandle window_handle, WindowListenerEvent window_event);
 
 void remove_window_listener(RenderWindowHandle window_handle);
+
+// LogManager
+LogManagerHandle create_log_manager();
+// LogManager::getSingletonPtr
+LogManagerHandle get_log_manager();
+
+//LogManager::getLog
+LogHandle logmanager_get_log(const char* name);
+
+//LogManager::getDefaultLog
+LogHandle logmanager_get_default_log();
+
+//LogManager::setDefaultLog
+LogHandle logmanager_set_default_log(LogHandle log_handle);
+
+//LogManager::createLog
+LogHandle logmanager_create_log(const char* name, int default_log, int debugger_output, int suppress_file_output);
+
+// n.b., Allows for finer grained control over the log messages at the cost of
+// having to supply all these variables. If you don't need this control,
+// use log_message above.
+//LogManager::logMessage
+void logmanager_log_message(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
+
+//LogManager::destroyLog
+void logmanager_set_log_detail(logging_level lvl);
+
+// XXX: How should we handle functions with multiple overloads?
+// e.g., this can take either an Ogre::String or a Log*
+//LogManager::destroyLog
+void logmanager_destroy_log(const char* name);
+
+void logmanager_destroy_log_by_handle(LogHandle log_handle);
+
+//Log::addListener
+void add_log_listener(LogListenerEvent log_event, LogHandle log_handle);
+
+//Log::removeListener
+void remove_log_listener(LogListenerEvent log_event, LogHandle log_handle);
