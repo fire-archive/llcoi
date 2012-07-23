@@ -42,7 +42,7 @@
 #include <OgreConfigFile.h>
 #include "ogre_manager.h"
 
-template<> OgreManager* Ogre::Singleton<OgreManager>::ms_Singleton = 0;
+template<> OgreManager* Ogre::Singleton<OgreManager>::msSingleton = 0;
 
 void load_ogre_plugin(const char* plugin);
 
