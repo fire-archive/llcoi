@@ -11,6 +11,12 @@ KeyboardInputHandle keyboard;
 MouseInputHandle mouse;
 float tiny_timer=0;
 
+
+extern(C) void log_listener_test(const char *message, log_message_level lml, int maskDebug, const char *log_name, int skip_message)
+{
+    printf("received message \"%s\", level %d, maskDebug %d, log_name \"%s\", skip_message %d", message, lml, log_name, skip_message);
+}
+
 extern(C) void window_event_listener_test(RenderWindowHandle window_handle)
 {
 	log_message("I was called when the window closed!");
@@ -44,6 +50,10 @@ version(linux)
 */
 
     int keep_going = 1;
+    // Make sure a log manager is created before Ogre::Root.
+    //auto log_manager = create_log_manager();
+    //auto log = logmanager_create_log("null.log", 0, 0, 1);
+    //add_log_listener(&log_listener_test, &log);
 
     create_root("plugins.cfg", "ogre.cfg", "ogre.log");
 
