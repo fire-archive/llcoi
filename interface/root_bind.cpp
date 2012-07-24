@@ -134,6 +134,7 @@ RootHandle create_root(const char* pluginFileName, const char* configFileName, c
     return reinterpret_cast<RootHandle>(root);
 }
 
+// Ogre::Root::saveConfig()
 void save_config()
 {
     Ogre::Root::getSingletonPtr()->saveConfig();
@@ -212,6 +213,23 @@ void render_loop()
         }
     }
 }
+
+// Ogre::Root::createRenderWindow(const String &, unsigned int , unsigned int , bool , const NameValuePairList *= 0)
+RenderWindowHandle root_create_render_window(const char* name, unsigned int width, unsigned int height, int fullscreen, NameValuePairListHandle params)
+{
+    return reinterpret_cast<RenderWindowHandle>(
+        Ogre::Root::getSingletonPtr()->createRenderWindow(name, width, height, fullscreen, reinterpret_cast<Ogre::NameValuePairList*>(params))
+    );
+}
+
+// Ogre::Root::getAvailableRenderers
+RenderSystemListHandle root_get_available_renderers()
+{
+    const Ogre::RenderSystemList& rslist = Ogre::Root::getSingletonPtr()->getAvailableRenderers();
+    Ogre::RenderSystemList *l = new Ogre::RenderSystemList(rslist);
+    return reinterpret_cast<RenderSystemListHandle>(l);
+}
+
 
 /*
 Ogre::Root::~Root()
