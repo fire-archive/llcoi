@@ -5,6 +5,7 @@ import llcoi.ois_interface;
 
 import std.math;
 import std.c.stdio;
+import std.stdio : writefln, writeln;
 
 pragma(lib, "llcoi");
 
@@ -19,12 +20,15 @@ __gshared LogHandle log;
 
 extern(C) void log_listener_test(const char *message, log_message_level lml, int maskDebug, const char *log_name, int skip_message)
 {
-    printf("received message \"%s\", level %d, maskDebug %d, log_name \"%s\", skip_message %d", message, lml, log_name, skip_message);
+    // Uncomment this to spew all of the logging, as well as information about the logging.
+    // Or leave it commented, and it acts as a NullLogListener. (:
+
+    //printf("received message \"%s\", level %d, maskDebug %d, log_name \"%s\", skip_message %d\n", message, lml, log_name, skip_message);
 }
 
 extern(C) void window_event_listener_test(RenderWindowHandle window_handle)
 {
-	log_message("I was called when the window closed!");
+    log_message("I was called when the window closed!");
 }
 
 
@@ -41,54 +45,76 @@ int main()
     EntityHandle entity;
     SceneNodeHandle node;
     LightHandle light;
-    RenderSystemHandle rendersystem;
-    RenderWindowHandle renderwindow;
-    ViewportHandle viewport;
+__gshared    RenderSystemHandle rendersystem;
+    __gshared RenderWindowHandle window;
+__gshared    ViewportHandle viewport;
 
-/*
-version(linux)
-{
-    Display *disp;
-    Window win;
-    uint scrn;
-}
-*/
+
 
     int keep_going = 1;
+
     // Make sure a log manager is created before Ogre::Root.
     log_manager = create_log_manager();
+
     log = logmanager_create_log("", // filename
                                 1,  // default log?
                                 0,  // output to debugger
                                 0); // supressFileOutput
 
-    add_log_listener(&log_listener_test, &log);
+    // Add a listener callback to the log manager
+    add_log_listener(&log_listener_test, log);
 
+    // Same as root = new Ogre::Root("", "", "");
+    auto root = create_root("", "", "");
 
-    auto pairs = create_name_value_pair_list();
-    add_pair(pairs, "foo", "bar");
+    load_ogre_plugin("RenderSystem_GL");
+    load_ogre_plugin("Plugin_OctreeSceneManager");
 
+    // Get a list of available renderers. Note that we'll need to
+    // free the memory held by that list when we're done with it.
+    auto rslist = root_get_available_renderers();
 
-    /+
+    // Make sure the list has at least one renderer
+    if (render_system_list_size(rslist) == 0)
+    {
+        writeln("No RenderSystems found!");
+        return 1;
+    }
 
-    create_render_window("Example Window", // title
-                         800,              // height
-                         600,              // width
-                         0,                // fullscreen
-+/
+    // Choose the first available render system
+    set_render_system(render_system_list_get(rslist, 0));
 
+    root_initialise(0,  // Autocreate window?
+                    ""  // name of autocreated window, if any.
+    );
+
+    // Clean up our render system list.
+    destroy_render_system_list(rslist);
+
+    // Create an Ogre::NameValuePairList. Again, we'll have to free it
+    // when we're done.
+    auto params = create_name_value_pair_list();
+
+    // Just like params["FSAA"] = "0";
+    add_pair(params, "FSAA", "0");
+
+    // Ditto
+    add_pair(params, "vsync", "true");
+
+    window = root_create_render_window("Example Window", // title
+                                       800,              // height
+                                       600,              // width
+                                       0,                // fullscreen
+                                       params);
 
     
-
-	setup_resources("resources.cfg");
-
-    renderwindow = root_initialise(1, "Ogre Renderwindow");
+    setup_resources("resources.cfg");
 
     set_default_num_mipmaps(5);
 
     initialise_all_resourcegroups();
 
-    create_scene_manager("OctreeSceneManager", "The SceneManager");
+    auto scene_manager = create_scene_manager("OctreeSceneManager", "The SceneManager");
 
     myCamera = create_camera("mycam");
 
@@ -98,7 +124,7 @@ version(linux)
 
     camera_set_near_clip_distance(myCamera, 5);
 
-    viewport = add_viewport(myCamera);
+    viewport = render_window_add_viewport(window, myCamera);
 
     viewport_set_background_colour(viewport, 0, 0, 0);
 
@@ -116,11 +142,12 @@ version(linux)
 
     light_set_position(light, 20, 80, 50);
 
-    add_frame_listener(&frame_listener_test,EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
+    add_frame_listener(&frame_listener_test, EVENT_FRAME_RENDERING_QUEUED|EVENT_FRAME_STARTED);
 
-	add_window_listener(renderwindow, &window_event_listener_test);
+    add_window_listener(window, &window_event_listener_test);
 
-    create_input_system(render_window_get_hwnd(renderwindow));
+    create_input_system(render_window_get_hwnd(window));
+    
     keyboard = create_keyboard_object(0);
     mouse = create_mouse_object(0);
     
@@ -134,19 +161,16 @@ version(linux)
         
         // Pump window messages for nice behaviour
         pump_messages();
+
         // Render a frame
         render_one_frame();
 
-        if (render_window_closed())
-        {
+        if (render_window_is_closed(window))
             keep_going = 0;
-        }
-        
     }
 
-    destroy_name_value_pair_list(pairs);
-	remove_window_listener(renderwindow);
-
+    destroy_name_value_pair_list(params);
+    remove_window_listener(window);
     destroy_keyboard_object(keyboard);
     destroy_mouse_object(mouse);
     destroy_input_system();
