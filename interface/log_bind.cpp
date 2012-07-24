@@ -48,7 +48,25 @@ public:
     void messageLogged(const Ogre::String &message, Ogre::LogMessageLevel lml, bool maskDebug, const Ogre::String &logName, bool &skipThisMessage)
     {
         if(logListenerHandle)
-            logListenerHandle(message.c_str(), static_cast<log_message_level>(lml), maskDebug, logName.c_str(), skipThisMessage);
+        {
+            log_message_level LogMessageLevel;
+
+            switch(lml)
+            {
+                case Ogre::LML_TRIVIAL:
+                    LogMessageLevel = LML_TRIVIAL;
+                    break;
+
+                case Ogre::LML_NORMAL:
+                    LogMessageLevel = LML_NORMAL;
+                    break;
+
+                case Ogre::LML_CRITICAL:
+                    LogMessageLevel = LML_CRITICAL;
+                    break;
+            }
+            logListenerHandle(message.c_str(), LogMessageLevel, maskDebug, logName.c_str(), skipThisMessage);
+        }
     }
 
     LogListenerEvent logListenerHandle;
