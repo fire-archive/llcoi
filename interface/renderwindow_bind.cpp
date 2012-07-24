@@ -112,6 +112,24 @@ int render_window_closed()
     return 0;
 }
 
+// Rendertarget->addViewport 
+ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, ...)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    return reinterpret_cast<ViewportHandle>(window->addViewport(camera));
+}
+
+// RenderWindow::isClosed
+int render_window_is_closed(RenderWindowHandle handle)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    if (window->isClosed())
+        return 1;
+    return 0;
+}
+
+
 /*
 Ogre::RenderWindow::operator=(Ogre::RenderWindow const&)
 Ogre::RenderWindow::RenderWindow(Ogre::RenderWindow const&)
