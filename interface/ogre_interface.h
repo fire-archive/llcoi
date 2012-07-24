@@ -113,6 +113,7 @@
 #define RenderWindowHandle void*
 #define RootHandle void*
 #define RenderSystemHandle void*
+#define RenderSystemListHandle void*
 #define SceneManagerHandle void*
 #define ViewportHandle void*
 #define LogManagerHandle void*
@@ -206,14 +207,6 @@ DLL int restore_config();
 
 DLL int show_config_dialog();
 
-DLL void add_render_system(RenderSystemHandle render_system);
-
-DLL void set_render_system(RenderSystemHandle render_system);
-
-DLL RenderSystemHandle get_render_system();
-
-DLL RenderSystemHandle get_render_system_by_name(const char* render_system_name);
-
 DLL void load_ogre_plugin(const char * plugin);
 
 DLL SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name);
@@ -230,9 +223,31 @@ DLL void render_loop();
 
 DLL void pump_messages();
 
+DLL void log_message(const char* message);
+
+DLL RenderWindowHandle root_create_render_window(const char* name, unsigned int width, unsigned int height, int fullscreen, NameValuePairListHandle params);
+
+DLL RenderSystemListHandle root_get_available_renderers();
+
+
+
+// RenderSystem functions
+DLL void set_render_system(RenderSystemHandle render_system);
+
+DLL void add_render_system(RenderSystemHandle render_system);
+
+DLL RenderSystemHandle get_render_system();
+
+DLL RenderSystemHandle get_render_system_by_name(const char* render_system_name);
+
 DLL void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value);
 
-DLL void log_message(const char* message);
+DLL unsigned int render_system_list_size(RenderSystemListHandle list_handle);
+
+DLL RenderSystemHandle render_system_list_get(RenderSystemListHandle list_handle, unsigned int index);
+
+DLL void destroy_render_system_list(RenderSystemListHandle handle);
+
 
 // SceneManager functions
 DLL void set_default_num_mipmaps(int number);
@@ -415,3 +430,9 @@ DLL void remove_log_listener(LogListenerEvent log_event, LogHandle log_handle);
 DLL NameValuePairListHandle create_name_value_pair_list();
 DLL void add_pair(NameValuePairListHandle params, const char* name, const char* value);
 DLL void destroy_name_value_pair_list(NameValuePairListHandle params);
+
+
+// RenderWindow
+DLL ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, .../*int zorder, float left, float top, float width, float height*/);
+DLL int render_window_is_closed(RenderWindowHandle handle);
+
