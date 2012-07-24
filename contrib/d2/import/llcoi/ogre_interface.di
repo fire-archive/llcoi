@@ -53,16 +53,18 @@ alias void* LightHandle;
 alias void* RenderWindowHandle;
 alias void* RootHandle;
 alias void* RenderSystemHandle;
+alias void* RenderSystemListHandle;
 alias void* SceneManagerHandle;
 alias void* ViewportHandle;
 alias void* LogManagerHandle;
 alias void* LogHandle;
-
+alias void* NameValuePairListHandle;
 
 
 // listener typedefs
 alias int function(float,float,int) FrameListenerEvent;
 alias void function(RenderWindowHandle) WindowListenerEvent;
+alias void function(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message) LogListenerEvent;
 
 struct coiQuaternion
 {
@@ -71,7 +73,6 @@ struct coiQuaternion
     float y;
     float z;
 };
-
 
 struct coiVector3
 {
@@ -102,8 +103,6 @@ enum log_message_level
     LML_NORMAL = 2,
     LML_CRITICAL = 3
 };
-
-alias void function(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message) LogListenerEvent;
 
 
 // Root functions
@@ -145,14 +144,6 @@ int restore_config();
 
 int show_config_dialog();
 
-void add_render_system(RenderSystemHandle render_system);
-
-void set_render_system(RenderSystemHandle render_system);
-
-RenderSystemHandle get_render_system();
-
-RenderSystemHandle get_render_system_by_name(const char* render_system_name);
-
 void load_ogre_plugin(const char * plugin);
 
 SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name);
@@ -169,9 +160,29 @@ void render_loop();
 
 void pump_messages();
 
+void log_message(const char* message);
+
+RenderWindowHandle root_create_render_window(const char* name, uint width, uint height, int fullscreen, NameValuePairListHandle params);
+
+RenderSystemListHandle root_get_available_renderers();
+
+// RenderSystem functions
+void add_render_system(RenderSystemHandle render_system);
+
+void set_render_system(RenderSystemHandle render_system);
+
+RenderSystemHandle get_render_system();
+
+RenderSystemHandle get_render_system_by_name(const char* render_system_name);
+
 void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value);
 
-void log_message(const char* message);
+uint render_system_list_size(RenderSystemListHandle list_handle);
+
+RenderSystemHandle render_system_list_get(RenderSystemListHandle list_handle, uint at);
+
+void destroy_render_system_list(RenderSystemListHandle handle);
+
 
 // SceneManager functions
 void set_default_num_mipmaps(int number);
@@ -348,3 +359,12 @@ void add_log_listener(LogListenerEvent log_event, LogHandle log_handle);
 
 //Log::removeListener
 void remove_log_listener(LogListenerEvent log_event, LogHandle log_handle);
+
+// NameValuePairList 
+NameValuePairListHandle create_name_value_pair_list();
+void add_pair(NameValuePairListHandle params, const char* name, const char* value);
+void destroy_name_value_pair_list(NameValuePairListHandle params);
+
+// RenderWindow
+ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, .../*int zorder, float left, float top, float width, float height*/);
+int render_window_is_closed(RenderWindowHandle handle);
