@@ -50,6 +50,27 @@ void set_default_num_mipmaps(int number)
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(number);
 }
 
+// It might be hacky, but probably less so than a nested struct of
+// const char* and tons of realloc calls.
+NameValuePairListHandle create_name_value_pair_list()
+{
+    Ogre::NameValuePairList* pair_list = new Ogre::NameValuePairList;
+    return reinterpret_cast<NameValuePairListHandle>(pair_list);
+}
+
+void add_pair(NameValuePairListHandle params, const char* name, const char* value)
+{
+    Ogre::NameValuePairList* pair_list = reinterpret_cast<Ogre::NameValuePairList*>(params);
+    pair_list->insert(std::make_pair(Ogre::StringConverter::toString(name), Ogre::StringConverter::toString(value)));
+}
+
+void destroy_name_value_pair_list(NameValuePairListHandle params)
+{
+    Ogre::NameValuePairList *pair_list = reinterpret_cast<Ogre::NameValuePairList*>(params);
+    pair_list->clear();
+    delete pair_list;
+}
+
 #ifdef PLATFORM_WIN
 BOOL APIENTRY DllMain( HANDLE /*hModule*/, DWORD /*ul_reason_for_call*/, LPVOID /*lpReserved*/ )
 {
