@@ -323,6 +323,7 @@ void remove_window_listener(RenderWindowHandle window_handle);
 
 // LogManager
 LogManagerHandle create_log_manager();
+
 // LogManager::getSingletonPtr
 LogManagerHandle get_log_manager();
 
@@ -347,11 +348,10 @@ void logmanager_log_message(const char* message, log_message_level lml, int mask
 //LogManager::destroyLog
 void logmanager_set_log_detail(logging_level lvl);
 
-// XXX: How should we handle functions with multiple overloads?
-// e.g., this can take either an Ogre::String or a Log*
 //LogManager::destroyLog
 void logmanager_destroy_log(const char* name);
 
+//LogManager::destroyLog overload
 void logmanager_destroy_log_by_handle(LogHandle log_handle);
 
 //Log::addListener
@@ -368,3 +368,40 @@ void destroy_name_value_pair_list(NameValuePairListHandle params);
 // RenderWindow
 ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, .../*int zorder, float left, float top, float width, float height*/);
 int render_window_is_closed(RenderWindowHandle handle);
+
+// Vector3
+// NOTE: not all of these are implemented (yet.)
+
+//Vector3::operator !=
+coiVector3 vector3_notequals_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator ==
+coiVector3 vector3_equals_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator +
+coiVector3 vector3_add_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator - 
+coiVector3 vector3_negate(coiVector3 v3);
+
+// Vector3::operator/ 
+coiVector3 vector3_divide_vector3(coiVector3 lhs, coiVector3 rhs);
+
+// Vector3::operator*
+coiVector3 vector3_multiply_vector3(coiVector3 lhs, coiVector3 rhs);
+
+// Vector3::isNaN
+int vector3_is_nan(coiVector3 v3);
+
+//Vector3::primaryAxis
+coiVector3 vector3_primary_axis(coiVector3);
+
+// Vector3::ZERO
+coiVector3 vector3_ZERO();
+coiVector3 vector3_UNIT_X();
+coiVector3 vector3_UNIT_Y();
+coiVector3 vector3_UNIT_Z();
+coiVector3 vector3_NEGATIVE_UNIT_X();
+coiVector3 vector3_NEGATIVE_UNIT_Y();
+coiVector3 vector3_NEGATIVE_UNIT_Z();
+coiVector3 vector3_UNIT_SCALE();

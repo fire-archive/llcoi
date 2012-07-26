@@ -120,11 +120,9 @@
 #define LogHandle void*
 #define NameValuePairListHandle void*
 
-
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
 typedef void(*WindowListenerEvent)(RenderWindowHandle);
-
 
 typedef struct
 {
@@ -436,3 +434,38 @@ DLL void destroy_name_value_pair_list(NameValuePairListHandle params);
 DLL ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, .../*int zorder, float left, float top, float width, float height*/);
 DLL int render_window_is_closed(RenderWindowHandle handle);
 
+// Vector3
+
+//Vector3::operator !=
+DLL coiVector3 vector3_notequals_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator ==
+DLL coiVector3 vector3_equals_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator +
+DLL coiVector3 vector3_add_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator - 
+DLL coiVector3 vector3_negate(coiVector3 v3);
+
+// Vector3::operator/ 
+DLL coiVector3 vector3_divide_vector3(coiVector3 lhs, coiVector3 rhs);
+
+// Vector3::operator*
+DLL coiVector3 vector3_multiply_vector3(coiVector3 lhs, coiVector3 rhs);
+
+// Vector3::isNaN
+DLL int vector3_is_nan(coiVector3 v3);
+
+//Vector3::primaryAxis
+DLL coiVector3 vector3_primary_axis(coiVector3);
+
+// Vector3::ZERO
+DLL coiVector3 vector3_ZERO();
+DLL coiVector3 vector3_UNIT_X();
+DLL coiVector3 vector3_UNIT_Y();
+DLL coiVector3 vector3_UNIT_Z();
+DLL coiVector3 vector3_NEGATIVE_UNIT_X();
+DLL coiVector3 vector3_NEGATIVE_UNIT_Y();
+DLL coiVector3 vector3_NEGATIVE_UNIT_Z();
+DLL coiVector3 vector3_UNIT_SCALE();
