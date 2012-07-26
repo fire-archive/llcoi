@@ -36,6 +36,7 @@
  ******************************************************************************/
 
 #include "ogre_interface.h"
+#include "binding_utils.h"
 #include <OgreLogManager.h>
 #include <OgreLog.h>
 
@@ -78,7 +79,24 @@ LogHandle logmanager_create_log(const char* name, int default_log, int debugger_
 //LogManager::logMessage
 void logmanager_log_message(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message)
 {
-    Ogre::LogManager::getSingletonPtr()->logMessage(message, static_cast<Ogre::LogMessageLevel>(lml), maskDebug);
+    Ogre::LogMessageLevel converted;
+
+    switch(lml)
+    {
+        case LML_TRIVIAL:
+            converted = Ogre::LML_TRIVIAL;
+            break;
+
+        case LML_NORMAL:
+            converted = Ogre::LML_NORMAL;
+            break;
+
+        case Ogre::LML_CRITICAL:
+            converted = Ogre::LML_CRITICAL;
+            break;
+    }
+
+    Ogre::LogManager::getSingletonPtr()->logMessage(message, converted, maskDebug);
 }
 
 //LogManager::destroyLog
@@ -97,5 +115,21 @@ void logmanager_destroy_log_by_handle(LogHandle log_handle)
 //LogManager::setLogDetail
 void logmanager_set_log_detail(logging_level lvl)
 {
-    Ogre::LogManager::getSingletonPtr()->setLogDetail(static_cast<Ogre::LoggingLevel>(lvl));
+    Ogre::LoggingLevel converted;
+
+    switch(lvl)
+    {
+        case LL_LOW:
+            converted = Ogre::LL_LOW;
+            break;
+
+        case LL_NORMAL:
+            converted = Ogre::LL_NORMAL;
+            break;
+
+        case LL_BOREME:
+            converted = Ogre::LL_BOREME;
+            break;
+    }
+    Ogre::LogManager::getSingletonPtr()->setLogDetail(converted);
 }

@@ -35,6 +35,8 @@
  * THE SOFTWARE.
  ******************************************************************************/
 #pragma once
+#ifndef LLCOI_OGRE_INTERFACE
+#define LLCOI_OGRE_INTERFACE
 
 // Detect platform
 #if defined( WINCE )
@@ -163,8 +165,8 @@ typedef enum
     LML_CRITICAL = 3
 } log_message_level;
 
-typedef void(*LogListenerEvent)(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
 
+typedef void(*LogListenerEvent)(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
 
 // Root functions
 DLL void release_engine();
@@ -411,11 +413,10 @@ DLL void logmanager_log_message(const char* message, log_message_level lml, int 
 //LogManager::destroyLog
 DLL void logmanager_set_log_detail(logging_level lvl);
 
-// XXX: How should we handle functions with multiple overloads?
-// e.g., this can take either an Ogre::String or a Log*
 //LogManager::destroyLog
 DLL void logmanager_destroy_log(const char* name);
 
+//LogManager::destroyLog
 DLL void logmanager_destroy_log_by_handle(LogHandle log_handle);
 
 //Log::addListener
@@ -423,6 +424,10 @@ DLL void add_log_listener(LogListenerEvent log_event, LogHandle log_handle);
 
 //Log::removeListener
 DLL void remove_log_listener(LogListenerEvent log_event, LogHandle log_handle);
+
+//Log::logMessage
+DLL void log_log_message(LogHandle handle, const char *message, log_message_level lml, int maskDebug);
+
 
 // NameValuePairList 
 DLL NameValuePairListHandle create_name_value_pair_list();
@@ -437,13 +442,22 @@ DLL int render_window_is_closed(RenderWindowHandle handle);
 // Vector3
 
 //Vector3::operator !=
-DLL coiVector3 vector3_notequals_vector3(coiVector3 lhs, coiVector3 rhs);
+DLL int vector3_notequals_vector3(coiVector3 lhs, coiVector3 rhs);
 
 //Vector3::operator ==
-DLL coiVector3 vector3_equals_vector3(coiVector3 lhs, coiVector3 rhs);
+DLL int vector3_equals_vector3(coiVector3 lhs, coiVector3 rhs);
 
 //Vector3::operator +
 DLL coiVector3 vector3_add_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator +=
+DLL void vector3_update_add_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator -
+DLL coiVector3 vector3_subtract_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator -=
+DLL void vector3_update_subtract_vector3(coiVector3 lhs, coiVector3 rhs);
 
 //Vector3::operator - 
 DLL coiVector3 vector3_negate(coiVector3 v3);
@@ -453,6 +467,7 @@ DLL coiVector3 vector3_divide_vector3(coiVector3 lhs, coiVector3 rhs);
 
 // Vector3::operator*
 DLL coiVector3 vector3_multiply_vector3(coiVector3 lhs, coiVector3 rhs);
+
 
 // Vector3::isNaN
 DLL int vector3_is_nan(coiVector3 v3);
@@ -469,3 +484,5 @@ DLL coiVector3 vector3_NEGATIVE_UNIT_X();
 DLL coiVector3 vector3_NEGATIVE_UNIT_Y();
 DLL coiVector3 vector3_NEGATIVE_UNIT_Z();
 DLL coiVector3 vector3_UNIT_SCALE();
+
+#endif

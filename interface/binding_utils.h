@@ -1,5 +1,5 @@
 /******************************************************************************
- * log_bind.cpp - bindings for Ogre::Log
+ * binding_utils.h - utility functions for LLCOI
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
@@ -34,52 +34,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
+#pragma once
+#ifndef LLCOI_BINDING_UTILS
+#define LLCOI_BINDING_UTILS
+#include "ogre_interface.h" // as we can't forward declare enums. ):
+#include <OgreLog.h>        // Ditto.
 
-#include "ogre_interface.h"
-#include "binding_utils.h"
-#include <OgreLog.h>
-#include <OgreStringConverter.h>
+log_message_level ogre_lml_to_llcoi_lml(Ogre::LogMessageLevel lml);
+Ogre::LogMessageLevel llcoi_lml_to_ogre_lml(log_message_level lml);
 
-class LogListenerBind : public Ogre::LogListener
-{
-public:
-    LogListenerBind(LogListenerEvent lle) : logListenerHandle(lle)
-    {
-    }
+logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
+Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);
 
-    void messageLogged(const Ogre::String &message, Ogre::LogMessageLevel lml, bool maskDebug, const Ogre::String &logName, bool &skipThisMessage)
-    {
-
-        if(logListenerHandle)
-        {
-            log_message_level converted = ogre_lml_to_llcoi_lml(lml);
-            logListenerHandle(message.c_str(), converted, maskDebug, logName.c_str(), skipThisMessage);
-        }
-    }
-
-    LogListenerEvent logListenerHandle;
-};
-
-void log_log_message(LogHandle handle, const char *message, log_message_level lml, int maskDebug)
-{
-    Ogre::Log* l = reinterpret_cast<Ogre::Log*>(handle);
-
-    Ogre::LogMessageLevel converted = llcoi_lml_to_ogre_lml(lml);
-    l->logMessage(Ogre::StringConverter::toString(message), converted, maskDebug);
-}
-
-//Log::addListener
-void add_log_listener(LogListenerEvent log_event, LogHandle log_handle)
-{
-    Ogre::Log* log = reinterpret_cast<Ogre::Log*>(log_handle);
-    LogListenerBind *listener = new LogListenerBind(log_event);
-    log->addListener(listener);
-}
-
-//Log::removeListener
-void remove_log_listener(LogListenerEvent log_event, LogHandle log_handle)
-{
-    Ogre::Log* log = reinterpret_cast<Ogre::Log*>(log_handle);
-    Ogre::LogListener* listener = reinterpret_cast<Ogre::LogListener*>(log_event);
-    log->removeListener(listener);
-}
+#endif

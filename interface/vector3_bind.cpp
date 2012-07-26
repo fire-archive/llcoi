@@ -39,21 +39,56 @@
 #include <OgreVector3.h>
 
 //Vector3::operator !=
-//DLL coiVector3 vector3_notequals_vector3(coiVector3 lhs, coiVector3 rhs);
+int vector3_notequals_vector3(coiVector3& lhs, coiVector3& rhs)
+{
+    return  ( lhs.x != rhs.x || lhs.y != rhs.y || lhs.z != rhs.z );
+}
 
 //Vector3::operator ==
-//DLL coiVector3 vector3_equals_vector3(coiVector3 lhs, coiVector3 rhs);
+int vector3_equals_vector3(coiVector3& lhs, coiVector3& rhs)
+{
+    return  ( lhs.x == rhs.x || lhs.y == rhs.y || lhs.z == rhs.z );
+}
 
 //Vector3::operator +
-//DLL coiVector3 vector3_add_vector3(coiVector3 lhs, coiVector3 rhs);
+coiVector3 vector3_add_vector3(coiVector3& lhs, coiVector3& rhs)
+{
+    coiVector3 result;
+    result.x = lhs.x + rhs.x;
+    result.y = lhs.y + rhs.y;
+    result.z = lhs.z + rhs.z;
+    return result;
+}
 
-// Vector3::operator/ 
-//DLL coiVector3 vector3_divide_vector3(coiVector3 lhs, coiVector3 rhs);
+//Vector3::operator +=
+void vector3_update_add_vector3(coiVector3& lhs, coiVector3& rhs)
+{
+    lhs.x += rhs.x;
+    lhs.y += rhs.y;
+    lhs.z += rhs.z;
+}
+
+//Vector3::operator -
+coiVector3 vector3_subtract_vector3(coiVector3& lhs, coiVector3& rhs)
+{
+    coiVector3 result;
+    result.x = lhs.x - rhs.x;
+    result.y = lhs.y - rhs.y;
+    result.z = lhs.z - rhs.z;
+    return result;
+}
+
+//Vector3::operator -=
+void vector3_update_subtract_vector3(coiVector3& lhs, coiVector3& rhs)
+{
+    lhs.x -= rhs.x;
+    lhs.y -= rhs.y;
+    lhs.z -= rhs.z;
+}
 
 //Vector3::operator - 
 coiVector3 vector3_negate(coiVector3& v3)
 {
-    Ogre::Vector3 vector3(v3.x, v3.y, v3.z);
     coiVector3 result;
     result.x = -v3.x;
     result.y = -v3.y;
@@ -61,36 +96,29 @@ coiVector3 vector3_negate(coiVector3& v3)
     return result;
 }
 
-coiVector3 vector3_divide_vector3(coiVector3 lhs, coiVector3 rhs)
+// Vector3::operator/ 
+coiVector3 vector3_divide_vector3(coiVector3& lhs, coiVector3& rhs)
 {
-    Ogre::Vector3 left(lhs.x, lhs.y, lhs.z);
-    Ogre::Vector3 right(rhs.x, rhs.y, rhs.z);
-    Ogre::Vector3 tmp = left / right;
-
     coiVector3 result;
-    result.x = tmp.x;
-    result.y = tmp.y;
-    result.z = tmp.z;
+    result.x = lhs.x / rhs.x;
+    result.y = lhs.y / rhs.y;
+    result.z = lhs.z / rhs.z;
     return result;
 }
 
-DLL coiVector3 vector3_multiply_vector3(coiVector3 lhs, coiVector3 rhs)
-{
-    Ogre::Vector3 left(lhs.x, lhs.y, lhs.z);
-    Ogre::Vector3 right(rhs.x, rhs.y, rhs.z);
-    Ogre::Vector3 tmp = left * right;
 
+coiVector3 vector3_multiply_vector3(coiVector3 lhs, coiVector3 rhs)
+{
     coiVector3 result;
-    result.x = tmp.x;
-    result.y = tmp.y;
-    result.z = tmp.z;
+    result.x = lhs.x * rhs.x;
+    result.y = lhs.y * rhs.y;
+    result.z = lhs.z * rhs.z;
     return result;
 }
 
 int vector3_is_nan(coiVector3& v3)
 {
     Ogre::Vector3 vector3(v3.x, v3.y, v3.z);
-    //Ogre::Vector3* vector3 = reinterpret_cast<Ogre::Vector3*>(v3);
     return (vector3.isNaN()) ? 1 : 0;
 }
 
@@ -125,6 +153,7 @@ coiVector3 vector3_UNIT_X()
     result.z = v3.z;
     return result;
 }
+
 coiVector3 vector3_UNIT_Y()
 {
     Ogre::Vector3 v3(Ogre::Vector3::UNIT_Y);

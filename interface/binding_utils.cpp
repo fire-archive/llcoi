@@ -1,5 +1,5 @@
 /******************************************************************************
- * log_bind.cpp - bindings for Ogre::Log
+ * binding_utils.cpp - helper functions for LLCOI
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
@@ -37,49 +37,51 @@
 
 #include "ogre_interface.h"
 #include "binding_utils.h"
-#include <OgreLog.h>
-#include <OgreStringConverter.h>
 
-class LogListenerBind : public Ogre::LogListener
+log_message_level ogre_lml_to_llcoi_lml(Ogre::LogMessageLevel lml)
 {
-public:
-    LogListenerBind(LogListenerEvent lle) : logListenerHandle(lle)
+    log_message_level converted;
+
+    switch(lml)
     {
+        case Ogre::LML_TRIVIAL:
+            converted = LML_TRIVIAL;
+            break;
+
+        case Ogre::LML_NORMAL:
+            converted = LML_NORMAL;
+            break;
+
+        case Ogre::LML_CRITICAL:
+            converted = LML_CRITICAL;
+            break;
     }
 
-    void messageLogged(const Ogre::String &message, Ogre::LogMessageLevel lml, bool maskDebug, const Ogre::String &logName, bool &skipThisMessage)
+    return converted;
+}
+
+
+Ogre::LogMessageLevel llcoi_lml_to_ogre_lml(log_message_level lml)
+{
+    Ogre::LogMessageLevel converted;
+
+    switch(lml)
     {
+        case LML_TRIVIAL:
+            converted = Ogre::LML_TRIVIAL;
+            break;
 
-        if(logListenerHandle)
-        {
-            log_message_level converted = ogre_lml_to_llcoi_lml(lml);
-            logListenerHandle(message.c_str(), converted, maskDebug, logName.c_str(), skipThisMessage);
-        }
+        case LML_NORMAL:
+            converted = Ogre::LML_NORMAL;
+            break;
+
+        case Ogre::LML_CRITICAL:
+            converted = Ogre::LML_CRITICAL;
+            break;
     }
-
-    LogListenerEvent logListenerHandle;
-};
-
-void log_log_message(LogHandle handle, const char *message, log_message_level lml, int maskDebug)
-{
-    Ogre::Log* l = reinterpret_cast<Ogre::Log*>(handle);
-
-    Ogre::LogMessageLevel converted = llcoi_lml_to_ogre_lml(lml);
-    l->logMessage(Ogre::StringConverter::toString(message), converted, maskDebug);
+    return converted;
 }
 
-//Log::addListener
-void add_log_listener(LogListenerEvent log_event, LogHandle log_handle)
-{
-    Ogre::Log* log = reinterpret_cast<Ogre::Log*>(log_handle);
-    LogListenerBind *listener = new LogListenerBind(log_event);
-    log->addListener(listener);
-}
 
-//Log::removeListener
-void remove_log_listener(LogListenerEvent log_event, LogHandle log_handle)
-{
-    Ogre::Log* log = reinterpret_cast<Ogre::Log*>(log_handle);
-    Ogre::LogListener* listener = reinterpret_cast<Ogre::LogListener*>(log_event);
-    log->removeListener(listener);
-}
+logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
+Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);

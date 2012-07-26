@@ -65,6 +65,7 @@ alias void* NameValuePairListHandle;
 alias int function(float,float,int) FrameListenerEvent;
 alias void function(RenderWindowHandle) WindowListenerEvent;
 alias void function(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message) LogListenerEvent;
+alias void delegate(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message) LogListenerDelegate;
 
 struct coiQuaternion
 {
@@ -370,16 +371,24 @@ ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, Came
 int render_window_is_closed(RenderWindowHandle handle);
 
 // Vector3
-// NOTE: not all of these are implemented (yet.)
 
 //Vector3::operator !=
-coiVector3 vector3_notequals_vector3(coiVector3 lhs, coiVector3 rhs);
+int vector3_notequals_vector3(coiVector3 lhs, coiVector3 rhs);
 
 //Vector3::operator ==
-coiVector3 vector3_equals_vector3(coiVector3 lhs, coiVector3 rhs);
+int vector3_equals_vector3(coiVector3 lhs, coiVector3 rhs);
 
 //Vector3::operator +
 coiVector3 vector3_add_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator +=
+void vector3_update_add_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator -
+coiVector3 vector3_subtract_vector3(coiVector3 lhs, coiVector3 rhs);
+
+//Vector3::operator -=
+void vector3_update_subtract_vector3(coiVector3 lhs, coiVector3 rhs);
 
 //Vector3::operator - 
 coiVector3 vector3_negate(coiVector3 v3);
@@ -389,6 +398,7 @@ coiVector3 vector3_divide_vector3(coiVector3 lhs, coiVector3 rhs);
 
 // Vector3::operator*
 coiVector3 vector3_multiply_vector3(coiVector3 lhs, coiVector3 rhs);
+
 
 // Vector3::isNaN
 int vector3_is_nan(coiVector3 v3);

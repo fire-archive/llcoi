@@ -101,9 +101,11 @@ set(HDRS
 	./ogre_interface.h
 	./ois_interface.h
 	./ogre_manager.h
+    ./binding_utils.h
 )
 
 set(SRCS
+    ./binding_utils.cpp
 	./main.cpp
 	./ois_bind.cpp
 	./root_bind.cpp
@@ -171,6 +173,7 @@ if(${LLCOI_DYNAMIC_BUILD})
         install(FILES
             ogre_interface.h
             ois_interface.h
+            binding_utils.h
         DESTINATION ${CMAKE_INSTALL_PREFIX}/include/llcoi)
     endif()
 endif()
