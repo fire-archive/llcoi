@@ -35,7 +35,6 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#include "ogre_interface.h"
 #include "binding_utils.h"
 
 log_message_level ogre_lml_to_llcoi_lml(Ogre::LogMessageLevel lml)
