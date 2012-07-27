@@ -4,7 +4,7 @@ Compile:
 dmd -I./import main.d
 
 Copy to test dir:
-cp main ../../test/dist/bin/ && cd ../../test/dist/bin/
+mv main ../../test/dist/bin/ && cd ../../test/dist/bin/
 
 Run:
 ./main

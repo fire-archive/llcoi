@@ -85,3 +85,42 @@ Ogre::LogMessageLevel llcoi_lml_to_ogre_lml(log_message_level lml)
 
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
 Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);
+
+
+// XXX: Experimental code below. Some languages (D, for instance)
+// can speak to C++ if namespaces are omitted and only single inheritance
+// is used.
+
+void LogListenerEx::messageLogged(const Ogre::String &message, Ogre::LogMessageLevel lml, bool maskDebug, const Ogre::String &logName, bool &skipThisMessage)
+{
+    if(emitter)
+        emitter(message.c_str(), lml, maskDebug, logName.c_str(), skipThisMessage);
+}
+
+void LogListenerEx::setEmitter(LogEmitter em)
+{
+    this->emitter = em;
+}
+
+LogListenerEx* create_ex()
+{
+    LogListenerEx* listener = new LogListenerEx;
+    return listener;
+}
+
+void set_emitter(LogListenerEx* ll, LogEmitter em)
+{
+    ll->setEmitter(em);
+}
+
+void destroy_ex(LogListenerEx* ll)
+{
+    delete ll;
+}
+
+//Log::addListener
+void add_log_listener_ex(LogListenerEx* log_ex, LogHandle log_handle)
+{
+    Ogre::Log* log = reinterpret_cast<Ogre::Log*>(log_handle);
+    log->addListener(log_ex);
+}

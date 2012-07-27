@@ -40,10 +40,70 @@
 #include "ogre_interface.h" // as we can't forward declare enums. ):
 #include <OgreLog.h>        // Ditto.
 
+
+#if defined(LLCOI_BUILD_DYNAMIC)
+#   if defined( WIN32 ) || defined( _WINDOWS )
+#       ifndef llcoi_EXPORTS
+#           define DLLX __declspec(dllimport)
+#           define SYMX __declspec(dllimport)
+#       else
+#           define DLLX extern "C++" __declspec(dllexport)
+#           define SYMX __declspec(dllexport)
+#       endif
+#   else
+#       ifndef llcoi_EXPORTS
+#           define DLLX
+#           define SYMX
+#       else
+#           if defined( __GNUC__ ) && __GNUC__ >= 4
+#               define DLLX extern "C++" __attribute__ ((visibility("default")))
+#               define SYMX __attribute__ ((visibility("default")))
+#           else
+#               define DLLX extern "C++"
+#               define SYMX __attribute__ ((visibility("default")))
+#           endif
+#       endif
+#   endif
+#else
+#   if defined( LLCOI_BUILD_STATIC )
+#       if defined( __GNUC__ ) && __GNUC__ >= 4
+#           define DLLX extern "C++" __attribute__ ((visibility("default")))
+#           define SYMX __attribute__ ((visibility("default")))
+#       else
+#           define DLLX extern "C++"
+#       endif
+#   else
+#       define DLLX
+#       define SYMX
+#   endif
+#endif
+
+
 log_message_level ogre_lml_to_llcoi_lml(Ogre::LogMessageLevel lml);
 Ogre::LogMessageLevel llcoi_lml_to_ogre_lml(log_message_level lml);
 
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
 Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);
+
+
+// XXX: Experimental code below. Some languages (D, for instance)
+// can speak to C++ if namespaces are omitted and only single inheritance
+// is used. 
+typedef void(*LogEmitter)(const char* m, int lml, int md, const char* ln, int sm);
+
+class SYMX LogListenerEx : public Ogre::LogListener
+{
+public:
+    virtual void messageLogged(const Ogre::String &message, Ogre::LogMessageLevel lml, bool maskDebug, const Ogre::String &logName, bool &skipThisMessage);
+    virtual void setEmitter(LogEmitter em);
+
+private:
+    LogEmitter emitter;
+};
+
+DLLX LogListenerEx* create_ex();
+DLL void set_emitter(LogListenerEx* ll, LogEmitter em);
+DLLX void destroy_ex(LogListenerEx* ll);
+DLLX void add_log_listener_ex(LogListenerEx* ll, LogHandle log_handle);
 
 #endif
