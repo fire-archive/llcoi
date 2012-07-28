@@ -35,7 +35,7 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-module ogre_interface;
+module llcoi.ogre_interface;
 
 extern(C):
 
@@ -58,14 +58,15 @@ alias void* SceneManagerHandle;
 alias void* ViewportHandle;
 alias void* LogManagerHandle;
 alias void* LogHandle;
+alias void* LogListenerHandle;
 alias void* NameValuePairListHandle;
 
 
 // listener typedefs
 alias int function(float,float,int) FrameListenerEvent;
 alias void function(RenderWindowHandle) WindowListenerEvent;
-alias void function(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message) LogListenerEvent;
-alias void delegate(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message) LogListenerDelegate;
+alias void function(const char* message, int lml, int maskDebug, const char* log_name, int skip_message) LogListenerEvent;
+alias void function(const char* message, int lml, int maskDebug, const char* log_name, int skip_message, void* userdata) LogListenerCtx;
 
 struct coiQuaternion
 {
@@ -91,14 +92,14 @@ struct engine_options
     int width, height, auto_window;
 };
 
-enum logging_level
+enum LoggingLevel
 {
     LL_LOW = 1,
     LL_NORMAL = 2,
     LL_BOREME = 3
 };
 
-enum log_message_level
+enum LogMessageLevel
 {
     LML_TRIVIAL = 1,
     LML_NORMAL = 2,
@@ -344,10 +345,10 @@ LogHandle logmanager_create_log(const char* name, int default_log, int debugger_
 // having to supply all these variables. If you don't need this control,
 // use log_message above.
 //LogManager::logMessage
-void logmanager_log_message(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
+void logmanager_log_message(const char* message, LogMessageLevel lml, int maskDebug, const char* log_name, int skip_message);
 
-//LogManager::destroyLog
-void logmanager_set_log_detail(logging_level lvl);
+//LogManager::setLogDetail
+void logmanager_set_log_detail(LoggingLevel lvl);
 
 //LogManager::destroyLog
 void logmanager_destroy_log(const char* name);
@@ -356,10 +357,17 @@ void logmanager_destroy_log(const char* name);
 void logmanager_destroy_log_by_handle(LogHandle log_handle);
 
 //Log::addListener
-void add_log_listener(LogListenerEvent log_event, LogHandle log_handle);
+LogListenerHandle add_log_listener(LogListenerEvent log_event, LogHandle log_handle);
+
+//Log::addListener
+LogListenerHandle add_log_listener_ctx(LogListenerCtx log_event, LogHandle log_handle, void* userdata);
 
 //Log::removeListener
-void remove_log_listener(LogListenerEvent log_event, LogHandle log_handle);
+void remove_log_listener(LogListenerHandle llh, LogHandle log_handle);
+
+//Log::removeListener
+void remove_log_listener_ctx(LogListenerHandle llh, LogHandle log_handle);
+
 
 // NameValuePairList 
 NameValuePairListHandle create_name_value_pair_list();
@@ -398,7 +406,6 @@ coiVector3 vector3_divide_vector3(coiVector3 lhs, coiVector3 rhs);
 
 // Vector3::operator*
 coiVector3 vector3_multiply_vector3(coiVector3 lhs, coiVector3 rhs);
-
 
 // Vector3::isNaN
 int vector3_is_nan(coiVector3 v3);
