@@ -120,6 +120,7 @@
 #define ViewportHandle void*
 #define LogManagerHandle void*
 #define LogHandle void*
+#define LogListenerHandle void*
 #define NameValuePairListHandle void*
 
 // listener typedefs
@@ -167,6 +168,11 @@ typedef enum
 
 
 typedef void(*LogListenerEvent)(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
+
+// Same as LogListenerEvent but allows the client to
+// send additional data via a void pointer. We assume the
+// client knows what they're doing if they use this. (:
+typedef void(*LogListenerCtx)(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message, void* userdata);
 
 // Root functions
 DLL void release_engine();
@@ -410,7 +416,7 @@ DLL LogHandle logmanager_create_log(const char* name, int default_log, int debug
 //LogManager::logMessage
 DLL void logmanager_log_message(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
 
-//LogManager::destroyLog
+//LogManager::setLogDetail
 DLL void logmanager_set_log_detail(logging_level lvl);
 
 //LogManager::destroyLog
@@ -420,10 +426,16 @@ DLL void logmanager_destroy_log(const char* name);
 DLL void logmanager_destroy_log_by_handle(LogHandle log_handle);
 
 //Log::addListener
-DLL void add_log_listener(LogListenerEvent log_event, LogHandle log_handle);
+DLL LogListenerHandle add_log_listener(LogListenerEvent log_event, LogHandle log_handle);
+
+//Log::addListener
+DLL LogListenerHandle add_log_listener_ctx(LogListenerCtx log_event, LogHandle log_handle, void* userdata);
 
 //Log::removeListener
-DLL void remove_log_listener(LogListenerEvent log_event, LogHandle log_handle);
+DLL void remove_log_listener(LogListenerHandle handle, LogHandle log_handle);
+
+//Log::addListener
+DLL void remove_log_listener_ctx(LogListenerHandle handle, LogHandle log_handle);
 
 //Log::logMessage
 DLL void log_log_message(LogHandle handle, const char *message, log_message_level lml, int maskDebug);

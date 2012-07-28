@@ -81,6 +81,5 @@ Ogre::LogMessageLevel llcoi_lml_to_ogre_lml(log_message_level lml)
     return converted;
 }
 
-
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
 Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);
