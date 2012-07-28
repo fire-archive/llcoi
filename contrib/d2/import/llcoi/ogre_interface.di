@@ -60,6 +60,7 @@ alias void* LogManagerHandle;
 alias void* LogHandle;
 alias void* LogListenerHandle;
 alias void* NameValuePairListHandle;
+alias void* FrameListenerHandle;
 
 
 // listener typedefs
@@ -67,6 +68,7 @@ alias int function(float,float,int) FrameListenerEvent;
 alias void function(RenderWindowHandle) WindowListenerEvent;
 alias void function(const char* message, int lml, int maskDebug, const char* log_name, int skip_message) LogListenerEvent;
 alias void function(const char* message, int lml, int maskDebug, const char* log_name, int skip_message, void* userdata) LogListenerCtx;
+alias int function(const ref FrameEvent evt, int frame_type, void* userdata) FrameListenerCtx;
 
 struct coiQuaternion
 {
@@ -81,7 +83,13 @@ struct coiVector3
     float x;
     float y;
     float z;
-} ;
+};
+
+struct FrameEvent
+{
+    coiReal timeSinceLastEvent;
+    coiReal timeSinceLastFrame;
+};
 
 struct engine_options
 {
@@ -91,6 +99,7 @@ struct engine_options
     const char* log_name;
     int width, height, auto_window;
 };
+
 
 enum LoggingLevel
 {
@@ -317,6 +326,11 @@ void light_set_position(LightHandle light_handle, const float x, const float y, 
 void add_frame_listener(FrameListenerEvent frame_event,const int frame_event_type);
 
 void remove_frame_listener(FrameListenerEvent frame_event);
+
+FrameListenerHandle add_frame_listener_ctx(FrameListenerCtx callback, void* userdata);
+
+void remove_frame_listener_ctx(FrameListenerHandle handle);
+
 
 // WindowListener
 void add_window_listener(RenderWindowHandle window_handle, WindowListenerEvent window_event);
