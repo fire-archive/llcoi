@@ -78,7 +78,8 @@ public:
 // list of frame listeners for deleting
 std::vector<FrameListenerBind*> frameListenerList;
 
-void add_frame_listener(FrameListenerEvent frame_event,int frame_event_type)
+
+void add_frame_listener(FrameListenerEvent frame_event, int frame_event_type)
 {
 	FrameListenerBind *frameListener =
 		new FrameListenerBind(
@@ -106,4 +107,70 @@ void remove_frame_listener(FrameListenerEvent frame_event)
 			++it;
 		}
 	}
+}
+
+
+// Variation on FrameListenerBind, allows the client to pass void* userdata back and forth.
+class FrameListenerCTX: public Ogre::FrameListener
+{
+public:
+    FrameListenerCTX(FrameListenerCtx cb, void* data)
+        : callback(cb), userdata(data)
+    {
+    }
+
+    bool frameStarted(const Ogre::FrameEvent& evt)
+    {
+        if (callback)
+        {
+            FrameEvent e;
+            e.time_since_last_event = evt.timeSinceLastEvent;
+            e.time_since_last_frame = evt.timeSinceLastFrame;
+            return callback(&e, EVENT_FRAME_STARTED, userdata);
+        }
+        return true;
+    }
+
+    bool frameRenderingQueued(const Ogre::FrameEvent& evt)
+    {
+        if (callback)
+        {
+            FrameEvent e;
+            e.time_since_last_event = evt.timeSinceLastEvent;
+            e.time_since_last_frame = evt.timeSinceLastFrame;
+            return callback(&e, EVENT_FRAME_RENDERING_QUEUED, userdata);
+        }
+        return true;
+    }
+
+    bool frameEnded(const Ogre::FrameEvent& evt)
+    {
+        if (callback)
+        {
+            FrameEvent e;
+            e.time_since_last_event = evt.timeSinceLastEvent;
+            e.time_since_last_frame = evt.timeSinceLastFrame;
+            return callback(&e, EVENT_FRAME_ENDED, userdata);
+        }
+        return true;
+    }
+
+    FrameListenerCtx callback;
+    void* userdata;
+};
+
+
+
+FrameListenerHandle add_frame_listener_ctx(FrameListenerCtx callback, void* userdata)
+{
+    FrameListenerCTX *frameListener = new FrameListenerCTX(callback, userdata);
+    Ogre::Root::getSingletonPtr()->addFrameListener(frameListener);
+    return reinterpret_cast<FrameListenerHandle>(frameListener);
+}
+
+void remove_frame_listener_ctx(FrameListenerHandle handle)
+{
+    FrameListenerCTX* listener = reinterpret_cast<FrameListenerCTX*>(handle);
+    Ogre::Root::getSingletonPtr()->addFrameListener(listener);
+    delete listener;
 }

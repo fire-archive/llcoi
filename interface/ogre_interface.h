@@ -122,6 +122,7 @@
 #define LogHandle void*
 #define LogListenerHandle void*
 #define NameValuePairListHandle void*
+#define FrameListenerHandle void*
 
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
@@ -141,6 +142,12 @@ typedef struct
     float y;
     float z;
 } coiVector3;
+
+typedef struct
+{
+    coiReal time_since_last_event;
+    coiReal time_since_last_frame;
+} FrameEvent;
 
 typedef struct
 {
@@ -173,6 +180,10 @@ typedef void(*LogListenerEvent)(const char* message, log_message_level lml, int 
 // send additional data via a void pointer. We assume the
 // client knows what they're doing if they use this. (:
 typedef void(*LogListenerCtx)(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message, void* userdata);
+
+
+// Again, variation of FrameListenerEvent
+typedef int(*FrameListenerCtx)(const FrameEvent* event, int evt_type, void* userdata);
 
 // Root functions
 DLL void release_engine();
@@ -386,6 +397,11 @@ DLL void light_set_position(LightHandle light_handle, const float x, const float
 DLL void add_frame_listener(FrameListenerEvent frame_event,int frame_event_type);
 
 DLL void remove_frame_listener(FrameListenerEvent frame_event);
+
+DLL FrameListenerHandle add_frame_listener_ctx(FrameListenerCtx callback, void* userdata);
+
+DLL void remove_frame_listener_ctx(FrameListenerHandle handle);
+
 
 // WindowListener
 DLL void add_window_listener(RenderWindowHandle window_handle, WindowListenerEvent window_event);
