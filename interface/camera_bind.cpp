@@ -91,6 +91,15 @@ void camera_set_position(CameraHandle camera_handle, const float x, const float 
     camera->setPosition(Ogre::Vector3(x, y, z));
 }
 
+void camera_get_position(CameraHandle handle, coiVector3* result)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Vector3 pos = camera->getPosition();
+    result->x = pos.x;
+    result->y = pos.y;
+    result->z = pos.z;
+}
+
 // Ogre::Camera::lookAt(Ogre::Vector3 const&)
 // Ogre::Camera::lookAt(float, float, float)
 void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z)

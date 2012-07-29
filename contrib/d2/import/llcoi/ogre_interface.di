@@ -309,6 +309,8 @@ void camera_set_focal_length(CameraHandle camera_handle, float fl);
 
 void camera_set_position(CameraHandle camera_handle, const float x, const float y, const float z);
 
+const coiVector3 camera_get_position(CameraHandle handle, ref coiVector3 result);
+
 void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z);
 
 

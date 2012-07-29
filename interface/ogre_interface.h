@@ -145,6 +145,12 @@ typedef struct
 
 typedef struct
 {
+    coiVector3 position;
+    coiQuaternion orientation;
+} ViewPoint;
+
+typedef struct
+{
     coiReal time_since_last_event;
     coiReal time_since_last_frame;
 } FrameEvent;
@@ -379,6 +385,8 @@ DLL void camera_set_frustum_offset(CameraHandle camera_handle, const int offset_
 DLL void camera_set_focal_length(CameraHandle camera_handle, float fl);
 
 DLL void camera_set_position(CameraHandle camera_handle, const float x, const float y, const float z);
+
+DLL void camera_get_position(CameraHandle handle, coiVector3* result);
 
 DLL void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z);
 
