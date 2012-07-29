@@ -120,6 +120,7 @@ set(SRCS
 	./logmanager_bind.cpp
 	./log_bind.cpp
     ./vector3_bind.cpp
+    ./colourvalue_bind.cpp
 	./framelistener_bind.cpp
 	./viewport_bind.cpp
 	./movableobject_bind.cpp

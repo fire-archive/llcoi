@@ -45,8 +45,22 @@ const int EVENT_FRAME_STARTED = 1;
 const int EVENT_FRAME_RENDERING_QUEUED = 2;
 const int EVENT_FRAME_ENDED = 4;
 
+// From OgrePlatform.h
+alias uint uint32;
 alias ushort uint16;
+alias ubyte uint8;
+alias int int32;
+alias short int16;
+alias byte int8;
+
+// OgreSceneManager.h
 alias ushort SceneTypeMask;
+
+// OgreColourValue.h
+alias uint32 RGBA;
+alias uint32 ARGB;
+alias uint32 ABGR;
+alias uint32 BGRA;
 
 
 alias void* CameraHandle;
@@ -88,10 +102,25 @@ struct coiVector3
     float z;
 };
 
+struct ViewPoint
+{
+    coiVector3 position;
+    coiQuaternion orientation;
+};
+
 struct FrameEvent
 {
     coiReal timeSinceLastEvent;
     coiReal timeSinceLastFrame;
+};
+
+
+struct ColourValue
+{
+    float r;
+    float g;
+    float b;
+    float a;
 };
 
 struct engine_options
@@ -295,7 +324,9 @@ void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians);
 void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians);
 
 // Viewports
-void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b);
+void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b, float a);
+
+void viewport_set_background_colour_cv(ViewportHandle viewport_handle, ref ColourValue cv);
 
 float viewport_get_width(ViewportHandle viewport_handle);
 
@@ -415,8 +446,15 @@ void destroy_name_value_pair_list(NameValuePairListHandle params);
 ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, int zorder, float left, float top, float width, float height);
 int render_window_is_closed(RenderWindowHandle handle);
 
-// Vector3
+// ColourValue
+void colourvalue_zero(ref ColourValue c);
+void colourvalue_black(ref ColourValue c);
+void colourvalue_white(ref ColourValue c);
+void colourvalue_red(ref ColourValue c);
+void colourvalue_green(ref ColourValue c);
+void colourvalue_blue(ref ColourValue c);
 
+// Vector3
 //Vector3::operator !=
 int vector3_notequals_vector3(coiVector3 lhs, coiVector3 rhs);
 
