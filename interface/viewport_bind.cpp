@@ -50,10 +50,17 @@ ViewportHandle add_viewport(CameraHandle camera_handle)
     return reinterpret_cast<ViewportHandle>(vp);
 }
 
-void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b)
+void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b, float a)
 {
     Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
-    vp->setBackgroundColour(Ogre::ColourValue(r, g, b));
+    vp->setBackgroundColour(Ogre::ColourValue(r, g, b, a));
+}
+
+void viewport_set_background_colour_cv(ViewportHandle viewport_handle, ColourValue* cv)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
+    Ogre::ColourValue c(cv->r, cv->b, cv->g, cv->a);
+    vp->setBackgroundColour(c);
 }
 
 float viewport_get_width(ViewportHandle viewport_handle)
