@@ -45,6 +45,9 @@ const int EVENT_FRAME_STARTED = 1;
 const int EVENT_FRAME_RENDERING_QUEUED = 2;
 const int EVENT_FRAME_ENDED = 4;
 
+alias ushort uint16;
+alias ushort SceneTypeMask;
+
 
 alias void* CameraHandle;
 alias void* EntityHandle;
@@ -115,6 +118,16 @@ enum LogMessageLevel
     LML_CRITICAL = 3
 };
 
+enum SceneType
+{
+    ST_GENERIC = 1,
+    ST_EXTERIOR_CLOSE = 2,
+    ST_EXTERIOR_FAR = 4,
+    ST_EXTERIOR_REAL_FAR = 8,
+    ST_INTERIOR = 16
+};
+
+
 
 // Root functions
 void release_engine();
@@ -157,6 +170,14 @@ int show_config_dialog();
 
 void load_ogre_plugin(const char * plugin);
 
+// Doesn't use OgreManager. Can still throw if type_name doesn't exist.
+SceneManagerHandle root_create_scene_manager(const char* type_name, const char* instance_name);
+
+// Doesn't use OgreManager. If a specific scene manager is not found,
+// the default implementation is always returned.
+SceneManagerHandle root_create_scene_manager_by_mask(SceneTypeMask type_mask, const char* instance_name);
+
+// Does use OgreManager.
 SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name);
 
 SceneManagerHandle get_scene_manager();
