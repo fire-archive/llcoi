@@ -127,7 +127,22 @@
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
 typedef void(*WindowListenerEvent)(RenderWindowHandle);
+
+// From OgrePlatform.h
+typedef unsigned int uint32;
 typedef unsigned short uint16;
+typedef unsigned char uint8;
+typedef int int32;
+typedef short int16;
+typedef char int8;
+
+// OgreColourValue.h
+typedef uint32 RGBA;
+typedef uint32 ARGB;
+typedef uint32 ABGR;
+typedef uint32 BGRA;
+
+// OgreSceneManager.h
 typedef uint16 SceneTypeMask;
 
 typedef struct
@@ -156,6 +171,14 @@ typedef struct
     coiReal time_since_last_event;
     coiReal time_since_last_frame;
 } FrameEvent;
+
+typedef struct
+{
+    float r;
+    float g;
+    float b;
+    float a;
+} ColourValue;
 
 typedef struct
 {
@@ -370,7 +393,9 @@ DLL void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians);
 DLL void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians);
 
 // Viewports
-DLL void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b);
+DLL void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b, float a);
+
+DLL void viewport_set_background_colour_cv(ViewportHandle viewport_handle, ColourValue* cv);
 
 DLL float viewport_get_width(ViewportHandle viewport_handle);
 
@@ -494,8 +519,19 @@ DLL void destroy_name_value_pair_list(NameValuePairListHandle params);
 DLL ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, int zorder, float left, float top, float width, float height);
 DLL int render_window_is_closed(RenderWindowHandle handle);
 
-// Vector3
 
+// ColourValue
+DLL void colourvalue_zero(ColourValue* c);
+DLL void colourvalue_black(ColourValue* c);
+DLL void colourvalue_white(ColourValue* c);
+DLL void colourvalue_red(ColourValue* c);
+DLL void colourvalue_green(ColourValue* c);
+DLL void colourvalue_blue(ColourValue* c);
+
+
+// Vector3
+// TODO: Probably change these to pass pointers to coiV3 rather than passing the 
+// structs on the stack, as shown above with ColourValue. 
 //Vector3::operator !=
 DLL int vector3_notequals_vector3(coiVector3 lhs, coiVector3 rhs);
 
@@ -532,12 +568,26 @@ DLL coiVector3 vector3_primary_axis(coiVector3);
 
 // Vector3::ZERO
 DLL coiVector3 vector3_ZERO();
+
+// Vector3::UNIT_X
 DLL coiVector3 vector3_UNIT_X();
+
+// Vector3::UNIT_Y
 DLL coiVector3 vector3_UNIT_Y();
+
+// Vector3::UNIT_Z
 DLL coiVector3 vector3_UNIT_Z();
+
+// Vector3::NEGATIVE_UNIT_X
 DLL coiVector3 vector3_NEGATIVE_UNIT_X();
+
+// Vector3::NEGATIVE_UNIT_Y
 DLL coiVector3 vector3_NEGATIVE_UNIT_Y();
+
+// Vector3::NEGATIVE_UNIT_Z
 DLL coiVector3 vector3_NEGATIVE_UNIT_Z();
+
+// Vector3::UNIT_SCALE
 DLL coiVector3 vector3_UNIT_SCALE();
 
 #endif
