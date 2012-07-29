@@ -63,6 +63,18 @@ void viewport_set_background_colour_cv(ViewportHandle viewport_handle, ColourVal
     vp->setBackgroundColour(c);
 }
 
+float viewport_get_top(ViewportHandle handle)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(handle);
+    return vp->getTop();
+}
+
+float viewport_get_left(ViewportHandle handle)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(handle);
+    return vp->getLeft();
+}
+
 float viewport_get_width(ViewportHandle viewport_handle)
 {
     Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
@@ -75,6 +87,46 @@ float viewport_get_height(ViewportHandle viewport_handle)
     return vp->getHeight();
 }
 
+
+
+int viewport_get_actual_top(ViewportHandle handle)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(handle);
+    return vp->getActualTop();
+}
+
+int viewport_get_actual_left(ViewportHandle handle)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(handle);
+    return vp->getActualLeft();
+}
+
+int viewport_get_actual_width(ViewportHandle handle)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(handle);
+    return vp->getActualWidth();
+}
+
+int viewport_get_actual_height(ViewportHandle handle)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(handle);
+    return vp->getActualHeight();
+}
+
+
+//Ogre::Viewport::setAutoUpdated(bool)
+void viewport_set_auto_updated(ViewportHandle handle, int autoupdate)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(handle);
+    vp->setAutoUpdated(autoupdate);
+}
+
+//Ogre::Viewport::isAutoUpdated() const
+int viewport_is_auto_updated(ViewportHandle handle)
+{
+    Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(handle);
+    return vp->isAutoUpdated();
+}
 /*
 Ogre::Viewport::Listener
 Ogre::Viewport::operator=(Ogre::Viewport const&)
@@ -88,14 +140,6 @@ Ogre::Viewport::getTarget() const
 Ogre::Viewport::getCamera() const
 Ogre::Viewport::setCamera(Ogre::Camera*)
 Ogre::Viewport::getZOrder() const
-Ogre::Viewport::getLeft() const
-Ogre::Viewport::getTop() const
-Ogre::Viewport::getWidth() const
-Ogre::Viewport::getHeight() const
-Ogre::Viewport::getActualLeft() const
-Ogre::Viewport::getActualTop() const
-Ogre::Viewport::getActualWidth() const
-Ogre::Viewport::getActualHeight() const
 Ogre::Viewport::setDimensions(float, float, float, float)
 Ogre::Viewport::setOrientationMode(Ogre::OrientationMode, bool)
 Ogre::Viewport::getOrientationMode() const
@@ -108,8 +152,6 @@ Ogre::Viewport::getDepthClear() const
 Ogre::Viewport::setClearEveryFrame(bool, unsigned int)
 Ogre::Viewport::getClearEveryFrame() const
 Ogre::Viewport::getClearBuffers() const
-Ogre::Viewport::setAutoUpdated(bool)
-Ogre::Viewport::isAutoUpdated() const
 Ogre::Viewport::setMaterialScheme(std::string const&)
 Ogre::Viewport::getMaterialScheme() const
 Ogre::Viewport::getActualDimensions(int&, int&, int&, int&) const
