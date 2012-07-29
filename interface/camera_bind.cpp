@@ -120,6 +120,52 @@ CameraHandle get_camera(const char* camera_name)
     return reinterpret_cast<CameraHandle>(camera);
 }
 
+//Ogre::Camera::move(Ogre::Vector3 const&)
+void camera_move(CameraHandle handle, const float x, const float y, const float z)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    camera->move(Ogre::Vector3(x, y, z));
+}
+
+//Ogre::Camera::moveRelative(Ogre::Vector3 const&)
+void camera_move_relative(CameraHandle handle, const float x, const float y, const float z)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    camera->move(Ogre::Vector3(x, y, z));
+}
+
+//Ogre::Frustum::setAspectRatio(float)
+void camera_set_aspect_ratio_ex(CameraHandle handle, float ratio)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    camera->setAspectRatio(Ogre::Real(ratio));
+}
+
+//Ogre::Frustum::getAspectRatio() const
+float camera_get_aspect_ratio(CameraHandle handle)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    return camera->getAspectRatio();
+}
+
+//Ogre::Camera::setDirection(float, float, float)
+//Ogre::Camera::setDirection(Ogre::Vector3 const&)
+void camera_set_direction(CameraHandle handle, const float x, const float y, const float z)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    camera->setDirection(Ogre::Vector3(x, y, z));
+}
+
+// Ogre::Camera::getDirection() const
+void camera_get_direction(CameraHandle handle, coiVector3* v3)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Vector3 v = camera->getDirection();
+    v3->x = v.x;
+    v3->y = v.y;
+    v3->z = v.z;
+}
+
 /*
 Ogre::Camera::Listener
 Ogre::Camera::Camera(std::string const&, Ogre::SceneManager*)
@@ -130,11 +176,6 @@ Ogre::Camera::getSceneManager() const
 Ogre::Camera::setPolygonMode(Ogre::PolygonMode)
 Ogre::Camera::getPolygonMode() const
 Ogre::Camera::getPosition() const
-Ogre::Camera::move(Ogre::Vector3 const&)
-Ogre::Camera::moveRelative(Ogre::Vector3 const&)
-Ogre::Camera::setDirection(float, float, float)
-Ogre::Camera::setDirection(Ogre::Vector3 const&)
-Ogre::Camera::getDirection() const
 Ogre::Camera::getUp() const
 Ogre::Camera::getRight() const
 Ogre::Camera::roll(Ogre::Radian const&)
@@ -219,8 +260,6 @@ Ogre::Frustum::setNearClipDistance(float)
 Ogre::Frustum::getNearClipDistance() const
 Ogre::Frustum::setFarClipDistance(float)
 Ogre::Frustum::getFarClipDistance() const
-Ogre::Frustum::setAspectRatio(float)
-Ogre::Frustum::getAspectRatio() const
 Ogre::Frustum::setFrustumOffset(Ogre::Vector2 const&)
 Ogre::Frustum::setFrustumOffset(float, float)
 Ogre::Frustum::getFrustumOffset() const
