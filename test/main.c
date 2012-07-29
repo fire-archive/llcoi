@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
 
     viewport = add_viewport(myCamera);
 
-    viewport_set_background_colour(viewport, 0, 0, 0);
+    viewport_set_background_colour(viewport, 0, 0, 0, 1);
 
     camera_set_aspect_ratio(myCamera, 800, 600);
 
