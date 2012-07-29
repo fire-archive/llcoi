@@ -1,5 +1,3 @@
-//FIXME: Not finished yet
-
 import llcoi.ogre_interface;
 import llcoi.ois_interface;
 
