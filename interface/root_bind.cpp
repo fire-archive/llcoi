@@ -230,12 +230,23 @@ RenderSystemListHandle root_get_available_renderers()
     return reinterpret_cast<RenderSystemListHandle>(l);
 }
 
+SceneManagerHandle root_create_scene_manager(const char* type_name, const char* instance_name)
+{
+    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->createSceneManager(Ogre::String(type_name), Ogre::String(instance_name));
+    return reinterpret_cast<SceneManagerHandle>(sm);
+}
+
+
+SceneManagerHandle root_create_scene_manager_by_mask(SceneTypeMask type_mask, const char* instance_name)
+{
+    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->createSceneManager(type_mask, Ogre::String(instance_name));
+    return reinterpret_cast<SceneManagerHandle>(sm);
+}
 
 /*
 Ogre::Root::~Root()
 Ogre::Root::saveConfig()
 Ogre::Root::addRenderSystem(Ogre::RenderSystem*)
-Ogre::Root::getAvailableRenderers()
 Ogre::Root::getRenderSystemByName(std::string const&)
 Ogre::Root::setRenderSystem(Ogre::RenderSystem*)
 Ogre::Root::getRenderSystem()

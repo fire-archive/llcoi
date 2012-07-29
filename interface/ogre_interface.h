@@ -127,6 +127,8 @@
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
 typedef void(*WindowListenerEvent)(RenderWindowHandle);
+typedef unsigned short uint16;
+typedef uint16 SceneTypeMask;
 
 typedef struct
 {
@@ -178,6 +180,15 @@ typedef enum
     LML_NORMAL = 2,
     LML_CRITICAL = 3
 } log_message_level;
+
+typedef enum
+{
+    ST_GENERIC = 1,
+    ST_EXTERIOR_CLOSE = 2,
+    ST_EXTERIOR_FAR = 4,
+    ST_EXTERIOR_REAL_FAR = 8,
+    ST_INTERIOR = 16
+} SceneType;
 
 
 typedef void(*LogListenerEvent)(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
@@ -232,6 +243,14 @@ DLL int show_config_dialog();
 
 DLL void load_ogre_plugin(const char * plugin);
 
+// Doesn't use OgreManager. Can still throw if type_name doesn't exist.
+DLL SceneManagerHandle root_create_scene_manager(const char* type_name, const char* instance_name);
+
+// Doesn't use OgreManager. If a specific scene manager is not found,
+// the default implementation is always returned.
+DLL SceneManagerHandle root_create_scene_manager_by_mask(SceneTypeMask type_mask, const char* instance_name);
+
+// Does use OgreManager.
 DLL SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name);
 
 DLL SceneManagerHandle get_scene_manager();
