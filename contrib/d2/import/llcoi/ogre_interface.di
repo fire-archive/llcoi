@@ -309,7 +309,7 @@ void camera_set_focal_length(CameraHandle camera_handle, float fl);
 
 void camera_set_position(CameraHandle camera_handle, const float x, const float y, const float z);
 
-const coiVector3 camera_get_position(CameraHandle handle, ref coiVector3 result);
+void camera_get_position(CameraHandle handle, ref coiVector3 result);
 
 void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z);
 
@@ -391,7 +391,7 @@ void add_pair(NameValuePairListHandle params, const char* name, const char* valu
 void destroy_name_value_pair_list(NameValuePairListHandle params);
 
 // RenderWindow
-ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, .../*int zorder, float left, float top, float width, float height*/);
+ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, int zorder, float left, float top, float width, float height);
 int render_window_is_closed(RenderWindowHandle handle);
 
 // Vector3

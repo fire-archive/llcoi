@@ -113,11 +113,11 @@ int render_window_closed()
 }
 
 // Rendertarget->addViewport 
-ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, ...)
+ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, int zorder, float left, float top, float width, float height)
 {
     Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);
     Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
-    return reinterpret_cast<ViewportHandle>(window->addViewport(camera));
+    return reinterpret_cast<ViewportHandle>(window->addViewport(camera, zorder, left, top, width, height));
 }
 
 // RenderWindow::isClosed
