@@ -397,9 +397,26 @@ DLL void viewport_set_background_colour(ViewportHandle viewport_handle, float r,
 
 DLL void viewport_set_background_colour_cv(ViewportHandle viewport_handle, ColourValue* cv);
 
+DLL void viewport_set_auto_updated(ViewportHandle handle, int autoupdate);
+
+DLL int viewport_is_auto_updated(ViewportHandle handle);
+
+DLL float viewport_get_top(ViewportHandle handle);
+
+DLL float viewport_get_left(ViewportHandle handle);
+
 DLL float viewport_get_width(ViewportHandle viewport_handle);
 
 DLL float viewport_get_height(ViewportHandle viewport_handle);
+
+DLL int viewport_get_actual_top(ViewportHandle handle);
+
+DLL int viewport_get_actual_left(ViewportHandle handle);
+
+DLL int viewport_get_actual_width(ViewportHandle handle);
+
+DLL int viewport_get_actual_height(ViewportHandle handle);
+
 
 // Resource management
 DLL void setup_resources(const char* resources_cfg);
@@ -414,11 +431,23 @@ DLL CameraHandle create_camera(const char* camera_name);
 
 DLL CameraHandle get_camera(const char* camera_name);
 
+DLL void camera_move(CameraHandle handle, const float x, const float y, const float z);
+
+DLL void camera_move_relative(CameraHandle handle, const float x, const float y, const float z);
+
+DLL void camera_set_direction(CameraHandle handle, const float x, const float y, const float z);
+
+DLL void camera_get_direction(CameraHandle handle, coiVector3* v3);
+
 DLL void camera_set_near_clip_distance(CameraHandle camera_handle, float d);
 
 DLL void camera_set_far_clip_distance(CameraHandle camera_handle, float d);
 
 DLL void camera_set_aspect_ratio(CameraHandle camera_handle, float w, float h);
+
+DLL void camera_set_aspect_ratio_ex(CameraHandle handle, float ratio);
+
+DLL float camera_get_aspect_ratio(CameraHandle handle);
 
 DLL void camera_set_auto_aspect_ratio(CameraHandle camera_handle, int on);
 

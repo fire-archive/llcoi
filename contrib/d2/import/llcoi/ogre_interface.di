@@ -328,9 +328,25 @@ void viewport_set_background_colour(ViewportHandle viewport_handle, float r, flo
 
 void viewport_set_background_colour_cv(ViewportHandle viewport_handle, ref ColourValue cv);
 
+void viewport_set_auto_updated(ViewportHandle handle, int autoupdate);
+
+int viewport_is_auto_updated(ViewportHandle handle);
+
+float viewport_get_top(ViewportHandle handle);
+
+float viewport_get_left(ViewportHandle handle);
+
 float viewport_get_width(ViewportHandle viewport_handle);
 
 float viewport_get_height(ViewportHandle viewport_handle);
+
+int viewport_get_actual_top(ViewportHandle handle);
+
+int viewport_get_actual_left(ViewportHandle handle);
+
+int viewport_get_actual_width(ViewportHandle handle);
+
+int viewport_get_actual_height(ViewportHandle handle);
 
 // Resource management
 void setup_resources(const char* resources_cfg);
@@ -345,11 +361,23 @@ CameraHandle create_camera(const char* camera_name);
 
 CameraHandle get_camera(const char* camera_name);
 
+void camera_move(CameraHandle handle, const float x, const float y, const float z);
+
+void camera_move_relative(CameraHandle handle, const float x, const float y, const float z);
+
+void camera_set_direction(CameraHandle handle, const float x, const float y, const float z);
+
+void camera_get_direction(CameraHandle handle, coiVector3* v3);
+
 void camera_set_near_clip_distance(CameraHandle camera_handle, float d);
 
 void camera_set_far_clip_distance(CameraHandle camera_handle, float d);
 
 void camera_set_aspect_ratio(CameraHandle camera_handle, float w, float h);
+
+void camera_set_aspect_ratio_ex(CameraHandle handle, float ratio);
+
+float camera_get_aspect_ratio(CameraHandle handle);
 
 void camera_set_auto_aspect_ratio(CameraHandle camera_handle, int on);
 
