@@ -54,7 +54,7 @@ void light_set_position(LightHandle light_handle, const float x, const float y, 
 
 void destroy_light(LightHandle handle)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(light_handle);
+    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
     delete light;
 }
 
