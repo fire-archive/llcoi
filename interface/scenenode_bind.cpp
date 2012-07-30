@@ -35,6 +35,7 @@
  * THE SOFTWARE.
  ******************************************************************************/
 #include "ogre_interface.h"
+#include "binding_utils.h"
 
 #include <OgreRoot.h>
 #include <OgreSceneNode.h>
@@ -297,6 +298,12 @@ SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle parent_handle, 
 
     Ogre::SceneNode* child = parent->createChildSceneNode(Ogre::String(name), trans, rot);
     return reinterpret_cast<SceneNodeHandle>(child);
+}
+
+void scenenode_yaw_degree(SceneNodeHandle handle, float angle)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(handle);
+    scene_node->yaw(Ogre::Degree(angle));
 }
 
 /*
