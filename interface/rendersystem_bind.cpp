@@ -68,6 +68,12 @@ void render_system_set_config_option(RenderSystemHandle render_system_handle, co
     rs->setConfigOption(option, value);
 }
 
+const char * render_system_get_name(RenderSystemHandle handle)
+{
+    Ogre::RenderSystem* rs = reinterpret_cast<Ogre::RenderSystem*>(handle);
+    return rs->getName().c_str();
+}
+
 unsigned int render_system_list_size(RenderSystemListHandle list_handle)
 {
     Ogre::RenderSystemList* rs_list = reinterpret_cast<Ogre::RenderSystemList*>(list_handle);
