@@ -79,6 +79,7 @@ alias void* LogListenerHandle;
 alias void* NameValuePairListHandle;
 alias void* FrameListenerHandle;
 alias void* PlaneHandle;
+alias void* MeshHandle;
 
 
 // listener typedefs
@@ -94,14 +95,14 @@ struct coiQuaternion
     float x;
     float y;
     float z;
-};
+}
 
 struct coiVector3
 {
     float x;
     float y;
     float z;
-};
+}
 
 struct ViewPoint
 {
@@ -113,7 +114,7 @@ struct FrameEvent
 {
     coiReal timeSinceLastEvent;
     coiReal timeSinceLastFrame;
-};
+}
 
 
 struct ColourValue
@@ -122,7 +123,7 @@ struct ColourValue
     float g;
     float b;
     float a;
-};
+}
 
 struct engine_options
 {
@@ -188,6 +189,16 @@ enum scene_type
     ST_INTERIOR = 16
 };
 
+enum hardware_buffer_usage
+{
+    HBU_STATIC = 1,
+    HBU_DYNAMIC = 2,
+    HBU_WRITE_ONLY = 4,
+    HBU_DISCARDABLE = 8,
+    HBU_STATIC_WRITE_ONLY = 5, 
+    HBU_DYNAMIC_WRITE_ONLY = 6,
+    HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE = 14
+}
 
 
 // Root functions
@@ -267,6 +278,8 @@ void set_render_system(RenderSystemHandle render_system);
 RenderSystemHandle get_render_system();
 
 RenderSystemHandle get_render_system_by_name(const char* render_system_name);
+
+const(char*) render_system_get_name(RenderSystemHandle handle);
 
 void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value);
 
@@ -387,6 +400,13 @@ void add_resource_location(const char* location, const char* type, const char* g
 
 void initialise_all_resourcegroups();
 
+const(char*) resourcegroupmanager_DEFAULT_RESOURCE_GROUP_NAME();
+
+const(char*) resourcegroupmanager_INTERNAL_RESOURCE_GROUP_NAME();
+
+const(char*)  resourcegroupmanager_AUTODETECT_RESOURCE_GROUP_NAME();
+
+size_t resourcegroupmanager_RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS();
 
 // Camera
 CameraHandle create_camera(const char* camera_name);
@@ -566,5 +586,19 @@ coiVector3 vector3_UNIT_SCALE();
 
 // Plane
 
-PlaneHandle create_plane();
-void destroy_plane(PlaneHandle handle);
+PlaneHandle plane_create_plane();
+PlaneHandle plane_create_plane_normal(float x, float y, float z, float distance);
+void plane_destroy_plane(PlaneHandle handle);
+
+// MeshManager
+
+MeshHandle meshmanager_create_plane(const char* name, const char* group_name,
+                                    PlaneHandle plane, float width,
+                                    float height, int xsegments, int ysegments,
+                                    int normals, ushort num_tex_coord_sets,
+                                    float utile, float vtile, ref coiVector3 up_vector,
+                                    hardware_buffer_usage vertex_buffer_usage,
+                                    hardware_buffer_usage index_buffer_usage,
+                                    int vertex_shadow_buffer, int index_shadow_buffer);
+
+
