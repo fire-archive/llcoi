@@ -226,14 +226,14 @@ typedef enum
     SF_WORST_FPS      = 8,
     SF_TRIANGLE_COUNT = 16,
     SF_ALL            = 0xFFFF
-} StatFlags;
+} stat_flags;
 
 typedef enum
 {
     FB_FRONT,
     FB_BACK,
     FB_AUTO
-} FrameBuffer;
+} frame_buffer;
 
 typedef enum
 {
@@ -242,7 +242,16 @@ typedef enum
     ST_EXTERIOR_FAR = 4,
     ST_EXTERIOR_REAL_FAR = 8,
     ST_INTERIOR = 16
-} SceneType;
+} scene_type;
+
+typedef enum
+{
+    NO_SIDE,
+    POSITIVE_SIDE,
+    NEGATIVE_SIDE,
+    BOTH_SIDE
+} plane_side;
+
 
 
 typedef void(*LogListenerEvent)(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
@@ -503,6 +512,8 @@ DLL EntityHandle create_entity(const char* entity_name, const char* mesh_file);
 DLL LightHandle create_light(const char* light_name);
 
 DLL void light_set_position(LightHandle light_handle, const float x, const float y, const float z);
+
+DLL void destroy_light(LightHandle handle);
 
 
 // FrameListener

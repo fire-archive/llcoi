@@ -160,7 +160,7 @@ enum LogMessageLevel
     LML_CRITICAL = 3
 };
 
-enum StatFlags
+enum stat_flags
 {
     SF_NONE           = 0,
     SF_FPS            = 1,
@@ -171,14 +171,14 @@ enum StatFlags
     SF_ALL            = 0xFFFF
 };
 
-enum FrameBuffer
+enum frame_buffer
 {
     FB_FRONT,
     FB_BACK,
     FB_AUTO
 };
 
-enum SceneType
+enum scene_type
 {
     ST_GENERIC = 1,
     ST_EXTERIOR_CLOSE = 2,
@@ -434,6 +434,7 @@ LightHandle create_light(const char* light_name);
 
 void light_set_position(LightHandle light_handle, const float x, const float y, const float z);
 
+void destroy_light(LightHandle handle);
 
 // FrameListener
 void add_frame_listener(FrameListenerEvent frame_event,const int frame_event_type);
