@@ -125,6 +125,7 @@
 #define LogListenerHandle void*
 #define NameValuePairListHandle void*
 #define FrameListenerHandle void*
+#define PlaneHandle void*
 
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
@@ -665,5 +666,10 @@ DLL coiVector3 vector3_NEGATIVE_UNIT_Z();
 
 // Vector3::UNIT_SCALE
 DLL coiVector3 vector3_UNIT_SCALE();
+
+// Plane
+DLL PlaneHandle create_plane();
+DLL void destroy_plane(PlaneHandle handle);
+
 
 #endif

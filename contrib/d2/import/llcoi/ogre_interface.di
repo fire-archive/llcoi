@@ -78,6 +78,7 @@ alias void* LogHandle;
 alias void* LogListenerHandle;
 alias void* NameValuePairListHandle;
 alias void* FrameListenerHandle;
+alias void* PlaneHandle;
 
 
 // listener typedefs
@@ -562,3 +563,8 @@ coiVector3 vector3_NEGATIVE_UNIT_X();
 coiVector3 vector3_NEGATIVE_UNIT_Y();
 coiVector3 vector3_NEGATIVE_UNIT_Z();
 coiVector3 vector3_UNIT_SCALE();
+
+// Plane
+
+PlaneHandle create_plane();
+void destroy_plane(PlaneHandle handle);
