@@ -126,6 +126,7 @@
 #define NameValuePairListHandle void*
 #define FrameListenerHandle void*
 #define PlaneHandle void*
+#define MeshHandle void*
 
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
@@ -204,6 +205,7 @@ typedef struct
     size_t batchCount;
 } FrameStats;
 
+
 typedef enum
 {
     LL_LOW = 1,
@@ -252,6 +254,18 @@ typedef enum
     NEGATIVE_SIDE,
     BOTH_SIDE
 } plane_side;
+
+typedef enum 
+{
+    HBU_STATIC = 1,
+    HBU_DYNAMIC = 2,
+    HBU_WRITE_ONLY = 4,
+    HBU_DISCARDABLE = 8,
+    HBU_STATIC_WRITE_ONLY = 5, 
+    HBU_DYNAMIC_WRITE_ONLY = 6,
+    HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE = 14
+} hardware_buffer_usage;
+
 
 
 
@@ -345,6 +359,8 @@ DLL void add_render_system(RenderSystemHandle render_system);
 DLL RenderSystemHandle get_render_system();
 
 DLL RenderSystemHandle get_render_system_by_name(const char* render_system_name);
+
+DLL const char * render_system_get_name(RenderSystemHandle handle);
 
 DLL void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value);
 
@@ -463,6 +479,12 @@ DLL int viewport_get_actual_height(ViewportHandle handle);
 DLL void setup_resources(const char* resources_cfg);
 
 DLL void add_resource_location(const char* location, const char* type, const char* group);
+
+DLL const char * resourcegroupmanager_DEFAULT_RESOURCE_GROUP_NAME();
+DLL const char * resourcegroupmanager_INTERNAL_RESOURCE_GROUP_NAME();
+DLL const char * resourcegroupmanager_AUTODETECT_RESOURCE_GROUP_NAME();
+DLL size_t resourcegroupmanager_RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS();
+
 
 DLL void initialise_all_resourcegroups();
 
@@ -668,8 +690,19 @@ DLL coiVector3 vector3_NEGATIVE_UNIT_Z();
 DLL coiVector3 vector3_UNIT_SCALE();
 
 // Plane
-DLL PlaneHandle create_plane();
-DLL void destroy_plane(PlaneHandle handle);
+DLL PlaneHandle plane_create_plane();
+DLL PlaneHandle plane_create_plane_normal(float x, float y, float z, float distance);
+DLL void plane_destroy_plane(PlaneHandle handle);
 
+// MeshManager
+
+DLL MeshHandle meshmanager_create_plane(const char* name, const char* group_name,
+                                        PlaneHandle plane, float width,
+                                        float height, int xsegments, int ysegments,
+                                        int normals, unsigned short num_tex_coord_sets,
+                                        float utile, float vtile, coiVector3* up_vector,
+                                        hardware_buffer_usage vertex_buffer_usage,
+                                        hardware_buffer_usage index_buffer_usage,
+                                        int vertex_shadow_buffer, int index_shadow_buffer);
 
 #endif
