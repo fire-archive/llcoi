@@ -127,6 +127,7 @@ set(SRCS
 	./windoweventlistener_bind.cpp
 	./manualobject_bind.cpp
     ./configfile_bind.cpp
+    ./plane_bind.cpp
 )
  
 include_directories(${OGRE_INCLUDE_DIRS} ${OIS_INCLUDE_DIRS}
