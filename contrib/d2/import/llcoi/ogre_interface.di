@@ -200,6 +200,24 @@ enum hardware_buffer_usage
     HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE = 14
 }
 
+enum light_types
+{
+    /// Point light sources give off light equally in all directions, so require only position not direction
+    LT_POINT = 0,
+    /// Directional lights simulate parallel light beams from a distant source, hence have direction but no position
+    LT_DIRECTIONAL = 1,
+    /// Spotlights simulate a cone of light from a source so require position and direction, plus extra values for falloff
+    LT_SPOTLIGHT = 2
+};
+
+enum transform_space
+{
+    TS_LOCAL,
+    TS_PARENT,
+    TS_WORLD
+};
+
+
 
 // Root functions
 void release_engine();
@@ -365,6 +383,8 @@ void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, float 
 
 void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, float z);
 
+void scenenode_yaw_degree(SceneNodeHandle handle, coiReal angle);
+
 void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians);
 
 void scenenode_set_scale(SceneNodeHandle scenenode_handle, float x, float y, float z);
@@ -460,6 +480,14 @@ void camera_lookat(CameraHandle camera_handle, const float x, const float y, con
 // Entity
 EntityHandle create_entity(const char* entity_name, const char* mesh_file);
 
+void entity_set_cast_shadows(EntityHandle handle, int enabled);
+
+int entity_get_cast_shadows(EntityHandle handle);
+
+int entity_get_receives_shadows(EntityHandle handle);
+
+void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name);
+
 
 // Light
 LightHandle create_light(const char* light_name);
@@ -467,6 +495,12 @@ LightHandle create_light(const char* light_name);
 void light_set_position(LightHandle light_handle, const float x, const float y, const float z);
 
 void destroy_light(LightHandle handle);
+
+void light_set_type(LightHandle handle, light_types type);
+
+void light_set_diffuse_colour(LightHandle handle, const ref ColourValue colour);
+
+void light_set_specular_colour(LightHandle handle, const ref ColourValue colour);
 
 // FrameListener
 void add_frame_listener(FrameListenerEvent frame_event,const int frame_event_type);
