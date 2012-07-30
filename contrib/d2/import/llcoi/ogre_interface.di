@@ -133,6 +133,19 @@ struct engine_options
 };
 
 
+struct FrameStats
+{
+    float lastFPS;
+    float avgFPS;
+    float bestFPS;
+    float worstFPS;
+    ulong bestFrameTime;
+    ulong worstFrameTime;
+    size_t triangleCount;
+    size_t batchCount;
+};
+
+
 enum LoggingLevel
 {
     LL_LOW = 1,
@@ -145,6 +158,24 @@ enum LogMessageLevel
     LML_TRIVIAL = 1,
     LML_NORMAL = 2,
     LML_CRITICAL = 3
+};
+
+enum StatFlags
+{
+    SF_NONE           = 0,
+    SF_FPS            = 1,
+    SF_AVG_FPS        = 2,
+    SF_BEST_FPS       = 4,
+    SF_WORST_FPS      = 8,
+    SF_TRIANGLE_COUNT = 16,
+    SF_ALL            = 0xFFFF
+};
+
+enum FrameBuffer
+{
+    FB_FRONT,
+    FB_BACK,
+    FB_AUTO
 };
 
 enum SceneType
@@ -472,7 +503,10 @@ void destroy_name_value_pair_list(NameValuePairListHandle params);
 
 // RenderWindow
 ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, int zorder, float left, float top, float width, float height);
+
 int render_window_is_closed(RenderWindowHandle handle);
+
+void render_window_set_active(RenderWindowHandle handle, int state);
 
 // ColourValue
 void colourvalue_zero(ref ColourValue c);
