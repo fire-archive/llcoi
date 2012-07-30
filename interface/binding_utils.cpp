@@ -157,5 +157,80 @@ Ogre::HardwareBuffer::Usage llcoi_hbu_to_ogre_hbu(hardware_buffer_usage llcoi_hb
 
 
 
+light_types ogre_light_type_to_llcoi_light_type(Ogre::Light::LightTypes type)
+{
+    light_types converted;
+    switch(type)
+    {
+        case Ogre::Light::LT_POINT:
+            converted = LT_POINT;
+            break;
+        case Ogre::Light::LT_DIRECTIONAL:
+            converted = LT_DIRECTIONAL;
+            break;
+        case Ogre::Light::LT_SPOTLIGHT:
+            converted = LT_SPOTLIGHT;
+            break;
+    }
+    return converted;
+}
+
+Ogre::Light::LightTypes llcoi_light_types_to_ogre_light_types(light_types type)
+{
+    Ogre::Light::LightTypes converted;
+    switch(type)
+    {
+        case LT_POINT:
+            converted = Ogre::Light::LT_POINT;
+            break;
+        case LT_DIRECTIONAL:
+            converted = Ogre::Light::LT_DIRECTIONAL;
+            break;
+        case LT_SPOTLIGHT:
+            converted = Ogre::Light::LT_SPOTLIGHT;
+            break;
+    }
+    return converted;
+}
+
+
+transform_space ogre_ts_to_llcoi_ts(Ogre::Node::TransformSpace ogre_ts)
+{
+    transform_space converted;
+    switch(ogre_ts)
+    {
+        case Ogre::Node::TS_LOCAL:
+            converted = TS_LOCAL;
+            break;
+        case Ogre::Node::TS_PARENT:
+            converted = TS_PARENT;
+            break;
+        case Ogre::Node::TS_WORLD:
+            converted = TS_WORLD;
+            break;
+    }
+    return converted;
+}
+
+Ogre::Node::TransformSpace llcoi_ts_to_ogre_ts(Ogre::Node::TransformSpace llcoi_ts)
+{
+    Ogre::Node::TransformSpace converted;
+    switch(llcoi_ts)
+    {
+        case TS_LOCAL:
+            converted = Ogre::Node::TS_LOCAL;
+            break;
+        case TS_PARENT:
+            converted = Ogre::Node::TS_PARENT;
+            break;
+        case TS_WORLD:
+            converted = Ogre::Node::TS_WORLD;
+            break;
+    }
+    return converted;
+}
+
+
+
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
 Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);

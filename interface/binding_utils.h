@@ -38,8 +38,10 @@
 #ifndef LLCOI_BINDING_UTILS
 #define LLCOI_BINDING_UTILS
 #include "ogre_interface.h" // as we can't forward declare enums. ):
-#include <OgreLog.h>        // Ditto.
-#include <OgreHardwareBuffer.h> // Ditto.
+#include <OgreLog.h>            // LogMessageLevel and LoggingLevel
+#include <OgreHardwareBuffer.h> // HardwareBuffer::Usage
+#include <OgreLight.h>          // Light::LightTypes
+#include <OgreNode.h>           // Node::TransformSpace
 
 
 #if defined(LLCOI_BUILD_DYNAMIC)
@@ -85,6 +87,13 @@ Ogre::LogMessageLevel llcoi_lml_to_ogre_lml(log_message_level lml);
 
 hardware_buffer_usage ogre_hbu_to_llcoi_hbu(Ogre::HardwareBuffer::Usage ogre_hbu);
 Ogre::HardwareBuffer::Usage llcoi_hbu_to_ogre_hbu(hardware_buffer_usage llcoi_hbu);
+
+light_types ogre_light_type_to_llcoi_light_type(Ogre::Light::LightTypes type);
+Ogre::Light::LightTypes llcoi_light_types_to_ogre_light_types(light_types type);
+
+
+Ogre::Node::TransformSpace llcoi_ts_to_ogre_ts(Ogre::Node::TransformSpace llcoi_ts);
+transform_space ogre_ts_to_llcoi_ts(Ogre::Node::TransformSpace ogre_ts);
 
 
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
