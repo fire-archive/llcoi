@@ -256,6 +256,7 @@ SceneManagerHandle get_scene_manager();
 
 SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_name);
 
+
 int render_one_frame();
 
 int render_one_frame_ex(float time_since_last_frame);
@@ -269,6 +270,14 @@ void log_message(const char* message);
 RenderWindowHandle root_create_render_window(const char* name, uint width, uint height, int fullscreen, NameValuePairListHandle params);
 
 RenderSystemListHandle root_get_available_renderers();
+
+// Ogre::SceneManager calls
+
+EntityHandle scenemanager_create_entity(SceneManagerHandle handle, const char* name, const char* mesh_name, const char* group_name);
+
+SceneNodeHandle scenemanager_get_root_scene_node(SceneManagerHandle handle);
+
+LightHandle scenemanager_create_light(SceneManagerHandle handle, const char* name);
 
 // RenderSystem functions
 void add_render_system(RenderSystemHandle render_system);
@@ -367,6 +376,8 @@ void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, flo
 void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians);
 
 void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians);
+
+SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle handle, const char* name, const ref coiVector3 translate, const ref coiQuaternion rotate);
 
 // Viewports
 void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b, float a);

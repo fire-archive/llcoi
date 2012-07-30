@@ -349,7 +349,12 @@ DLL RenderWindowHandle root_create_render_window(const char* name, unsigned int 
 
 DLL RenderSystemListHandle root_get_available_renderers();
 
+// Ogre::SceneManager calls
+DLL EntityHandle scenemanager_create_entity(SceneManagerHandle handle, const char* name, const char* mesh_name, const char* group_name);
 
+DLL SceneNodeHandle scenemanager_get_root_scene_node(SceneManagerHandle handle);
+
+DLL LightHandle scenemanager_create_light(SceneManagerHandle handle, const char* name);
 
 // RenderSystem functions
 DLL void set_render_system(RenderSystemHandle render_system);
@@ -448,6 +453,8 @@ DLL void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y,
 DLL void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians);
 
 DLL void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians);
+
+DLL SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle handle, const char* name, const coiVector3* translate, const coiQuaternion* rotate);
 
 // Viewports
 DLL void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b, float a);
