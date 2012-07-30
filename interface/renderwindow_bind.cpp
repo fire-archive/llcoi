@@ -135,6 +135,12 @@ void render_window_set_active(RenderWindowHandle handle, int state)
     window->setActive(state);
 }
 
+void render_window_swap_buffers(RenderWindowHandle handle, int wait_for_vsync)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    window->swapBuffers(wait_for_vsync);
+}
+
 
 /*
 Ogre::RenderWindow::operator=(Ogre::RenderWindow const&)

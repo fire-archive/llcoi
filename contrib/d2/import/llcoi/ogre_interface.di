@@ -508,6 +508,8 @@ int render_window_is_closed(RenderWindowHandle handle);
 
 void render_window_set_active(RenderWindowHandle handle, int state);
 
+void render_window_swap_buffers(RenderWindowHandle handle, int wait_for_vsync);
+
 // ColourValue
 void colourvalue_zero(ref ColourValue c);
 void colourvalue_black(ref ColourValue c);

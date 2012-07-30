@@ -582,6 +582,8 @@ DLL int render_window_is_closed(RenderWindowHandle handle);
 
 DLL void render_window_set_active(RenderWindowHandle handle, int state);
 
+DLL void render_window_swap_buffers(RenderWindowHandle handle, int wait_for_vsync);
+
 
 // ColourValue
 DLL void colourvalue_zero(ColourValue* c);
