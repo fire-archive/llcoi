@@ -81,6 +81,26 @@ void initialise_all_resourcegroups()
     Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 }
 
+const char * resourcegroupmanager_DEFAULT_RESOURCE_GROUP_NAME()
+{
+    return Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME.c_str();
+}
+
+const char * resourcegroupmanager_INTERNAL_RESOURCE_GROUP_NAME()
+{
+    return Ogre::ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME.c_str();
+}
+
+const char * resourcegroupmanager_AUTODETECT_RESOURCE_GROUP_NAME()
+{
+    return Ogre::ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME.c_str();
+}
+
+size_t resourcegroupmanager_RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS()
+{
+    return Ogre::ResourceGroupManager::RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS;
+}
+
 
 /*
 Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME
