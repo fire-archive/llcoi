@@ -289,6 +289,16 @@ void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians)
     scene_node->pitch(Ogre::Radian(radians));
 }
 
+SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle parent_handle, const char* name, const coiVector3* translate, const coiQuaternion* rotate)
+{
+    Ogre::SceneNode* parent = reinterpret_cast<Ogre::SceneNode*>(parent_handle);
+    Ogre::Vector3 trans(translate->x, translate->y, translate->z);
+    Ogre::Quaternion rot(rotate->w, rotate->x, rotate->y, rotate->z);
+
+    Ogre::SceneNode* child = parent->createChildSceneNode(Ogre::String(name), trans, rot);
+    return reinterpret_cast<SceneNodeHandle>(child);
+}
+
 /*
 Ogre::SceneNode::operator=(Ogre::SceneNode const&)
 Ogre::SceneNode::SceneNode(Ogre::SceneNode const&)
