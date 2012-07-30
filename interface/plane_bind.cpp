@@ -38,3 +38,16 @@
 
 #include <OgreRoot.h>
 #include <OgrePlane.h>
+
+PlaneHandle create_plane()
+{
+    Ogre::Plane* plane = new Ogre::Plane;
+    return reinterpret_cast<PlaneHandle>(plane);
+
+}
+
+void destroy_plane(PlaneHandle handle)
+{
+    Ogre::Plane* plane = reinterpret_cast<Ogre::Plane*>(handle);
+    delete plane;
+}
