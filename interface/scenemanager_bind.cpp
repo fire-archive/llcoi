@@ -79,6 +79,28 @@ SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_
     return reinterpret_cast<SceneManagerHandle>(sm);
 }
 
+EntityHandle scenemanager_create_entity(SceneManagerHandle handle, const char* name, const char* mesh_name, const char* group_name)
+{
+    Ogre::SceneManager* sm = reinterpret_cast<Ogre::SceneManager*>(handle);
+    Ogre::Entity* ent = sm->createEntity(Ogre::String(name), Ogre::String(mesh_name), Ogre::String(group_name));
+    return reinterpret_cast<EntityHandle>(ent);
+}
+
+
+SceneNodeHandle scenemanager_get_root_scene_node(SceneManagerHandle handle)
+{
+    Ogre::SceneManager* sm = reinterpret_cast<Ogre::SceneManager*>(handle);
+    Ogre::SceneNode* sn = sm->getRootSceneNode();
+    return reinterpret_cast<SceneNodeHandle>(sn);
+}
+
+LightHandle scenemanager_create_light(SceneManagerHandle handle, const char* name)
+{
+    Ogre::SceneManager* sm = reinterpret_cast<Ogre::SceneManager*>(handle);
+    Ogre::Light* light = sm->createLight(Ogre::String(name));
+    return reinterpret_cast<LightHandle>(light);
+}
+
 /*
 Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK
 Ogre::SceneManager::ENTITY_TYPE_MASK
