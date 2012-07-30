@@ -52,6 +52,13 @@ void light_set_position(LightHandle light_handle, const float x, const float y, 
     light->setPosition(Ogre::Vector3(x, y, z));
 }
 
+void destroy_light(LightHandle handle)
+{
+    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(light_handle);
+    delete light;
+}
+
+
 /*
 Ogre::Light::operator=(Ogre::Light const&)
 Ogre::Light::Light(Ogre::Light const&)
