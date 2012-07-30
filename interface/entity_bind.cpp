@@ -46,6 +46,31 @@ EntityHandle create_entity(const char* entity_name, const char* mesh_file)
     return reinterpret_cast<EntityHandle>(entity);
 }
 
+void entity_set_cast_shadows(EntityHandle handle, int enabled)
+{
+    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    entity->setCastShadows(enabled);
+}
+
+int entity_get_cast_shadows(EntityHandle handle)
+{
+    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    return entity->getCastShadows();
+}
+
+int entity_get_receives_shadows(EntityHandle handle)
+{
+    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    return entity->getReceivesShadows();
+}
+
+void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name)
+{
+    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    entity->setMaterialName(Ogre::String(material_name), Ogre::String(group_name));
+}
+
+
 // How do we handle the fact that Ogre::Entity is an Ogre::MovableObject ?
 // Duplicate?
 
@@ -201,8 +226,6 @@ Ogre::MovableObject::hasEdgeList()
 Ogre::MovableObject::getShadowVolumeRenderableIterator(Ogre::ShadowTechnique, Ogre::Light const*, Ogre::HardwareIndexBufferSharedPtr*, bool, float, unsigned long)
 Ogre::MovableObject::getLightCapBounds() const
 Ogre::MovableObject::getDarkCapBounds(Ogre::Light const&, float) const
-Ogre::MovableObject::setCastShadows(bool)
-Ogre::MovableObject::getCastShadows() const
 Ogre::MovableObject::getReceivesShadows()
 Ogre::MovableObject::getPointExtrusionDistance(Ogre::Light const*) const
 Ogre::MovableObject::getTypeFlags() const
