@@ -129,6 +129,12 @@ int render_window_is_closed(RenderWindowHandle handle)
     return 0;
 }
 
+void render_window_set_active(RenderWindowHandle handle, int state)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    window->setActive(state);
+}
+
 
 /*
 Ogre::RenderWindow::operator=(Ogre::RenderWindow const&)
