@@ -39,6 +39,7 @@
 #define LLCOI_BINDING_UTILS
 #include "ogre_interface.h" // as we can't forward declare enums. ):
 #include <OgreLog.h>        // Ditto.
+#include <OgreHardwareBuffer.h> // Ditto.
 
 
 #if defined(LLCOI_BUILD_DYNAMIC)
@@ -81,6 +82,10 @@
 
 log_message_level ogre_lml_to_llcoi_lml(Ogre::LogMessageLevel lml);
 Ogre::LogMessageLevel llcoi_lml_to_ogre_lml(log_message_level lml);
+
+hardware_buffer_usage ogre_hbu_to_llcoi_hbu(Ogre::HardwareBuffer::Usage ogre_hbu);
+Ogre::HardwareBuffer::Usage llcoi_hbu_to_ogre_hbu(hardware_buffer_usage llcoi_hbu);
+
 
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
 Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);

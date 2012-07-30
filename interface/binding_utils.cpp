@@ -81,5 +81,81 @@ Ogre::LogMessageLevel llcoi_lml_to_ogre_lml(log_message_level lml)
     return converted;
 }
 
+hardware_buffer_usage ogre_hbu_to_llcoi_hbu(Ogre::HardwareBuffer::Usage ogre_hbu)
+{
+    hardware_buffer_usage converted;
+
+    switch(ogre_hbu)
+    {
+        case Ogre::HardwareBuffer::HBU_STATIC:
+            converted = HBU_STATIC;
+            break;
+
+        case Ogre::HardwareBuffer::HBU_DYNAMIC:
+            converted = HBU_DYNAMIC;
+            break;
+
+        case Ogre::HardwareBuffer::HBU_WRITE_ONLY:
+            converted = HBU_WRITE_ONLY;
+            break;
+
+        case Ogre::HardwareBuffer::HBU_DISCARDABLE:
+            converted = HBU_DISCARDABLE;
+            break;
+
+        case Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY:
+            converted = HBU_STATIC_WRITE_ONLY;
+            break;
+
+        case Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY:
+            converted = HBU_DYNAMIC_WRITE_ONLY;
+            break;
+
+        case Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE:
+            converted = HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE;
+            break;
+    }
+    return converted;
+}
+
+Ogre::HardwareBuffer::Usage llcoi_hbu_to_ogre_hbu(hardware_buffer_usage llcoi_hbu)
+{
+    Ogre::HardwareBuffer::Usage converted;
+
+    switch(llcoi_hbu)
+    {
+        case HBU_STATIC:
+            converted = Ogre::HardwareBuffer::HBU_STATIC;
+            break;
+
+        case HBU_DYNAMIC:
+            converted = Ogre::HardwareBuffer::HBU_DYNAMIC;
+            break;
+
+        case HBU_WRITE_ONLY:
+            converted = Ogre::HardwareBuffer::HBU_WRITE_ONLY;
+            break;
+
+        case HBU_DISCARDABLE:
+            converted = Ogre::HardwareBuffer::HBU_DISCARDABLE;
+            break;
+
+        case HBU_STATIC_WRITE_ONLY:
+            converted = Ogre::HardwareBuffer::HBU_STATIC_WRITE_ONLY;
+            break;
+
+        case HBU_DYNAMIC_WRITE_ONLY:
+            converted = Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY;
+            break;
+
+        case HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE:
+            converted = Ogre::HardwareBuffer::HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE;
+            break;
+    }
+    return converted;
+}
+
+
+
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
 Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);
