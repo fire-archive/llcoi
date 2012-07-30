@@ -38,6 +38,7 @@
 
 #include <OgreRoot.h>
 #include <OgreLight.h>
+#include "binding_utils.h"
 #include "ogre_manager.h"
 
 LightHandle create_light(const char* light_name)
@@ -56,6 +57,28 @@ void destroy_light(LightHandle handle)
 {
     Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
     delete light;
+}
+
+void light_set_type(LightHandle handle, light_types type)
+{
+    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::Light::LightTypes lt = llcoi_light_types_to_ogre_light_types(type);
+    light->setType(lt);
+}
+
+
+void light_set_diffuse_colour(LightHandle handle, const ColourValue* colour)
+{
+    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::ColourValue cv(colour->r, colour->g, colour->b, colour->a);
+    light->setDiffuseColour(cv);
+}
+
+void light_set_specular_colour(LightHandle handle, const ColourValue* colour)
+{
+    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::ColourValue cv(colour->r, colour->g, colour->b, colour->a);
+    light->setSpecularColour(cv);
 }
 
 
