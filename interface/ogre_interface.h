@@ -267,6 +267,21 @@ typedef enum
 } hardware_buffer_usage;
 
 
+typedef enum
+{
+    LT_POINT = 0,
+    LT_DIRECTIONAL = 1,
+    LT_SPOTLIGHT = 2
+} light_types;
+
+
+typedef enum
+{
+    TS_LOCAL,
+    TS_PARENT,
+    TS_WORLD
+} transform_space;
+
 
 
 typedef void(*LogListenerEvent)(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
@@ -442,6 +457,8 @@ DLL void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, fl
 
 DLL void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, float z);
 
+DLL void scenenode_yaw_degree(SceneNodeHandle handle, coiReal angle);
+
 DLL void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians);
 
 DLL void scenenode_set_scale(SceneNodeHandle scenenode_handle, float x, float y, float z);
@@ -455,6 +472,7 @@ DLL void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians);
 DLL void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians);
 
 DLL SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle handle, const char* name, const coiVector3* translate, const coiQuaternion* rotate);
+
 
 // Viewports
 DLL void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b, float a);
@@ -537,6 +555,14 @@ DLL void camera_lookat(CameraHandle camera_handle, const float x, const float y,
 // Entity
 DLL EntityHandle create_entity(const char* entity_name, const char* mesh_file);
 
+DLL void entity_set_cast_shadows(EntityHandle handle, int enabled);
+
+DLL int entity_get_cast_shadows(EntityHandle handle);
+
+DLL int entity_get_receives_shadows(EntityHandle handle);
+
+DLL void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name);
+
 
 // Light
 DLL LightHandle create_light(const char* light_name);
@@ -544,6 +570,12 @@ DLL LightHandle create_light(const char* light_name);
 DLL void light_set_position(LightHandle light_handle, const float x, const float y, const float z);
 
 DLL void destroy_light(LightHandle handle);
+
+DLL void light_set_type(LightHandle handle, light_types type);
+
+DLL void light_set_diffuse_colour(LightHandle handle, const ColourValue* colour);
+
+DLL void light_set_specular_colour(LightHandle handle, const ColourValue* colour);
 
 
 // FrameListener
