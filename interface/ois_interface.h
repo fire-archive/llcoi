@@ -41,6 +41,9 @@
 COI_DECLARE_HANDLE(InputSystemHandle);
 COI_DECLARE_HANDLE(MouseInputHandle);
 COI_DECLARE_HANDLE(KeyboardInputHandle);
+COI_DECLARE_HANDLE(ParamListHandle);
+
+//#define ParamListHandle void*
 
 //! Keyboard scan codes
 enum KeyCode
@@ -233,9 +236,12 @@ typedef struct
 } MouseState;
 
 
-DLL void create_input_system(unsigned int window_handle);
+DLL InputSystemHandle create_input_system(unsigned int window_handle);
 
-DLL void destroy_input_system();
+// For sending parameters to the input constructor.
+DLL InputSystemHandle create_input_system_ex(ParamListHandle handle);
+
+DLL void destroy_input_system(InputSystemHandle handle);
 
 DLL MouseInputHandle create_mouse_object(int buffered);
 
@@ -258,3 +264,9 @@ DLL void keyboard_set_buffered(KeyboardInputHandle keyboard_handle, int buffered
 DLL void keyboard_capture(KeyboardInputHandle keyboard_handle);
 
 DLL void mouse_capture(MouseInputHandle mouse_handle);
+
+DLL ParamListHandle ois_create_paramlist();
+
+DLL void ois_destroy_paramlist(ParamListHandle handle);
+
+DLL void ois_add_pair(ParamListHandle handle, const char* field, const char* value);
