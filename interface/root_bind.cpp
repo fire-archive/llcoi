@@ -243,6 +243,12 @@ SceneManagerHandle root_create_scene_manager_by_mask(SceneTypeMask type_mask, co
     return reinterpret_cast<SceneManagerHandle>(sm);
 }
 
+TimerHandle root_get_timer()
+{
+    Ogre::Timer* timer = Ogre::Root::getSingletonPtr()->getTimer();
+    return reinterpret_cast<TimerHandle>(timer);
+}
+
 /*
 Ogre::Root::~Root()
 Ogre::Root::saveConfig()
