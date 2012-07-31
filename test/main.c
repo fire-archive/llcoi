@@ -118,7 +118,7 @@ int main(int argc, char *argv[])
 
 	add_window_listener(renderwindow, window_event_listener_test);
 
-    create_input_system(render_window_get_hwnd(renderwindow));
+    InputSystemHandle input_handle = create_input_system(render_window_get_hwnd(renderwindow));
     keyboard = create_keyboard_object(0);
     mouse = create_mouse_object(0);
     
@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
 
     destroy_keyboard_object(keyboard);
     destroy_mouse_object(mouse);
-    destroy_input_system();
+    destroy_input_system(input_handle);
     release_engine();
 
     return 0;
