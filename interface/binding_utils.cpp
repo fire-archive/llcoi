@@ -231,6 +231,54 @@ Ogre::Node::TransformSpace llcoi_ts_to_ogre_ts(Ogre::Node::TransformSpace llcoi_
 }
 
 
+Ogre::Plane::Side llcoi_plane_side_to_ogre_plane_side(plane_side side)
+{
+    Ogre::Plane::Side converted;
+
+    switch(side)
+    {
+        case NO_SIDE:
+            converted = Ogre::Plane::NO_SIDE;
+            break;
+        case POSITIVE_SIDE:
+            converted = Ogre::Plane::POSITIVE_SIDE;
+            break;
+        case NEGATIVE_SIDE:
+            converted = Ogre::Plane::NEGATIVE_SIDE;
+            break;
+        case BOTH_SIDE:
+            converted = Ogre::Plane::BOTH_SIDE;
+            break;
+    }
+
+    return converted;
+}
+
+plane_side ogre_plane_side_to_llcoi_plane_side(Ogre::Plane::Side side)
+{
+    plane_side converted;
+
+    switch(side)
+    {
+        case Ogre::Plane::NO_SIDE:
+            converted = NO_SIDE;
+            break;
+        case Ogre::Plane::POSITIVE_SIDE:
+            converted = POSITIVE_SIDE;
+            break;
+        case Ogre::Plane::NEGATIVE_SIDE:
+            converted = NEGATIVE_SIDE;
+            break;
+        case Ogre::Plane::BOTH_SIDE:
+            converted = BOTH_SIDE;
+            break;
+    }
+
+
+    return converted;
+}
+
+
 
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
 Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);

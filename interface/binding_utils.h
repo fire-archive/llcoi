@@ -96,6 +96,11 @@ Ogre::Node::TransformSpace llcoi_ts_to_ogre_ts(Ogre::Node::TransformSpace llcoi_
 transform_space ogre_ts_to_llcoi_ts(Ogre::Node::TransformSpace ogre_ts);
 
 
+Ogre::Plane::Side llcoi_plane_side_to_ogre_plane_side(plane_side side);
+plane_side ogre_plane_side_to_llcoi_plane_side(Ogre::Plane::Side side);
+
+
+
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
 Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);
 #endif
