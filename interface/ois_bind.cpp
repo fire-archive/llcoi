@@ -44,14 +44,33 @@
 
 OIS::InputManager* input_manager = 0;
 
-void create_input_system(unsigned int window_handle)
+InputSystemHandle create_input_system(unsigned int window_handle)
 {
-	input_manager = OIS::InputManager::createInputSystem(window_handle);
+	OIS::InputManager* input = OIS::InputManager::createInputSystem(window_handle);
+    // XXX: Temporary until I get around to converting these functions 
+    // to not rely on global state of input_manager above.
+    input_manager = input;
+
+    return reinterpret_cast<InputSystemHandle>(input);
 }
 
-void destroy_input_system()
+InputSystemHandle create_input_system_ex(ParamListHandle handle)
 {
-	OIS::InputManager::destroyInputSystem(input_manager);
+    OIS::ParamList* paramlist = reinterpret_cast<OIS::ParamList*>(handle);
+    OIS::InputManager* input = OIS::InputManager::createInputSystem(*paramlist);
+    // XXX: Temporary until I get around to converting these functions 
+    // to not rely on global state of input_manager above.
+    input_manager = input;
+    return reinterpret_cast<InputSystemHandle>(input);
+}
+
+
+
+void destroy_input_system(InputSystemHandle handle)
+{
+    OIS::InputManager* input = reinterpret_cast<OIS::InputManager*>(handle);
+	OIS::InputManager::destroyInputSystem(input);
+    input_manager = 0;
 }
 
 MouseInputHandle create_mouse_object(int buffered)
@@ -136,4 +155,26 @@ void mouse_capture(MouseInputHandle mouse_handle)
 {
     OIS::Mouse* mouse = reinterpret_cast<OIS::Mouse*>(mouse_handle);
     mouse->capture();
+}
+
+ParamListHandle ois_create_paramlist()
+{
+    OIS::ParamList* paramlist = new OIS::ParamList;
+    return reinterpret_cast<ParamListHandle>(paramlist);
+}
+
+void ois_destroy_paramlist(ParamListHandle handle)
+{
+    OIS::ParamList* paramlist = reinterpret_cast<OIS::ParamList*>(handle);
+    delete paramlist;
+}
+
+void ois_add_pair(ParamListHandle handle, const char* field, const char* value)
+{
+    OIS::ParamList* paramlist = reinterpret_cast<OIS::ParamList*>(handle);
+    paramlist->insert(
+        std::make_pair(
+            std::string(field), std::string(value)
+        )
+    );
 }
