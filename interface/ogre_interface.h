@@ -371,6 +371,13 @@ DLL SceneNodeHandle scenemanager_get_root_scene_node(SceneManagerHandle handle);
 
 DLL LightHandle scenemanager_create_light(SceneManagerHandle handle, const char* name);
 
+DLL void scenemanager_set_sky_box(SceneManagerHandle handle, int enable, const char* material_name, float distance,
+                                  int draw_first, const coiQuaternion* orientation,
+                                  const char* group_name);
+
+DLL void scenemanager_set_sky_dome(SceneManagerHandle handle, int enable, const char* material_name, float curvature,
+                               float tiling, float distance, int draw_first, const coiQuaternion* orientation,
+                               int xsegments, int ysegments, int ysegments_keep, const char* group_name);
 // RenderSystem functions
 DLL void set_render_system(RenderSystemHandle render_system);
 
