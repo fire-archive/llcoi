@@ -42,15 +42,10 @@
 #include <OISJoyStick.h>
 #include <OISInputManager.h>
 
-OIS::InputManager* input_manager = 0;
 
 InputSystemHandle create_input_system(unsigned int window_handle)
 {
 	OIS::InputManager* input = OIS::InputManager::createInputSystem(window_handle);
-    // XXX: Temporary until I get around to converting these functions 
-    // to not rely on global state of input_manager above.
-    input_manager = input;
-
     return reinterpret_cast<InputSystemHandle>(input);
 }
 
@@ -58,43 +53,41 @@ InputSystemHandle create_input_system_ex(ParamListHandle handle)
 {
     OIS::ParamList* paramlist = reinterpret_cast<OIS::ParamList*>(handle);
     OIS::InputManager* input = OIS::InputManager::createInputSystem(*paramlist);
-    // XXX: Temporary until I get around to converting these functions 
-    // to not rely on global state of input_manager above.
-    input_manager = input;
     return reinterpret_cast<InputSystemHandle>(input);
 }
-
-
 
 void destroy_input_system(InputSystemHandle handle)
 {
     OIS::InputManager* input = reinterpret_cast<OIS::InputManager*>(handle);
 	OIS::InputManager::destroyInputSystem(input);
-    input_manager = 0;
 }
 
-MouseInputHandle create_mouse_object(int buffered)
+MouseInputHandle create_mouse_object(InputSystemHandle handle, int buffered)
 {
-	OIS::Mouse* mouse = static_cast<OIS::Mouse*>(input_manager->createInputObject( OIS::OISMouse, (bool)buffered ));
+    OIS::InputManager* input = reinterpret_cast<OIS::InputManager*>(handle);
+	OIS::Mouse* mouse = static_cast<OIS::Mouse*>(input->createInputObject( OIS::OISMouse, (bool)buffered ));
 	return reinterpret_cast<MouseInputHandle>(mouse);
 }
 
-KeyboardInputHandle create_keyboard_object(int buffered)
+KeyboardInputHandle create_keyboard_object(InputSystemHandle handle, int buffered)
 {
-    OIS::Keyboard* keyboard = static_cast<OIS::Keyboard*>(input_manager->createInputObject( OIS::OISKeyboard, (bool)buffered ));
+    OIS::InputManager* input = reinterpret_cast<OIS::InputManager*>(handle);
+    OIS::Keyboard* keyboard = static_cast<OIS::Keyboard*>(input->createInputObject( OIS::OISKeyboard, (bool)buffered ));
 	return reinterpret_cast<KeyboardInputHandle>(keyboard);
 }
 
-void destroy_mouse_object(MouseInputHandle mouse_handle)
+void destroy_mouse_object(InputSystemHandle handle, MouseInputHandle mouse_handle)
 {
+    OIS::InputManager* input = reinterpret_cast<OIS::InputManager*>(handle);
 	OIS::Mouse* mouse = reinterpret_cast<OIS::Mouse*>(mouse_handle);
-	input_manager->destroyInputObject(mouse);
+	input->destroyInputObject(mouse);
 }
 
-void destroy_keyboard_object(KeyboardInputHandle keyboard_handle)
+void destroy_keyboard_object(InputSystemHandle handle, KeyboardInputHandle keyboard_handle)
 {
+    OIS::InputManager* input = reinterpret_cast<OIS::InputManager*>(handle);
 	OIS::Keyboard* keyboard = reinterpret_cast<OIS::Keyboard*>(keyboard_handle);
-	input_manager->destroyInputObject(keyboard);
+	input->destroyInputObject(keyboard);
 }
 
 int keyboard_is_key_down(KeyboardInputHandle keyboard_handle, enum KeyCode key_code)
