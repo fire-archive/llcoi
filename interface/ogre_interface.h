@@ -657,6 +657,8 @@ DLL void render_window_set_active(RenderWindowHandle handle, int state);
 
 DLL void render_window_swap_buffers(RenderWindowHandle handle, int wait_for_vsync);
 
+DLL void render_window_get_custom_attribute(RenderWindowHandle handle, const char* attribute, void* pdata);
+
 
 // ColourValue
 DLL void colourvalue_zero(ColourValue* c);
