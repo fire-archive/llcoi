@@ -101,6 +101,31 @@ LightHandle scenemanager_create_light(SceneManagerHandle handle, const char* nam
     return reinterpret_cast<LightHandle>(light);
 }
 
+void scenemanager_set_sky_box(SceneManagerHandle handle, int enable, const char* material_name, float distance,
+                              int draw_first, const coiQuaternion* orientation,
+                              const char* group_name)
+{
+    Ogre::SceneManager* sm = reinterpret_cast<Ogre::SceneManager*>(handle);
+    Ogre::Quaternion q(
+        orientation->w, orientation->x, orientation->y, orientation->z
+    );
+
+    sm->setSkyBox(enable, Ogre::String(material_name), distance, draw_first, q, group_name); 
+}
+
+void scenemanager_set_sky_dome(SceneManagerHandle handle, int enable, const char* material_name, float curvature,
+                               float tiling, float distance, int draw_first, const coiQuaternion* orientation,
+                               int xsegments, int ysegments, int ysegments_keep, const char* group_name)
+{
+    Ogre::SceneManager* sm = reinterpret_cast<Ogre::SceneManager*>(handle);
+    Ogre::Quaternion q(
+        orientation->w, orientation->x, orientation->y, orientation->z
+    );
+
+    sm->setSkyDome(enable, Ogre::String(material_name), curvature, tiling, distance,
+                   draw_first, q, xsegments, ysegments, ysegments_keep, Ogre::String(group_name));
+}
+
 /*
 Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK
 Ogre::SceneManager::ENTITY_TYPE_MASK
