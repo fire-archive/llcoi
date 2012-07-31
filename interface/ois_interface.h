@@ -243,13 +243,13 @@ DLL InputSystemHandle create_input_system_ex(ParamListHandle handle);
 
 DLL void destroy_input_system(InputSystemHandle handle);
 
-DLL MouseInputHandle create_mouse_object(int buffered);
+DLL MouseInputHandle create_mouse_object(InputSystemHandle handle, int buffered);
 
-DLL KeyboardInputHandle create_keyboard_object(int buffered);
+DLL KeyboardInputHandle create_keyboard_object(InputSystemHandle handle, int buffered);
 
-DLL void destroy_mouse_object(MouseInputHandle mouse_handle);
+DLL void destroy_mouse_object(InputSystemHandle handle, MouseInputHandle mouse_handle);
 
-DLL void destroy_keyboard_object(KeyboardInputHandle keyboard_handle);
+DLL void destroy_keyboard_object(InputSystemHandle handle, KeyboardInputHandle keyboard_handle);
 
 DLL int keyboard_is_key_down(KeyboardInputHandle keyboard_handle, enum KeyCode key_code);
 
