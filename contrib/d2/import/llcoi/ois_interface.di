@@ -60,6 +60,13 @@ struct KeyboardInputHandle__
 
 alias KeyboardInputHandle__ *KeyboardInputHandle;
 
+struct ParamListHandle__
+{
+    int unused;
+}
+
+alias ParamListHandle__ *ParamListHandle;
+
 //! Keyboard scan codes
 enum KeyCode
 {
@@ -259,9 +266,12 @@ struct MouseState
     int buttons;
 }
 
-void  create_input_system(uint window_handle);
+InputSystemHandle create_input_system(uint window_handle);
 
-void  destroy_input_system();
+// For sending parameters to the input constructor.
+InputSystemHandle create_input_system_ex(ParamListHandle handle);
+
+void destroy_input_system(InputSystemHandle handle);
 
 MouseInputHandle  create_mouse_object(int buffered);
 
@@ -284,3 +294,9 @@ void  keyboard_set_buffered(KeyboardInputHandle keyboard_handle, int buffered);
 void  keyboard_capture(KeyboardInputHandle keyboard_handle);
 
 void  mouse_capture(MouseInputHandle mouse_handle);
+
+ParamListHandle ois_create_paramlist();
+
+void ois_destroy_paramlist(ParamListHandle handle);
+
+void ois_add_pair(ParamListHandle handle, const char* field, const char* value);
