@@ -80,6 +80,7 @@ alias void* NameValuePairListHandle;
 alias void* FrameListenerHandle;
 alias void* PlaneHandle;
 alias void* MeshHandle;
+alias void* TimerHandle;
 
 
 // listener typedefs
@@ -229,6 +230,8 @@ void init_engine(const engine_options options);
 RootHandle create_root(const char* pluginFileName, const char* configFileName, const char* logFileName);
 
 RenderWindowHandle root_initialise(int auto_create_window, const char* render_window_title);
+
+TimerHandle root_get_timer();
 
 RenderWindowHandle create_render_window(const char* name, const int width, const int height, const int full_screen);
 
@@ -659,4 +662,16 @@ MeshHandle meshmanager_create_plane(const char* name, const char* group_name,
                                     hardware_buffer_usage index_buffer_usage,
                                     int vertex_shadow_buffer, int index_shadow_buffer);
 
+// Ogre::Timer
+int timer_set_option(TimerHandle handle, const char* key, void* value);
+
+ulong timer_get_milliseconds(TimerHandle handle);
+
+ulong timer_get_microseconds(TimerHandle handle);
+
+ulong timer_get_milliseconds_cpu(TimerHandle handle);
+
+ulong timer_get_microseconds_cpu(TimerHandle handle);
+
+void timer_reset(TimerHandle handle);
 

@@ -127,6 +127,7 @@
 #define FrameListenerHandle void*
 #define PlaneHandle void*
 #define MeshHandle void*
+#define TimerHandle void*
 
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
@@ -305,6 +306,8 @@ DLL void init_engine(const engine_options options);
 DLL RootHandle create_root(const char* pluginFileName, const char* configFileName, const char* logFileName);
 
 DLL RenderWindowHandle root_initialise(int auto_create_window, const char* render_window_title);
+
+DLL TimerHandle root_get_timer();
 
 DLL RenderWindowHandle create_render_window(const char* name, const int width, const int height, const int full_screen);
 
@@ -758,5 +761,19 @@ DLL MeshHandle meshmanager_create_plane(const char* name, const char* group_name
                                         hardware_buffer_usage vertex_buffer_usage,
                                         hardware_buffer_usage index_buffer_usage,
                                         int vertex_shadow_buffer, int index_shadow_buffer);
+
+
+// Ogre::Timer
+DLL int timer_set_option(TimerHandle handle, const char* key, void* value);
+
+DLL unsigned long timer_get_milliseconds(TimerHandle handle);
+
+DLL unsigned long timer_get_microseconds(TimerHandle handle);
+
+DLL unsigned long timer_get_milliseconds_cpu(TimerHandle handle);
+
+DLL unsigned long timer_get_microseconds_cpu(TimerHandle handle);
+
+DLL void timer_reset(TimerHandle handle);
 
 #endif
