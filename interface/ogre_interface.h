@@ -128,6 +128,7 @@
 #define PlaneHandle void*
 #define MeshHandle void*
 #define TimerHandle void*
+#define WindowListenerHandle void*
 
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
@@ -602,6 +603,10 @@ DLL void remove_frame_listener_ctx(FrameListenerHandle handle);
 DLL void add_window_listener(RenderWindowHandle window_handle, WindowListenerEvent window_event);
 
 DLL void remove_window_listener(RenderWindowHandle window_handle);
+
+DLL WindowListenerHandle add_window_listener_ctx(RenderWindowHandle window_handle, WindowListenerEvent window_event, void* userdata);
+
+DLL void remove_window_listener_ctx(RenderWindowHandle window_handle, WindowListenerHandle listener_handle);
 
 // LogManager
 DLL LogManagerHandle create_log_manager();

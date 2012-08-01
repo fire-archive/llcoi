@@ -81,6 +81,7 @@ alias void* FrameListenerHandle;
 alias void* PlaneHandle;
 alias void* MeshHandle;
 alias void* TimerHandle;
+alias void* WindowListenerHandle;
 
 
 // listener typedefs
@@ -527,6 +528,10 @@ void remove_frame_listener_ctx(FrameListenerHandle handle);
 void add_window_listener(RenderWindowHandle window_handle, WindowListenerEvent window_event);
 
 void remove_window_listener(RenderWindowHandle window_handle);
+
+WindowListenerHandle add_window_listener_ctx(RenderWindowHandle window_handle, WindowListenerEvent window_event, void* userdata);
+   
+void remove_window_listener_ctx(RenderWindowHandle window_handle, WindowListenerHandle listener_handle);
 
 // LogManager
 LogManagerHandle create_log_manager();
