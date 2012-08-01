@@ -75,6 +75,40 @@ void remove_window_listener(RenderWindowHandle window_handle)
 	Ogre::WindowEventUtilities::removeWindowEventListener(reinterpret_cast<Ogre::RenderWindow*>(window_handle), windowEventListener);
 }
 
+
+class WindowEventListenerCTX: public Ogre::WindowEventListener
+{
+public:
+	WindowEventListenerCTX(WindowListenerEvent wc, void* data) : windowClosedHandle(wc), userdata(data)
+	{
+	}
+
+	void windowClosed(Ogre::RenderWindow* rw)
+	{
+		if (windowClosedHandle) 
+			windowClosedHandle(reinterpret_cast<RenderWindowHandle>(rw));
+	}
+
+	WindowListenerEvent windowClosedHandle;
+    void* userdata;
+};
+
+WindowListenerHandle add_window_listener_ctx(RenderWindowHandle handle, WindowListenerEvent window_event, void* userdata)
+{
+    WindowEventListenerCTX *listener = new WindowEventListenerCTX(window_event, userdata);
+    Ogre::WindowEventUtilities::addWindowEventListener(reinterpret_cast<Ogre::RenderWindow*>(handle), listener);
+    return reinterpret_cast<WindowListenerHandle>(listener);
+}
+void remove_window_listener_ctx(RenderWindowHandle window_handle, WindowListenerHandle listener_handle)
+{
+    WindowEventListenerCTX* listener = reinterpret_cast<WindowEventListenerCTX*>(listener_handle);
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);
+
+	Ogre::WindowEventUtilities::removeWindowEventListener(window, listener);
+    delete listener;
+}
+
+
 /*
 Ogre::WindowEventUtilities::_msListeners
 Ogre::WindowEventUtilities::_msWindows
