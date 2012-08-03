@@ -426,7 +426,7 @@ DLL EntityHandle scenenode_get_attached_entity_int(SceneNodeHandle scenenode_han
 
 DLL EntityHandle scenenode_get_attached_entity(SceneNodeHandle scenenode_handle, const char* entity_name);
 
-DLL int scenenode_num_attached_objects(SceneNodeHandle scenenode_handle);
+DLL unsigned short scenenode_num_attached_objects(SceneNodeHandle scenenode_handle);
 
 DLL void scenenode_detach_entity_int(SceneNodeHandle scenenode_handle, int entity_index);
 

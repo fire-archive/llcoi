@@ -353,7 +353,7 @@ EntityHandle scenenode_get_attached_entity_int(SceneNodeHandle scenenode_handle,
 
 EntityHandle scenenode_get_attached_entity(SceneNodeHandle scenenode_handle, const char* entity_name);
 
-int scenenode_num_attached_objects(SceneNodeHandle scenenode_handle);
+ushort scenenode_num_attached_objects(SceneNodeHandle scenenode_handle);
 
 void scenenode_detach_entity_int(SceneNodeHandle scenenode_handle, int entity_index);
 

@@ -96,7 +96,7 @@ EntityHandle scenenode_get_attached_entity(SceneNodeHandle scenenode_handle, con
 }
 
 //Ogre::SceneNode::numAttachedObjects() const
-int scenenode_num_attached_objects(SceneNodeHandle scenenode_handle)
+unsigned short scenenode_num_attached_objects(SceneNodeHandle scenenode_handle)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     return scene_node->numAttachedObjects();
