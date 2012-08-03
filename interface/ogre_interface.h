@@ -468,6 +468,10 @@ DLL void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, fl
 
 DLL void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, float z);
 
+DLL void scenenode_set_derived_position(SceneNodeHandle handle, const coiVector3* pos);
+
+DLL void scenenode_get_derived_position(SceneNodeHandle handle, coiVector3* pos);
+
 DLL void scenenode_yaw_degree(SceneNodeHandle handle, coiReal angle);
 
 DLL void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians);

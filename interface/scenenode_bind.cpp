@@ -247,6 +247,25 @@ void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, 
     scene_node->setPosition(x, y, z);
 }
 
+//Ogre::Node::_getDerivedPosition() const
+void scenenode_get_derived_position(SceneNodeHandle handle, coiVector3* pos)
+{
+    Ogre::Vector3 v;
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(handle);
+    v = scene_node->_getDerivedPosition();
+    pos->x = v.x;
+    pos->y = v.y;
+    pos->z = v.z;
+}
+
+// Ogre::Node::_setDerivedPosition(Ogre::Vector3 const&)
+void scenenode_set_derived_position(SceneNodeHandle handle, const coiVector3* pos)
+{
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(handle);
+    Ogre::Vector3 v(pos->x, pos->y, pos->z);
+    scene_node->_setDerivedPosition(v);
+}
+
 // Ogre::SceneNode::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
 // Ogre::Node::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
 void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians)
