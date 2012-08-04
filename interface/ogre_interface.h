@@ -678,6 +678,10 @@ DLL void render_window_swap_buffers(RenderWindowHandle handle, int wait_for_vsyn
 
 DLL void render_window_get_custom_attribute(RenderWindowHandle handle, const char* attribute, void* pdata);
 
+DLL unsigned int render_window_get_width(RenderWindowHandle handle);
+
+DLL unsigned int render_window_get_height(RenderWindowHandle handle);
+
 
 // ColourValue
 DLL void colourvalue_zero(ColourValue* c);
