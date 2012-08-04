@@ -596,7 +596,12 @@ int render_window_is_closed(RenderWindowHandle handle);
 void render_window_set_active(RenderWindowHandle handle, int state);
 
 void render_window_swap_buffers(RenderWindowHandle handle, int wait_for_vsync);
+
 void render_window_get_custom_attribute(RenderWindowHandle handle, const char* attribute, void* pdata);
+
+uint render_window_get_width(RenderWindowHandle handle);
+
+uint render_window_get_height(RenderWindowHandle handle);
 
 // ColourValue
 void colourvalue_zero(ref ColourValue c);
