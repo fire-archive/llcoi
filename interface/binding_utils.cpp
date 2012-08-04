@@ -36,6 +36,8 @@
  ******************************************************************************/
 
 #include "binding_utils.h"
+#include "ois_interface.h"
+#include <OISMouse.h>
 
 log_message_level ogre_lml_to_llcoi_lml(Ogre::LogMessageLevel lml)
 {
@@ -278,7 +280,74 @@ plane_side ogre_plane_side_to_llcoi_plane_side(Ogre::Plane::Side side)
     return converted;
 }
 
+MouseButtonID ois_mbid_to_llcoi_mbid(OIS::MouseButtonID id)
+{
+    MouseButtonID converted;
+    switch(id)
+    {
+        case OIS::MB_Left:
+            converted = MB_Left;
+            break;
+        case OIS::MB_Right:
+            converted = MB_Right;
+            break;
+        case OIS::MB_Middle:
+            converted = MB_Middle;
+            break;
+        case OIS::MB_Button3:
+            converted = MB_Button3;
+            break;
+        case OIS::MB_Button4:
+            converted = MB_Button4;
+            break;
+        case OIS::MB_Button5:
+            converted = MB_Button5;
+            break;
+        case OIS::MB_Button6:
+            converted = MB_Button6;
+            break;
+        case OIS::MB_Button7:
+            converted = MB_Button7;
+            break;
+    }
+    return converted;
+}
+
+void ois_mouse_event_to_llcoi_mouse_event(const OIS::MouseEvent* oevent, MouseEvent* levent)
+{
+    /* copy dimensions */
+    levent->state.width   = oevent->state.width;
+    levent->state.height  = oevent->state.height;
+
+    /* copy Axis */
+
+    levent->state.X.abs  = oevent->state.X.abs;
+    levent->state.Y.abs  = oevent->state.Y.abs;
+    levent->state.Z.abs  = oevent->state.Z.abs;
+
+    levent->state.X.rel  = oevent->state.X.rel;
+    levent->state.Y.rel  = oevent->state.Y.rel;
+    levent->state.Z.rel  = oevent->state.Z.rel;
+
+    levent->state.X.absOnly  = oevent->state.X.absOnly;
+    levent->state.Y.absOnly  = oevent->state.Y.absOnly;
+    levent->state.Z.absOnly  = oevent->state.Z.absOnly;
+
+    /* copy buttons. */
+    levent->state.buttons = oevent->state.buttons;
+}
 
 
-logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
-Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);
+logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll)
+{
+    // FIXME: Finish this.
+    logging_level converted;
+    return converted;
+}
+
+Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll)
+{
+    // FIXME: Finish this.
+    Ogre::LoggingLevel converted;
+    return converted;
+}
