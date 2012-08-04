@@ -147,6 +147,18 @@ void render_window_get_custom_attribute(RenderWindowHandle handle, const char* a
     window->getCustomAttribute(attribute, pdata);
 }
 
+unsigned int render_window_get_width(RenderWindowHandle handle)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    return window->getWidth();
+}
+
+unsigned int render_window_get_height(RenderWindowHandle handle)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    return window->getHeight();
+}
+
 
 /*
 Ogre::RenderWindow::operator=(Ogre::RenderWindow const&)
