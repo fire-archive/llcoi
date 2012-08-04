@@ -36,6 +36,7 @@
  ******************************************************************************/
 #include "ogre_interface.h"
 #include "ois_interface.h"
+#include "binding_utils.h" // ois_mouse_event_to_llcoi_mouse_event
 
 #include <OISMouse.h>
 #include <OISKeyboard.h>
@@ -170,4 +171,74 @@ void ois_add_pair(ParamListHandle handle, const char* field, const char* value)
             std::string(field), std::string(value)
         )
     );
+}
+
+class MouseListenerCTX : public OIS::MouseListener
+{
+public:
+    MouseListenerCTX(MouseMovedEvent _moved, MousePressedEvent _pressed, MouseReleasedEvent _released, void* data) : 
+                     moved(_moved), pressed(_pressed), released(_released), userdata(data)
+    {
+    }
+
+    bool mouseMoved(const OIS::MouseEvent &arg)
+    {
+        MouseEvent evt;
+
+        // Convert OIS MouseEvent to LLCOI MouseEvent
+        ois_mouse_event_to_llcoi_mouse_event(&arg, &evt);
+
+        // Fire off the callback.
+        return moved(&evt, userdata);
+    }
+
+    bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
+    {
+        MouseEvent evt;
+        MouseButtonID llcoi_id;
+
+        // Convert OIS MouseEvent to LLCOI MouseEvent
+        ois_mouse_event_to_llcoi_mouse_event(&arg, &evt);
+
+        llcoi_id = ois_mbid_to_llcoi_mbid(id);
+
+        // Fire off the callback.
+        pressed(&evt, llcoi_id, userdata);
+    }
+
+    bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
+    {
+        MouseEvent evt;
+        MouseButtonID llcoi_id;
+
+        // Convert OIS MouseEvent to LLCOI MouseEvent
+        ois_mouse_event_to_llcoi_mouse_event(&arg, &evt);
+
+        llcoi_id = ois_mbid_to_llcoi_mbid(id);
+
+        // Fire off the callback.
+        return released(&evt, llcoi_id, userdata);
+    }
+
+    MouseMovedEvent moved;
+    MousePressedEvent pressed;
+    MouseReleasedEvent released;
+
+    void* userdata;
+};
+
+MouseListenerHandle mouse_set_event_callback(MouseInputHandle handle, MouseMovedEvent moved, MousePressedEvent pressed, MouseReleasedEvent released, void* userdata)
+{
+    OIS::Mouse* mouse = reinterpret_cast<OIS::Mouse*>(handle);
+    MouseListenerCTX* listener = new MouseListenerCTX(moved, pressed, released, userdata);
+    mouse->setEventCallback(listener);
+    return reinterpret_cast<MouseListenerHandle>(listener);
+}
+
+void mouse_remove_event_callback(MouseInputHandle mouse_handle, MouseListenerHandle handle)
+{
+    OIS::Mouse* mouse          = reinterpret_cast<OIS::Mouse*>(mouse_handle);
+    MouseListenerCTX* listener = reinterpret_cast<MouseListenerCTX*>(handle);
+    mouse->setEventCallback(0);
+    delete listener;
 }
