@@ -42,6 +42,8 @@ COI_DECLARE_HANDLE(InputSystemHandle);
 COI_DECLARE_HANDLE(MouseInputHandle);
 COI_DECLARE_HANDLE(KeyboardInputHandle);
 COI_DECLARE_HANDLE(ParamListHandle);
+COI_DECLARE_HANDLE(MouseListenerHandle);
+
 
 //#define ParamListHandle void*
 
@@ -196,11 +198,11 @@ enum KeyCode
 };
 
 //! Button ID for mouse devices
-enum MouseButtonID
+typedef enum
 {
     MB_Left = 0, MB_Right, MB_Middle,
     MB_Button3, MB_Button4, MB_Button5, MB_Button6, MB_Button7
-};
+} MouseButtonID;
 
 typedef struct 
 {
@@ -235,6 +237,18 @@ typedef struct
     int buttons;
 } MouseState;
 
+typedef struct _MouseEvent MouseEvent;
+
+struct _MouseEvent
+{
+    MouseState state;
+};
+
+// Callbacks for MouseListeners
+typedef int(*MouseMovedEvent)(const MouseEvent* event, void* userdata);
+typedef int(*MousePressedEvent)(const MouseEvent* event, MouseButtonID id, void* userdata);
+typedef int(*MouseReleasedEvent)(const MouseEvent* event, MouseButtonID id, void* userdata);
+
 
 DLL InputSystemHandle create_input_system(unsigned int window_handle);
 
@@ -265,8 +279,13 @@ DLL void keyboard_capture(KeyboardInputHandle keyboard_handle);
 
 DLL void mouse_capture(MouseInputHandle mouse_handle);
 
+DLL MouseListenerHandle mouse_set_event_callback(MouseInputHandle handle, MouseMovedEvent moved, MousePressedEvent pressed, MouseReleasedEvent released, void* userdata);
+
+DLL void remove_mouse_listener(MouseInputHandle mouse_handle, MouseListenerHandle handle);
+
 DLL ParamListHandle ois_create_paramlist();
 
 DLL void ois_destroy_paramlist(ParamListHandle handle);
 
 DLL void ois_add_pair(ParamListHandle handle, const char* field, const char* value);
+
