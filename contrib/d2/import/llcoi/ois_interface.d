@@ -67,6 +67,13 @@ struct ParamListHandle__
 
 alias ParamListHandle__ *ParamListHandle;
 
+struct MouseListenerHandle__
+{
+    int unused;
+}
+
+alias MouseListenerHandle__ *MouseListenerHandle;
+
 //! Keyboard scan codes
 enum KeyCode
 {
@@ -266,6 +273,16 @@ struct MouseState
     int buttons;
 }
 
+struct MouseEvent
+{
+    MouseState state;
+}
+
+// Callbacks for MouseListeners
+alias int function(const ref MouseEvent event, void* userdata) MouseMovedEvent;
+alias int function(const ref MouseEvent event, MouseButtonID id, void* userdata) MousePressedEvent;
+alias int function(const ref MouseEvent event, MouseButtonID id, void* userdata) MouseReleasedEvent;
+
 InputSystemHandle create_input_system(uint window_handle);
 
 // For sending parameters to the input constructor.
@@ -294,6 +311,10 @@ void  keyboard_set_buffered(KeyboardInputHandle keyboard_handle, int buffered);
 void  keyboard_capture(KeyboardInputHandle keyboard_handle);
 
 void  mouse_capture(MouseInputHandle mouse_handle);
+
+MouseListenerHandle mouse_set_event_callback(MouseInputHandle handle, MouseMovedEvent moved, MousePressedEvent pressed, MouseReleasedEvent released, void* userdata);
+
+void mouse_remove_event_callback(MouseInputHandle mouse_handle, MouseListenerHandle handle);
 
 ParamListHandle ois_create_paramlist();
 
