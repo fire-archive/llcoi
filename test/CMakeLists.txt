@@ -58,11 +58,14 @@ if(${LLCOI_TEST_USE_ALLEGRO})
         ${CMAKE_SOURCE_DIR}/interface
     )
 else()
-	find_package(OPENINPUT)
-	include_directories(
-		${OPENINPUT_INCLUDE_DIR}
-		${CMAKE_SOURCE_DIR}/interface
-	)
+    include_directories(${CMAKE_SOURCE_DIR}/interface)
+
+#else()
+#	find_package(OPENINPUT)
+#	include_directories(
+#		${OPENINPUT_INCLUDE_DIR}
+#		${CMAKE_SOURCE_DIR}/interface
+#	)
 endif()
 
 
@@ -77,7 +80,7 @@ if(${LLCOI_TEST_USE_ALLEGRO})
     )
     set_target_properties(OgreApp PROPERTIES 
         COMPILE_DEFINITIONS LLCOI_TEST_USE_ALLEGRO)
-else()
+elseif(${LLCOI_TEST_USE_OPENINPUT})
 	target_link_libraries(OgreApp
 		llcoi 
 		${OPENINPUT_LIBRARIES}
