@@ -184,18 +184,21 @@ public:
     bool mouseMoved(const OIS::MouseEvent &arg)
     {
         MouseEvent evt;
+        bool result;
 
         // Convert OIS MouseEvent to LLCOI MouseEvent
         ois_mouse_event_to_llcoi_mouse_event(&arg, &evt);
 
         // Fire off the callback.
-        return moved(&evt, userdata);
+        result = moved(&evt, userdata);
+        return result;
     }
 
     bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
     {
         MouseEvent evt;
         MouseButtonID llcoi_id;
+        bool result;
 
         // Convert OIS MouseEvent to LLCOI MouseEvent
         ois_mouse_event_to_llcoi_mouse_event(&arg, &evt);
@@ -203,13 +206,15 @@ public:
         llcoi_id = ois_mbid_to_llcoi_mbid(id);
 
         // Fire off the callback.
-        pressed(&evt, llcoi_id, userdata);
+        result = pressed(&evt, llcoi_id, userdata);
+        return result;
     }
 
     bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
     {
         MouseEvent evt;
         MouseButtonID llcoi_id;
+        bool result;
 
         // Convert OIS MouseEvent to LLCOI MouseEvent
         ois_mouse_event_to_llcoi_mouse_event(&arg, &evt);
@@ -217,7 +222,8 @@ public:
         llcoi_id = ois_mbid_to_llcoi_mbid(id);
 
         // Fire off the callback.
-        return released(&evt, llcoi_id, userdata);
+        result = released(&evt, llcoi_id, userdata);
+        return result;
     }
 
     MouseMovedEvent moved;
@@ -230,7 +236,9 @@ public:
 MouseListenerHandle mouse_set_event_callback(MouseInputHandle handle, MouseMovedEvent moved, MousePressedEvent pressed, MouseReleasedEvent released, void* userdata)
 {
     OIS::Mouse* mouse = reinterpret_cast<OIS::Mouse*>(handle);
+
     MouseListenerCTX* listener = new MouseListenerCTX(moved, pressed, released, userdata);
+
     mouse->setEventCallback(listener);
     return reinterpret_cast<MouseListenerHandle>(listener);
 }
