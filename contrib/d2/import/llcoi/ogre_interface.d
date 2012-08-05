@@ -395,6 +395,8 @@ void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, float 
 
 void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, float z);
 
+void scenenode_get_position(SceneNodeHandle handle, ref coiVector3 pos);
+
 void scenenode_set_derived_position(SceneNodeHandle handle, const ref coiVector3 pos);
 
 void scenenode_get_derived_position(SceneNodeHandle handle, ref coiVector3 pos);
