@@ -227,10 +227,11 @@ SceneManagerHandle scenenode_get_creator(SceneNodeHandle scenenode_handle)
 }
 
 // Ogre::SceneNode::setDirection(float, float, float, Ogre::Node::TransformSpace, Ogre::Vector3 const&)
-void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z)
+void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z, transform_space relative_to)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
-    scene_node->setDirection(x, y, z);
+    Ogre::Node::TransformSpace ts = llcoi_ts_to_ogre_ts(relative_to);
+    scene_node->setDirection(x, y, z,ts);
 }
 
 // Ogre::Node::setOrientation(float, float, float, float)
@@ -268,9 +269,10 @@ void scenenode_set_derived_position(SceneNodeHandle handle, const coiVector3* po
 
 // Ogre::SceneNode::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
 // Ogre::Node::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
-void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians)
+void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
+    Ogre::Node::TransformSpace ts = llcoi_ts_to_ogre_ts(relative_to);
     scene_node->yaw(Ogre::Radian(radians));
 }
 
@@ -289,24 +291,27 @@ void scenenode_scale(SceneNodeHandle scenenode_handle, float x, float y, float z
 }
 
 // Ogre::Node::translate(float, float, float, Ogre::Node::TransformSpace)
-void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, float z)
+void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, float z, transform_space relative_to)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
-    scene_node->translate(x, y, z);
+    Ogre::Node::TransformSpace ts = llcoi_ts_to_ogre_ts(relative_to);
+    scene_node->translate(x, y, z, ts);
 }
 
 // Ogre::Node::roll(Ogre::Radian const&, Ogre::Node::TransformSpace)
-void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians)
+void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
-    scene_node->roll(Ogre::Radian(radians));
+    Ogre::Node::TransformSpace ts = llcoi_ts_to_ogre_ts(relative_to);
+    scene_node->roll(Ogre::Radian(radians), ts);
 }
 
 // Ogre::Node::pitch(Ogre::Radian const&, Ogre::Node::TransformSpace)
-void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians)
+void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
-    scene_node->pitch(Ogre::Radian(radians));
+    Ogre::Node::TransformSpace ts = llcoi_ts_to_ogre_ts(relative_to);
+    scene_node->pitch(Ogre::Radian(radians), ts);
 }
 
 SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle parent_handle, const char* name, const coiVector3* translate, const coiQuaternion* rotate)
@@ -319,9 +324,10 @@ SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle parent_handle, 
     return reinterpret_cast<SceneNodeHandle>(child);
 }
 
-void scenenode_yaw_degree(SceneNodeHandle handle, float angle)
+void scenenode_yaw_degree(SceneNodeHandle handle, float angle, transform_space relative_to)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(handle);
+    Ogre::Node::TransformSpace ts = llcoi_ts_to_ogre_ts(relative_to);
     scene_node->yaw(Ogre::Degree(angle));
 }
 
