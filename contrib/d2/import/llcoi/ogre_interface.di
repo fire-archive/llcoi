@@ -492,6 +492,16 @@ void camera_get_position(CameraHandle handle, ref coiVector3 result);
 
 void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z);
 
+void camera_roll(CameraHandle handle, coiReal angle);
+
+void camera_yaw(CameraHandle handle, coiReal angle);
+
+void camera_pitch(CameraHandle handle, coiReal angle);
+
+void camera_rotate(CameraHandle handle, const coiVector3* axis, coiReal angle);
+
+void camera_rotate_q(CameraHandle handle, const coiQuaternion* q);
+
 
 // Entity
 EntityHandle create_entity(const char* entity_name, const char* mesh_file);
