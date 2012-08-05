@@ -166,6 +166,49 @@ void camera_get_direction(CameraHandle handle, coiVector3* v3)
     v3->z = v.z;
 }
 
+//Ogre::Camera::roll(Ogre::Radian const&)
+void camera_roll(CameraHandle handle, coiReal angle)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Radian r(angle);
+    camera->roll(r);
+}
+
+//Ogre::Camera::yaw(Ogre::Radian const&)
+void camera_yaw(CameraHandle handle, coiReal angle)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Radian r(angle);
+    camera->yaw(r);
+}
+
+//Ogre::Camera::pitch(Ogre::Radian const&)
+void camera_pitch(CameraHandle handle, coiReal angle)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Radian r(angle);
+    camera->pitch(r);
+}
+
+//Ogre::Camera::rotate(Ogre::Vector3 const&, Ogre::Radian const&)
+void camera_rotate(CameraHandle handle, const coiVector3* axis, coiReal angle)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Vector3 v(axis->x, axis->y, axis->z);
+    Ogre::Radian r(angle);
+
+    camera->rotate(v, r);
+}
+
+//Ogre::Camera::rotate(Ogre::Quaternion const&)
+void camera_rotate_q(CameraHandle handle, const coiQuaternion* q)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Quaternion quat(q->w, q->x, q->y, q->z);
+
+    camera->rotate(quat);
+}
+
 /*
 Ogre::Camera::Listener
 Ogre::Camera::Camera(std::string const&, Ogre::SceneManager*)
@@ -178,11 +221,6 @@ Ogre::Camera::getPolygonMode() const
 Ogre::Camera::getPosition() const
 Ogre::Camera::getUp() const
 Ogre::Camera::getRight() const
-Ogre::Camera::roll(Ogre::Radian const&)
-Ogre::Camera::yaw(Ogre::Radian const&)
-Ogre::Camera::pitch(Ogre::Radian const&)
-Ogre::Camera::rotate(Ogre::Vector3 const&, Ogre::Radian const&)
-Ogre::Camera::rotate(Ogre::Quaternion const&)
 Ogre::Camera::setFixedYawAxis(bool, Ogre::Vector3 const&)
 Ogre::Camera::getOrientation() const
 Ogre::Camera::setOrientation(Ogre::Quaternion const&)
