@@ -389,7 +389,7 @@ void scenenode_set_debug_display_enabled_ex(SceneNodeHandle scenenode_handle, in
 
 SceneManagerHandle scenenode_get_creator(SceneNodeHandle scenenode_handle);
 
-void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z);
+void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z, transform_space relative_to);
 
 void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, float x, float y, float z);
 
@@ -399,19 +399,19 @@ void scenenode_set_derived_position(SceneNodeHandle handle, const ref coiVector3
 
 void scenenode_get_derived_position(SceneNodeHandle handle, ref coiVector3 pos);
 
-void scenenode_yaw_degree(SceneNodeHandle handle, coiReal angle);
+void scenenode_yaw_degree(SceneNodeHandle handle, coiReal angle, transform_space relative_to);
 
-void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians);
+void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
 
 void scenenode_set_scale(SceneNodeHandle scenenode_handle, float x, float y, float z);
 
 void scenenode_scale(SceneNodeHandle scenenode_handle, float x, float y, float z);
 
-void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, float z);
+void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, float z, transform_space relative_to);
 
-void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians);
+void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
 
-void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians);
+void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
 
 SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle handle, const char* name, const ref coiVector3 translate, const ref coiQuaternion rotate);
 
@@ -464,7 +464,7 @@ void camera_move(CameraHandle handle, const float x, const float y, const float 
 
 void camera_move_relative(CameraHandle handle, const float x, const float y, const float z);
 
-void camera_set_direction(CameraHandle handle, const float x, const float y, const float z);
+void camera_set_direction(CameraHandle handle, const float x, const float y, const float z, transform_space relative_to);
 
 void camera_get_direction(CameraHandle handle, coiVector3* v3);
 
@@ -612,6 +612,10 @@ void render_window_get_custom_attribute(RenderWindowHandle handle, const char* a
 uint render_window_get_width(RenderWindowHandle handle);
 
 uint render_window_get_height(RenderWindowHandle handle);
+
+void renderwindow_get_statistics(RenderWindowHandle handle, ref FrameStats stats);
+
+void renderwindow_get_statistics_ex(RenderWindowHandle handle, ref float lastFPS, ref float avgFPS, ref float bestFPS, ref float worstFPS);
 
 // ColourValue
 void colourvalue_zero(ref ColourValue c);

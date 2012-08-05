@@ -462,7 +462,7 @@ DLL void scenenode_set_debug_display_enabled_ex(SceneNodeHandle scenenode_handle
 
 DLL SceneManagerHandle scenenode_get_creator(SceneNodeHandle scenenode_handle);
 
-DLL void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z);
+DLL void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z, transform_space relative_to);
 
 DLL void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, float x, float y, float z);
 
@@ -472,19 +472,19 @@ DLL void scenenode_set_derived_position(SceneNodeHandle handle, const coiVector3
 
 DLL void scenenode_get_derived_position(SceneNodeHandle handle, coiVector3* pos);
 
-DLL void scenenode_yaw_degree(SceneNodeHandle handle, coiReal angle);
+DLL void scenenode_yaw_degree(SceneNodeHandle handle, coiReal angle, transform_space relative_to);
 
-DLL void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians);
+DLL void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
 
 DLL void scenenode_set_scale(SceneNodeHandle scenenode_handle, float x, float y, float z);
 
 DLL void scenenode_scale(SceneNodeHandle scenenode_handle, float x, float y, float z);
 
-DLL void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, float z);
+DLL void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, float z, transform_space relative_to);
 
-DLL void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians);
+DLL void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
 
-DLL void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians);
+DLL void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
 
 DLL SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle handle, const char* name, const coiVector3* translate, const coiQuaternion* rotate);
 
@@ -693,6 +693,11 @@ DLL void render_window_get_custom_attribute(RenderWindowHandle handle, const cha
 DLL unsigned int render_window_get_width(RenderWindowHandle handle);
 
 DLL unsigned int render_window_get_height(RenderWindowHandle handle);
+
+DLL void renderwindow_get_statistics(RenderWindowHandle handle, FrameStats* stats);
+
+DLL void renderwindow_get_statistics_ex(RenderWindowHandle handle, float* lastFPS, float* avgFPS, float* bestFPS, float* worstFPS);
+
 
 
 // ColourValue
