@@ -159,6 +159,26 @@ unsigned int render_window_get_height(RenderWindowHandle handle)
     return window->getHeight();
 }
 
+void renderwindow_get_statistics(RenderWindowHandle handle, FrameStats* stats)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    const Ogre::RenderTarget::FrameStats& fs = window->getStatistics();
+
+    stats->lastFPS         = fs.lastFPS;
+    stats->avgFPS          = fs.avgFPS;
+    stats->bestFPS         = fs.bestFPS;
+    stats->worstFPS        = fs.worstFPS;
+    stats->bestFrameTime   = fs.bestFrameTime;
+    stats->worstFrameTime  = fs.worstFrameTime;
+    stats->triangleCount   = fs.triangleCount;
+    stats->batchCount      = fs.batchCount;
+}
+
+void renderwindow_get_statistics_ex(RenderWindowHandle handle, float* lastFPS, float* avgFPS, float* bestFPS, float* worstFPS)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    window->getStatistics(*lastFPS, *avgFPS, *bestFPS, *worstFPS);
+}
 
 /*
 Ogre::RenderWindow::operator=(Ogre::RenderWindow const&)
