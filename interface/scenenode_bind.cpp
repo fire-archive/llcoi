@@ -248,6 +248,17 @@ void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, 
     scene_node->setPosition(x, y, z);
 }
 
+//Ogre::Node::getPosition() const
+void scenenode_get_position(SceneNodeHandle handle, coiVector3* pos)
+{
+    Ogre::Vector3 v;
+    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(handle);
+    v = scene_node->getPosition();
+    pos->x = v.x;
+    pos->y = v.y;
+    pos->z = v.z;
+}
+
 //Ogre::Node::_getDerivedPosition() const
 void scenenode_get_derived_position(SceneNodeHandle handle, coiVector3* pos)
 {
@@ -369,8 +380,6 @@ Ogre::Node::getParent() const
 Ogre::Node::getOrientation() const
 Ogre::Node::setOrientation(Ogre::Quaternion const&)
 Ogre::Node::resetOrientation()
-Ogre::Node::setPosition(Ogre::Vector3 const&)
-Ogre::Node::getPosition() const
 Ogre::Node::setScale(Ogre::Vector3 const&)
 Ogre::Node::getScale() const
 Ogre::Node::setInheritOrientation(bool)
