@@ -103,7 +103,7 @@ Ogre::HardwareBuffer::Usage llcoi_hbu_to_ogre_hbu(hardware_buffer_usage llcoi_hb
 light_types ogre_light_type_to_llcoi_light_type(Ogre::Light::LightTypes type);
 Ogre::Light::LightTypes llcoi_light_types_to_ogre_light_types(light_types type);
 
-Ogre::Node::TransformSpace llcoi_ts_to_ogre_ts(Ogre::Node::TransformSpace llcoi_ts);
+Ogre::Node::TransformSpace llcoi_ts_to_ogre_ts(transform_space llcoi_ts);
 transform_space ogre_ts_to_llcoi_ts(Ogre::Node::TransformSpace ogre_ts);
 
 Ogre::Plane::Side llcoi_plane_side_to_ogre_plane_side(plane_side side);

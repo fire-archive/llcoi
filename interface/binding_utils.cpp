@@ -214,7 +214,7 @@ transform_space ogre_ts_to_llcoi_ts(Ogre::Node::TransformSpace ogre_ts)
     return converted;
 }
 
-Ogre::Node::TransformSpace llcoi_ts_to_ogre_ts(Ogre::Node::TransformSpace llcoi_ts)
+Ogre::Node::TransformSpace llcoi_ts_to_ogre_ts(transform_space llcoi_ts)
 {
     Ogre::Node::TransformSpace converted;
     switch(llcoi_ts)
