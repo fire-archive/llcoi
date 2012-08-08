@@ -17,7 +17,8 @@
  * License: MIT
  * (see LICENSE for details)
  ******************************************************************************
- * Installation instructions goes here 
+ * For linux:
+ * mkdir build && cd build && cmake .. && make -j4 && su -c 'make install'
  *
  *
  ******************************************************************************/
