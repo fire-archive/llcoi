@@ -129,6 +129,7 @@
 #define MeshHandle void*
 #define TimerHandle void*
 #define WindowListenerHandle void*
+#define AxisAlignedBoxHandle void*
 
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
@@ -214,6 +215,13 @@ typedef enum
     LL_NORMAL = 2,
     LL_BOREME = 3
 } logging_level;
+
+typedef enum
+{
+    EXTENT_NULL,
+    EXTENT_FINITE,
+    EXTENT_INFINITE
+} Extent;
 
 typedef enum
 {
@@ -591,7 +599,8 @@ DLL int entity_get_cast_shadows(EntityHandle handle);
 DLL int entity_get_receives_shadows(EntityHandle handle);
 
 DLL void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name);
-
+//Ogre::Entity::getBoundingBox() const
+DLL AxisAlignedBoxHandle entity_get_bounding_box(EntityHandle handle);
 
 // Light
 DLL LightHandle create_light(const char* light_name);
@@ -807,5 +816,9 @@ DLL unsigned long timer_get_milliseconds_cpu(TimerHandle handle);
 DLL unsigned long timer_get_microseconds_cpu(TimerHandle handle);
 
 DLL void timer_reset(TimerHandle handle);
+
+// Ogre::AxisAlignedBox
+DLL AxisAlignedBoxHandle create_axis_aligned_box();
+DLL void destroy_axis_aligned_box(AxisAlignedBoxHandle handle);
 
 #endif

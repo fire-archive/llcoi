@@ -82,6 +82,7 @@ alias void* PlaneHandle;
 alias void* MeshHandle;
 alias void* TimerHandle;
 alias void* WindowListenerHandle;
+alias void* AxisAlignedBoxHandle;
 
 
 // listener typedefs
@@ -219,6 +220,12 @@ enum transform_space
     TS_WORLD
 };
 
+enum Extent
+{
+    EXTENT_NULL,
+    EXTENT_FINITE,
+    EXTENT_INFINITE
+};
 
 
 // Root functions
@@ -515,7 +522,8 @@ int entity_get_cast_shadows(EntityHandle handle);
 int entity_get_receives_shadows(EntityHandle handle);
 
 void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name);
-
+//Ogre::Entity::getBoundingBox() const
+AxisAlignedBoxHandle entity_get_bounding_box(EntityHandle handle);
 
 // Light
 LightHandle create_light(const char* light_name);
@@ -705,3 +713,6 @@ ulong timer_get_microseconds_cpu(TimerHandle handle);
 
 void timer_reset(TimerHandle handle);
 
+// Ogre::AxisAlignedBox
+AxisAlignedBoxHandle create_axis_aligned_box();
+void destroy_axis_aligned_box(AxisAlignedBoxHandle handle);
