@@ -227,6 +227,18 @@ enum Extent
     EXTENT_INFINITE
 };
 
+enum CornerEnum
+{
+    FAR_LEFT_BOTTOM = 0,
+    FAR_LEFT_TOP = 1,
+    FAR_RIGHT_TOP = 2,
+    FAR_RIGHT_BOTTOM = 3,
+    NEAR_RIGHT_BOTTOM = 7,
+    NEAR_LEFT_BOTTOM = 6,
+    NEAR_LEFT_TOP = 5,
+    NEAR_RIGHT_TOP = 4
+};
+
 
 // Root functions
 void release_engine();
@@ -716,3 +728,4 @@ void timer_reset(TimerHandle handle);
 // Ogre::AxisAlignedBox
 AxisAlignedBoxHandle create_axis_aligned_box();
 void destroy_axis_aligned_box(AxisAlignedBoxHandle handle);
+void axisalignedbox_get_size(AxisAlignedBoxHandle handle, ref coiVector3 size);
