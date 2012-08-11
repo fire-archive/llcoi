@@ -70,6 +70,14 @@ void entity_set_material_name(EntityHandle handle, const char* material_name, co
     entity->setMaterialName(Ogre::String(material_name), Ogre::String(group_name));
 }
 
+//Ogre::Entity::getBoundingBox() const
+AxisAlignedBoxHandle entity_get_bounding_box(EntityHandle handle)
+{
+    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    Ogre::AxisAlignedBox& box = const_cast<Ogre::AxisAlignedBox&>(entity->getBoundingBox());
+    return reinterpret_cast<AxisAlignedBoxHandle>(&box);
+}
+
 
 // How do we handle the fact that Ogre::Entity is an Ogre::MovableObject ?
 // Duplicate?
@@ -88,7 +96,6 @@ Ogre::Entity::setMaterial(Ogre::MaterialPtr const&)
 Ogre::Entity::_notifyCurrentCamera(Ogre::Camera*)
 Ogre::Entity::setRenderQueueGroup(unsigned char)
 Ogre::Entity::setRenderQueueGroupAndPriority(unsigned char, unsigned short)
-Ogre::Entity::getBoundingBox() const
 Ogre::Entity::getChildObjectsBoundingBox() const
 Ogre::Entity::_updateRenderQueue(Ogre::RenderQueue*)
 Ogre::Entity::getMovableType() const
