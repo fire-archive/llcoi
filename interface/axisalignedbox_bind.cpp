@@ -71,4 +71,82 @@ void axisalignedbox_get_size(AxisAlignedBoxHandle handle, coiVector3* size)
 }
 
 
+void axisalignedbox_get_minimum(AxisAlignedBoxHandle handle, coiVector3* minimum)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    Ogre::Vector3 getter = box->getMinimum();
+
+    minimum->x = getter.x;
+    minimum->y = getter.y;
+    minimum->z = getter.z;
+}
+
+void axisalignedbox_get_maximum(AxisAlignedBoxHandle handle, coiVector3* max)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    Ogre::Vector3 getter = box->getMaximum();
+
+    max->x = getter.x;
+    max->y = getter.y;
+    max->z = getter.z;
+}
+
+void axisalignedbox_set_minimum(AxisAlignedBoxHandle handle, const coiVector3* min)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    Ogre::Vector3 setter(min->x, min->y, min->z);
+    box->setMinimum(setter);
+}
+
+void axisalignedbox_set_minimum_x(AxisAlignedBoxHandle handle, coiReal x)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    box->setMinimumX(x);
+}
+
+void axisalignedbox_set_minimum_y(AxisAlignedBoxHandle handle, coiReal y)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    box->setMinimumY(y);
+}
+
+void axisalignedbox_set_minimum_z(AxisAlignedBoxHandle handle, coiReal z)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    box->setMinimumZ(z);
+}
+
+
+void axisalignedbox_set_maximum(AxisAlignedBoxHandle handle, const coiVector3* max)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    Ogre::Vector3 setter(max->x, max->y, max->z);
+    box->setMaximum(setter);
+}
+
+void axisalignedbox_set_maximum_x(AxisAlignedBoxHandle handle, coiReal x)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    box->setMaximumX(x);
+}
+
+void axisalignedbox_set_maximum_y(AxisAlignedBoxHandle handle, coiReal y)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    box->setMaximumY(y);
+}
+
+void axisalignedbox_set_maximum_z(AxisAlignedBoxHandle handle, coiReal z)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    box->setMaximumZ(z);
+}
+
+void axisalignedbox_set_extents(AxisAlignedBoxHandle handle, const coiVector3* min, const coiVector3* max)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    Ogre::Vector3 _min(min->x, min->y, min->z);
+    Ogre::Vector3 _max(max->x, max->y, max->z);
+    box->setExtents(_min, _max);
+}
 
