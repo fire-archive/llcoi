@@ -37,10 +37,20 @@
 
 #include "ogre_interface.h"
 #include "OgreAxisAlignedBox.h"
+#include "OgreVector3.h"
 
 AxisAlignedBoxHandle create_axis_aligned_box()
 {
     Ogre::AxisAlignedBox* box = new Ogre::AxisAlignedBox;
+    return reinterpret_cast<AxisAlignedBoxHandle>(box);
+}
+
+//AxisAlignedBoxHandle create_axis_aligned_box_ex(Extent e);
+AxisAlignedBoxHandle create_axis_aligned_box_v3(const coiVector3* min, const coiVector3* max)
+{
+    Ogre::Vector3 _min(min->x, min->y, min->z);
+    Ogre::Vector3 _max(max->x, max->y, max->z);
+    Ogre::AxisAlignedBox* box = new Ogre::AxisAlignedBox(_min, _max);
     return reinterpret_cast<AxisAlignedBoxHandle>(box);
 }
 
@@ -49,3 +59,16 @@ void destroy_axis_aligned_box(AxisAlignedBoxHandle handle)
     Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
     delete box;
 }
+
+void axisalignedbox_get_size(AxisAlignedBoxHandle handle, coiVector3* size)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    Ogre::Vector3 s = box->getSize();
+
+    size->x = s.x;
+    size->y = s.y;
+    size->z = s.z;
+}
+
+
+
