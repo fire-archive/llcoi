@@ -218,13 +218,6 @@ typedef enum
 
 typedef enum
 {
-    EXTENT_NULL,
-    EXTENT_FINITE,
-    EXTENT_INFINITE
-} Extent;
-
-typedef enum
-{
     LML_TRIVIAL = 1,
     LML_NORMAL = 2,
     LML_CRITICAL = 3
@@ -291,6 +284,24 @@ typedef enum
     TS_PARENT,
     TS_WORLD
 } transform_space;
+
+typedef enum
+{
+    EXTENT_NULL,
+    EXTENT_FINITE,
+    EXTENT_INFINITE
+} Extent;
+
+typedef enum {
+    FAR_LEFT_BOTTOM = 0,
+    FAR_LEFT_TOP = 1,
+    FAR_RIGHT_TOP = 2,
+    FAR_RIGHT_BOTTOM = 3,
+    NEAR_RIGHT_BOTTOM = 7,
+    NEAR_LEFT_BOTTOM = 6,
+    NEAR_LEFT_TOP = 5,
+    NEAR_RIGHT_TOP = 4
+} CornerEnum;
 
 
 
@@ -819,6 +830,9 @@ DLL void timer_reset(TimerHandle handle);
 
 // Ogre::AxisAlignedBox
 DLL AxisAlignedBoxHandle create_axis_aligned_box();
+//DLL AxisAlignedBoxHandle create_axis_aligned_box_ex(Extent e);
+DLL AxisAlignedBoxHandle create_axis_aligned_box_v3(const coiVector3* min, const coiVector3* max);
 DLL void destroy_axis_aligned_box(AxisAlignedBoxHandle handle);
+DLL void axisalignedbox_get_size(AxisAlignedBoxHandle handle, coiVector3* size);
 
 #endif
