@@ -729,5 +729,7 @@ void timer_reset(TimerHandle handle);
 
 // Ogre::AxisAlignedBox
 AxisAlignedBoxHandle create_axis_aligned_box();
+//AxisAlignedBoxHandle create_axis_aligned_box_ex(Extent e);
+AxisAlignedBoxHandle create_axis_aligned_box_v3(const ref coiVector3 min, const ref coiVector3 max);
 void destroy_axis_aligned_box(AxisAlignedBoxHandle handle);
 void axisalignedbox_get_size(AxisAlignedBoxHandle handle, ref coiVector3 size);
