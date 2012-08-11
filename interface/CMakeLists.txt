@@ -130,6 +130,7 @@ set(SRCS
     ./plane_bind.cpp
     ./meshmanager_bind.cpp
     ./timer_bind.cpp
+    ./axisalignedbox_bind.cpp
 )
  
 include_directories(${OGRE_INCLUDE_DIRS} ${OIS_INCLUDE_DIRS}
