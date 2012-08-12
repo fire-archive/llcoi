@@ -830,7 +830,7 @@ DLL void timer_reset(TimerHandle handle);
 
 // Ogre::AxisAlignedBox
 DLL AxisAlignedBoxHandle create_axis_aligned_box();
-//DLL AxisAlignedBoxHandle create_axis_aligned_box_ex(Extent e);
+DLL AxisAlignedBoxHandle create_axis_aligned_box_ex(Extent e);
 DLL AxisAlignedBoxHandle create_axis_aligned_box_v3(const coiVector3* min, const coiVector3* max);
 DLL void destroy_axis_aligned_box(AxisAlignedBoxHandle handle);
 DLL void axisalignedbox_get_size(AxisAlignedBoxHandle handle, coiVector3* size);

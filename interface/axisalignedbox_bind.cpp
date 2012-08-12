@@ -36,6 +36,7 @@
  ******************************************************************************/
 
 #include "ogre_interface.h"
+#include "binding_utils.h" // llcoi_extent_to_ogre_extent
 #include "OgreAxisAlignedBox.h"
 #include "OgreVector3.h"
 
@@ -45,7 +46,13 @@ AxisAlignedBoxHandle create_axis_aligned_box()
     return reinterpret_cast<AxisAlignedBoxHandle>(box);
 }
 
-//AxisAlignedBoxHandle create_axis_aligned_box_ex(Extent e);
+AxisAlignedBoxHandle create_axis_aligned_box_ex(Extent e)
+{
+    Ogre::AxisAlignedBox::Extent ce = llcoi_extent_to_ogre_extent(e);
+    Ogre::AxisAlignedBox* box = new Ogre::AxisAlignedBox(ce);
+    return reinterpret_cast<AxisAlignedBoxHandle>(box);
+}
+
 AxisAlignedBoxHandle create_axis_aligned_box_v3(const coiVector3* min, const coiVector3* max)
 {
     Ogre::Vector3 _min(min->x, min->y, min->z);
@@ -149,4 +156,5 @@ void axisalignedbox_set_extents(AxisAlignedBoxHandle handle, const coiVector3* m
     Ogre::Vector3 _max(max->x, max->y, max->z);
     box->setExtents(_min, _max);
 }
+
 
