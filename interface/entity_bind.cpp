@@ -78,6 +78,13 @@ AxisAlignedBoxHandle entity_get_bounding_box(EntityHandle handle)
     return reinterpret_cast<AxisAlignedBoxHandle>(&box);
 }
 
+//Ogre::Entity::getBoundingRadius() const
+coiReal entity_get_bounding_radius(EntityHandle handle)
+{
+    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    return entity->getBoundingRadius();
+}
+
 
 // How do we handle the fact that Ogre::Entity is an Ogre::MovableObject ?
 // Duplicate?
@@ -114,7 +121,6 @@ Ogre::Entity::detachObjectFromBone(std::string const&)
 Ogre::Entity::detachObjectFromBone(Ogre::MovableObject*)
 Ogre::Entity::detachAllObjectsFromBone()
 Ogre::Entity::getAttachedObjectIterator()
-Ogre::Entity::getBoundingRadius() const
 Ogre::Entity::getWorldBoundingBox(bool) const
 Ogre::Entity::getWorldBoundingSphere(bool) const
 Ogre::Entity::getEdgeList()
