@@ -45,6 +45,10 @@
 #include <OgreNode.h>           // Node::TransformSpace
 #include <OISMouse.h>           // OIS::MouseButtonID
 
+// tempting...
+//#include <boost/unordered_map.hpp>
+//#include <boost/assign/list_of.hpp>
+
 
 // LLCOI forward declarations
 typedef struct _MouseEvent MouseEvent;
@@ -80,8 +84,6 @@ Extent ogre_extent_to_llcoi_extent(Ogre::AxisAlignedBox::Extent e);
 
 Ogre::AxisAlignedBox::CornerEnum llcoi_cornerenum_to_ogre_cornerenum(CornerEnum e);
 CornerEnum ogre_cornerenum_to_llcoi_cornerenum(Ogre::AxisAlignedBox::CornerEnum e);
-
-
 
 
 
