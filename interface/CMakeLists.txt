@@ -98,39 +98,62 @@ if (NOT OGRE_BUILD_PLATFORM_IPHONE)
 endif()
  
 set(HDRS
-	./ogre_interface.h
-	./ois_interface.h
-	./ogre_manager.h
-    ./binding_utils.h
+	./include/ogre_interface.h
+	./include/ois_interface.h
+	./include/ogre_manager.h
+    ./include/binding_utils.h
+	./include/root_bind.h
+	./include/entity_bind.h
+	./include/scenemanager_bind.h
+	./include/scenenode_bind.h
+	./include/camera_bind.h
+	./include/resourcegroupmanager_bind.h
+	./include/renderwindow_bind.h
+	./include/rendersystem_bind.h
+	./include/light_bind.h
+	./include/logmanager_bind.h
+	./include/log_bind.h
+    ./include/vector3_bind.h
+    ./include/colourvalue_bind.h
+	./include/framelistener_bind.h
+	./include/viewport_bind.h
+	./include/movableobject_bind.h
+	./include/windoweventlistener_bind.h
+	./include/manualobject_bind.h
+    ./include/configfile_bind.h
+    ./include/plane_bind.h
+    ./include/meshmanager_bind.h
+    ./include/timer_bind.h
+    ./include/axisalignedbox_bind.h
 )
 
 set(SRCS
-    ./binding_utils.cpp
-	./main.cpp
-	./ois_bind.cpp
-	./root_bind.cpp
-	./entity_bind.cpp
-	./scenemanager_bind.cpp
-	./scenenode_bind.cpp
-	./camera_bind.cpp
-	./resourcegroupmanager_bind.cpp
-	./renderwindow_bind.cpp
-	./rendersystem_bind.cpp
-	./light_bind.cpp
-	./logmanager_bind.cpp
-	./log_bind.cpp
-    ./vector3_bind.cpp
-    ./colourvalue_bind.cpp
-	./framelistener_bind.cpp
-	./viewport_bind.cpp
-	./movableobject_bind.cpp
-	./windoweventlistener_bind.cpp
-	./manualobject_bind.cpp
-    ./configfile_bind.cpp
-    ./plane_bind.cpp
-    ./meshmanager_bind.cpp
-    ./timer_bind.cpp
-    ./axisalignedbox_bind.cpp
+    ./source/binding_utils.cpp
+	./source/main.cpp
+	./source/ois_bind.cpp
+	./source/root_bind.cpp
+	./source/entity_bind.cpp
+	./source/scenemanager_bind.cpp
+	./source/scenenode_bind.cpp
+	./source/camera_bind.cpp
+	./source/resourcegroupmanager_bind.cpp
+	./source/renderwindow_bind.cpp
+	./source/rendersystem_bind.cpp
+	./source/light_bind.cpp
+	./source/logmanager_bind.cpp
+	./source/log_bind.cpp
+    ./source/vector3_bind.cpp
+    ./source/colourvalue_bind.cpp
+	./source/framelistener_bind.cpp
+	./source/viewport_bind.cpp
+	./source/movableobject_bind.cpp
+	./source/windoweventlistener_bind.cpp
+	./source/manualobject_bind.cpp
+    ./source/configfile_bind.cpp
+    ./source/plane_bind.cpp
+    ./source/meshmanager_bind.cpp
+    ./source/timer_bind.cpp
+    ./source/axisalignedbox_bind.cpp
 )
  
 include_directories(${OGRE_INCLUDE_DIRS} ${OIS_INCLUDE_DIRS}
@@ -177,9 +200,33 @@ if(${LLCOI_DYNAMIC_BUILD})
             LIBRARY DESTINATION lib
             CONFIGURATIONS RelWithDebInfo Release)
         install(FILES
-            ogre_interface.h
-            ois_interface.h
-            binding_utils.h
+                ./include/llcoi.h
+                ./include/ogre_interface.h
+                ./include/ois_interface.h
+                ./include/binding_utils.h
+                ./include/root_bind.h
+                ./include/entity_bind.h
+                ./include/scenemanager_bind.h
+                ./include/scenenode_bind.h
+                ./include/camera_bind.h
+                ./include/resourcegroupmanager_bind.h
+                ./include/renderwindow_bind.h
+                ./include/rendersystem_bind.h
+                ./include/light_bind.h
+                ./include/logmanager_bind.h
+                ./include/log_bind.h
+                ./include/vector3_bind.h
+                ./include/colourvalue_bind.h
+                ./include/framelistener_bind.h
+                ./include/viewport_bind.h
+                ./include/movableobject_bind.h
+                ./include/windoweventlistener_bind.h
+                ./include/manualobject_bind.h
+                ./include/configfile_bind.h
+                ./include/plane_bind.h
+                ./include/meshmanager_bind.h
+                ./include/timer_bind.h
+                ./include/axisalignedbox_bind.h
         DESTINATION ${CMAKE_INSTALL_PREFIX}/include/llcoi)
     endif()
 endif()

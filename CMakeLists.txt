@@ -48,7 +48,7 @@ set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmakemodules;${CMAKE_MODULE_PATH}")
 set(BUILD_ROOTDIR "${CMAKE_CURRENT_BINARY_DIR}")
 #set(CMAKE_INSTALL_PREFIX "${BUILD_ROOTDIR}/test/dist")
 
-include_directories(interface)
+include_directories(interface/include)
 
 add_subdirectory(interface)
 

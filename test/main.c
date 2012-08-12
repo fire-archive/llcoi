@@ -1,5 +1,4 @@
-#include <ogre_interface.h>
-#include <ois_interface.h>
+#include <llcoi.h>
 
 #undef LLCOI_TEST_USE_OPENINPUT
 
