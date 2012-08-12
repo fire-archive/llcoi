@@ -112,10 +112,19 @@ plane_side ogre_plane_side_to_llcoi_plane_side(Ogre::Plane::Side side);
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll);
 Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll);
 
+Ogre::AxisAlignedBox::Extent llcoi_extent_to_ogre_extent(Extent e);
+Extent ogre_extent_to_llcoi_extent(Ogre::AxisAlignedBox::Extent e);
+
+Ogre::AxisAlignedBox::CornerEnum llcoi_cornerenum_to_ogre_cornerenum(CornerEnum e);
+CornerEnum ogre_cornerenum_to_llcoi_cornerenum(Ogre::AxisAlignedBox::CornerEnum e);
+
+
+
+
+
 /* OIS MouseState <-> LLCOI MouseState converters */
 
 void ois_mouse_event_to_llcoi_mouse_event(const OIS::MouseEvent* ois_mouse_event, MouseEvent* llcoi_mouse_event);
-
 MouseButtonID ois_mbid_to_llcoi_mbid(OIS::MouseButtonID id);
 
 #endif

@@ -351,3 +351,129 @@ Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll)
     Ogre::LoggingLevel converted;
     return converted;
 }
+
+Ogre::AxisAlignedBox::Extent llcoi_extent_to_ogre_extent(Extent e)
+{
+    Ogre::AxisAlignedBox::Extent converted;
+
+    switch(e)
+    {
+        case EXTENT_NULL:
+            converted = Ogre::AxisAlignedBox::EXTENT_NULL;
+            break;
+
+        case EXTENT_FINITE:
+            converted = Ogre::AxisAlignedBox::EXTENT_FINITE;
+            break;
+
+        case EXTENT_INFINITE:
+            converted = Ogre::AxisAlignedBox::EXTENT_INFINITE;
+            break;
+
+    }
+    return converted;
+}
+
+Extent ogre_extent_to_llcoi_extent(Ogre::AxisAlignedBox::Extent e)
+{
+    Extent converted;
+    switch(e)
+    {
+        case Ogre::AxisAlignedBox::EXTENT_NULL:
+            converted = EXTENT_NULL;
+            break;
+
+        case Ogre::AxisAlignedBox::EXTENT_FINITE:
+            converted = EXTENT_FINITE;
+            break;
+
+        case Ogre::AxisAlignedBox::EXTENT_INFINITE:
+            converted = EXTENT_INFINITE;
+            break;
+    }
+
+    return converted;
+}
+
+
+Ogre::AxisAlignedBox::CornerEnum llcoi_cornerenum_to_ogre_cornerenum(CornerEnum e)
+{
+    Ogre::AxisAlignedBox::CornerEnum converted;
+    switch(e)
+    {
+        case FAR_LEFT_BOTTOM:
+            converted = Ogre::AxisAlignedBox::FAR_LEFT_BOTTOM;
+            break;
+
+        case FAR_LEFT_TOP:
+            converted = Ogre::AxisAlignedBox::FAR_LEFT_TOP;
+            break;
+
+        case FAR_RIGHT_TOP:
+            converted = Ogre::AxisAlignedBox::FAR_RIGHT_TOP;
+            break;
+
+        case FAR_RIGHT_BOTTOM:
+            converted = Ogre::AxisAlignedBox::FAR_RIGHT_BOTTOM;
+            break;
+
+        case NEAR_RIGHT_BOTTOM:
+            converted = Ogre::AxisAlignedBox::NEAR_RIGHT_BOTTOM;
+            break;
+
+        case NEAR_LEFT_BOTTOM:
+            converted = Ogre::AxisAlignedBox::NEAR_LEFT_BOTTOM;
+            break;
+
+        case NEAR_LEFT_TOP:
+            converted = Ogre::AxisAlignedBox::NEAR_LEFT_TOP;
+            break;
+
+        case NEAR_RIGHT_TOP:
+            converted = Ogre::AxisAlignedBox::NEAR_RIGHT_TOP;
+            break;
+
+    }
+    return converted;
+}
+
+CornerEnum ogre_cornerenum_to_llcoi_cornerenum(Ogre::AxisAlignedBox::CornerEnum e)
+{
+    CornerEnum converted;
+    switch(e)
+    {
+        case Ogre::AxisAlignedBox::FAR_LEFT_BOTTOM:
+            converted = FAR_LEFT_BOTTOM;
+            break;
+
+        case Ogre::AxisAlignedBox::FAR_LEFT_TOP:
+            converted = FAR_LEFT_TOP;
+            break;
+
+        case Ogre::AxisAlignedBox::FAR_RIGHT_TOP:
+            converted = FAR_RIGHT_TOP;
+            break;
+
+        case Ogre::AxisAlignedBox::FAR_RIGHT_BOTTOM:
+            converted = FAR_RIGHT_BOTTOM;
+            break;
+
+        case Ogre::AxisAlignedBox::NEAR_RIGHT_BOTTOM:
+            converted = NEAR_RIGHT_BOTTOM;
+            break;
+
+        case Ogre::AxisAlignedBox::NEAR_LEFT_BOTTOM:
+            converted = NEAR_LEFT_BOTTOM;
+            break;
+
+        case Ogre::AxisAlignedBox::NEAR_LEFT_TOP:
+            converted = NEAR_LEFT_TOP;
+            break;
+
+        case Ogre::AxisAlignedBox::NEAR_RIGHT_TOP:
+            converted = NEAR_RIGHT_TOP;
+            break;
+
+    }
+    return converted;
+}
