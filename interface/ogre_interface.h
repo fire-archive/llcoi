@@ -845,5 +845,6 @@ DLL void axisalignedbox_set_maximum_x(AxisAlignedBoxHandle handle, coiReal x);
 DLL void axisalignedbox_set_maximum_y(AxisAlignedBoxHandle handle, coiReal y);
 DLL void axisalignedbox_set_maximum_z(AxisAlignedBoxHandle handle, coiReal z);
 DLL void axisalignedbox_set_extents(AxisAlignedBoxHandle handle, const coiVector3* min, const coiVector3* max);
+DLL void axisalignedbox_get_corner(AxisAlignedBoxHandle handle, CornerEnum e, coiVector3* corner);
 
 #endif

@@ -742,4 +742,5 @@ void axisalignedbox_set_maximum_x(AxisAlignedBoxHandle handle, coiReal x);
 void axisalignedbox_set_maximum_y(AxisAlignedBoxHandle handle, coiReal y);
 void axisalignedbox_set_maximum_z(AxisAlignedBoxHandle handle, coiReal z);
 void axisalignedbox_set_extents(AxisAlignedBoxHandle handle, const ref coiVector3 min, const ref coiVector3 max);
+void axisalignedbox_get_corner(AxisAlignedBoxHandle handle, CornerEnum e, ref coiVector3 corner);
 

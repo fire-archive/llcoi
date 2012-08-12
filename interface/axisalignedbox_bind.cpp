@@ -157,4 +157,16 @@ void axisalignedbox_set_extents(AxisAlignedBoxHandle handle, const coiVector3* m
     box->setExtents(_min, _max);
 }
 
+void axisalignedbox_get_corner(AxisAlignedBoxHandle handle, CornerEnum e, coiVector3* c)
+{
+    Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
+    Ogre::AxisAlignedBox::CornerEnum corner = llcoi_cornerenum_to_ogre_cornerenum(e);
+
+    Ogre::Vector3 result = box->getCorner(corner);
+
+    c->x = result.x;
+    c->y = result.y;
+    c->z = result.z;
+}
+
 
