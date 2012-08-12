@@ -536,6 +536,8 @@ int entity_get_receives_shadows(EntityHandle handle);
 void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name);
 //Ogre::Entity::getBoundingBox() const
 AxisAlignedBoxHandle entity_get_bounding_box(EntityHandle handle);
+//Ogre::Entity::getBoundingRadius() const
+coiReal entity_get_bounding_radius(EntityHandle handle);
 
 // Light
 LightHandle create_light(const char* light_name);
