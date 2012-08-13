@@ -120,6 +120,12 @@ struct FrameEvent
     coiReal timeSinceLastFrame;
 }
 
+struct ray_pair
+{
+    int intersects;
+    coiReal distance;
+}
+
 
 struct ColourValue
 {
