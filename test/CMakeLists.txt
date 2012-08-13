@@ -55,10 +55,10 @@ set(SRCS
 if(${LLCOI_TEST_USE_ALLEGRO})
     find_package(ALLEGRO)
     include_directories(${ALLEGRO_INCLUDE_DIR}
-        ${CMAKE_SOURCE_DIR}/interface
+        ${CMAKE_SOURCE_DIR}/interface/include
     )
 else()
-    include_directories(${CMAKE_SOURCE_DIR}/interface)
+    include_directories(${CMAKE_SOURCE_DIR}/interface/include)
 
 #else()
 #	find_package(OPENINPUT)

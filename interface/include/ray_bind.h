@@ -1,5 +1,5 @@
 /******************************************************************************
- * llcoi.h - main include file for C clients.
+ * ray_bind.h -  bindings for Ogre::Ray
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
@@ -34,33 +34,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#ifndef LLCOI_H
-#define LLCOI_H
+
+#pragma once
+#ifndef RAY_BIND_H 
+#define RAY_BIND_H
+
 #include "ogre_interface.h"
-#include "ois_interface.h"
-#include "axisalignedbox_bind.h"
-#include "camera_bind.h"
-#include "colourvalue_bind.h"
-#include "configfile_bind.h"
-#include "entity_bind.h"
-#include "framelistener_bind.h"
-#include "light_bind.h"
-#include "log_bind.h"
-#include "logmanager_bind.h"
-#include "manualobject_bind.h"
-#include "meshmanager_bind.h"
-#include "movableobject_bind.h"
-#include "plane_bind.h"
-#include "rendersystem_bind.h"
-#include "renderwindow_bind.h"
-#include "resourcegroupmanager_bind.h"
-#include "root_bind.h"
-#include "ray_bind.h"
-#include "scenemanager_bind.h"
-#include "scenenode_bind.h"
-#include "timer_bind.h"
-#include "vector3_bind.h"
-#include "viewport_bind.h"
-#include "windoweventlistener_bind.h"
+#define RayHandle void*
+
+typedef struct
+{
+    int intersects;
+    coiReal distance;
+} ray_pair;
+
+DLL RayHandle create_ray(const coiVector3* origin, const coiVector3* direction);
+DLL void destroy_ray(RayHandle handle);
+
+
 
 #endif
+

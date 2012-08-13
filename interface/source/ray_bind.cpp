@@ -1,5 +1,5 @@
 /******************************************************************************
- * llcoi.h - main include file for C clients.
+ * ray_bind.cpp -  bindings for Ogre::Ray
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
@@ -34,33 +34,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#ifndef LLCOI_H
-#define LLCOI_H
-#include "ogre_interface.h"
-#include "ois_interface.h"
-#include "axisalignedbox_bind.h"
-#include "camera_bind.h"
-#include "colourvalue_bind.h"
-#include "configfile_bind.h"
-#include "entity_bind.h"
-#include "framelistener_bind.h"
-#include "light_bind.h"
-#include "log_bind.h"
-#include "logmanager_bind.h"
-#include "manualobject_bind.h"
-#include "meshmanager_bind.h"
-#include "movableobject_bind.h"
-#include "plane_bind.h"
-#include "rendersystem_bind.h"
-#include "renderwindow_bind.h"
-#include "resourcegroupmanager_bind.h"
-#include "root_bind.h"
-#include "ray_bind.h"
-#include "scenemanager_bind.h"
-#include "scenenode_bind.h"
-#include "timer_bind.h"
-#include "vector3_bind.h"
-#include "viewport_bind.h"
-#include "windoweventlistener_bind.h"
 
-#endif
+#include "ray_bind.h"
+#include <OgreRay.h>
+#include <OgreVector3.h>
+
+RayHandle create_ray(const coiVector3* origin, const coiVector3* direction)
+{
+    Ogre::Vector3 o(origin->x, origin->y, origin->z);
+    Ogre::Vector3 d(direction->x, direction->y, direction->z);
+    Ogre::Ray* ray = new Ogre::Ray(o, d);
+
+    return reinterpret_cast<RayHandle>(ray);
+}
+
+void destroy_ray(RayHandle handle)
+{
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
+    delete ray;
+}
+

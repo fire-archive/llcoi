@@ -125,6 +125,7 @@ set(HDRS
     ./include/meshmanager_bind.h
     ./include/timer_bind.h
     ./include/axisalignedbox_bind.h
+    ./include/ray_bind.h
 )
 
 set(SRCS
@@ -154,6 +155,7 @@ set(SRCS
     ./source/meshmanager_bind.cpp
     ./source/timer_bind.cpp
     ./source/axisalignedbox_bind.cpp
+    ./source/ray_bind.cpp
 )
  
 include_directories(${OGRE_INCLUDE_DIRS} ${OIS_INCLUDE_DIRS}
@@ -227,6 +229,7 @@ if(${LLCOI_DYNAMIC_BUILD})
                 ./include/meshmanager_bind.h
                 ./include/timer_bind.h
                 ./include/axisalignedbox_bind.h
+                ./include/ray_bind.h
         DESTINATION ${CMAKE_INSTALL_PREFIX}/include/llcoi)
     endif()
 endif()
