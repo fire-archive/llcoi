@@ -83,7 +83,9 @@ DLL void set_ambient_light_rgba(const float r, const float g, const float b, con
 
 DLL void set_ambient_light_rgb(const float r, const float g, const float b);
 
-
 DLL void scene_manager_log_name();
+
+DLL const char* scenemanager_get_name(SceneManagerHandle handle);
+
 
 #endif

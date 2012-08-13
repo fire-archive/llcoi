@@ -127,6 +127,13 @@ void scenemanager_set_sky_dome(SceneManagerHandle handle, int enable, const char
                    draw_first, q, xsegments, ysegments, ysegments_keep, Ogre::String(group_name));
 }
 
+//Ogre::SceneManager::getName() const
+const char* scenemanager_get_name(SceneManagerHandle handle)
+{
+    Ogre::SceneManager* sm = reinterpret_cast<Ogre::SceneManager*>(handle);
+    return sm->getName().c_str();
+}
+
 /*
 Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK
 Ogre::SceneManager::ENTITY_TYPE_MASK
@@ -148,7 +155,6 @@ Ogre::SceneManager::_pauseRendering()
 Ogre::SceneManager::_resumeRendering(Ogre::SceneManager::RenderContext*)
 Ogre::SceneManager::SceneManager(std::string const&)
 Ogre::SceneManager::~SceneManager()
-Ogre::SceneManager::getName() const
 Ogre::SceneManager::getTypeName() const
 Ogre::SceneManager::createCamera(std::string const&)
 Ogre::SceneManager::getCamera(std::string const&) const
