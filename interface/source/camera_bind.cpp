@@ -210,40 +210,170 @@ void camera_rotate_q(CameraHandle handle, const coiQuaternion* q)
     camera->rotate(quat);
 }
 
+//Ogre::Camera::getSceneManager() const
+SceneManagerHandle camera_get_scenemanager(CameraHandle handle)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    return reinterpret_cast<SceneManagerHandle>(camera->getSceneManager());
+    
+}
+
+// Ogre::Camera::getUp() const
+void camera_get_up(CameraHandle handle, coiVector3* up)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Vector3 u = camera->getUp();
+
+    up->x = u.x;
+    up->y = u.y;
+    up->z = u.z;
+}
+
+//Ogre::Camera::getRight() const
+void camera_get_right(CameraHandle handle, coiVector3* right)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Vector3 u = camera->getRight();
+
+    right->x = u.x;
+    right->y = u.y;
+    right->z = u.z;
+}
+
+//Ogre::Camera::setFixedYawAxis(bool, Ogre::Vector3 const&)
+void camera_set_fixed_yaw_axis(CameraHandle handle, int on, const coiVector3* fixed_axis)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Vector3 axis(fixed_axis->x, fixed_axis->y, fixed_axis->z);
+    camera->setFixedYawAxis(on, axis);
+}
+
+//Ogre::Camera::getOrientation() const
+void camera_get_orientation(CameraHandle handle, coiQuaternion* orientation)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Quaternion getter = camera->getOrientation();
+
+    orientation->x = getter.x;
+    orientation->y = getter.y;
+    orientation->z = getter.z;
+
+}
+
+//Ogre::Camera::setOrientation(Ogre::Quaternion const&)
+void camera_set_orientation(CameraHandle handle, const coiQuaternion* orientation)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Quaternion setter(orientation->x, orientation->y, orientation->z, orientation->w);
+    camera->setOrientation(setter);
+}
+
+//Ogre::Camera::getDerivedOrientation() const
+void camera_get_derived_orientation(CameraHandle handle, coiQuaternion* orientation)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Quaternion getter = camera->getDerivedOrientation();
+
+    orientation->x = getter.x;
+    orientation->y = getter.y;
+    orientation->z = getter.z;
+}
+
+//Ogre::Camera::getDerivedPosition() const
+void camera_get_derived_position(CameraHandle handle, coiVector3* position)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Vector3 getter = camera->getDerivedPosition();
+
+    position->x = getter.x;
+    position->y = getter.y;
+    position->z = getter.z;
+}
+
+//Ogre::Camera::getDerivedDirection() const
+void camera_get_derived_direction(CameraHandle handle, coiVector3* direction)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Vector3 getter = camera->getDerivedDirection();
+
+    direction->x = getter.x;
+    direction->y = getter.y;
+    direction->z = getter.z;
+}
+
+//Ogre::Camera::getDerivedUp() const
+void camera_get_derived_up(CameraHandle handle, coiVector3* up)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Vector3 getter = camera->getDerivedUp();
+
+    up->x = getter.x;
+    up->y = getter.y;
+    up->z = getter.z;
+}
+
+//Ogre::Camera::getDerivedRight() const
+void camera_get_derived_right(CameraHandle handle, coiVector3* right)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Vector3 getter = camera->getDerivedRight();
+
+    right->x = getter.x;
+    right->y = getter.y;
+    right->z = getter.z;
+}
+
+//Ogre::Camera::setAutoTracking(bool, Ogre::SceneNode*, Ogre::Vector3 const&)
+void camera_set_autotracking(CameraHandle handle, int on, SceneNodeHandle sn_handle, const coiVector3* offset)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::SceneNode* node= reinterpret_cast<Ogre::SceneNode*>(sn_handle);
+    Ogre::Vector3 setter(offset->x, offset->y, offset->z);
+    camera->setAutoTracking(on, node, setter);
+    
+}
+
+//Ogre::Camera::setLodBias(float)
+void camera_set_lod_bias(CameraHandle handle, coiReal factor)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    camera->setLodBias(factor);
+}
+
+//Ogre::Camera::getLodBias() const
+coiReal camera_get_lod_bias(CameraHandle handle)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    return camera->getLodBias();
+}
+
+//Ogre::Camera::setWindow(float, float, float, float)
+void camera_set_window(CameraHandle handle, coiReal left, coiReal top, coiReal right, coiReal bottom)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    camera->setWindow(left, top, right, bottom);
+}
+
 /*
 Ogre::Camera::Listener
 Ogre::Camera::Camera(std::string const&, Ogre::SceneManager*)
 Ogre::Camera::~Camera()
 Ogre::Camera::addListener(Ogre::Camera::Listener*)
 Ogre::Camera::removeListener(Ogre::Camera::Listener*)
-Ogre::Camera::getSceneManager() const
 Ogre::Camera::setPolygonMode(Ogre::PolygonMode)
 Ogre::Camera::getPolygonMode() const
 Ogre::Camera::getPosition() const
-Ogre::Camera::getUp() const
-Ogre::Camera::getRight() const
-Ogre::Camera::setFixedYawAxis(bool, Ogre::Vector3 const&)
-Ogre::Camera::getOrientation() const
-Ogre::Camera::setOrientation(Ogre::Quaternion const&)
 Ogre::Camera::_renderScene(Ogre::Viewport*, bool)
 Ogre::Camera::_notifyRenderedFaces(unsigned int)
 Ogre::Camera::_notifyRenderedBatches(unsigned int)
 Ogre::Camera::_getNumRenderedFaces() const
 Ogre::Camera::_getNumRenderedBatches() const
-Ogre::Camera::getDerivedOrientation() const
-Ogre::Camera::getDerivedPosition() const
-Ogre::Camera::getDerivedDirection() const
-Ogre::Camera::getDerivedUp() const
-Ogre::Camera::getDerivedRight() const
 Ogre::Camera::getRealOrientation() const
 Ogre::Camera::getRealPosition() const
 Ogre::Camera::getRealDirection() const
 Ogre::Camera::getRealUp() const
 Ogre::Camera::getRealRight() const
 Ogre::Camera::getMovableType() const
-Ogre::Camera::setAutoTracking(bool, Ogre::SceneNode*, Ogre::Vector3 const&)
-Ogre::Camera::setLodBias(float)
-Ogre::Camera::getLodBias() const
 Ogre::Camera::setLodCamera(Ogre::Camera const*)
 Ogre::Camera::getLodCamera() const
 Ogre::Camera::getCameraToViewportRay(float, float) const
@@ -252,7 +382,6 @@ Ogre::Camera::getCameraToViewportBoxVolume(float, float, float, float, bool)
 Ogre::Camera::getCameraToViewportBoxVolume(float, float, float, float, Ogre::PlaneBoundedVolume*, bool)
 Ogre::Camera::_getLodBiasInverse() const
 Ogre::Camera::_autoTrack()
-Ogre::Camera::setWindow(float, float, float, float)
 Ogre::Camera::resetWindow()
 Ogre::Camera::isWindowSet() const
 Ogre::Camera::getWindowPlanes() const

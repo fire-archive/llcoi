@@ -41,6 +41,8 @@
 #include "ogre_interface.h"
 
 #define CameraHandle void*
+#define SceneManagerHandle void*
+#define SceneNodeHandle void*
 
 // Camera
 DLL CameraHandle create_camera(const char* camera_name);
@@ -54,6 +56,10 @@ DLL void camera_move_relative(CameraHandle handle, const float x, const float y,
 DLL void camera_set_direction(CameraHandle handle, const float x, const float y, const float z);
 
 DLL void camera_get_direction(CameraHandle handle, coiVector3* v3);
+
+DLL void camera_get_up(CameraHandle handle, coiVector3* up);
+
+DLL void camera_get_right(CameraHandle handle, coiVector3* right);
 
 DLL void camera_set_near_clip_distance(CameraHandle camera_handle, float d);
 
@@ -77,6 +83,7 @@ DLL void camera_set_position(CameraHandle camera_handle, const float x, const fl
 
 DLL void camera_get_position(CameraHandle handle, coiVector3* result);
 
+
 DLL void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z);
 
 DLL void camera_roll(CameraHandle handle, coiReal angle);
@@ -88,5 +95,35 @@ DLL void camera_pitch(CameraHandle handle, coiReal angle);
 DLL void camera_rotate(CameraHandle handle, const coiVector3* axis, coiReal angle);
 
 DLL void camera_rotate_q(CameraHandle handle, const coiQuaternion* q);
+//Ogre::Camera::setFixedYawAxis(bool, Ogre::Vector3 const&)
+DLL void camera_set_fixed_yaw_axis(CameraHandle handle, int on, const coiVector3* fixed_axis);
+//Ogre::Camera::getOrientation() const
+DLL void camera_get_orientation(CameraHandle handle, coiQuaternion* orientation);
+//Ogre::Camera::setOrientation(Ogre::Quaternion const&)
+DLL void camera_set_orientation(CameraHandle handle, const coiQuaternion* orientation);
+
+//Ogre::Camera::getDerivedOrientation() const
+DLL void camera_get_derived_orientation(CameraHandle handle, coiQuaternion* orientation);
+//Ogre::Camera::getDerivedPosition() const
+DLL void camera_get_derived_position(CameraHandle handle, coiVector3* position);
+//Ogre::Camera::getDerivedDirection() const
+DLL void camera_get_derived_direction(CameraHandle handle, coiVector3* direction);
+//Ogre::Camera::getDerivedUp() const
+DLL void camera_get_derived_up(CameraHandle handle, coiVector3* up);
+//Ogre::Camera::getDerivedRight() const
+DLL void camera_get_derived_right(CameraHandle handle, coiVector3* right);
+//Ogre::Camera::setAutoTracking(bool, Ogre::SceneNode*, Ogre::Vector3 const&)
+DLL void camera_set_autotracking(CameraHandle handle, int on, SceneNodeHandle sn_handle, const coiVector3* offset);
+//Ogre::Camera::setLodBias(float)
+DLL void camera_set_lod_bias(CameraHandle handle, coiReal factor);
+//Ogre::Camera::getLodBias() const
+DLL coiReal camera_get_lod_bias(CameraHandle handle);
+//Ogre::Camera::setWindow(float, float, float, float)
+DLL void camera_set_window(CameraHandle handle, coiReal left, coiReal top, coiReal right, coiReal bottom);
+
+
+
+DLL SceneManagerHandle camera_get_scenemanager(CameraHandle handle);
+
 
 #endif
