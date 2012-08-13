@@ -34,14 +34,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "ogre_interface.h"
+#include "ogre_manager.h"
 #include "root_bind.h"
 
 #include <OgreRoot.h>
 #include <OgreRenderWindow.h>
 #include <OgreWindowEventUtilities.h>
 #include <OgreConfigFile.h>
-#include "ogre_manager.h"
 
 template<> OgreManager* Ogre::Singleton<OgreManager>::msSingleton = 0;
 
@@ -120,7 +119,7 @@ RenderWindowHandle root_initialise(int auto_create_window, const char* render_wi
 }
 
 // Ogre::Root::isInitialised() const
-DLL int root_is_initialised()
+int root_is_initialised()
 {
     if(Ogre::Root::getSingletonPtr()->isInitialised())
         return 1;

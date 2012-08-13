@@ -34,7 +34,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "ogre_interface.h"
 #include "renderwindow_bind.h"
 
 #include <OgreRoot.h>
@@ -75,7 +74,7 @@ RenderWindowHandle create_render_window(const char* name, const int width, const
     return reinterpret_cast<RenderWindowHandle>(window);
 }
 
-DLL RenderWindowHandle create_render_window_hwnd(const char* name, const int width, const int height, const int full_screen, unsigned long hwnd)
+RenderWindowHandle create_render_window_hwnd(const char* name, const int width, const int height, const int full_screen, unsigned long hwnd)
 {
     Ogre::NameValuePairList misc;
     misc["parentWindowHandle"] = Ogre::StringConverter::toString(hwnd);
