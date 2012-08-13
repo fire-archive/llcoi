@@ -83,6 +83,7 @@ alias void* MeshHandle;
 alias void* TimerHandle;
 alias void* WindowListenerHandle;
 alias void* AxisAlignedBoxHandle;
+alias void* RayHandle;
 
 
 // listener typedefs
@@ -788,3 +789,6 @@ void axisalignedbox_set_maximum_z(AxisAlignedBoxHandle handle, coiReal z);
 void axisalignedbox_set_extents(AxisAlignedBoxHandle handle, const ref coiVector3 min, const ref coiVector3 max);
 void axisalignedbox_get_corner(AxisAlignedBoxHandle handle, CornerEnum e, ref coiVector3 corner);
 
+//Ogre::Ray
+RayHandle create_ray(const ref coiVector3 origin, const ref coiVector3 direction);
+void destroy_ray(RayHandle handle);
