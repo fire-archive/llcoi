@@ -328,6 +328,8 @@ void scenemanager_set_sky_dome(SceneManagerHandle handle, int enable, const char
                                float tiling, float distance, int draw_first, const coiQuaternion* orientation,
                                int xsegments, int ysegments, int ysegments_keep, const char* group_name);
 
+
+const(char*) scenemanager_get_name(SceneManagerHandle handle);
 // RenderSystem functions
 void add_render_system(RenderSystemHandle render_system);
 
@@ -487,7 +489,11 @@ void camera_move_relative(CameraHandle handle, const float x, const float y, con
 
 void camera_set_direction(CameraHandle handle, const float x, const float y, const float z, transform_space relative_to);
 
-void camera_get_direction(CameraHandle handle, coiVector3* v3);
+void camera_get_direction(CameraHandle handle, ref coiVector3 v3);
+
+void camera_get_up(CameraHandle handle, ref coiVector3 up);
+
+void camera_get_right(CameraHandle handle, ref coiVector3 right);
 
 void camera_set_near_clip_distance(CameraHandle camera_handle, float d);
 
@@ -522,6 +528,34 @@ void camera_pitch(CameraHandle handle, coiReal angle);
 void camera_rotate(CameraHandle handle, const coiVector3* axis, coiReal angle);
 
 void camera_rotate_q(CameraHandle handle, const coiQuaternion* q);
+
+//Ogre::Camera::setFixedYawAxis(bool, Ogre::Vector3 const&)
+void camera_set_fixed_yaw_axis(CameraHandle handle, int on, const ref coiVector3 fixed_axis);
+//Ogre::Camera::getOrientation() const
+void camera_get_orientation(CameraHandle handle, ref coiQuaternion orientation);
+//Ogre::Camera::setOrientation(Ogre::Quaternion const&)
+void camera_set_orientation(CameraHandle handle, const ref coiQuaternion orientation);
+//Ogre::Camera::getDerivedOrientation() const
+void camera_get_derived_orientation(CameraHandle handle, ref coiQuaternion orientation);
+//Ogre::Camera::getDerivedPosition() const
+void camera_get_derived_position(CameraHandle handle, ref coiVector3 position);
+//Ogre::Camera::getDerivedDirection() const
+void camera_get_derived_direction(CameraHandle handle, ref coiVector3 direction);
+//Ogre::Camera::getDerivedUp() const
+void camera_get_derived_up(CameraHandle handle, ref coiVector3 up);
+//Ogre::Camera::getDerivedRight() const
+void camera_get_derived_right(CameraHandle handle, ref coiVector3 right);
+//Ogre::Camera::setAutoTracking(bool, Ogre::SceneNode*, Ogre::Vector3 const&)
+void camera_set_autotracking(CameraHandle handle, int on, SceneNodeHandle sn_handle, const ref coiVector3 offset);
+//Ogre::Camera::setLodBias(float)
+void camera_set_lod_bias(CameraHandle handle, coiReal factor);
+//Ogre::Camera::getLodBias() const
+coiReal camera_get_lod_bias(CameraHandle handle);
+//Ogre::Camera::setWindow(float, float, float, float)
+void camera_set_window(CameraHandle handle, coiReal left, coiReal top, coiReal right, coiReal bottom);
+
+SceneManagerHandle camera_get_scenemanager(CameraHandle handle);
+
 
 
 // Entity
