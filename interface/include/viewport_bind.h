@@ -71,4 +71,13 @@ DLL int viewport_get_actual_width(ViewportHandle handle);
 
 DLL int viewport_get_actual_height(ViewportHandle handle);
 
+//Ogre::Viewport::setDimensions(float, float, float, float)
+DLL void viewport_set_dimensions(ViewportHandle handle, coiReal left, coiReal top, coiReal width, coiReal height);
+//Ogre::Viewport::getActualDimensions(int&, int&, int&, int&) const
+DLL void viewport_get_actual_dimensions(ViewportHandle handle, int* left, int* top, int* width, int* height);
+
+
+//Ogre::Viewport::getBackgroundColour() const
+DLL void viewport_get_background_colour(ViewportHandle handle, ColourValue* cv);
+
 #endif

@@ -464,6 +464,13 @@ int viewport_get_actual_width(ViewportHandle handle);
 
 int viewport_get_actual_height(ViewportHandle handle);
 
+//Ogre::Viewport::setDimensions(float, float, float, float)
+void viewport_set_dimensions(ViewportHandle handle, coiReal left, coiReal top, coiReal width, coiReal height);
+//Ogre::Viewport::getActualDimensions(int&, int&, int&, int&) const
+void viewport_get_actual_dimensions(ViewportHandle handle, ref int left, ref int top, ref int width, ref int height);
+//Ogre::Viewport::getBackgroundColour() const
+void viewport_get_background_colour(ViewportHandle handle, ref ColourValue cv);
+
 // Resource management
 void setup_resources(const char* resources_cfg);
 
