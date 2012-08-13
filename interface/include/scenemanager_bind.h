@@ -64,6 +64,8 @@ DLL EntityHandle scenemanager_create_entity(SceneManagerHandle handle, const cha
 DLL SceneNodeHandle scenemanager_get_root_scene_node(SceneManagerHandle handle);
 // Does use OgreManager.
 DLL SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name);
+DLL SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_name);
+DLL SceneManagerHandle get_scene_manager();
 
 DLL LightHandle scenemanager_create_light(SceneManagerHandle handle, const char* name);
 
@@ -81,7 +83,6 @@ DLL void set_ambient_light_rgba(const float r, const float g, const float b, con
 
 DLL void set_ambient_light_rgb(const float r, const float g, const float b);
 
-DLL ViewportHandle add_viewport(CameraHandle camera_handle);
 
 DLL void scene_manager_log_name();
 

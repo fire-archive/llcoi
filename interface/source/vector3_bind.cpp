@@ -35,7 +35,7 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#include "ogre_interface.h"
+#include "vector3_bind.h"
 #include <OgreVector3.h>
 
 //Vector3::operator !=

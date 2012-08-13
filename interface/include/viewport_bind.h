@@ -47,6 +47,7 @@
 
 
 // Viewports
+DLL ViewportHandle add_viewport(CameraHandle camera_handle);
 DLL void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b, float a);
 
 DLL void viewport_set_background_colour_cv(ViewportHandle viewport_handle, ColourValue* cv);

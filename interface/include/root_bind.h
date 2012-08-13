@@ -75,8 +75,6 @@ DLL SceneManagerHandle root_create_scene_manager(const char* type_name, const ch
 // Doesn't use OgreManager. If a specific scene manager is not found,
 // the default implementation is always returned.
 DLL SceneManagerHandle root_create_scene_manager_by_mask(SceneTypeMask type_mask, const char* instance_name);
-DLL SceneManagerHandle get_scene_manager();
-DLL SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_name);
 DLL int render_one_frame();
 DLL int render_one_frame_ex(float time_since_last_frame);
 DLL void render_loop();

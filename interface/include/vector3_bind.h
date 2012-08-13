@@ -38,7 +38,6 @@
 #pragma once
 #ifndef VECTOR3_BIND_H
 #define VECTOR3_BIND_H
-
 #include "ogre_interface.h"
 
 // Vector3
