@@ -132,7 +132,7 @@ void camera_move(CameraHandle handle, const float x, const float y, const float 
 void camera_move_relative(CameraHandle handle, const float x, const float y, const float z)
 {
     Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
-    camera->move(Ogre::Vector3(x, y, z));
+    camera->moveRelative(Ogre::Vector3(x, y, z));
 }
 
 //Ogre::Frustum::setAspectRatio(float)
