@@ -808,5 +808,8 @@ void ray_set_direction(RayHandle handle, const ref coiVector3 direction);
 void ray_get_direction(RayHandle handle, ref coiVector3 direction);
 //Ray::getPoint
 void ray_get_point(RayHandle handle, coiReal units, ref coiVector3 point);
-
+//Ray::intersects(Plane)
+void ray_intersects_plane(RayHandle handle, PlaneHandle plane_handle, ref ray_pair result);
+//Ray::intersects(AxisAlignedBox)
+void ray_intersects_axisalignedbox(RayHandle handle, AxisAlignedBoxHandle query_handle, ref ray_pair result);
 

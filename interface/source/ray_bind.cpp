@@ -38,6 +38,7 @@
 #include "ray_bind.h"
 #include <OgreRay.h>
 #include <OgreVector3.h>
+#include <OgrePlane.h>
 
 RayHandle create_ray(const coiVector3* origin, const coiVector3* direction)
 {
@@ -102,4 +103,28 @@ void ray_get_point(RayHandle handle, coiReal units, coiVector3* point)
     point->y = getter.y;
     point->z = getter.z;
 }
+
+//Ray::intersects(Plane)
+void ray_intersects_plane(RayHandle handle, PlaneHandle query_handle, ray_pair* result)
+{
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
+    Ogre::Plane* query = reinterpret_cast<Ogre::Plane*>(query_handle);
+    std::pair<bool, Ogre::Real> r = ray->intersects(*query);
+
+    result->intersects = r.first;
+    result->distance   = r.second;
+}
+
+//Ray::intersects(AxisAlignedBox)
+void ray_intersects_axisalignedbox(RayHandle handle, AxisAlignedBoxHandle query_handle, ray_pair* result)
+{
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
+    Ogre::AxisAlignedBox* query = reinterpret_cast<Ogre::AxisAlignedBox*>(query_handle);
+    std::pair<bool, Ogre::Real> r = ray->intersects(*query);
+
+    result->intersects = r.first;
+    result->distance   = r.second;
+}
+
+
 

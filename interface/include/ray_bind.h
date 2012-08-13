@@ -41,6 +41,8 @@
 
 #include "ogre_interface.h"
 #define RayHandle void*
+#define PlaneHandle void*
+#define AxisAlignedBoxHandle void*
 
 typedef struct
 {
@@ -60,7 +62,10 @@ DLL void ray_set_direction(RayHandle handle, const coiVector3* direction);
 DLL void ray_get_direction(RayHandle handle, coiVector3* direction);
 //Ray::getPoint
 DLL void ray_get_point(RayHandle handle, coiReal units, coiVector3* point);
-
+//Ray::intersects(Plane)
+DLL void ray_intersects_plane(RayHandle handle, PlaneHandle plane_handle, ray_pair* result);
+//Ray::intersects(AxisAlignedBox)
+DLL void ray_intersects_axisalignedbox(RayHandle handle, AxisAlignedBoxHandle query_handle, ray_pair* result);
 
 #endif
 
