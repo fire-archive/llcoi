@@ -54,3 +54,52 @@ void destroy_ray(RayHandle handle)
     delete ray;
 }
 
+//Ray::setOrigin
+void ray_set_origin(RayHandle handle, const coiVector3* origin)
+{
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
+    Ogre::Vector3 setter(origin->x, origin->y, origin->z);
+    ray->setOrigin(setter);
+}
+
+//Ray::getOrigin
+void ray_get_origin(RayHandle handle, coiVector3* origin)
+{
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
+    Ogre::Vector3 getter = ray->getOrigin();
+
+    origin->x = getter.x;
+    origin->y = getter.y;
+    origin->z = getter.z;
+}
+
+//Ray::setDirection
+void ray_set_direction(RayHandle handle, const coiVector3* direction)
+{
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
+    Ogre::Vector3 setter(direction->x, direction->y, direction->z);
+    ray->setDirection(setter);
+}
+
+//Ray::getDirection
+void ray_get_direction(RayHandle handle, coiVector3* direction)
+{
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
+    Ogre::Vector3 getter = ray->getDirection();
+
+    direction->x = getter.x;
+    direction->y = getter.y;
+    direction->z = getter.z;
+}
+
+//Ray::getPoint
+void ray_get_point(RayHandle handle, coiReal units, coiVector3* point)
+{
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
+    Ogre::Vector3 getter = ray->getPoint(units);
+
+    point->x = getter.x;
+    point->y = getter.y;
+    point->z = getter.z;
+}
+

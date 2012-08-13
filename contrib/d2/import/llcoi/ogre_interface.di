@@ -800,5 +800,15 @@ void axisalignedbox_get_corner(AxisAlignedBoxHandle handle, CornerEnum e, ref co
 //Ogre::Ray
 RayHandle create_ray(const ref coiVector3 origin, const ref coiVector3 direction);
 void destroy_ray(RayHandle handle);
+//Ray::setOrigin
+void ray_set_origin(RayHandle handle, const ref coiVector3 origin);
+//Ray::getOrigin
+void ray_get_origin(RayHandle handle, ref coiVector3 origin);
+//Ray::setDirection
+void ray_set_direction(RayHandle handle, const ref coiVector3 direction);
+//Ray::getDirection
+void ray_get_direction(RayHandle handle, ref coiVector3 direction);
+//Ray::getPoint
+void ray_get_point(RayHandle handle, coiReal units, ref coiVector3 point);
 
 

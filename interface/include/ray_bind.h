@@ -50,7 +50,16 @@ typedef struct
 
 DLL RayHandle create_ray(const coiVector3* origin, const coiVector3* direction);
 DLL void destroy_ray(RayHandle handle);
-
+//Ray::setOrigin
+DLL void ray_set_origin(RayHandle handle, const coiVector3* origin);
+//Ray::getOrigin
+DLL void ray_get_origin(RayHandle handle, coiVector3* origin);
+//Ray::setDirection
+DLL void ray_set_direction(RayHandle handle, const coiVector3* direction);
+//Ray::getDirection
+DLL void ray_get_direction(RayHandle handle, coiVector3* direction);
+//Ray::getPoint
+DLL void ray_get_point(RayHandle handle, coiReal units, coiVector3* point);
 
 
 #endif
