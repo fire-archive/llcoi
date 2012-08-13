@@ -34,7 +34,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include <ogre_interface.h>
+#include "main.h"
 
 #include <OgreRoot.h>
 #include <OgreEntity.h>

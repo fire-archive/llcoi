@@ -65,7 +65,6 @@ DLL void default_engine_options(engine_options* options);
 DLL void init_engine(const engine_options options);
 DLL RenderWindowHandle root_initialise(int auto_create_window, const char* render_window_title);
 DLL TimerHandle root_get_timer();
-DLL void current_window_update(int swap_buffers);
 DLL int root_is_initialised();
 DLL void save_config();
 DLL int restore_config();
@@ -76,15 +75,12 @@ DLL SceneManagerHandle root_create_scene_manager(const char* type_name, const ch
 // Doesn't use OgreManager. If a specific scene manager is not found,
 // the default implementation is always returned.
 DLL SceneManagerHandle root_create_scene_manager_by_mask(SceneTypeMask type_mask, const char* instance_name);
-// Does use OgreManager.
-DLL SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name);
 DLL SceneManagerHandle get_scene_manager();
 DLL SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_name);
 DLL int render_one_frame();
 DLL int render_one_frame_ex(float time_since_last_frame);
 DLL void render_loop();
 DLL void pump_messages();
-DLL void log_message(const char* message);
 DLL RenderWindowHandle root_create_render_window(const char* name, unsigned int width, unsigned int height, int fullscreen, NameValuePairListHandle params);
 DLL RenderSystemListHandle root_get_available_renderers();
 

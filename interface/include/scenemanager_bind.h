@@ -57,10 +57,13 @@ typedef enum
     ST_INTERIOR = 16
 } scene_type;
 
+
 // Ogre::SceneManager calls
 DLL EntityHandle scenemanager_create_entity(SceneManagerHandle handle, const char* name, const char* mesh_name, const char* group_name);
 
 DLL SceneNodeHandle scenemanager_get_root_scene_node(SceneManagerHandle handle);
+// Does use OgreManager.
+DLL SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name);
 
 DLL LightHandle scenemanager_create_light(SceneManagerHandle handle, const char* name);
 
@@ -73,7 +76,6 @@ DLL void scenemanager_set_sky_dome(SceneManagerHandle handle, int enable, const 
                                int xsegments, int ysegments, int ysegments_keep, const char* group_name);
 
 // SceneManager functions
-DLL void set_default_num_mipmaps(int number);
 
 DLL void set_ambient_light_rgba(const float r, const float g, const float b, const float a);
 

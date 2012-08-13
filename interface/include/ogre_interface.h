@@ -215,9 +215,5 @@ typedef enum
     TS_WORLD
 } transform_space;
 
-// NameValuePairList 
-DLL NameValuePairListHandle create_name_value_pair_list();
-DLL void add_pair(NameValuePairListHandle params, const char* name, const char* value);
-DLL void destroy_name_value_pair_list(NameValuePairListHandle params);
 
 #endif
