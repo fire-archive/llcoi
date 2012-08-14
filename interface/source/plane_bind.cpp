@@ -85,3 +85,17 @@ void plane_set_d(PlaneHandle handle, coiReal d)
     Ogre::Plane* plane = reinterpret_cast<Ogre::Plane*>(handle);
     plane->d = d;
 }
+
+
+// PlaneList (typedef vector<Plane>::type PlaneList)
+PlaneListHandle create_planelist()
+{
+    Ogre::PlaneList* pl = new Ogre::PlaneList;
+    return reinterpret_cast<PlaneListHandle>(pl);
+}
+
+void destroy_planelist(PlaneListHandle handle)
+{
+    Ogre::PlaneList* pl = reinterpret_cast<Ogre::PlaneList*>(handle);
+    delete pl;
+}
