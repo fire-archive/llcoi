@@ -275,7 +275,7 @@ void rayscenequery_set_sort_by_distance(RaySceneQueryHandle handle, int on, unsi
 }
 
 //bool getSortByDistance(void) const;
-int rayscenequery_get_short_by_distance(RaySceneQueryHandle handle)
+int rayscenequery_get_sort_by_distance(RaySceneQueryHandle handle)
 {
     Ogre::RaySceneQuery* query = reinterpret_cast<Ogre::RaySceneQuery*>(handle);
     return query->getSortByDistance();
