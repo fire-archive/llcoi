@@ -88,7 +88,9 @@ alias void* AxisAlignedBoxHandle;
 alias void* RayHandle;
 alias void* SphereHandle;
 alias void* SceneQueryHandle;
+alias void* RaySceneQueryHandle;
 alias void* SceneQueryListenerHandle;
+alias void* RaySceneQueryListenerHandle;
 alias void* SceneQueryResultHandle;
 alias void* MovableObjectHandle;
 alias void* RenderOperationHandle;
@@ -101,8 +103,11 @@ alias void function(RenderWindowHandle) WindowListenerEvent;
 alias void function(const char* message, int lml, int maskDebug, const char* log_name, int skip_message) LogListenerEvent;
 alias void function(const char* message, int lml, int maskDebug, const char* log_name, int skip_message, void* userdata) LogListenerCtx;
 alias int function(const ref FrameEvent evt, int frame_type, void* userdata) FrameListenerCtx;
+
 alias int function(const ref world_fragment frag, void* userdata) SceneQueryFragmentResult;
 alias int function(MovableObjectHandle handle, void* userdata) SceneQueryObjectResult;
+alias int function(const ref world_fragment frag, coiReal distance, void* userdata) RaySceneQueryFragmentResult;
+alias int function(MovableObjectHandle handle, coiReal distance, void* userdata) RaySceneQueryObjectResult;
 
 struct coiQuaternion
 {
@@ -175,6 +180,13 @@ struct world_fragment
     PlaneListHandle planes;
     void* geometry;
     RenderOperationHandle render_op;
+}
+
+struct rayscenequery_result_entry
+{
+    coiReal distance;
+    MovableObjectHandle movable;
+    world_fragment* fragment;
 }
 
 
@@ -923,3 +935,20 @@ MovableObjectHandle scenequeryresult_movables_at(SceneQueryResultHandle handle, 
 
 int scenequeryresult_worldfragments_count(SceneQueryResultHandle handle, int index);
 void scenequeryresult_worldfragments_at(SceneQueryResultHandle handle, int index, ref world_fragment result);
+
+RaySceneQueryListenerHandle create_rayscenequerylistener(RaySceneQueryFragmentResult fragment_callback, RaySceneQueryObjectResult object_callback, void* userdata);
+void destroy_rayscenequerylistener(RaySceneQueryListenerHandle handle);
+
+//setRay
+void rayscenequery_set_ray(RaySceneQueryHandle handle, RayHandle ray_handle);
+//getRay
+RayHandle rayscenequery_get_ray(RaySceneQueryHandle handle);
+
+
+//void setSortByDistance(bool sort, ushort maxresults = 0);
+void rayscenequery_set_sort_by_distance(RaySceneQueryHandle handle, int on, ushort maxresults);
+//bool getSortByDistance(void) const;
+int rayscenequery_get_short_by_distance(RaySceneQueryHandle handle);
+//ushort getMaxResults(void) const;
+ushort rayscenequery_get_max_results(RaySceneQueryHandle handle);
+

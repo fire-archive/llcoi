@@ -41,12 +41,15 @@
 #include "ogre_interface.h"
 
 #define SceneQueryHandle void*
+#define RaySceneQueryHandle void*
 #define SceneQueryListenerHandle void*
+#define RaySceneQueryListenerHandle void*
 #define SceneManagerHandle void*
 #define RenderOperationHandle void*
 #define PlaneListHandle void*
 #define MovableObjectHandle void*
 #define SceneQueryResultHandle void*
+#define RayHandle void*
 
 typedef struct world_fragment
 {
@@ -57,6 +60,14 @@ typedef struct world_fragment
     RenderOperationHandle render_op;
     
 } world_fragment;
+
+typedef struct rayscenequery_result_entry
+{
+    coiReal distance;
+    MovableObjectHandle movable;
+    world_fragment* fragment;
+
+} rayscenequery_result_entry;
 
 
 // No create/destroy methods for these, as this is the job of the SceneManager.
@@ -69,13 +80,30 @@ DLL void scenequery_set_world_fragment_type(SceneQueryHandle handle, world_fragm
 //WorldFragmentType SceneQuery::getWorldFragmentType(void) const;
 DLL world_fragment_type scenequery_get_world_fragment_type(SceneQueryHandle handle);
 
+DLL void rayscenequery_set_ray(RaySceneQueryHandle handle, RayHandle ray_handle);
+DLL RayHandle rayscenequery_get_ray(RaySceneQueryHandle handle);
+
+//void setSortByDistance(bool sort, ushort maxresults = 0);
+DLL void rayscenequery_set_sort_by_distance(RaySceneQueryHandle handle, int on, unsigned short maxresults);
+//bool getSortByDistance(void) const;
+DLL int rayscenequery_get_short_by_distance(RaySceneQueryHandle handle);
+//ushort getMaxResults(void) const;
+DLL unsigned short rayscenequery_get_max_results(RaySceneQueryHandle handle);
+
+
 typedef int(*SceneQueryFragmentResult)(const world_fragment* frag, void* userdata);
 typedef int(*SceneQueryObjectResult)(MovableObjectHandle handle, void* userdata);
+
+typedef int(*RaySceneQueryFragmentResult)(const world_fragment* frag, coiReal distance, void* userdata);
+typedef int(*RaySceneQueryObjectResult)(MovableObjectHandle handle, coiReal distance, void* userdata);
 
 
 // SceneQueryListener
 DLL SceneQueryListenerHandle create_scenequerylistener(SceneQueryFragmentResult fragment_callback, SceneQueryObjectResult object_callback, void* userdata);
 DLL void destroy_scenequerylistener(SceneQueryListenerHandle handle);
+
+DLL RaySceneQueryListenerHandle create_rayscenequerylistener(RaySceneQueryFragmentResult fragment_callback, RaySceneQueryObjectResult object_callback, void* userdata);
+DLL void destroy_rayscenequerylistener(RaySceneQueryListenerHandle handle);
 
 DLL int scenequeryresult_movables_count(SceneQueryResultHandle handle);
 DLL MovableObjectHandle scenequeryresult_movables_at(SceneQueryResultHandle handle, int index);

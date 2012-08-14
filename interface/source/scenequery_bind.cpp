@@ -42,6 +42,21 @@
 
 
 
+// internal helper method
+void ogre_wf_to_llcoi_wf(const Ogre::SceneQuery::WorldFragment& o, world_fragment & l)
+{
+    l.fragment_type = ogre_wft_to_llcoi_wft(o.fragmentType);
+
+    l.single_intersection.x = o.singleIntersection.x;
+    l.single_intersection.y = o.singleIntersection.y;
+    l.single_intersection.z = o.singleIntersection.z;
+
+    l.planes = reinterpret_cast<PlaneListHandle>(o.planes);
+
+    l.geometry = o.geometry;
+    l.render_op = reinterpret_cast<RenderOperationHandle>(o.renderOp);
+}
+
 
 // SceneQuery::setQueryMask(uint32 mask)
 void scenequery_set_query_mask(SceneQueryHandle handle, uint32 mask)
@@ -73,10 +88,48 @@ world_fragment_type scenequery_get_world_fragment_type(SceneQueryHandle handle)
     return ogre_wft_to_llcoi_wft(wft);
 }
 
+
+
+
+
+class RaySceneQueryListenerCTX : public Ogre::RaySceneQueryListener
+{
+public:
+    RaySceneQueryListenerCTX(RaySceneQueryFragmentResult fragment_callback,
+                             RaySceneQueryObjectResult object_callback,
+                             void* data) : FragmentResult(fragment_callback), ObjectResult(object_callback), userdata(data)
+    {
+    }
+
+    bool queryResult(Ogre::MovableObject* obj, Ogre::Real distance)
+    {
+
+        int result;
+        MovableObjectHandle handle = reinterpret_cast<MovableObjectHandle>(obj);
+        result = ObjectResult(handle, distance, userdata);
+        return result;
+    }
+
+    bool queryResult(Ogre::SceneQuery::WorldFragment* fragment, Ogre::Real distance)
+    {
+        int result;
+        world_fragment wf;
+        ogre_wf_to_llcoi_wf(*fragment, wf);
+        result = ObjectResult(&wf, distance, userdata);
+        return result;
+    }
+
+    RaySceneQueryFragmentResult FragmentResult;
+    RaySceneQueryObjectResult ObjectResult;
+    void* userdata;
+};
+
 class SceneQueryListenerCTX : public Ogre::SceneQueryListener
 {
 public:
-    SceneQueryListenerCTX(SceneQueryFragmentResult fragment_callback, SceneQueryObjectResult object_callback, void* data) : FragmentResult(fragment_callback), ObjectResult(object_callback), userdata(data)
+    SceneQueryListenerCTX(SceneQueryFragmentResult fragment_callback,
+                          SceneQueryObjectResult object_callback,
+                          void* data) : FragmentResult(fragment_callback), ObjectResult(object_callback), userdata(data)
     {
     }
 
@@ -128,6 +181,20 @@ void destroy_scenequerylistener(SceneQueryListenerHandle handle)
     delete listener;
 }
 
+
+RaySceneQueryListenerHandle create_rayscenequerylistener(RaySceneQueryFragmentResult fragment_callback, RaySceneQueryObjectResult object_callback, void* userdata)
+{
+    RaySceneQueryListenerCTX* listener = new RaySceneQueryListenerCTX(fragment_callback, object_callback, userdata);
+    return reinterpret_cast<RaySceneQueryListenerHandle>(listener);
+}
+
+void destroy_rayscenequerylistener(RaySceneQueryListenerHandle handle)
+{
+    RaySceneQueryListenerCTX* listener = reinterpret_cast<RaySceneQueryListenerCTX*>(handle);
+    delete listener;
+}
+
+
 int scenequeryresult_movables_count(SceneQueryResultHandle handle)
 {
     Ogre::SceneQueryResult* result = reinterpret_cast<Ogre::SceneQueryResult*>(handle);
@@ -164,7 +231,6 @@ void scenequeryresult_worldfragments_at(SceneQueryResultHandle handle, int index
     {
         if(cnt == index)
         {
-
             result->fragment_type = ogre_wft_to_llcoi_wft((*it)->fragmentType);
 
             result->single_intersection.x = (*it)->singleIntersection.x;
@@ -179,4 +245,46 @@ void scenequeryresult_worldfragments_at(SceneQueryResultHandle handle, int index
         }
         cnt++;
     }
+}
+
+
+
+void rayscenequery_set_ray(RaySceneQueryHandle handle, RayHandle ray_handle)
+{
+    Ogre::RaySceneQuery* query = reinterpret_cast<Ogre::RaySceneQuery*>(handle);
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(ray_handle);
+    query->setRay(*ray);
+}
+
+RayHandle rayscenequery_get_ray(RaySceneQueryHandle handle)
+{
+    Ogre::RaySceneQuery* query = reinterpret_cast<Ogre::RaySceneQuery*>(handle);
+    Ogre::Ray& ray = const_cast<Ogre::Ray&>(
+        query->getRay()
+    );
+
+    return reinterpret_cast<RayHandle>(&ray);
+}
+
+
+//void setSortByDistance(bool sort, ushort maxresults = 0);
+void rayscenequery_set_sort_by_distance(RaySceneQueryHandle handle, int on, unsigned short maxresults)
+{
+    Ogre::RaySceneQuery* query = reinterpret_cast<Ogre::RaySceneQuery*>(handle);
+    query->setSortByDistance(on, maxresults);
+}
+
+//bool getSortByDistance(void) const;
+int rayscenequery_get_short_by_distance(RaySceneQueryHandle handle)
+{
+    Ogre::RaySceneQuery* query = reinterpret_cast<Ogre::RaySceneQuery*>(handle);
+    return query->getSortByDistance();
+}
+
+//ushort getMaxResults(void) const;
+unsigned short rayscenequery_get_max_results(RaySceneQueryHandle handle)
+{
+    
+    Ogre::RaySceneQuery* query = reinterpret_cast<Ogre::RaySceneQuery*>(handle);
+    return query->getMaxResults();
 }
