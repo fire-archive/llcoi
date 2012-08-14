@@ -826,3 +826,14 @@ coiReal sphere_get_radius(SphereHandle handle);
 void sphere_set_center(SphereHandle handle, const ref coiVector3 center);
 //Real getCenter(void) const
 void sphere_get_center(SphereHandle handle, ref coiVector3 center);
+// bool intersects(const Sphere&) const
+int sphere_intersects_sphere(SphereHandle handle, SphereHandle query);
+// bool intersects(const AxisAlignedBox&) const
+int sphere_intersects_axisalignedbox(SphereHandle handle, AxisAlignedBoxHandle query);
+// bool intersects(const Plane&) const
+int sphere_intersects_plane(SphereHandle handle, PlaneHandle query);
+// bool intersects(const Vector3&) const
+int sphere_intersects_vector3(SphereHandle handle, const ref coiVector3 query);
+// void merge(const Sphere&)
+void sphere_merge(SphereHandle handle, SphereHandle other_sphere);
+
