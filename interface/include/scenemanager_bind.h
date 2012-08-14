@@ -47,6 +47,7 @@
 #define EntityHandle void*
 #define ViewportHandle void*
 #define LightHandle void*
+#define SceneQueryHandle void*
 
 typedef enum
 {
@@ -86,6 +87,8 @@ DLL void set_ambient_light_rgb(const float r, const float g, const float b);
 DLL void scene_manager_log_name();
 
 DLL const char* scenemanager_get_name(SceneManagerHandle handle);
+//void SceneManager::destroyQuery(Ogre::SceneQuery* query);
+DLL void scenemanager_destroy_scenequery(SceneManagerHandle handle, SceneQueryHandle query);
 
 
 #endif

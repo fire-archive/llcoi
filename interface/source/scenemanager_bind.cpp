@@ -134,6 +134,16 @@ const char* scenemanager_get_name(SceneManagerHandle handle)
     return sm->getName().c_str();
 }
 
+//void SceneManager::destroyQuery(Ogre::SceneQuery* query);
+void scenemanager_destroy_scenequery(SceneManagerHandle handle, SceneQueryHandle query)
+{
+    Ogre::SceneManager* sm = reinterpret_cast<Ogre::SceneManager*>(handle);
+    Ogre::SceneQuery* q = reinterpret_cast<Ogre::SceneQuery*>(query);
+    sm->destroyQuery(q);
+}
+
+
+
 /*
 Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK
 Ogre::SceneManager::ENTITY_TYPE_MASK
