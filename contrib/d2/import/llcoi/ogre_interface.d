@@ -951,7 +951,7 @@ RayHandle rayscenequery_get_ray(RaySceneQueryHandle handle);
 //void setSortByDistance(bool sort, ushort maxresults = 0);
 void rayscenequery_set_sort_by_distance(RaySceneQueryHandle handle, int on, ushort maxresults);
 //bool getSortByDistance(void) const;
-int rayscenequery_get_short_by_distance(RaySceneQueryHandle handle);
+int rayscenequery_get_sort_by_distance(RaySceneQueryHandle handle);
 //ushort getMaxResults(void) const;
 ushort rayscenequery_get_max_results(RaySceneQueryHandle handle);
 

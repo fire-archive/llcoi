@@ -303,5 +303,4 @@ void rayscenequeryresult_at(RaySceneQueryResultHandle handle, int index, rayscen
     result->distance = entry.distance;
     result->movable  = reinterpret_cast<MovableObjectHandle>(entry.movable);
     ogre_wf_to_llcoi_wf(*entry.worldFragment, *result->fragment);
-
 }

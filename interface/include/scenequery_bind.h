@@ -87,7 +87,7 @@ DLL RayHandle rayscenequery_get_ray(RaySceneQueryHandle handle);
 //void setSortByDistance(bool sort, ushort maxresults = 0);
 DLL void rayscenequery_set_sort_by_distance(RaySceneQueryHandle handle, int on, unsigned short maxresults);
 //bool getSortByDistance(void) const;
-DLL int rayscenequery_get_short_by_distance(RaySceneQueryHandle handle);
+DLL int rayscenequery_get_sort_by_distance(RaySceneQueryHandle handle);
 //ushort getMaxResults(void) const;
 DLL unsigned short rayscenequery_get_max_results(RaySceneQueryHandle handle);
 

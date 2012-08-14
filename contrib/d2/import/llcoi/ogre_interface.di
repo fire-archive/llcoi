@@ -1,5 +1,5 @@
 /******************************************************************************
- * ogre_interface.di - main interface file for D clients
+ * ogre_interface.d - main interface file for D clients
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
@@ -97,6 +97,7 @@ alias void* MovableObjectHandle;
 alias void* RenderOperationHandle;
 
 
+
 // listener typedefs
 alias int function(float,float,int) FrameListenerEvent;
 alias void function(RenderWindowHandle) WindowListenerEvent;
@@ -172,7 +173,6 @@ struct FrameStats
     size_t triangleCount;
     size_t batchCount;
 };
-
 
 struct world_fragment
 {
@@ -390,13 +390,13 @@ void scenemanager_set_sky_dome(SceneManagerHandle handle, int enable, const char
                                float tiling, float distance, int draw_first, const coiQuaternion* orientation,
                                int xsegments, int ysegments, int ysegments_keep, const char* group_name);
 
+
 const(char*) scenemanager_get_name(SceneManagerHandle handle);
 
 //void SceneManager::destroyQuery(Ogre::SceneQuery* query);
 void scenemanager_destroy_scenequery(SceneManagerHandle handle, SceneQueryHandle query);
 // Ogre::SceneManager::createRayQuery(Ogre::Ray const&, unsigned long)
 RaySceneQueryHandle scenemanager_create_rayquery(SceneQueryHandle handle, RayHandle ray_handle, ulong mask);
-
 
 
 // RenderSystem functions
@@ -443,7 +443,7 @@ EntityHandle scenenode_get_attached_entity_int(SceneNodeHandle scenenode_handle,
 
 EntityHandle scenenode_get_attached_entity(SceneNodeHandle scenenode_handle, const char* entity_name);
 
-int scenenode_num_attached_objects(SceneNodeHandle scenenode_handle);
+ushort scenenode_num_attached_objects(SceneNodeHandle scenenode_handle);
 
 void scenenode_detach_entity_int(SceneNodeHandle scenenode_handle, int entity_index);
 
@@ -479,7 +479,7 @@ void scenenode_set_debug_display_enabled_ex(SceneNodeHandle scenenode_handle, in
 
 SceneManagerHandle scenenode_get_creator(SceneNodeHandle scenenode_handle);
 
-void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z);
+void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z, transform_space relative_to);
 
 void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, float x, float y, float z);
 
@@ -487,9 +487,9 @@ void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, 
 
 void scenenode_get_position(SceneNodeHandle handle, ref coiVector3 pos);
 
-void scenenode_set_derived_position(SceneNodeHandle handle, const coiVector3* pos);
+void scenenode_set_derived_position(SceneNodeHandle handle, const ref coiVector3 pos);
 
-void scenenode_get_derived_position(SceneNodeHandle handle, coiVector3* pos);
+void scenenode_get_derived_position(SceneNodeHandle handle, ref coiVector3 pos);
 
 void scenenode_yaw_degree(SceneNodeHandle handle, coiReal angle, transform_space relative_to);
 
@@ -539,6 +539,7 @@ void viewport_get_actual_dimensions(ViewportHandle handle, ref int left, ref int
 //Ogre::Viewport::getBackgroundColour() const
 void viewport_get_background_colour(ViewportHandle handle, ref ColourValue cv);
 
+
 // Resource management
 void setup_resources(const char* resources_cfg);
 
@@ -563,7 +564,7 @@ void camera_move(CameraHandle handle, const float x, const float y, const float 
 
 void camera_move_relative(CameraHandle handle, const float x, const float y, const float z);
 
-void camera_set_direction(CameraHandle handle, const float x, const float y, const float z);
+void camera_set_direction(CameraHandle handle, const float x, const float y, const float z, transform_space relative_to);
 
 void camera_get_direction(CameraHandle handle, ref coiVector3 v3);
 
@@ -601,9 +602,9 @@ void camera_yaw(CameraHandle handle, coiReal angle);
 
 void camera_pitch(CameraHandle handle, coiReal angle);
 
-void camera_rotate(CameraHandle handle, const ref coiVector3 axis, coiReal angle);
+void camera_rotate(CameraHandle handle, const coiVector3* axis, coiReal angle);
 
-void camera_rotate_q(CameraHandle handle, const ref coiQuaternion q);
+void camera_rotate_q(CameraHandle handle, const coiQuaternion* q);
 
 //Ogre::Camera::setFixedYawAxis(bool, Ogre::Vector3 const&)
 void camera_set_fixed_yaw_axis(CameraHandle handle, int on, const ref coiVector3 fixed_axis);
@@ -650,7 +651,6 @@ void entity_set_material_name(EntityHandle handle, const char* material_name, co
 AxisAlignedBoxHandle entity_get_bounding_box(EntityHandle handle);
 //Ogre::Entity::getBoundingRadius() const
 coiReal entity_get_bounding_radius(EntityHandle handle);
-
 
 // Light
 LightHandle create_light(const char* light_name);
@@ -819,6 +819,8 @@ void plane_set_d(PlaneHandle handle, coiReal d);
 PlaneListHandle create_planelist();
 void destroy_planelist(PlaneListHandle handle);
 
+
+
 // PlaneBoundedVolume
 PlaneBoundedVolumeHandle create_planeboundedvolume(plane_side the_outside);
 void destroy_planeboundedvolume(PlaneBoundedVolumeHandle handle);
@@ -828,7 +830,6 @@ int planeboundedvolume_intersects_axisalignedbox(PlaneBoundedVolumeHandle handle
 int planeboundedvolume_intersects_sphere(PlaneBoundedVolumeHandle handle, SphereHandle query);
 // std::pair<bool, Real> intersects(const Ray&) const
 void planeboundedvolume_intersects_ray(PlaneBoundedVolumeHandle handle, RayHandle query, ref ray_pair result);
-
 
 // MeshManager
 
@@ -862,7 +863,6 @@ void destroy_axis_aligned_box(AxisAlignedBoxHandle handle);
 void axisalignedbox_get_size(AxisAlignedBoxHandle handle, ref coiVector3 size);
 void axisalignedbox_get_minimum(AxisAlignedBoxHandle handle, ref coiVector3 minimum);
 void axisalignedbox_get_maximum(AxisAlignedBoxHandle handle, ref coiVector3 maximum);
-
 void axisalignedbox_set_minimum_x(AxisAlignedBoxHandle handle, coiReal x);
 void axisalignedbox_set_minimum_y(AxisAlignedBoxHandle handle, coiReal y);
 void axisalignedbox_set_minimum_z(AxisAlignedBoxHandle handle, coiReal z);
@@ -922,10 +922,12 @@ void sphere_merge(SphereHandle handle, SphereHandle other_sphere);
 void scenequery_set_query_mask(SceneQueryHandle handle, uint32 mask);
 //uint32 SceneQuery::getQueryMask(void) const
 uint32 scenequery_get_query_mask(SceneQueryHandle handle);
+
 //void SceneQuery::setWorldFragmentType(enum WorldFragmentType wft);
 void scenequery_set_world_fragment_type(SceneQueryHandle handle, world_fragment_type wft);
 //WorldFragmentType SceneQuery::getWorldFragmentType(void) const;
 world_fragment_type scenequery_get_world_fragment_type(SceneQueryHandle handle);
+
 
 // SceneQueryListener
 SceneQueryListenerHandle create_scenequerylistener(SceneQueryFragmentResult fragment_callback, SceneQueryObjectResult object_callback, void* userdata);
@@ -945,12 +947,14 @@ void rayscenequery_set_ray(RaySceneQueryHandle handle, RayHandle ray_handle);
 //getRay
 RayHandle rayscenequery_get_ray(RaySceneQueryHandle handle);
 
+
 //void setSortByDistance(bool sort, ushort maxresults = 0);
 void rayscenequery_set_sort_by_distance(RaySceneQueryHandle handle, int on, ushort maxresults);
 //bool getSortByDistance(void) const;
-int rayscenequery_get_short_by_distance(RaySceneQueryHandle handle);
+int rayscenequery_get_sort_by_distance(RaySceneQueryHandle handle);
 //ushort getMaxResults(void) const;
 ushort rayscenequery_get_max_results(RaySceneQueryHandle handle);
+
 
 // typedef vector<RaySceneQueryResultEntry>::type RaySceneQueryResult;
 size_t rayscenequeryresult_count(RaySceneQueryResultHandle handle);
