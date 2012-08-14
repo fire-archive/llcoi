@@ -764,6 +764,12 @@ void plane_set_d(PlaneHandle handle, coiReal d);
 // PlaneBoundedVolume
 PlaneBoundedVolumeHandle create_planeboundedvolume(plane_side the_outside);
 void destroy_planeboundedvolume(PlaneBoundedVolumeHandle handle);
+// bool intersects(const AxisAlignedBox&) const
+int planeboundedvolume_intersects_axisalignedbox(PlaneBoundedVolumeHandle handle, AxisAlignedBoxHandle query);
+// bool intersects(const Sphere&) const
+int planeboundedvolume_intersects_sphere(PlaneBoundedVolumeHandle handle, SphereHandle query);
+// std::pair<bool, Real> intersects(const Ray&) const
+void planeboundedvolume_intersects_ray(PlaneBoundedVolumeHandle handle, RayHandle query, ref ray_pair result);
 
 
 // MeshManager
