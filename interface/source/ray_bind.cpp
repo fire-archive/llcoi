@@ -126,5 +126,15 @@ void ray_intersects_axisalignedbox(RayHandle handle, AxisAlignedBoxHandle query_
     result->distance   = r.second;
 }
 
+//Ray::intersects(Sphere)
+void ray_intersects_sphere(RayHandle handle, SphereHandle query_handle, ray_pair* result)
+{
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
+    Ogre::Sphere* query = reinterpret_cast<Ogre::Sphere*>(query_handle);
+    std::pair<bool, Ogre::Real> r = ray->intersects(*query);
+
+    result->intersects = r.first;
+    result->distance   = r.second;
+}
 
 

@@ -813,6 +813,8 @@ void ray_get_point(RayHandle handle, coiReal units, ref coiVector3 point);
 void ray_intersects_plane(RayHandle handle, PlaneHandle plane_handle, ref ray_pair result);
 //Ray::intersects(AxisAlignedBox)
 void ray_intersects_axisalignedbox(RayHandle handle, AxisAlignedBoxHandle query_handle, ref ray_pair result);
+//Ray::intersects(Sphere)
+void ray_intersects_sphere(RayHandle handle, SphereHandle query_handle, ref ray_pair result);
 
 
 // Ogre::Sphere

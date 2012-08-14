@@ -43,6 +43,7 @@
 #define RayHandle void*
 #define PlaneHandle void*
 #define AxisAlignedBoxHandle void*
+#define SphereHandle void*
 
 typedef struct
 {
@@ -66,6 +67,8 @@ DLL void ray_get_point(RayHandle handle, coiReal units, coiVector3* point);
 DLL void ray_intersects_plane(RayHandle handle, PlaneHandle plane_handle, ray_pair* result);
 //Ray::intersects(AxisAlignedBox)
 DLL void ray_intersects_axisalignedbox(RayHandle handle, AxisAlignedBoxHandle query_handle, ray_pair* result);
+//Ray::intersects(Sphere)
+DLL void ray_intersects_sphere(RayHandle handle, SphereHandle query_handle, ray_pair* result);
 
 #endif
 
