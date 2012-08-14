@@ -195,7 +195,7 @@ void destroy_rayscenequerylistener(RaySceneQueryListenerHandle handle)
 }
 
 
-int scenequeryresult_movables_count(SceneQueryResultHandle handle)
+size_t scenequeryresult_movables_count(SceneQueryResultHandle handle)
 {
     Ogre::SceneQueryResult* result = reinterpret_cast<Ogre::SceneQueryResult*>(handle);
     return result->movables.size();
@@ -215,7 +215,7 @@ MovableObjectHandle scenequeryresult_movables_at(SceneQueryResultHandle handle, 
     }
 }
 
-int scenequeryresult_worldfragments_count(SceneQueryResultHandle handle, int index)
+size_t scenequeryresult_worldfragments_count(SceneQueryResultHandle handle, int index)
 {
     Ogre::SceneQueryResult* result = reinterpret_cast<Ogre::SceneQueryResult*>(handle);
     return result->worldFragments.size();
@@ -284,7 +284,24 @@ int rayscenequery_get_short_by_distance(RaySceneQueryHandle handle)
 //ushort getMaxResults(void) const;
 unsigned short rayscenequery_get_max_results(RaySceneQueryHandle handle)
 {
-    
     Ogre::RaySceneQuery* query = reinterpret_cast<Ogre::RaySceneQuery*>(handle);
     return query->getMaxResults();
+}
+
+
+size_t rayscenequeryresult_count(RaySceneQueryResultHandle handle)
+{
+    Ogre::RaySceneQueryResult* result = reinterpret_cast<Ogre::RaySceneQueryResult*>(handle);
+    return result->size();
+}
+
+void rayscenequeryresult_at(RaySceneQueryResultHandle handle, int index, rayscenequery_result_entry* result)
+{
+    Ogre::RaySceneQueryResult* query = reinterpret_cast<Ogre::RaySceneQueryResult*>(handle);
+    Ogre::RaySceneQueryResultEntry entry = query->at(index);
+
+    result->distance = entry.distance;
+    result->movable  = reinterpret_cast<MovableObjectHandle>(entry.movable);
+    ogre_wf_to_llcoi_wf(*entry.worldFragment, *result->fragment);
+
 }

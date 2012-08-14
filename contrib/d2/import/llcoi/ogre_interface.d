@@ -89,6 +89,7 @@ alias void* RayHandle;
 alias void* SphereHandle;
 alias void* SceneQueryHandle;
 alias void* RaySceneQueryHandle;
+alias void* RaySceneQueryResultHandle;
 alias void* SceneQueryListenerHandle;
 alias void* RaySceneQueryListenerHandle;
 alias void* SceneQueryResultHandle;
@@ -394,6 +395,8 @@ const(char*) scenemanager_get_name(SceneManagerHandle handle);
 
 //void SceneManager::destroyQuery(Ogre::SceneQuery* query);
 void scenemanager_destroy_scenequery(SceneManagerHandle handle, SceneQueryHandle query);
+// Ogre::SceneManager::createRayQuery(Ogre::Ray const&, unsigned long)
+RaySceneQueryHandle scenemanager_create_rayquery(SceneQueryHandle handle, RayHandle ray_handle, ulong mask);
 
 
 // RenderSystem functions
@@ -930,10 +933,10 @@ world_fragment_type scenequery_get_world_fragment_type(SceneQueryHandle handle);
 SceneQueryListenerHandle create_scenequerylistener(SceneQueryFragmentResult fragment_callback, SceneQueryObjectResult object_callback, void* userdata);
 void destroy_scenequerylistener(SceneQueryListenerHandle handle);
 
-int scenequeryresult_movables_count(SceneQueryResultHandle handle);
+size_t scenequeryresult_movables_count(SceneQueryResultHandle handle);
 MovableObjectHandle scenequeryresult_movables_at(SceneQueryResultHandle handle, int index);
 
-int scenequeryresult_worldfragments_count(SceneQueryResultHandle handle, int index);
+size_t scenequeryresult_worldfragments_count(SceneQueryResultHandle handle, int index);
 void scenequeryresult_worldfragments_at(SceneQueryResultHandle handle, int index, ref world_fragment result);
 
 RaySceneQueryListenerHandle create_rayscenequerylistener(RaySceneQueryFragmentResult fragment_callback, RaySceneQueryObjectResult object_callback, void* userdata);
@@ -952,3 +955,7 @@ int rayscenequery_get_short_by_distance(RaySceneQueryHandle handle);
 //ushort getMaxResults(void) const;
 ushort rayscenequery_get_max_results(RaySceneQueryHandle handle);
 
+
+// typedef vector<RaySceneQueryResultEntry>::type RaySceneQueryResult;
+size_t rayscenequeryresult_count(RaySceneQueryResultHandle handle);
+void rayscenequeryresult_at(RaySceneQueryResultHandle handle, int index, ref rayscenequery_result_entry result);
