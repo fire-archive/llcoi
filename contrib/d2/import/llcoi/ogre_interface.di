@@ -79,6 +79,7 @@ alias void* LogListenerHandle;
 alias void* NameValuePairListHandle;
 alias void* FrameListenerHandle;
 alias void* PlaneHandle;
+alias void* PlaneBoundedVolumeHandle;
 alias void* MeshHandle;
 alias void* TimerHandle;
 alias void* WindowListenerHandle;
@@ -745,7 +746,6 @@ coiVector3 vector3_NEGATIVE_UNIT_Z();
 coiVector3 vector3_UNIT_SCALE();
 
 // Plane
-
 PlaneHandle plane_create_plane();
 PlaneHandle plane_create_plane_normal(float x, float y, float z, float distance);
 void plane_destroy_plane(PlaneHandle handle);
@@ -753,6 +753,11 @@ void plane_get_normal(PlaneHandle handle, coiVector3* normal);
 void plane_set_normal(PlaneHandle handle, const coiVector3* normal);
 coiReal plane_get_d(PlaneHandle handle);
 void plane_set_d(PlaneHandle handle, coiReal d);
+
+// PlaneBoundedVolume
+PlaneBoundedVolumeHandle create_planeboundedvolume(plane_side the_outside);
+void destroy_planeboundedvolume(PlaneBoundedVolumeHandle handle);
+
 
 // MeshManager
 
