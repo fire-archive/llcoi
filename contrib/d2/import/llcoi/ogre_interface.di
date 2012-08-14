@@ -248,6 +248,13 @@ enum CornerEnum
     NEAR_RIGHT_TOP = 4
 };
 
+enum plane_side
+{
+    NO_SIDE,
+    POSITIVE_SIDE,
+    NEGATIVE_SIDE,
+    BOTH_SIDE
+};
 
 
 // Root functions

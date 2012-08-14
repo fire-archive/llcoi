@@ -41,7 +41,6 @@
 
 #include "ogre_interface.h"
 
-
 #define PlaneHandle void*
 
 typedef enum
