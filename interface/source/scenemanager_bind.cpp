@@ -142,6 +142,14 @@ void scenemanager_destroy_scenequery(SceneManagerHandle handle, SceneQueryHandle
     sm->destroyQuery(q);
 }
 
+// Ogre::SceneManager::createRayQuery(Ogre::Ray const&, unsigned long)
+RaySceneQueryHandle scenemanager_create_rayquery(SceneQueryHandle handle, RayHandle ray_handle, unsigned long mask)
+{
+    Ogre::SceneManager* sm = reinterpret_cast<Ogre::SceneManager*>(handle);
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(ray_handle);
+    sm->createRayQuery(*ray, mask);
+}
+
 
 
 /*
@@ -314,7 +322,6 @@ Ogre::SceneManager::_notifyAutotrackingSceneNode(Ogre::SceneNode*, bool)
 Ogre::SceneManager::createAABBQuery(Ogre::AxisAlignedBox const&, unsigned long)
 Ogre::SceneManager::createSphereQuery(Ogre::Sphere const&, unsigned long)
 Ogre::SceneManager::createPlaneBoundedVolumeQuery(std::vector<Ogre::PlaneBoundedVolume, Ogre::STLAllocator<Ogre::PlaneBoundedVolume, Ogre::CategorisedAllocPolicy<(Ogre::MemoryCategory)0> > > const&, unsigned long)
-Ogre::SceneManager::createRayQuery(Ogre::Ray const&, unsigned long)
 Ogre::SceneManager::createIntersectionQuery(unsigned long)
 Ogre::SceneManager::destroyQuery(Ogre::SceneQuery*)
 Ogre::SceneManager::getCameraIterator()

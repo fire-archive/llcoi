@@ -48,6 +48,8 @@
 #define ViewportHandle void*
 #define LightHandle void*
 #define SceneQueryHandle void*
+#define RaySceneQueryHandle void*
+#define RayHandle void*
 
 typedef enum
 {
@@ -89,6 +91,8 @@ DLL void scene_manager_log_name();
 DLL const char* scenemanager_get_name(SceneManagerHandle handle);
 //void SceneManager::destroyQuery(Ogre::SceneQuery* query);
 DLL void scenemanager_destroy_scenequery(SceneManagerHandle handle, SceneQueryHandle query);
+//RaySceneQuery* SceneManager::createRayQuery(const Ray& ray, unsigned long mask = 0xFFFFFFFF)
+DLL RaySceneQueryHandle scenemanager_create_rayquery(SceneQueryHandle handle, RayHandle ray_handle, unsigned long mask);
 
 
 #endif
