@@ -35,6 +35,37 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
+#include "binding_utils.h" // llcoi_wft_to_ogre_wft
 #include "scenequery_bind.h"
 #include <OgreSceneQuery.h>
+#include <OgreSceneManager.h>
 
+// SceneQuery::setQueryMask(uint32 mask)
+void scenequery_set_query_mask(SceneQueryHandle handle, uint32 mask)
+{
+    Ogre::SceneQuery* query = reinterpret_cast<Ogre::SceneQuery*>(handle);
+    query->setQueryMask(mask);
+}
+
+//uint32 SceneQuery::getQueryMask(void) const
+uint32 scenequery_get_query_mask(SceneQueryHandle handle)
+{
+    Ogre::SceneQuery* query = reinterpret_cast<Ogre::SceneQuery*>(handle);
+    return query->getQueryMask();
+}
+
+//void setWorldFragmentType(enum WorldFragmentType wft);
+void scenequery_set_world_fragment_type(SceneQueryHandle handle, world_fragment_type wft)
+{
+    Ogre::SceneQuery* query = reinterpret_cast<Ogre::SceneQuery*>(handle);
+    Ogre::SceneQuery::WorldFragmentType WFT = llcoi_wft_to_ogre_wft(wft);
+    query->setWorldFragmentType(WFT);
+}
+
+//WorldFragmentType SceneQuery::getWorldFragmentType(void) const;
+world_fragment_type scenequery_get_world_fragment_type(SceneQueryHandle handle)
+{
+    Ogre::SceneQuery* query = reinterpret_cast<Ogre::SceneQuery*>(handle);
+    Ogre::SceneQuery::WorldFragmentType wft = query->getWorldFragmentType();
+    return ogre_wft_to_llcoi_wft(wft);
+}

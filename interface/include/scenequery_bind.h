@@ -40,4 +40,32 @@
 #define SCENEQUERY_BIND_H
 #include "ogre_interface.h"
 
+#define SceneQueryHandle void*
+#define SceneManagerHandle void*
+
+typedef enum 
+{
+    /// Return no world geometry hits at all
+    WFT_NONE,
+    /// Return pointers to convex plane-bounded regions
+    WFT_PLANE_BOUNDED_REGION,
+    /// Return a single intersection point (typically RaySceneQuery only)
+    WFT_SINGLE_INTERSECTION,
+    /// Custom geometry as defined by the SceneManager
+    WFT_CUSTOM_GEOMETRY,
+    /// General RenderOperation structure
+    WFT_RENDER_OPERATION
+} world_fragment_type;
+
+
+// No create/destroy methods for these, as this is the job of the SceneManager.
+// SceneQuery::setQueryMask(uint32 mask)
+DLL void scenequery_set_query_mask(SceneQueryHandle handle, uint32 mask);
+//uint32 SceneQuery::getQueryMask(void) const
+DLL uint32 scenequery_get_query_mask(SceneQueryHandle handle);
+//void SceneQuery::setWorldFragmentType(enum WorldFragmentType wft);
+DLL void scenequery_set_world_fragment_type(SceneQueryHandle handle, world_fragment_type wft);
+//WorldFragmentType SceneQuery::getWorldFragmentType(void) const;
+DLL world_fragment_type scenequery_get_world_fragment_type(SceneQueryHandle handle);
+
 #endif
