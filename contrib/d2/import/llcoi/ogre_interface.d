@@ -86,6 +86,7 @@ alias void* WindowListenerHandle;
 alias void* AxisAlignedBoxHandle;
 alias void* RayHandle;
 alias void* SphereHandle;
+alias void* SceneQueryHandle;
 
 
 // listener typedefs
@@ -256,6 +257,20 @@ enum plane_side
     BOTH_SIDE
 };
 
+enum world_fragment_type
+{
+    /// Return no world geometry hits at all
+    WFT_NONE,
+    /// Return pointers to convex plane-bounded regions
+    WFT_PLANE_BOUNDED_REGION,
+    /// Return a single intersection point (typically RaySceneQuery only)
+    WFT_SINGLE_INTERSECTION,
+    /// Custom geometry as defined by the SceneManager
+    WFT_CUSTOM_GEOMETRY,
+    /// General RenderOperation structure
+    WFT_RENDER_OPERATION
+};
+
 
 // Root functions
 void release_engine();
@@ -347,6 +362,11 @@ void scenemanager_set_sky_dome(SceneManagerHandle handle, int enable, const char
 
 
 const(char*) scenemanager_get_name(SceneManagerHandle handle);
+
+//void SceneManager::destroyQuery(Ogre::SceneQuery* query);
+void scenemanager_destroy_scenequery(SceneManagerHandle handle, SceneQueryHandle query);
+
+
 // RenderSystem functions
 void add_render_system(RenderSystemHandle render_system);
 
@@ -858,4 +878,15 @@ int sphere_intersects_plane(SphereHandle handle, PlaneHandle query);
 int sphere_intersects_vector3(SphereHandle handle, const ref coiVector3 query);
 // void merge(const Sphere&)
 void sphere_merge(SphereHandle handle, SphereHandle other_sphere);
+
+// Ogre::SceneQuery
+// SceneQuery::setQueryMask(uint32 mask)
+void scenequery_set_query_mask(SceneQueryHandle handle, uint32 mask);
+//uint32 SceneQuery::getQueryMask(void) const
+uint32 scenequery_get_query_mask(SceneQueryHandle handle);
+
+//void SceneQuery::setWorldFragmentType(enum WorldFragmentType wft);
+void scenequery_set_world_fragment_type(SceneQueryHandle handle, world_fragment_type wft);
+//WorldFragmentType SceneQuery::getWorldFragmentType(void) const;
+world_fragment_type scenequery_get_world_fragment_type(SceneQueryHandle handle);
 
