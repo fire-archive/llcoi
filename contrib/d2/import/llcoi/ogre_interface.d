@@ -84,6 +84,7 @@ alias void* TimerHandle;
 alias void* WindowListenerHandle;
 alias void* AxisAlignedBoxHandle;
 alias void* RayHandle;
+alias void* SphereHandle;
 
 
 // listener typedefs
