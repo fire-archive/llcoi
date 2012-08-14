@@ -40,5 +40,6 @@
 #define MOVABLEOBJECT_BIND_H
 
 #include "ogre_interface.h"
+#define MovableObjectHandle void*
 
 #endif
