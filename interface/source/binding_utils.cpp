@@ -477,3 +477,59 @@ CornerEnum ogre_cornerenum_to_llcoi_cornerenum(Ogre::AxisAlignedBox::CornerEnum 
     }
     return converted;
 }
+
+Ogre::SceneQuery::WorldFragmentType llcoi_wft_to_ogre_wft(world_fragment_type wft)
+{
+    Ogre::SceneQuery::WorldFragmentType converted;
+    switch(wft)
+    {
+        case WFT_NONE:
+            converted = Ogre::SceneQuery::WFT_NONE;
+            break;
+        case WFT_PLANE_BOUNDED_REGION:
+            converted = Ogre::SceneQuery::WFT_PLANE_BOUNDED_REGION;
+            break;
+        case WFT_SINGLE_INTERSECTION:
+            converted = Ogre::SceneQuery::WFT_SINGLE_INTERSECTION;
+            break;
+        case WFT_CUSTOM_GEOMETRY:
+            converted = Ogre::SceneQuery::WFT_CUSTOM_GEOMETRY;
+            break;
+        case WFT_RENDER_OPERATION:
+            converted = Ogre::SceneQuery::WFT_RENDER_OPERATION;
+            break;
+    }
+
+    return converted;
+}
+
+world_fragment_type ogre_wft_to_llcoi_wft(Ogre::SceneQuery::WorldFragmentType wft)
+{
+    world_fragment_type converted;
+    switch(wft)
+    {
+        case Ogre::SceneQuery::WFT_NONE:
+            converted = WFT_NONE;
+            break;
+
+        case Ogre::SceneQuery::WFT_PLANE_BOUNDED_REGION:
+            converted = WFT_PLANE_BOUNDED_REGION;
+            break;
+
+        case Ogre::SceneQuery::WFT_SINGLE_INTERSECTION:
+            converted = WFT_SINGLE_INTERSECTION;
+            break;
+
+        case Ogre::SceneQuery::WFT_CUSTOM_GEOMETRY:
+            converted = WFT_CUSTOM_GEOMETRY;
+            break;
+
+        case Ogre::SceneQuery::WFT_RENDER_OPERATION:
+            converted = WFT_RENDER_OPERATION;
+            break;
+
+    }
+    return converted;
+}
+
+

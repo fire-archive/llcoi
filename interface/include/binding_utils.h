@@ -42,8 +42,10 @@
 #include "log_bind.h"            // log_message_level, logging_level
 #include "plane_bind.h"          // plane_side
 #include "axisalignedbox_bind.h" // Extent, CornerEnum
+#include "scenequery_bind.h"     // world_fragment_type
 
 #include <OgreLog.h>            // LogMessageLevel and LoggingLevel
+#include <OgreSceneQuery.h>     // SceneQuery::WorldFragmentType
 #include <OgreHardwareBuffer.h> // HardwareBuffer::Usage
 #include <OgreLight.h>          // Light::LightTypes
 #include <OgreNode.h>           // Node::TransformSpace
@@ -89,6 +91,8 @@ Extent ogre_extent_to_llcoi_extent(Ogre::AxisAlignedBox::Extent e);
 Ogre::AxisAlignedBox::CornerEnum llcoi_cornerenum_to_ogre_cornerenum(CornerEnum e);
 CornerEnum ogre_cornerenum_to_llcoi_cornerenum(Ogre::AxisAlignedBox::CornerEnum e);
 
+Ogre::SceneQuery::WorldFragmentType llcoi_wft_to_ogre_wft(world_fragment_type wft);
+world_fragment_type ogre_wft_to_llcoi_wft(Ogre::SceneQuery::WorldFragmentType wft);
 
 
 /* OIS MouseState <-> LLCOI MouseState converters */
