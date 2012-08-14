@@ -44,20 +44,6 @@
 #define LogHandle void*
 #define LogListenerHandle void*
 
-typedef enum
-{
-    LL_LOW = 1,
-    LL_NORMAL = 2,
-    LL_BOREME = 3
-} logging_level;
-
-typedef enum
-{
-    LML_TRIVIAL = 1,
-    LML_NORMAL = 2,
-    LML_CRITICAL = 3
-} log_message_level;
-
 typedef void(*LogListenerEvent)(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
 
 // Same as LogListenerEvent but allows the client to

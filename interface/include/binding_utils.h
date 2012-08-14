@@ -40,9 +40,6 @@
 #include "ogre_interface.h"      // as we can't forward declare enums. ):
 #include "ois_interface.h"       // ditto
 #include "log_bind.h"            // log_message_level, logging_level
-#include "plane_bind.h"          // plane_side
-#include "axisalignedbox_bind.h" // Extent, CornerEnum
-#include "scenequery_bind.h"     // world_fragment_type
 
 #include <OgreLog.h>            // LogMessageLevel and LoggingLevel
 #include <OgreSceneQuery.h>     // SceneQuery::WorldFragmentType

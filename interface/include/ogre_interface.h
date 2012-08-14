@@ -215,5 +215,60 @@ typedef enum
     TS_WORLD
 } transform_space;
 
+typedef enum
+{
+    NO_SIDE,
+    POSITIVE_SIDE,
+    NEGATIVE_SIDE,
+    BOTH_SIDE
+} plane_side;
+
+typedef enum
+{
+    EXTENT_NULL,
+    EXTENT_FINITE,
+    EXTENT_INFINITE
+} Extent;
+
+typedef enum {
+    FAR_LEFT_BOTTOM = 0,
+    FAR_LEFT_TOP = 1,
+    FAR_RIGHT_TOP = 2,
+    FAR_RIGHT_BOTTOM = 3,
+    NEAR_RIGHT_BOTTOM = 7,
+    NEAR_LEFT_BOTTOM = 6,
+    NEAR_LEFT_TOP = 5,
+    NEAR_RIGHT_TOP = 4
+} CornerEnum;
+
+typedef enum 
+{
+    /// Return no world geometry hits at all
+    WFT_NONE,
+    /// Return pointers to convex plane-bounded regions
+    WFT_PLANE_BOUNDED_REGION,
+    /// Return a single intersection point (typically RaySceneQuery only)
+    WFT_SINGLE_INTERSECTION,
+    /// Custom geometry as defined by the SceneManager
+    WFT_CUSTOM_GEOMETRY,
+    /// General RenderOperation structure
+    WFT_RENDER_OPERATION
+} world_fragment_type;
+
+
+typedef enum
+{
+    LL_LOW = 1,
+    LL_NORMAL = 2,
+    LL_BOREME = 3
+} logging_level;
+
+typedef enum
+{
+    LML_TRIVIAL = 1,
+    LML_NORMAL = 2,
+    LML_CRITICAL = 3
+} log_message_level;
+
 
 #endif

@@ -42,23 +42,6 @@
 
 #define AxisAlignedBoxHandle void*
 
-typedef enum
-{
-    EXTENT_NULL,
-    EXTENT_FINITE,
-    EXTENT_INFINITE
-} Extent;
-
-typedef enum {
-    FAR_LEFT_BOTTOM = 0,
-    FAR_LEFT_TOP = 1,
-    FAR_RIGHT_TOP = 2,
-    FAR_RIGHT_BOTTOM = 3,
-    NEAR_RIGHT_BOTTOM = 7,
-    NEAR_LEFT_BOTTOM = 6,
-    NEAR_LEFT_TOP = 5,
-    NEAR_RIGHT_TOP = 4
-} CornerEnum;
 
 // Ogre::AxisAlignedBox
 DLL AxisAlignedBoxHandle create_axis_aligned_box();
