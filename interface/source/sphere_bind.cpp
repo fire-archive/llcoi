@@ -60,10 +60,29 @@ void sphere_set_radius(SphereHandle handle, coiReal radius)
     sphere->setRadius(radius);
 }
 
-//Real setRadius(void) const
+//Real getRadius(void) const
 coiReal sphere_get_radius(SphereHandle handle)
 {
     Ogre::Sphere* sphere = reinterpret_cast<Ogre::Sphere*>(handle);
     return sphere->getRadius();
+}
+
+//void setCenter(Vector3)
+void sphere_set_center(SphereHandle handle, const coiVector3* center)
+{
+    Ogre::Sphere* sphere = reinterpret_cast<Ogre::Sphere*>(handle);
+    Ogre::Vector3 c(center->x, center->y, center->z);
+    sphere->setCenter(c);
+}
+
+//Real getCenter(void) const
+void sphere_get_center(SphereHandle handle, coiVector3* center)
+{
+    Ogre::Sphere* sphere = reinterpret_cast<Ogre::Sphere*>(handle);
+    Ogre::Vector3 c = sphere->getCenter();
+
+    center->x = c.x;
+    center->y = c.y;
+    center->z = c.z;
 }
 

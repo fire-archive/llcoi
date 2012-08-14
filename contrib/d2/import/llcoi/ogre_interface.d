@@ -822,4 +822,7 @@ void destroy_sphere(SphereHandle handle);
 void sphere_set_radius(SphereHandle handle, coiReal radius);
 //Real getRadius(void) const
 coiReal sphere_get_radius(SphereHandle handle);
-
+//void setCenter(Vector3)
+void sphere_set_center(SphereHandle handle, const ref coiVector3 center);
+//Real getCenter(void) const
+void sphere_get_center(SphereHandle handle, ref coiVector3 center);

@@ -48,5 +48,9 @@ DLL void destroy_sphere(SphereHandle handle);
 DLL void sphere_set_radius(SphereHandle handle, coiReal radius);
 //void getRadius(Real)
 DLL coiReal sphere_get_radius(SphereHandle handle);
+//void setCenter(Vector3)
+DLL void sphere_set_center(SphereHandle handle, const coiVector3* center);
+//Real getCenter(void) const
+DLL void sphere_get_center(SphereHandle handle, coiVector3* center);
 
 #endif
