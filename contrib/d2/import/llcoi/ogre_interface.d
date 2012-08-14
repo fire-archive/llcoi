@@ -813,3 +813,12 @@ void ray_intersects_plane(RayHandle handle, PlaneHandle plane_handle, ref ray_pa
 //Ray::intersects(AxisAlignedBox)
 void ray_intersects_axisalignedbox(RayHandle handle, AxisAlignedBoxHandle query_handle, ref ray_pair result);
 
+
+// Ogre::Sphere
+SphereHandle create_sphere(const ref coiVector3 center, coiReal radius);
+void destroy_sphere(SphereHandle handle);
+//void setRadius(Real)
+void sphere_set_radius(SphereHandle handle, coiReal radius);
+//Real getRadius(void) const
+coiReal sphere_get_radius(SphereHandle handle);
+
