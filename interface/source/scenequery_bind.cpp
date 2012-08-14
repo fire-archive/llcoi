@@ -40,6 +40,9 @@
 #include <OgreSceneQuery.h>
 #include <OgreSceneManager.h>
 
+
+
+
 // SceneQuery::setQueryMask(uint32 mask)
 void scenequery_set_query_mask(SceneQueryHandle handle, uint32 mask)
 {
@@ -68,4 +71,112 @@ world_fragment_type scenequery_get_world_fragment_type(SceneQueryHandle handle)
     Ogre::SceneQuery* query = reinterpret_cast<Ogre::SceneQuery*>(handle);
     Ogre::SceneQuery::WorldFragmentType wft = query->getWorldFragmentType();
     return ogre_wft_to_llcoi_wft(wft);
+}
+
+class SceneQueryListenerCTX : public Ogre::SceneQueryListener
+{
+public:
+    SceneQueryListenerCTX(SceneQueryFragmentResult fragment_callback, SceneQueryObjectResult object_callback, void* data) : FragmentResult(fragment_callback), ObjectResult(object_callback), userdata(data)
+    {
+    }
+
+    bool queryResult(Ogre::MovableObject* obj)
+    {
+        int result;
+        MovableObjectHandle handle = reinterpret_cast<MovableObjectHandle>(obj);
+        result = ObjectResult(handle, userdata);
+        return result;
+    }
+
+    bool queryResult(Ogre::SceneQuery::WorldFragment* fragment)
+    {
+        int result;
+        world_fragment wf;
+
+        wf.fragment_type = ogre_wft_to_llcoi_wft(fragment->fragmentType);
+
+        wf.single_intersection.x = fragment->singleIntersection.x;
+        wf.single_intersection.y = fragment->singleIntersection.y;
+        wf.single_intersection.z = fragment->singleIntersection.z;
+
+        wf.planes = reinterpret_cast<PlaneListHandle>(fragment->planes);
+
+        wf.geometry = fragment->geometry;
+        wf.render_op = reinterpret_cast<RenderOperationHandle>(fragment->renderOp);
+
+        result = FragmentResult(&wf, userdata);
+        return result;
+    }
+
+    virtual ~SceneQueryListenerCTX() {}
+
+    SceneQueryFragmentResult FragmentResult;
+    SceneQueryObjectResult ObjectResult;
+    void* userdata;
+};
+
+SceneQueryListenerHandle create_scenequerylistener(SceneQueryFragmentResult fragment_callback, SceneQueryObjectResult object_callback, void* userdata)
+{
+    SceneQueryListenerCTX* listener = new SceneQueryListenerCTX(fragment_callback, object_callback, userdata);
+    return reinterpret_cast<SceneQueryListenerHandle>(listener);
+    
+}
+
+void destroy_scenequerylistener(SceneQueryListenerHandle handle)
+{
+    SceneQueryListenerCTX* listener = reinterpret_cast<SceneQueryListenerCTX*>(handle);
+    delete listener;
+}
+
+int scenequeryresult_movables_count(SceneQueryResultHandle handle)
+{
+    Ogre::SceneQueryResult* result = reinterpret_cast<Ogre::SceneQueryResult*>(handle);
+    return result->movables.size();
+}
+
+MovableObjectHandle scenequeryresult_movables_at(SceneQueryResultHandle handle, int index)
+{
+    int cnt = 0;
+    Ogre::SceneQueryResult* result = reinterpret_cast<Ogre::SceneQueryResult*>(handle);
+    Ogre::SceneQueryResultMovableList::iterator it = result->movables.begin();
+
+    for (;it != result->movables.end(); ++it)
+    {
+        if (cnt == index)
+            return reinterpret_cast<MovableObjectHandle>(*it);
+        cnt++;
+    }
+}
+
+int scenequeryresult_worldfragments_count(SceneQueryResultHandle handle, int index)
+{
+    Ogre::SceneQueryResult* result = reinterpret_cast<Ogre::SceneQueryResult*>(handle);
+    return result->worldFragments.size();
+}
+
+void scenequeryresult_worldfragments_at(SceneQueryResultHandle handle, int index, world_fragment* result)
+{
+    int cnt = 0;
+    Ogre::SceneQueryResult* sqr = reinterpret_cast<Ogre::SceneQueryResult*>(handle);
+    Ogre::SceneQueryResultWorldFragmentList::iterator it = sqr->worldFragments.begin();
+
+    for (;it != sqr->worldFragments.end(); ++it)
+    {
+        if(cnt == index)
+        {
+
+            result->fragment_type = ogre_wft_to_llcoi_wft((*it)->fragmentType);
+
+            result->single_intersection.x = (*it)->singleIntersection.x;
+            result->single_intersection.y = (*it)->singleIntersection.y;
+            result->single_intersection.z = (*it)->singleIntersection.z;
+
+            result->planes = reinterpret_cast<PlaneListHandle>((*it)->planes);
+
+            result->geometry = (*it)->geometry;
+            result->render_op = reinterpret_cast<RenderOperationHandle>((*it)->renderOp);
+            break;
+        }
+        cnt++;
+    }
 }

@@ -79,6 +79,7 @@ alias void* LogListenerHandle;
 alias void* NameValuePairListHandle;
 alias void* FrameListenerHandle;
 alias void* PlaneHandle;
+alias void* PlaneListHandle;
 alias void* PlaneBoundedVolumeHandle;
 alias void* MeshHandle;
 alias void* TimerHandle;
@@ -87,6 +88,10 @@ alias void* AxisAlignedBoxHandle;
 alias void* RayHandle;
 alias void* SphereHandle;
 alias void* SceneQueryHandle;
+alias void* SceneQueryListenerHandle;
+alias void* SceneQueryResultHandle;
+alias void* MovableObjectHandle;
+alias void* RenderOperationHandle;
 
 
 // listener typedefs
@@ -95,6 +100,8 @@ alias void function(RenderWindowHandle) WindowListenerEvent;
 alias void function(const char* message, int lml, int maskDebug, const char* log_name, int skip_message) LogListenerEvent;
 alias void function(const char* message, int lml, int maskDebug, const char* log_name, int skip_message, void* userdata) LogListenerCtx;
 alias int function(const ref FrameEvent evt, int frame_type, void* userdata) FrameListenerCtx;
+alias int function(const ref world_fragment frag, void* userdata) SceneQueryFragmentResult;
+alias int function(MovableObjectHandle handle, void* userdata) SceneQueryObjectResult;
 
 struct coiQuaternion
 {
@@ -783,6 +790,10 @@ void plane_set_normal(PlaneHandle handle, const coiVector3* normal);
 coiReal plane_get_d(PlaneHandle handle);
 void plane_set_d(PlaneHandle handle, coiReal d);
 
+// PlaneList (typedef vector<Plane>::type PlaneList)
+PlaneListHandle create_planelist();
+void destroy_planelist(PlaneListHandle handle);
+
 // PlaneBoundedVolume
 PlaneBoundedVolumeHandle create_planeboundedvolume(plane_side the_outside);
 void destroy_planeboundedvolume(PlaneBoundedVolumeHandle handle);
@@ -891,3 +902,12 @@ void scenequery_set_world_fragment_type(SceneQueryHandle handle, world_fragment_
 //WorldFragmentType SceneQuery::getWorldFragmentType(void) const;
 world_fragment_type scenequery_get_world_fragment_type(SceneQueryHandle handle);
 
+// SceneQueryListener
+SceneQueryListenerHandle create_scenequerylistener(SceneQueryFragmentResult fragment_callback, SceneQueryObjectResult object_callback, void* userdata);
+void destroy_scenequerylistener(SceneQueryListenerHandle handle);
+
+int scenequeryresult_movables_count(SceneQueryResultHandle handle);
+MovableObjectHandle scenequeryresult_movables_at(SceneQueryResultHandle handle, int index);
+
+int scenequeryresult_worldfragments_count(SceneQueryResultHandle handle, int index);
+void scenequeryresult_worldfragments_at(SceneQueryResultHandle handle, int index, ref world_fragment result);

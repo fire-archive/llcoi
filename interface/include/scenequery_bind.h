@@ -41,21 +41,22 @@
 #include "ogre_interface.h"
 
 #define SceneQueryHandle void*
+#define SceneQueryListenerHandle void*
 #define SceneManagerHandle void*
+#define RenderOperationHandle void*
+#define PlaneListHandle void*
+#define MovableObjectHandle void*
+#define SceneQueryResultHandle void*
 
-typedef enum 
+typedef struct world_fragment
 {
-    /// Return no world geometry hits at all
-    WFT_NONE,
-    /// Return pointers to convex plane-bounded regions
-    WFT_PLANE_BOUNDED_REGION,
-    /// Return a single intersection point (typically RaySceneQuery only)
-    WFT_SINGLE_INTERSECTION,
-    /// Custom geometry as defined by the SceneManager
-    WFT_CUSTOM_GEOMETRY,
-    /// General RenderOperation structure
-    WFT_RENDER_OPERATION
-} world_fragment_type;
+    world_fragment_type fragment_type;
+    coiVector3 single_intersection;
+    PlaneListHandle planes;
+    void* geometry;
+    RenderOperationHandle render_op;
+    
+} world_fragment;
 
 
 // No create/destroy methods for these, as this is the job of the SceneManager.
@@ -67,5 +68,20 @@ DLL uint32 scenequery_get_query_mask(SceneQueryHandle handle);
 DLL void scenequery_set_world_fragment_type(SceneQueryHandle handle, world_fragment_type wft);
 //WorldFragmentType SceneQuery::getWorldFragmentType(void) const;
 DLL world_fragment_type scenequery_get_world_fragment_type(SceneQueryHandle handle);
+
+typedef int(*SceneQueryFragmentResult)(const world_fragment* frag, void* userdata);
+typedef int(*SceneQueryObjectResult)(MovableObjectHandle handle, void* userdata);
+
+
+// SceneQueryListener
+DLL SceneQueryListenerHandle create_scenequerylistener(SceneQueryFragmentResult fragment_callback, SceneQueryObjectResult object_callback, void* userdata);
+DLL void destroy_scenequerylistener(SceneQueryListenerHandle handle);
+
+DLL int scenequeryresult_movables_count(SceneQueryResultHandle handle);
+DLL MovableObjectHandle scenequeryresult_movables_at(SceneQueryResultHandle handle, int index);
+
+DLL int scenequeryresult_worldfragments_count(SceneQueryResultHandle handle, int index);
+DLL void scenequeryresult_worldfragments_at(SceneQueryResultHandle handle, int index, world_fragment* result);
+
 
 #endif
