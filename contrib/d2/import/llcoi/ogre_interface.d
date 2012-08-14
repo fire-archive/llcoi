@@ -576,6 +576,8 @@ void camera_set_autotracking(CameraHandle handle, int on, SceneNodeHandle sn_han
 void camera_set_lod_bias(CameraHandle handle, coiReal factor);
 //Ogre::Camera::getLodBias() const
 coiReal camera_get_lod_bias(CameraHandle handle);
+//Ogre::Camera::getCameraToViewportRay(float, float, Ogre::Ray*) const
+void camera_get_camera_to_viewport_ray(CameraHandle handle, coiReal screenx, coiReal screeny, RayHandle ray);
 //Ogre::Camera::setWindow(float, float, float, float)
 void camera_set_window(CameraHandle handle, coiReal left, coiReal top, coiReal right, coiReal bottom);
 

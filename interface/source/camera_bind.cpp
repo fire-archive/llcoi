@@ -347,6 +347,14 @@ coiReal camera_get_lod_bias(CameraHandle handle)
     return camera->getLodBias();
 }
 
+//Ogre::Camera::getCameraToViewportRay(float, float, Ogre::Ray*) const
+void camera_get_camera_to_viewport_ray(CameraHandle handle, coiReal screenx, coiReal screeny, RayHandle result)
+{
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(result);
+    camera->getCameraToViewportRay(screenx, screeny, ray);
+}
+
 //Ogre::Camera::setWindow(float, float, float, float)
 void camera_set_window(CameraHandle handle, coiReal left, coiReal top, coiReal right, coiReal bottom)
 {
@@ -376,7 +384,6 @@ Ogre::Camera::getRealRight() const
 Ogre::Camera::getMovableType() const
 Ogre::Camera::setLodCamera(Ogre::Camera const*)
 Ogre::Camera::getLodCamera() const
-Ogre::Camera::getCameraToViewportRay(float, float) const
 Ogre::Camera::getCameraToViewportRay(float, float, Ogre::Ray*) const
 Ogre::Camera::getCameraToViewportBoxVolume(float, float, float, float, bool)
 Ogre::Camera::getCameraToViewportBoxVolume(float, float, float, float, Ogre::PlaneBoundedVolume*, bool)

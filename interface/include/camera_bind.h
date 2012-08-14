@@ -43,6 +43,7 @@
 #define CameraHandle void*
 #define SceneManagerHandle void*
 #define SceneNodeHandle void*
+#define RayHandle void*
 
 // Camera
 DLL CameraHandle create_camera(const char* camera_name);
@@ -118,6 +119,8 @@ DLL void camera_set_autotracking(CameraHandle handle, int on, SceneNodeHandle sn
 DLL void camera_set_lod_bias(CameraHandle handle, coiReal factor);
 //Ogre::Camera::getLodBias() const
 DLL coiReal camera_get_lod_bias(CameraHandle handle);
+//Ogre::Camera::getCameraToViewportRay(float, float, Ogre::Ray*) const
+DLL void camera_get_camera_to_viewport_ray(CameraHandle handle, coiReal screenx, coiReal screeny, RayHandle ray);
 //Ogre::Camera::setWindow(float, float, float, float)
 DLL void camera_set_window(CameraHandle handle, coiReal left, coiReal top, coiReal right, coiReal bottom);
 
