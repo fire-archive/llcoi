@@ -564,7 +564,7 @@ void camera_move(CameraHandle handle, const float x, const float y, const float 
 
 void camera_move_relative(CameraHandle handle, const float x, const float y, const float z);
 
-void camera_set_direction(CameraHandle handle, const float x, const float y, const float z, transform_space relative_to);
+void camera_set_direction(CameraHandle handle, const float x, const float y, const float z);
 
 void camera_get_direction(CameraHandle handle, ref coiVector3 v3);
 
