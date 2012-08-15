@@ -602,9 +602,9 @@ void camera_yaw(CameraHandle handle, coiReal angle);
 
 void camera_pitch(CameraHandle handle, coiReal angle);
 
-void camera_rotate(CameraHandle handle, const coiVector3* axis, coiReal angle);
+void camera_rotate(CameraHandle handle, const ref coiVector3 axis, coiReal angle);
 
-void camera_rotate_q(CameraHandle handle, const coiQuaternion* q);
+void camera_rotate_q(CameraHandle handle, const ref coiQuaternion q);
 
 //Ogre::Camera::setFixedYawAxis(bool, Ogre::Vector3 const&)
 void camera_set_fixed_yaw_axis(CameraHandle handle, int on, const ref coiVector3 fixed_axis);
@@ -810,8 +810,8 @@ coiVector3 vector3_UNIT_SCALE();
 PlaneHandle plane_create_plane();
 PlaneHandle plane_create_plane_normal(float x, float y, float z, float distance);
 void plane_destroy_plane(PlaneHandle handle);
-void plane_get_normal(PlaneHandle handle, coiVector3* normal);
-void plane_set_normal(PlaneHandle handle, const coiVector3* normal);
+void plane_get_normal(PlaneHandle handle, ref coiVector3 normal);
+void plane_set_normal(PlaneHandle handle, const ref coiVector3 normal);
 coiReal plane_get_d(PlaneHandle handle);
 void plane_set_d(PlaneHandle handle, coiReal d);
 
