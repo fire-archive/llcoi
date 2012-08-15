@@ -36,6 +36,7 @@
  ******************************************************************************/
 
 module llcoi.ogre_interface;
+private import core.stdc.config : c_long, c_ulong;
 
 extern(C):
 
@@ -168,8 +169,8 @@ struct FrameStats
     float avgFPS;
     float bestFPS;
     float worstFPS;
-    ulong bestFrameTime;
-    ulong worstFrameTime;
+    c_ulong bestFrameTime;
+    c_ulong worstFrameTime;
     size_t triangleCount;
     size_t batchCount;
 };
@@ -319,7 +320,7 @@ RenderWindowHandle create_render_window(const char* name, const int width, const
 
 RenderWindowHandle create_render_window_gl_context(const char* name, const int width, const int height, const int full_screen);
 
-RenderWindowHandle create_render_window_hwnd(const char* name, const int width, const int height, const int full_screen, ulong hwnd);
+RenderWindowHandle create_render_window_hwnd(const char* name, const int width, const int height, const int full_screen, c_ulong hwnd);
 
 uint render_window_get_hwnd(RenderWindowHandle window_handle);
 
@@ -396,7 +397,7 @@ const(char*) scenemanager_get_name(SceneManagerHandle handle);
 //void SceneManager::destroyQuery(Ogre::SceneQuery* query);
 void scenemanager_destroy_scenequery(SceneManagerHandle handle, SceneQueryHandle query);
 // Ogre::SceneManager::createRayQuery(Ogre::Ray const&, unsigned long)
-RaySceneQueryHandle scenemanager_create_rayquery(SceneQueryHandle handle, RayHandle ray_handle, ulong mask);
+RaySceneQueryHandle scenemanager_create_rayquery(SceneQueryHandle handle, RayHandle ray_handle, c_ulong mask);
 
 
 // RenderSystem functions
@@ -845,13 +846,13 @@ MeshHandle meshmanager_create_plane(const char* name, const char* group_name,
 // Ogre::Timer
 int timer_set_option(TimerHandle handle, const char* key, void* value);
 
-ulong timer_get_milliseconds(TimerHandle handle);
+c_ulong timer_get_milliseconds(TimerHandle handle);
 
-ulong timer_get_microseconds(TimerHandle handle);
+c_ulong timer_get_microseconds(TimerHandle handle);
 
-ulong timer_get_milliseconds_cpu(TimerHandle handle);
+c_ulong timer_get_milliseconds_cpu(TimerHandle handle);
 
-ulong timer_get_microseconds_cpu(TimerHandle handle);
+c_ulong timer_get_microseconds_cpu(TimerHandle handle);
 
 void timer_reset(TimerHandle handle);
 
