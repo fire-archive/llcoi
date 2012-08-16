@@ -105,6 +105,7 @@ set(HDRS
 	./include/root_bind.h
 	./include/entity_bind.h
 	./include/scenemanager_bind.h
+    ./include/node_bind.h
 	./include/scenenode_bind.h
 	./include/camera_bind.h
 	./include/resourcegroupmanager_bind.h
@@ -138,6 +139,7 @@ set(SRCS
 	./source/root_bind.cpp
 	./source/entity_bind.cpp
 	./source/scenemanager_bind.cpp
+    ./source/node_bind.cpp
 	./source/scenenode_bind.cpp
 	./source/camera_bind.cpp
 	./source/resourcegroupmanager_bind.cpp
