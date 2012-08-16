@@ -105,6 +105,8 @@ DLL void scenenode_get_position(SceneNodeHandle handle, coiVector3* pos);
 DLL void scenenode_set_derived_position(SceneNodeHandle handle, const coiVector3* pos);
 
 DLL void scenenode_get_derived_position(SceneNodeHandle handle, coiVector3* pos);
+//void setFixedYawAxis( bool useFixed, const Vector3& fixedAxis = Vector3::UNIT_Y );
+DLL void scenenode_set_fixed_yaw_axis(SceneNodeHandle handle, int use_fixed, const coiVector3* fixed_axis);
 DLL void scenenode_yaw_degree(SceneNodeHandle handle, coiReal angle, transform_space relative_to);
 DLL void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
 DLL void scenenode_set_scale(SceneNodeHandle scenenode_handle, float x, float y, float z);
@@ -113,5 +115,7 @@ DLL void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y,
 DLL void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
 DLL void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
 DLL SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle handle, const char* name, const coiVector3* translate, const coiQuaternion* rotate);
+
+
 
 #endif

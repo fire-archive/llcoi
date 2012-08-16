@@ -166,9 +166,7 @@ void scenenode_hide_boundingbox(SceneNodeHandle scenenode_handle, int hide_bound
 int scenenode_get_show_boundingbox(SceneNodeHandle scenenode_handle)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
-    if(scene_node->getShowBoundingBox())
-        return 1;
-    return 0;
+    return scene_node->getShowBoundingBox();
 }
 
 // Ogre::SceneNode::getParentSceneNode() const
@@ -343,6 +341,16 @@ void scenenode_yaw_degree(SceneNodeHandle handle, float angle, transform_space r
     scene_node->yaw(Ogre::Degree(angle));
 }
 
+//Ogre::SceneNode::setFixedYawAxis(bool, Ogre::Vector3 const&)
+void scenenode_set_fixed_yaw_axis(SceneNodeHandle handle, int use_fixed, const coiVector3* fixed_axis)
+{
+    Ogre::SceneNode* sn = reinterpret_cast<Ogre::SceneNode*>(handle);
+    Ogre::Vector3 setter(fixed_axis->x, fixed_axis->y, fixed_axis->z);
+    sn->setFixedYawAxis(use_fixed, setter);
+}
+
+
+
 /*
 Ogre::SceneNode::operator=(Ogre::SceneNode const&)
 Ogre::SceneNode::SceneNode(Ogre::SceneNode const&)
@@ -358,7 +366,6 @@ Ogre::SceneNode::removeAndDestroyChild(unsigned short)
 Ogre::SceneNode::removeAndDestroyAllChildren()
 Ogre::SceneNode::_addBoundingBoxToQueue(Ogre::RenderQueue*)
 Ogre::SceneNode::findLights(Ogre::HashedVector<Ogre::Light*>&, float, unsigned int) const
-Ogre::SceneNode::setFixedYawAxis(bool, Ogre::Vector3 const&)
 Ogre::SceneNode::setDirection(Ogre::Vector3 const&, Ogre::Node::TransformSpace, Ogre::Vector3 const&)
 Ogre::SceneNode::lookAt(Ogre::Vector3 const&, Ogre::Node::TransformSpace, Ogre::Vector3 const&)
 Ogre::SceneNode::setAutoTracking(bool, Ogre::SceneNode*, Ogre::Vector3 const&, Ogre::Vector3 const&)
