@@ -56,8 +56,8 @@ AxisAlignedBoxHandle create_axis_aligned_box_ex(Extent e)
 
 AxisAlignedBoxHandle create_axis_aligned_box_v3(const coiVector3* min, const coiVector3* max)
 {
-    Ogre::Vector3 _min(min->x, min->y, min->z);
-    Ogre::Vector3 _max(max->x, max->y, max->z);
+    const Ogre::Vector3 _min(min->x, min->y, min->z);
+    const Ogre::Vector3 _max(max->x, max->y, max->z);
     Ogre::AxisAlignedBox* box = new Ogre::AxisAlignedBox(_min, _max);
     return reinterpret_cast<AxisAlignedBoxHandle>(box);
 }
@@ -71,7 +71,7 @@ void destroy_axis_aligned_box(AxisAlignedBoxHandle handle)
 void axisalignedbox_get_size(AxisAlignedBoxHandle handle, coiVector3* size)
 {
     Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
-    Ogre::Vector3 s = box->getSize();
+    const Ogre::Vector3& s = box->getSize();
 
     size->x = s.x;
     size->y = s.y;
@@ -82,7 +82,7 @@ void axisalignedbox_get_size(AxisAlignedBoxHandle handle, coiVector3* size)
 void axisalignedbox_get_minimum(AxisAlignedBoxHandle handle, coiVector3* minimum)
 {
     Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
-    Ogre::Vector3 getter = box->getMinimum();
+    const Ogre::Vector3& getter = box->getMinimum();
 
     minimum->x = getter.x;
     minimum->y = getter.y;
@@ -92,7 +92,7 @@ void axisalignedbox_get_minimum(AxisAlignedBoxHandle handle, coiVector3* minimum
 void axisalignedbox_get_maximum(AxisAlignedBoxHandle handle, coiVector3* max)
 {
     Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
-    Ogre::Vector3 getter = box->getMaximum();
+    const Ogre::Vector3& getter = box->getMaximum();
 
     max->x = getter.x;
     max->y = getter.y;
@@ -102,7 +102,7 @@ void axisalignedbox_get_maximum(AxisAlignedBoxHandle handle, coiVector3* max)
 void axisalignedbox_set_minimum(AxisAlignedBoxHandle handle, const coiVector3* min)
 {
     Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
-    Ogre::Vector3 setter(min->x, min->y, min->z);
+    const Ogre::Vector3 setter(min->x, min->y, min->z);
     box->setMinimum(setter);
 }
 
@@ -128,7 +128,7 @@ void axisalignedbox_set_minimum_z(AxisAlignedBoxHandle handle, coiReal z)
 void axisalignedbox_set_maximum(AxisAlignedBoxHandle handle, const coiVector3* max)
 {
     Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
-    Ogre::Vector3 setter(max->x, max->y, max->z);
+    const Ogre::Vector3 setter(max->x, max->y, max->z);
     box->setMaximum(setter);
 }
 
@@ -153,8 +153,8 @@ void axisalignedbox_set_maximum_z(AxisAlignedBoxHandle handle, coiReal z)
 void axisalignedbox_set_extents(AxisAlignedBoxHandle handle, const coiVector3* min, const coiVector3* max)
 {
     Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
-    Ogre::Vector3 _min(min->x, min->y, min->z);
-    Ogre::Vector3 _max(max->x, max->y, max->z);
+    const Ogre::Vector3 _min(min->x, min->y, min->z);
+    const Ogre::Vector3 _max(max->x, max->y, max->z);
     box->setExtents(_min, _max);
 }
 
@@ -163,7 +163,7 @@ void axisalignedbox_get_corner(AxisAlignedBoxHandle handle, CornerEnum e, coiVec
     Ogre::AxisAlignedBox* box = reinterpret_cast<Ogre::AxisAlignedBox*>(handle);
     Ogre::AxisAlignedBox::CornerEnum corner = llcoi_cornerenum_to_ogre_cornerenum(e);
 
-    Ogre::Vector3 result = box->getCorner(corner);
+    const Ogre::Vector3& result = box->getCorner(corner);
 
     c->x = result.x;
     c->y = result.y;
