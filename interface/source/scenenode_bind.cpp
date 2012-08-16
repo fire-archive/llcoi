@@ -44,11 +44,6 @@
 #include <OgreEntity.h>
 #include "ogre_manager.h"
 
-// SceneNode is going to carry Node's code - we'll duplicate for Bone
-
-//TODO: need to have a function which translates to/from Ogre::Node::TransformSpace
-
-
 // Maybe this would be enough? One could set position and orientation afterwards..
 // Ogre::SceneNode::createChildSceneNode(Ogre::Vector3 const&, Ogre::Quaternion const&)
 // Ogre::SceneNode::createChildSceneNode(std::string const&, Ogre::Vector3 const&, Ogre::Quaternion const&)
@@ -250,9 +245,9 @@ void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, 
 //Ogre::Node::getPosition() const
 void scenenode_get_position(SceneNodeHandle handle, coiVector3* pos)
 {
-    Ogre::Vector3 v;
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(handle);
-    v = scene_node->getPosition();
+    const Ogre::Vector3& v = scene_node->getPosition();
+
     pos->x = v.x;
     pos->y = v.y;
     pos->z = v.z;
@@ -261,9 +256,8 @@ void scenenode_get_position(SceneNodeHandle handle, coiVector3* pos)
 //Ogre::Node::_getDerivedPosition() const
 void scenenode_get_derived_position(SceneNodeHandle handle, coiVector3* pos)
 {
-    Ogre::Vector3 v;
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(handle);
-    v = scene_node->_getDerivedPosition();
+    const Ogre::Vector3& v = scene_node->_getDerivedPosition();
     pos->x = v.x;
     pos->y = v.y;
     pos->z = v.z;
@@ -273,7 +267,7 @@ void scenenode_get_derived_position(SceneNodeHandle handle, coiVector3* pos)
 void scenenode_set_derived_position(SceneNodeHandle handle, const coiVector3* pos)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(handle);
-    Ogre::Vector3 v(pos->x, pos->y, pos->z);
+    const Ogre::Vector3 v(pos->x, pos->y, pos->z);
     scene_node->_setDerivedPosition(v);
 }
 
@@ -327,8 +321,8 @@ void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians, transfor
 SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle parent_handle, const char* name, const coiVector3* translate, const coiQuaternion* rotate)
 {
     Ogre::SceneNode* parent = reinterpret_cast<Ogre::SceneNode*>(parent_handle);
-    Ogre::Vector3 trans(translate->x, translate->y, translate->z);
-    Ogre::Quaternion rot(rotate->w, rotate->x, rotate->y, rotate->z);
+    const Ogre::Vector3 trans(translate->x, translate->y, translate->z);
+    const Ogre::Quaternion rot(rotate->w, rotate->x, rotate->y, rotate->z);
 
     Ogre::SceneNode* child = parent->createChildSceneNode(Ogre::String(name), trans, rot);
     return reinterpret_cast<SceneNodeHandle>(child);

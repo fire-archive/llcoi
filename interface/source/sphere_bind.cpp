@@ -42,8 +42,7 @@
 
 SphereHandle create_sphere(const coiVector3* center, coiReal radius)
 {
-    Ogre::Vector3 c(center->x, center->y, center->z);
-
+    const Ogre::Vector3 c(center->x, center->y, center->z);
     Ogre::Sphere* sphere = new Ogre::Sphere(c, radius);
     return reinterpret_cast<SphereHandle>(sphere);
 }
@@ -72,7 +71,7 @@ coiReal sphere_get_radius(SphereHandle handle)
 void sphere_set_center(SphereHandle handle, const coiVector3* center)
 {
     Ogre::Sphere* sphere = reinterpret_cast<Ogre::Sphere*>(handle);
-    Ogre::Vector3 c(center->x, center->y, center->z);
+    const Ogre::Vector3 c(center->x, center->y, center->z);
     sphere->setCenter(c);
 }
 
@@ -80,7 +79,7 @@ void sphere_set_center(SphereHandle handle, const coiVector3* center)
 void sphere_get_center(SphereHandle handle, coiVector3* center)
 {
     Ogre::Sphere* sphere = reinterpret_cast<Ogre::Sphere*>(handle);
-    Ogre::Vector3 c = sphere->getCenter();
+    const Ogre::Vector3& c = sphere->getCenter();
 
     center->x = c.x;
     center->y = c.y;
@@ -115,7 +114,7 @@ int sphere_intersects_plane(SphereHandle handle, PlaneHandle query)
 int sphere_intersects_vector3(SphereHandle handle, const coiVector3* query)
 {
     Ogre::Sphere* sphere = reinterpret_cast<Ogre::Sphere*>(handle);
-    Ogre::Vector3 q(query->x, query->y, query->z);
+    const Ogre::Vector3 q(query->x, query->y, query->z);
     return sphere->intersects(q);
 }
 
