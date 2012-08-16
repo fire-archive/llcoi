@@ -37,6 +37,20 @@
 #pragma once
 #ifndef NODE_BIND_H
 #define NODE_BIND_H
+
 #include "ogre_interface.h"
+#define NodeHandle void*
+
+//Ogre::Node::getName() const
+DLL const char* node_get_name(NodeHandle handle);
+//Ogre::Node::getParent() const
+//XXX: May be NULL if this is the root node.
+DLL NodeHandle node_get_parent(NodeHandle handle);
+//Ogre::Node::getOrientation() const
+DLL void node_get_orientation(NodeHandle handle, coiQuaternion* result);
+//Ogre::Node::setOrientation(Ogre::Quaternion const&)
+DLL void node_set_orientation(NodeHandle handle, const coiQuaternion* orientation);
+
+
 
 #endif
