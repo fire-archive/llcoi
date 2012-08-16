@@ -66,6 +66,7 @@ alias uint32 BGRA;
 
 alias void* CameraHandle;
 alias void* EntityHandle;
+alias void* NodeHandle;
 alias void* SceneNodeHandle;
 alias void* LightHandle;
 alias void* RenderWindowHandle;
@@ -431,7 +432,18 @@ ViewportHandle add_viewport(CameraHandle camera_handle);
 
 void scene_manager_log_name();
 
-// Scene nodes
+// Ogre::Node
+//Ogre::Node::getName() const
+const(char*) node_get_name(NodeHandle handle);
+//Ogre::Node::getParent() const
+//XXX: May be NULL if this is the root node.
+NodeHandle node_get_parent(NodeHandle handle);
+//Ogre::Node::getOrientation() const
+void node_get_orientation(NodeHandle handle, ref coiQuaternion result);
+//Ogre::Node::setOrientation(Ogre::Quaternion const&)
+void node_set_orientation(NodeHandle handle, const ref coiQuaternion orientation);
+
+// Ogre::SceneNode
 SceneNodeHandle create_child_scenenode(const char* node_name);
 
 void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle);
