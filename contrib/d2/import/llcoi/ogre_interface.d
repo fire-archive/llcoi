@@ -491,6 +491,8 @@ void scenenode_get_position(SceneNodeHandle handle, ref coiVector3 pos);
 void scenenode_set_derived_position(SceneNodeHandle handle, const ref coiVector3 pos);
 
 void scenenode_get_derived_position(SceneNodeHandle handle, ref coiVector3 pos);
+//void setFixedYawAxis( bool useFixed, const Vector3& fixedAxis = Vector3::UNIT_Y );
+void scenenode_set_fixed_yaw_axis(SceneNodeHandle handle, int use_fixed, const ref coiVector3 fixed_axis);
 
 void scenenode_yaw_degree(SceneNodeHandle handle, coiReal angle, transform_space relative_to);
 
