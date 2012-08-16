@@ -42,8 +42,8 @@
 
 RayHandle create_ray(const coiVector3* origin, const coiVector3* direction)
 {
-    Ogre::Vector3 o(origin->x, origin->y, origin->z);
-    Ogre::Vector3 d(direction->x, direction->y, direction->z);
+    const Ogre::Vector3 o(origin->x, origin->y, origin->z);
+    const Ogre::Vector3 d(direction->x, direction->y, direction->z);
     Ogre::Ray* ray = new Ogre::Ray(o, d);
 
     return reinterpret_cast<RayHandle>(ray);
@@ -59,7 +59,7 @@ void destroy_ray(RayHandle handle)
 void ray_set_origin(RayHandle handle, const coiVector3* origin)
 {
     Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
-    Ogre::Vector3 setter(origin->x, origin->y, origin->z);
+    const Ogre::Vector3 setter(origin->x, origin->y, origin->z);
     ray->setOrigin(setter);
 }
 
@@ -67,7 +67,7 @@ void ray_set_origin(RayHandle handle, const coiVector3* origin)
 void ray_get_origin(RayHandle handle, coiVector3* origin)
 {
     Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
-    Ogre::Vector3 getter = ray->getOrigin();
+    const Ogre::Vector3& getter = ray->getOrigin();
 
     origin->x = getter.x;
     origin->y = getter.y;
@@ -78,7 +78,7 @@ void ray_get_origin(RayHandle handle, coiVector3* origin)
 void ray_set_direction(RayHandle handle, const coiVector3* direction)
 {
     Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
-    Ogre::Vector3 setter(direction->x, direction->y, direction->z);
+    const Ogre::Vector3 setter(direction->x, direction->y, direction->z);
     ray->setDirection(setter);
 }
 
@@ -86,7 +86,7 @@ void ray_set_direction(RayHandle handle, const coiVector3* direction)
 void ray_get_direction(RayHandle handle, coiVector3* direction)
 {
     Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(handle);
-    Ogre::Vector3 getter = ray->getDirection();
+    const Ogre::Vector3& getter = ray->getDirection();
 
     direction->x = getter.x;
     direction->y = getter.y;
