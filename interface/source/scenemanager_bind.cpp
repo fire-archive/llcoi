@@ -107,7 +107,7 @@ void scenemanager_set_sky_box(SceneManagerHandle handle, int enable, const char*
                               const char* group_name)
 {
     Ogre::SceneManager* sm = reinterpret_cast<Ogre::SceneManager*>(handle);
-    Ogre::Quaternion q(
+    const Ogre::Quaternion q(
         orientation->w, orientation->x, orientation->y, orientation->z
     );
 
@@ -119,7 +119,7 @@ void scenemanager_set_sky_dome(SceneManagerHandle handle, int enable, const char
                                int xsegments, int ysegments, int ysegments_keep, const char* group_name)
 {
     Ogre::SceneManager* sm = reinterpret_cast<Ogre::SceneManager*>(handle);
-    Ogre::Quaternion q(
+    const Ogre::Quaternion q(
         orientation->w, orientation->x, orientation->y, orientation->z
     );
 
