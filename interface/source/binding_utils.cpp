@@ -36,8 +36,24 @@
  ******************************************************************************/
 
 #include "binding_utils.h"
-#include "ois_interface.h"
 #include <OISMouse.h>
+#include <OgreMatrix3.h>
+
+void ogre_matrix3_to_llcoi_matrix3(const Ogre::Matrix3& o, coiMatrix3& l)
+{
+    l.m[0][0] = o[0][0];
+    l.m[0][1] = o[0][1];
+    l.m[0][2] = o[0][2];
+
+    l.m[1][0] = o[1][0];
+    l.m[1][1] = o[1][1];
+    l.m[1][2] = o[1][2];
+
+    l.m[2][0] = o[2][0];
+    l.m[2][1] = o[2][1];
+    l.m[2][2] = o[2][2];
+}
+
 
 log_message_level ogre_lml_to_llcoi_lml(Ogre::LogMessageLevel lml)
 {

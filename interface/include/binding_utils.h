@@ -62,6 +62,9 @@ namespace OIS
     class MouseEvent;
 };
 
+/* OGRE data <-> LLCOI data converters */
+void ogre_matrix3_to_llcoi_matrix3(const Ogre::Matrix3& o, coiMatrix3& l);
+
 
 /* OGRE enum <-> LLCOI enum converters */
 log_message_level ogre_lml_to_llcoi_lml(Ogre::LogMessageLevel lml);
