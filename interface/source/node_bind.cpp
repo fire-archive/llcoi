@@ -186,11 +186,74 @@ void node_translate_m(NodeHandle handle, const coiMatrix3* a, const coiVector3* 
 }
 
 //Ogre::Node::roll(Ogre::Radian const&, Ogre::Node::TransformSpace)
-void node_roll(NodeHandle handle, coiReal radians, transform_space relative_to)
+void node_roll(NodeHandle handle, const coiReal angle, transform_space relative_to)
 {
     Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
     Ogre::Node::TransformSpace rt = llcoi_ts_to_ogre_ts(relative_to);
-    node->roll(Ogre::Radian(radians), rt);
+    node->roll(Ogre::Radian(angle), rt);
+}
+
+//Ogre::Node::pitch(Ogre::Radian const&, Ogre::Node::TransformSpace)
+void node_pitch(NodeHandle handle, const coiReal angle, transform_space relative_to)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    Ogre::Node::TransformSpace rt = llcoi_ts_to_ogre_ts(relative_to);
+    node->pitch(Ogre::Radian(angle), rt);
+}
+
+// Ogre::Node::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
+void node_yaw(NodeHandle handle, const coiReal angle, transform_space relative_to)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    Ogre::Node::TransformSpace rt = llcoi_ts_to_ogre_ts(relative_to);
+    node->yaw(Ogre::Radian(angle), rt);
+}
+
+//Ogre::Node::rotate(Ogre::Vector3 const&, Ogre::Radian const&, Ogre::Node::TransformSpace)
+void node_rotate(NodeHandle handle, const coiVector3* axis, const coiReal angle, transform_space relative_to)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Vector3 _axis(axis->x, axis->y, axis->z);
+    const Ogre::Radian _angle(angle);
+    Ogre::Node::TransformSpace rt = llcoi_ts_to_ogre_ts(relative_to);
+
+    node->rotate(_axis, _angle, rt);
+}
+
+//Ogre::Node::rotate(Ogre::Quaternion const&, Ogre::Node::TransformSpace)
+void node_rotate_q(NodeHandle handle, const coiQuaternion* q, transform_space relative_to)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Quaternion _q(q->w, q->x, q->y, q->z);
+    Ogre::Node::TransformSpace rt = llcoi_ts_to_ogre_ts(relative_to);
+    node->rotate(_q, rt);
+}
+
+//Ogre::Node::getLocalAxes() const
+void node_get_local_axes(NodeHandle handle, coiMatrix3* r)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Matrix3& m = node->getLocalAxes();
+    ogre_matrix3_to_llcoi_matrix3(m, *r);
+}
+
+//Ogre::Node::createChild(Ogre::Vector3 const&, Ogre::Quaternion const&)
+NodeHandle node_create_child(NodeHandle handle, const coiVector3* t, const coiQuaternion* r)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Vector3 translate(t->x, t->y, t->z);
+    const Ogre::Quaternion rotate(r->w, r->x, r->y, r->z);
+    return reinterpret_cast<NodeHandle>(node->createChild(translate, rotate));
+}
+
+//Ogre::Node::createChild(std::string const&, Ogre::Vector3 const&, Ogre::Quaternion const&)
+NodeHandle node_create_named_child(NodeHandle handle, const char* name, const coiVector3* t, const coiQuaternion* r)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Vector3 translate(t->x, t->y, t->z);
+    const Ogre::Quaternion rotate(r->w, r->x, r->y, r->z);
+
+    return reinterpret_cast<NodeHandle>(node->createChild(Ogre::String(name), translate, rotate));
 }
 
 
@@ -201,14 +264,7 @@ void node_roll(NodeHandle handle, coiReal radians, transform_space relative_to)
 //Ogre::Node::Node(Ogre::Node const&)
 //Ogre::Node::Node()
 //Ogre::Node::Node(std::string const&)
-//Ogre::Node::roll(Ogre::Radian const&, Ogre::Node::TransformSpace)
-//Ogre::Node::pitch(Ogre::Radian const&, Ogre::Node::TransformSpace)
 //Ogre::Node::~Node()
-//Ogre::Node::rotate(Ogre::Vector3 const&, Ogre::Radian const&, Ogre::Node::TransformSpace)
-//Ogre::Node::rotate(Ogre::Quaternion const&, Ogre::Node::TransformSpace)
-//Ogre::Node::getLocalAxes() const
-//Ogre::Node::createChild(Ogre::Vector3 const&, Ogre::Quaternion const&)
-//Ogre::Node::createChild(std::string const&, Ogre::Vector3 const&, Ogre::Quaternion const&)
 //Ogre::Node::addChild(Ogre::Node*)
 //Ogre::Node::numChildren() const
 //Ogre::Node::getChild(unsigned short) const

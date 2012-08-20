@@ -78,7 +78,21 @@ DLL void node_translate_xyz(NodeHandle handle, const float x, const float y, con
 //Ogre::Node::translate(Ogre::Matrix3 const&, Ogre::Vector3 const&, Ogre::Node::TransformSpace)
 DLL void node_translate_m(NodeHandle handle, const coiMatrix3* axes, const coiVector3* move, transform_space relative_to);
 //Ogre::Node::roll(Ogre::Radian const&, Ogre::Node::TransformSpace)
-DLL void node_roll(NodeHandle handle, coiReal radians, transform_space relative_to);
+DLL void node_roll(NodeHandle handle, const coiReal angle, transform_space relative_to);
+//Ogre::Node::pitch(Ogre::Radian const&, Ogre::Node::TransformSpace)
+DLL void node_pitch(NodeHandle handle, const coiReal angle, transform_space relative_to);
+// Ogre::Node::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
+DLL void node_yaw(NodeHandle handle, const coiReal angle, transform_space relative_to);
+//Ogre::Node::rotate(Ogre::Vector3 const&, Ogre::Radian const&, Ogre::Node::TransformSpace)
+DLL void node_rotate(NodeHandle handle, const coiVector3* axis, const coiReal angle, transform_space relative_to);
+//Ogre::Node::rotate(Ogre::Quaternion const&, Ogre::Node::TransformSpace)
+DLL void node_rotate_q(NodeHandle handle, const coiQuaternion* q, transform_space relative_to);
+//Ogre::Node::getLocalAxes() const
+DLL void node_get_local_axes(NodeHandle handle, coiMatrix3* result);
+//Ogre::Node::createChild(Ogre::Vector3 const&, Ogre::Quaternion const&)
+DLL NodeHandle node_create_child(NodeHandle handle, const coiVector3* translate, const coiQuaternion* rotate);
+//Ogre::Node::createChild(std::string const&, Ogre::Vector3 const&, Ogre::Quaternion const&)
+DLL NodeHandle node_create_named_child(NodeHandle handle, const char* name, const coiVector3* translate, const coiQuaternion* rotate);
 
 
 #endif
