@@ -50,7 +50,28 @@ DLL NodeHandle node_get_parent(NodeHandle handle);
 DLL void node_get_orientation(NodeHandle handle, coiQuaternion* result);
 //Ogre::Node::setOrientation(Ogre::Quaternion const&)
 DLL void node_set_orientation(NodeHandle handle, const coiQuaternion* orientation);
-
+//Ogre::Node::setScale(Ogre::Vector3 const&)
+DLL void node_set_scale(NodeHandle handle, const coiVector3* in_scale);
+//Ogre::Node::setScale(Ogre::Vector3 const&)
+DLL void node_set_scale_xyz(NodeHandle handle, const float x, const float y, const float z);
+//Ogre::Node::getScale() const
+DLL void node_get_scale(NodeHandle handle, coiVector3* result);
+//Ogre::Node::setInheritOrientation(bool)
+DLL void node_set_inherit_orientation(NodeHandle handle, int inherit);
+//Ogre::Node::getInheritOrientation() const
+DLL int node_get_inherit_orientation(NodeHandle handle);
+//Ogre::Node::resetOrientation()
+DLL void node_reset_orientation(NodeHandle handle);
+//Ogre::Node::setInheritScale(bool)
+DLL void node_set_inherit_scale(NodeHandle handle, int inherit);
+//Ogre::Node::getInheritScale() const
+DLL int node_get_inherit_scale(NodeHandle handle);
+//Ogre::Node::scale(Ogre::Vector3 const&)
+DLL void node_scale(NodeHandle handle, const coiVector3* scale);
+//Ogre::Node::scale(Ogre::Vector3 const&)
+DLL void node_scale_xyz(NodeHandle handle, const float x, const float y, const float z);
+//Ogre::Node::translate(Ogre::Vector3 const&, Ogre::Node::TransformSpace)
+DLL void node_translate(NodeHandle handle, const coiVector3* d, transform_space relative_to);
 
 
 #endif

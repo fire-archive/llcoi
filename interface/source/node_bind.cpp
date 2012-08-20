@@ -36,6 +36,7 @@
  ******************************************************************************/
 
 #include "node_bind.h"
+#include "binding_utils.h"
 #include <OgreNode.h>
 
 //Ogre::Node::getName() const
@@ -76,6 +77,98 @@ void node_set_orientation(NodeHandle handle, const coiQuaternion* o)
     node->setOrientation(q);
 }
 
+//Ogre::Node::setScale(Ogre::Vector3 const&)
+void node_set_scale(NodeHandle handle, const coiVector3* in_scale)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Vector3 scale(in_scale->x, in_scale->y, in_scale->z);
+    node->setScale(scale);
+}
+
+//Ogre::Node::setScale(Ogre::Vector3 const&)
+void node_set_scale_xyz(NodeHandle handle, const float x, const float y, const float z)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Vector3 scale(x, y, z);
+    node->setScale(scale);
+}
+
+//Ogre::Node::getScale() const
+void node_get_scale(NodeHandle handle, coiVector3* r)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Vector3& result = node->getScale();
+
+    r->x = result.x;
+    r->y = result.y;
+    r->z = result.z;
+}
+
+//Ogre::Node::setInheritOrientation(bool)
+void node_set_inherit_orientation(NodeHandle handle, int inherit)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    node->setInheritOrientation(inherit);
+}
+
+//Ogre::Node::getInheritOrientation() const
+int node_get_inherit_orientation(NodeHandle handle)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    return node->getInheritOrientation();
+}
+
+//Ogre::Node::resetOrientation()
+void node_reset_orientation(NodeHandle handle)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    node->resetOrientation();
+}
+
+//Ogre::Node::setInheritScale(bool)
+void node_set_inherit_scale(NodeHandle handle, int inherit)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    node->setInheritScale(inherit);
+}
+
+//Ogre::Node::getInheritScale() const
+int node_get_inherit_scale(NodeHandle handle)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    return node->getInheritScale();
+}
+
+//Ogre::Node::scale(Ogre::Vector3 const&)
+void node_scale(NodeHandle handle, const coiVector3* scale)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Vector3 s(scale->x, scale->y, scale->z);
+    node->scale(s);
+}
+
+void node_scale_xyz(NodeHandle handle, const float x, const float y, const float z)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Vector3 scale(x, y, z);
+    node->scale(scale);
+}
+
+//Ogre::Node::translate(Ogre::Vector3 const&, Ogre::Node::TransformSpace)
+void node_translate(NodeHandle handle, const coiVector3* d, transform_space relative_to)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Vector3 direction(d->x, d->y, d->z);
+    Ogre::Node::TransformSpace rt = llcoi_ts_to_ogre_ts(relative_to);
+
+    node->translate(direction, rt);
+}
+
+//Ogre::Node::translate(Ogre::Matrix3 const&, Ogre::Vector3 const&, Ogre::Node::TransformSpace)
+//Ogre::Node::translate(Ogre::Matrix3 const&, float, float, float, Ogre::Node::TransformSpace)
+
+
+
 /*
 //Ogre::Node::Listener
 //Ogre::Node::DebugRenderable
@@ -84,17 +177,6 @@ void node_set_orientation(NodeHandle handle, const coiQuaternion* o)
 //Ogre::Node::Node()
 //Ogre::Node::Node(std::string const&)
 //Ogre::Node::~Node()
-//Ogre::Node::resetOrientation()
-//Ogre::Node::setScale(Ogre::Vector3 const&)
-//Ogre::Node::getScale() const
-//Ogre::Node::setInheritOrientation(bool)
-//Ogre::Node::getInheritOrientation() const
-//Ogre::Node::setInheritScale(bool)
-//Ogre::Node::getInheritScale() const
-//Ogre::Node::scale(Ogre::Vector3 const&)
-//Ogre::Node::translate(Ogre::Vector3 const&, Ogre::Node::TransformSpace)
-//Ogre::Node::translate(Ogre::Matrix3 const&, Ogre::Vector3 const&, Ogre::Node::TransformSpace)
-//Ogre::Node::translate(Ogre::Matrix3 const&, float, float, float, Ogre::Node::TransformSpace)
 //Ogre::Node::rotate(Ogre::Vector3 const&, Ogre::Radian const&, Ogre::Node::TransformSpace)
 //Ogre::Node::rotate(Ogre::Quaternion const&, Ogre::Node::TransformSpace)
 //Ogre::Node::getLocalAxes() const

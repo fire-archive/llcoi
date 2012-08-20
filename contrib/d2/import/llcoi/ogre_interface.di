@@ -442,6 +442,29 @@ NodeHandle node_get_parent(NodeHandle handle);
 void node_get_orientation(NodeHandle handle, ref coiQuaternion result);
 //Ogre::Node::setOrientation(Ogre::Quaternion const&)
 void node_set_orientation(NodeHandle handle, const ref coiQuaternion orientation);
+//Ogre::Node::setScale(Ogre::Vector3 const&)
+void node_set_scale(NodeHandle handle, const ref coiVector3 in_scale);
+//Ogre::Node::setScale(Ogre::Vector3 const&)
+void node_set_scale_xyz(NodeHandle handle, const float x, const float y, const float z);
+//Ogre::Node::getScale() const
+void node_get_scale(NodeHandle handle, ref coiVector3 result);
+//Ogre::Node::setInheritOrientation(bool)
+void node_set_inherit_orientation(NodeHandle handle, int inherit);
+//Ogre::Node::getInheritOrientation() const
+int node_get_inherit_orientation(NodeHandle handle);
+//Ogre::Node::resetOrientation()
+void node_reset_orientation(NodeHandle handle);
+//Ogre::Node::setInheritScale(bool)
+void node_set_inherit_scale(NodeHandle handle, int inherit);
+//Ogre::Node::getInheritScale() const
+int node_get_inherit_scale(NodeHandle handle);
+//Ogre::Node::scale(Ogre::Vector3 const&)
+void node_scale(NodeHandle handle, const ref coiVector3 scale);
+//Ogre::Node::scale(Ogre::Vector3 const&)
+void node_scale_xyz(NodeHandle handle, const float x, const float y, const float z);
+//Ogre::Node::translate(Ogre::Vector3 const&, Ogre::Node::TransformSpace)
+void node_translate(NodeHandle handle, const ref coiVector3 d, transform_space relative_to);
+
 
 // Ogre::SceneNode
 SceneNodeHandle create_child_scenenode(const char* node_name);
