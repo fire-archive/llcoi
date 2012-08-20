@@ -256,6 +256,36 @@ NodeHandle node_create_named_child(NodeHandle handle, const char* name, const co
     return reinterpret_cast<NodeHandle>(node->createChild(Ogre::String(name), translate, rotate));
 }
 
+//Ogre::Node::addChild(Ogre::Node*)
+void node_add_child(NodeHandle handle, NodeHandle c)
+{
+    Ogre::Node* node  = reinterpret_cast<Ogre::Node*>(handle);
+    Ogre::Node* child = reinterpret_cast<Ogre::Node*>(c);
+    node->addChild(child);
+}
+
+//Ogre::Node::numChildren() const
+unsigned short node_num_children(NodeHandle handle)
+{
+    Ogre::Node* node  = reinterpret_cast<Ogre::Node*>(handle);
+    return node->numChildren();
+}
+
+//Ogre::Node::getChild(unsigned short) const
+NodeHandle node_get_child_by_index(NodeHandle handle, unsigned short index)
+{
+    Ogre::Node* node  = reinterpret_cast<Ogre::Node*>(handle);
+    return reinterpret_cast<NodeHandle>(node->getChild(index));
+}
+
+//Ogre::Node::getChild(std::string const&) const
+NodeHandle node_get_child_by_name(NodeHandle handle, const char* name)
+{
+    Ogre::Node* node  = reinterpret_cast<Ogre::Node*>(handle);
+    return reinterpret_cast<NodeHandle>(node->getChild(Ogre::String(name)));
+}
+
+
 
 /*
 //Ogre::Node::Listener
@@ -265,10 +295,6 @@ NodeHandle node_create_named_child(NodeHandle handle, const char* name, const co
 //Ogre::Node::Node()
 //Ogre::Node::Node(std::string const&)
 //Ogre::Node::~Node()
-//Ogre::Node::addChild(Ogre::Node*)
-//Ogre::Node::numChildren() const
-//Ogre::Node::getChild(unsigned short) const
-//Ogre::Node::getChild(std::string const&) const
 //Ogre::Node::getChildIterator()
 //Ogre::Node::getChildIterator() const
 //Ogre::Node::removeChild(unsigned short)

@@ -495,6 +495,14 @@ void node_get_local_axes(NodeHandle handle, ref coiMatrix3 result);
 NodeHandle node_create_child(NodeHandle handle, const ref coiVector3 translate, const ref coiQuaternion rotate);
 //Ogre::Node::createChild(std::string const&, Ogre::Vector3 const&, Ogre::Quaternion const&)
 NodeHandle node_create_named_child(NodeHandle handle, const char[] name, const ref coiVector3 translate, const ref coiQuaternion rotate);
+//Ogre::Node::addChild(Ogre::Node*)
+void node_add_child(NodeHandle handle, NodeHandle child);
+//Ogre::Node::numChildren() const
+ushort node_num_children(NodeHandle handle);
+//Ogre::Node::getChild(unsigned short) const
+NodeHandle node_get_child_by_index(NodeHandle handle, ushort index);
+//Ogre::Node::getChild(std::string const&) const
+NodeHandle node_get_child_by_name(NodeHandle handle, const char[] name);
 
 
 // Ogre::SceneNode

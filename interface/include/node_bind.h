@@ -93,6 +93,14 @@ DLL void node_get_local_axes(NodeHandle handle, coiMatrix3* result);
 DLL NodeHandle node_create_child(NodeHandle handle, const coiVector3* translate, const coiQuaternion* rotate);
 //Ogre::Node::createChild(std::string const&, Ogre::Vector3 const&, Ogre::Quaternion const&)
 DLL NodeHandle node_create_named_child(NodeHandle handle, const char* name, const coiVector3* translate, const coiQuaternion* rotate);
+//Ogre::Node::addChild(Ogre::Node*)
+DLL void node_add_child(NodeHandle handle, NodeHandle child);
+//Ogre::Node::numChildren() const
+DLL unsigned short node_num_children(NodeHandle handle);
+//Ogre::Node::getChild(unsigned short) const
+DLL NodeHandle node_get_child_by_index(NodeHandle handle, unsigned short index);
+//Ogre::Node::getChild(std::string const&) const
+DLL NodeHandle node_get_child_by_name(NodeHandle handle, const char* name);
 
 
 #endif
