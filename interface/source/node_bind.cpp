@@ -164,9 +164,34 @@ void node_translate(NodeHandle handle, const coiVector3* d, transform_space rela
     node->translate(direction, rt);
 }
 
-//Ogre::Node::translate(Ogre::Matrix3 const&, Ogre::Vector3 const&, Ogre::Node::TransformSpace)
 //Ogre::Node::translate(Ogre::Matrix3 const&, float, float, float, Ogre::Node::TransformSpace)
+void node_translate_xyz(NodeHandle handle, const float x, const float y, const float z, transform_space relative_to)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Vector3 direction(x, y, z);
+    Ogre::Node::TransformSpace rt = llcoi_ts_to_ogre_ts(relative_to);
 
+    node->translate(direction, rt);
+}
+
+//Ogre::Node::translate(Ogre::Matrix3 const&, Ogre::Vector3 const&, Ogre::Node::TransformSpace)
+void node_translate_m(NodeHandle handle, const coiMatrix3* a, const coiVector3* m, transform_space relative_to)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    const Ogre::Matrix3 axes(a->m);
+    const Ogre::Vector3 move(m->x, m->y, m->z);
+    Ogre::Node::TransformSpace rt = llcoi_ts_to_ogre_ts(relative_to);
+
+    node->translate(axes, move, rt);
+}
+
+//Ogre::Node::roll(Ogre::Radian const&, Ogre::Node::TransformSpace)
+void node_roll(NodeHandle handle, coiReal radians, transform_space relative_to)
+{
+    Ogre::Node* node = reinterpret_cast<Ogre::Node*>(handle);
+    Ogre::Node::TransformSpace rt = llcoi_ts_to_ogre_ts(relative_to);
+    node->roll(Ogre::Radian(radians), rt);
+}
 
 
 /*
@@ -176,6 +201,8 @@ void node_translate(NodeHandle handle, const coiVector3* d, transform_space rela
 //Ogre::Node::Node(Ogre::Node const&)
 //Ogre::Node::Node()
 //Ogre::Node::Node(std::string const&)
+//Ogre::Node::roll(Ogre::Radian const&, Ogre::Node::TransformSpace)
+//Ogre::Node::pitch(Ogre::Radian const&, Ogre::Node::TransformSpace)
 //Ogre::Node::~Node()
 //Ogre::Node::rotate(Ogre::Vector3 const&, Ogre::Radian const&, Ogre::Node::TransformSpace)
 //Ogre::Node::rotate(Ogre::Quaternion const&, Ogre::Node::TransformSpace)

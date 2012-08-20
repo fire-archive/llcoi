@@ -127,11 +127,21 @@ struct coiVector3
     float z;
 }
 
+struct coiMatrix3
+{
+    coiReal m[3][3];
+}
+
+struct coiMatrix4
+{
+    coiReal m[4][4];
+}
+
 struct ViewPoint
 {
     coiVector3 position;
     coiQuaternion orientation;
-};
+}
 
 struct FrameEvent
 {
@@ -464,6 +474,13 @@ void node_scale(NodeHandle handle, const ref coiVector3 scale);
 void node_scale_xyz(NodeHandle handle, const float x, const float y, const float z);
 //Ogre::Node::translate(Ogre::Vector3 const&, Ogre::Node::TransformSpace)
 void node_translate(NodeHandle handle, const ref coiVector3 d, transform_space relative_to);
+//Ogre::Node::translate(Ogre::Vector3 const&, Ogre::Node::TransformSpace)
+void node_translate_xyz(NodeHandle handle, const float x, const float y, const float z, transform_space relative_to);
+//Ogre::Node::translate(Ogre::Matrix3 const&, float, float, float, Ogre::Node::TransformSpace)
+//Ogre::Node::translate(Ogre::Matrix3 const&, Ogre::Vector3 const&, Ogre::Node::TransformSpace)
+void node_translate_m(NodeHandle handle, const ref coiMatrix3 axes, const ref coiVector3 move, transform_space relative_to);
+//Ogre::Node::roll(Ogre::Radian const&, Ogre::Node::TransformSpace)
+void node_roll(NodeHandle handle, coiReal radians, transform_space relative_to);
 
 
 // Ogre::SceneNode
