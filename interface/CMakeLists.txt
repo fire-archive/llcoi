@@ -130,6 +130,7 @@ set(HDRS
     ./include/sphere_bind.h
     ./include/planeboundedvolume_bind.h
     ./include/scenequery_bind.h
+    ./include/overlay_bind.h
 )
 
 set(SRCS
@@ -164,6 +165,7 @@ set(SRCS
     ./source/sphere_bind.cpp
     ./source/planeboundedvolume_bind.cpp
     ./source/scenequery_bind.cpp
+    ./source/overlay_bind.cpp
 )
  
 include_directories(${OGRE_INCLUDE_DIRS} ${OIS_INCLUDE_DIRS}
@@ -242,6 +244,7 @@ if(${LLCOI_DYNAMIC_BUILD})
                 ./include/sphere_bind.h
                 ./include/planeboundedvolume_bind.h
                 ./include/scenequery_bind.h
+                ./include/overlay_bind.h
         DESTINATION ${CMAKE_INSTALL_PREFIX}/include/llcoi)
     endif()
 endif()
