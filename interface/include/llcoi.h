@@ -54,6 +54,7 @@
 #include "movableobject_bind.h"
 #include "node_bind.h"
 #include "overlay_bind.h"
+#include "overlaymanager_bind.h"
 #include "plane_bind.h"
 #include "planeboundedvolume_bind.h"
 #include "ray_bind.h"

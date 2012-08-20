@@ -1,5 +1,5 @@
 /******************************************************************************
- * overlay_bind.cpp  -  bindings for Ogre::Overlay
+ * overlaymanager_bind.h -  bindings for Ogre::OverlayManager
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
@@ -35,4 +35,11 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#include "overlay_bind.h"
+#pragma once
+#ifndef OVERLAYMANAGER_BIND_H
+#define OVERLAYMANAGER_BIND_H
+
+#include "ogre_interface.h"
+#define OverlayManagerHandle void*
+
+#endif
