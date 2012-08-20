@@ -670,15 +670,33 @@ coiReal entity_get_bounding_radius(EntityHandle handle);
 // Light
 LightHandle create_light(const char* light_name);
 
+void destroy_light(LightHandle handle);
+
 void light_set_position(LightHandle light_handle, const float x, const float y, const float z);
 
-void destroy_light(LightHandle handle);
+//Ogre::Light::getPosition() const
+void light_get_position(LightHandle handle, ref coiVector3 pos);
+//Ogre::Light::getPosition() const
+void light_get_position_xyz(LightHandle handle, ref float x, ref float y, ref float z);
+//Ogre::Light::getPosition() const
+void light_get_position_xyz(LightHandle handle, float* x, float* y, float* z);
+//Ogre::Light::setDirection(float, float, float)
+void light_set_direction_xyz(LightHandle handle, const float x, const float y, const float z);
+//Ogre::Light::setDirection(Ogre::Vector3 const&)
+void light_set_direction(LightHandle handle, const ref coiVector3 direction);
+//Ogre::Light::getDirection() const
+void light_get_direction(LightHandle handle, ref coiVector3 direction);
+//Ogre::Light::setSpotlightRange(Ogre::Radian const&, Ogre::Radian const&, float)
+void light_set_spotlight_range(LightHandle handle, const coiReal inner_angle, const coiReal outer_angle, coiReal fall_off);
+
 
 void light_set_type(LightHandle handle, light_types type);
 
 void light_set_diffuse_colour(LightHandle handle, const ref ColourValue colour);
 
 void light_set_specular_colour(LightHandle handle, const ref ColourValue colour);
+
+
 
 // FrameListener
 void add_frame_listener(FrameListenerEvent frame_event,const int frame_event_type);
