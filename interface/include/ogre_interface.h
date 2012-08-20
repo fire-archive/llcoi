@@ -141,6 +141,16 @@ typedef struct
 
 typedef struct
 {
+    coiReal m[3][3];
+} coiMatrix3;
+
+typedef struct
+{
+    coiReal m[4][4];
+} coiMatrix4;
+
+typedef struct
+{
     coiVector3 position;
     coiQuaternion orientation;
 } ViewPoint;
