@@ -38,6 +38,7 @@
 #include "overlayelement_bind.h"
 #include "binding_utils.h"
 #include <OgreOverlayElement.h>
+#include <OgreCamera.h>
 
 void destroy_overlayelement(OverlayElementHandle handle)
 {
@@ -367,4 +368,76 @@ gui_vertical_alignment overlayelement_get_vertical_alignment(OverlayElementHandl
     Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
     Ogre::GuiVerticalAlignment GVA = oe->getVerticalAlignment();
     return ogre_gui_vertical_alignment_to_llcoi_gui_vertical_alignment(GVA);
+}
+
+
+int overlayelement_contains(OverlayElementHandle handle, coiReal x, coiReal y)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    return oe->contains(x,y);
+}
+
+OverlayElementHandle overlayelement_find_element_at(OverlayElementHandle handle, coiReal x, coiReal y)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    Ogre::OverlayElement* found = oe->findElementAt(x, y);
+    return reinterpret_cast<OverlayElementHandle>(found);
+}
+
+int overlayelement_is_container(OverlayElementHandle handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    return oe->isContainer();
+}
+
+int overlayelement_is_key_enabled(OverlayElementHandle handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    return oe->isKeyEnabled();
+}
+
+int overlayelement_is_cloneable(OverlayElementHandle handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    return oe->isCloneable();
+}
+
+void overlayelement_set_cloneable(OverlayElementHandle handle, int c)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    oe->setCloneable(c);
+}
+
+unsigned short overlayelement_get_zorder(OverlayElementHandle handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    return oe->getZOrder();
+}
+
+coiReal overlayelement_get_squared_view_depth(OverlayElementHandle handle, CameraHandle camera_handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    const Ogre::Camera* cam = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    return oe->getSquaredViewDepth(cam);
+}
+
+void overlayelement_copy_from_template(OverlayElementHandle handle, OverlayElementHandle template_handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    Ogre::OverlayElement* tpl = reinterpret_cast<Ogre::OverlayElement*>(template_handle);
+    oe->copyFromTemplate(tpl);
+}
+
+OverlayElementHandle overlayelement_clone(OverlayElementHandle handle, const char* instance_name)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    Ogre::OverlayElement* cloned = oe->clone(Ogre::String(instance_name));
+    return reinterpret_cast<OverlayElementHandle>(cloned);
+}
+
+const OverlayElementHandle overlayelement_get_source_template(OverlayElementHandle handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    const Ogre::OverlayElement* source = oe->getSourceTemplate();
+    return reinterpret_cast<const OverlayElementHandle>(source);
 }

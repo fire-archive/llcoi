@@ -41,6 +41,7 @@
 
 #include "ogre_interface.h"
 #define OverlayElementHandle void*
+#define CameraHandle void*
 
 //overlayelement_
 //~OverlayElement
@@ -152,18 +153,29 @@ DLL void overlayelement_set_vertical_alignment(OverlayElementHandle handle, gui_
 //GuiVerticalAlignment getVerticalAlignment(void) const;
 DLL gui_vertical_alignment overlayelement_get_vertical_alignment(OverlayElementHandle handle);
 //bool contains(Real x, Real y) const;
+DLL int overlayelement_contains(OverlayElementHandle handle, coiReal x, coiReal y);
 //OverlayElement* findElementAt(Real x, Real y);
+DLL OverlayElementHandle overlayelement_find_element_at(OverlayElementHandle handle, coiReal x, coiReal y);
 //bool isContainer() const;
+DLL int overlayelement_is_container(OverlayElementHandle handle);
 //bool isKeyEnabled() const;
+DLL int overlayelement_is_key_enabled(OverlayElementHandle handle);
 //bool isCloneable() const
+DLL int overlayelement_is_cloneable(OverlayElementHandle handle);
 //void setCloneable(bool c);
-//OverlayContainer* getParent();
-//void _setParent(OverlayContainer* parent);
+DLL void overlayelement_set_cloneable(OverlayElementHandle handle, int c);
+//TODO: OverlayContainer* getParent();
+//TODO: void _setParent(OverlayContainer* parent);
 //ushort getZOrder() const;
+DLL unsigned short overlayelement_get_zorder(OverlayElementHandle handle);
 //Real getSquaredViewDepth(const Camera* cam) const;
+DLL coiReal overlayelement_get_squared_view_depth(OverlayElementHandle handle, CameraHandle camera_handle);
 //TODO: const LightList& getLights(void) const;
 //void copyFromTemplate(OverlayElement* templateOverlay);
+DLL void overlayelement_copy_from_template(OverlayElementHandle handle, OverlayElementHandle template_handle);
 //OverlayElement* clone(const String& instanceName);
+DLL OverlayElementHandle overlayelement_clone(OverlayElementHandle handle, const char* instance_name);
 //const OverlayElement* getSourceTemplate () const;
+DLL const OverlayElementHandle overlayelement_get_source_template(OverlayElementHandle handle);
 
 #endif

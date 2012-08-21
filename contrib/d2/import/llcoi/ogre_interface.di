@@ -1301,4 +1301,26 @@ gui_horizontal_alignment overlayelement_get_horizontal_alignment(OverlayElementH
 void overlayelement_set_vertical_alignment(OverlayElementHandle handle, gui_vertical_alignment gva);
 //GuiVerticalAlignment getVerticalAlignment(void) const;
 gui_vertical_alignment overlayelement_get_vertical_alignment(OverlayElementHandle handle);
+//bool contains(Real x, Real y) const;
+DLL int overlayelement_contains(OverlayElementHandle handle, coiReal x, coiReal y);
+//OverlayElement* findElementAt(Real x, Real y);
+DLL OverlayElementHandle overlayelement_find_element_at(OverlayElementHandle handle, coiReal x, coiReal y);
+//bool isContainer() const;
+int overlayelement_is_container(OverlayElementHandle handle);
+//bool isKeyEnabled() const;
+int overlayelement_is_key_enabled(OverlayElementHandle handle);
+//bool isCloneable() const
+int overlayelement_is_cloneable(OverlayElementHandle handle);
+//void setCloneable(bool c);
+void overlayelement_set_cloneable(OverlayElementHandle handle, int c);
+//ushort getZOrder() const;
+ushort overlayelement_get_zorder(OverlayElementHandle handle);
+//Real getSquaredViewDepth(const Camera* cam) const;
+coiReal overlayelement_get_squared_view_depth(OverlayElementHandle handle, CameraHandle camera_handle);
+//void copyFromTemplate(OverlayElement* templateOverlay);
+void overlayelement_copy_from_template(OverlayElementHandle handle, OverlayElementHandle template_handle);
+//OverlayElement* clone(const String& instanceName);
+OverlayElementHandle overlayelement_clone(OverlayElementHandle handle, const char[] instance_name);
+//const OverlayElement* getSourceTemplate () const;
+const OverlayElementHandle overlayelement_get_source_template(OverlayElementHandle handle);
 
