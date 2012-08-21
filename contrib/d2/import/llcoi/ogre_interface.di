@@ -100,6 +100,7 @@ alias void* RenderOperationHandle;
 alias void* OverlayHandle;
 alias void* OverlayManagerHandle;
 alias void* OverlayElementHandle;
+alias void* OverlayContainerHandle;
 
 
 
@@ -1324,3 +1325,24 @@ OverlayElementHandle overlayelement_clone(OverlayElementHandle handle, const cha
 //const OverlayElement* getSourceTemplate () const;
 const(OverlayElementHandle) overlayelement_get_source_template(OverlayElementHandle handle);
 
+
+// Ogre::OverlayContainer
+void destroy_overlaycontainer(OverlayContainerHandle handle);
+//void addChild(OverlayElement* elem);
+void overlaycontainer_add_child(OverlayContainerHandle handle, OverlayElementHandle child_handle);
+//void addChildImpl(OverlayElement* elem);
+void overlaycontainer_add_child_impl(OverlayContainerHandle handle, OverlayElementHandle child_handle);
+//void addChildImpl(OverlayContainer* cont);
+void overlaycontainer_add_child_container_impl(OverlayContainerHandle handle, OverlayContainerHandle child_handle);
+//void removeChild(const String& name);
+void overlaycontainer_remove_child(OverlayContainerHandle handle, const char[] name);
+//OverlayElement* getChild(const String& name);
+OverlayElementHandle overlaycontainer_get_child(OverlayContainerHandle handle, const char[] name);
+//void initialise(void);
+void overlaycontainer_initialise(OverlayContainerHandle handle);
+//void _addChild(OverlayElement* elem);
+void overlaycontainer__add_child(OverlayContainerHandle handle, OverlayElementHandle elem);
+//void _removeChild(OverlayElement* elem);
+void overlaycontainer__remove_child(OverlayContainerHandle handle, OverlayElementHandle elem);
+//void _removeChild(const String& name);
+void overlaycontainer__remove_child_by_name(OverlayContainerHandle handle, const char[] name);

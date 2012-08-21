@@ -37,3 +37,69 @@
 
 #include "overlaycontainer_bind.h"
 #include <OgreOverlayContainer.h>
+
+void destroy_overlaycontainer(OverlayContainerHandle handle)
+{
+    Ogre::OverlayContainer* oc = reinterpret_cast<Ogre::OverlayContainer*>(handle);
+    delete oc;
+}
+
+void overlaycontainer_add_child(OverlayContainerHandle handle, OverlayElementHandle child_handle)
+{
+    Ogre::OverlayContainer* oc = reinterpret_cast<Ogre::OverlayContainer*>(handle);
+    Ogre::OverlayElement* oe   = reinterpret_cast<Ogre::OverlayElement*>(child_handle);
+    oc->addChild(oe);
+}
+
+void overlaycontainer_add_child_impl(OverlayContainerHandle handle, OverlayElementHandle child_handle)
+{
+    Ogre::OverlayContainer* oc = reinterpret_cast<Ogre::OverlayContainer*>(handle);
+    Ogre::OverlayElement* oe   = reinterpret_cast<Ogre::OverlayElement*>(child_handle);
+    oc->addChildImpl(oe);
+}
+
+void overlaycontainer_add_child_container_impl(OverlayContainerHandle handle, OverlayContainerHandle child_handle)
+{
+    Ogre::OverlayContainer* oc = reinterpret_cast<Ogre::OverlayContainer*>(handle);
+    Ogre::OverlayContainer* child = reinterpret_cast<Ogre::OverlayContainer*>(child_handle);
+    oc->addChildImpl(child);
+}
+
+void overlaycontainer_remove_child(OverlayContainerHandle handle, const char* name)
+{
+    Ogre::OverlayContainer* oc = reinterpret_cast<Ogre::OverlayContainer*>(handle);
+    oc->removeChild(Ogre::String(name));
+}
+
+OverlayElementHandle overlaycontainer_get_child(OverlayContainerHandle handle, const char* name)
+{
+    Ogre::OverlayContainer* oc = reinterpret_cast<Ogre::OverlayContainer*>(handle);
+    Ogre::OverlayElement* oe = oc->getChild(Ogre::String(name));
+    return reinterpret_cast<OverlayElementHandle>(oe);
+}
+
+void overlaycontainer_initialise(OverlayContainerHandle handle)
+{
+    Ogre::OverlayContainer* oc = reinterpret_cast<Ogre::OverlayContainer*>(handle);
+    oc->initialise();
+}
+
+void overlaycontainer__add_child(OverlayContainerHandle handle, OverlayElementHandle elem)
+{
+    Ogre::OverlayContainer* oc = reinterpret_cast<Ogre::OverlayContainer*>(handle);
+    Ogre::OverlayElement* oe   = reinterpret_cast<Ogre::OverlayElement*>(elem);
+    oc->_addChild(oe);
+}
+
+void overlaycontainer__remove_child(OverlayContainerHandle handle, OverlayElementHandle elem)
+{
+    Ogre::OverlayContainer* oc = reinterpret_cast<Ogre::OverlayContainer*>(handle);
+    Ogre::OverlayElement* oe   = reinterpret_cast<Ogre::OverlayElement*>(elem);
+    oc->_removeChild(oe);
+}
+
+void overlaycontainer__remove_child_by_name(OverlayContainerHandle handle, const char* name)
+{
+    Ogre::OverlayContainer* oc = reinterpret_cast<Ogre::OverlayContainer*>(handle);
+    oc->_removeChild(Ogre::String(name));
+}
