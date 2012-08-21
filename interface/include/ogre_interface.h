@@ -309,4 +309,26 @@ typedef enum
     FRUSTUM_PLANE_BOTTOM = 5
 } frustum_plane;
 
+
+typedef enum
+{
+    GMM_RELATIVE,
+    GMM_PIXELS,
+    GMM_RELATIVE_ASPECT_ADJUSTED
+} gui_metrics_mode;
+
+enum
+{
+    GHA_LEFT,
+    GHA_CENTER,
+    GHA_RIGHT
+} gui_horizontal_alignment;
+
+enum
+{
+    GVA_TOP,
+    GVA_CENTER,
+    GVA_BOTTOM
+} gui_vertical_alignment;
+
 #endif
