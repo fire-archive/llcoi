@@ -129,5 +129,41 @@ DLL unsigned short overlayelement__notify_zorder(OverlayElementHandle handle, un
 DLL void overlayelement__notify_world_transforms(OverlayElementHandle handle, const coiMatrix4* xform);
 //void _notifyViewport();
 DLL void overlayelement__notify_viewport(OverlayElementHandle handle);
+//const String& getTypeName(void) const;
+DLL const char* overlayelement_get_type_name(OverlayElementHandle handle);
+//void setCaption(const DisplayString& text);
+DLL void overlayelement_set_caption(OverlayElementHandle handle, const char* text);
+//const DisplayString& getCaption(void) const;
+DLL const char* overlayelement_get_caption(OverlayElementHandle handle);
+//void setColour(const ColourValue& col);
+DLL void overlayelement_set_colour(OverlayElementHandle handle, const ColourValue* col);
+//const ColourValue& getColour(void) const;
+DLL void overlayelement_get_colour(OverlayElementHandle handle, ColourValue* col);
+//void setMetricsMode(GuiMetricsMode gmm);
+DLL void overlayelement_set_metrics_mode(OverlayElementHandle handle, gui_metrics_mode gmm);
+//GuiMetricsMode getMetricsMode(void) const;
+DLL gui_metrics_mode overlayelement_get_metrics_mode(OverlayElementHandle handle);
+//void setHorizontalAlignment(GuiHorizontalAlignment gha);
+DLL void overlayelement_set_horizontal_alignment(OverlayElementHandle handle, gui_horizontal_alignment gha);
+//GuiHorizontalAlignment getHorizontalAlignment(void) const;
+DLL gui_horizontal_alignment overlayelement_get_horizontal_alignment(OverlayElementHandle handle);
+//void setVerticalAlignment(GuiVerticalAlignment gva);
+DLL void overlayelement_set_vertical_alignment(OverlayElementHandle handle, gui_vertical_alignment gva);
+//GuiVerticalAlignment getVerticalAlignment(void) const;
+DLL gui_vertical_alignment overlayelement_get_vertical_alignment(OverlayElementHandle handle);
+//bool contains(Real x, Real y) const;
+//OverlayElement* findElementAt(Real x, Real y);
+//bool isContainer() const;
+//bool isKeyEnabled() const;
+//bool isCloneable() const
+//void setCloneable(bool c);
+//OverlayContainer* getParent();
+//void _setParent(OverlayContainer* parent);
+//ushort getZOrder() const;
+//Real getSquaredViewDepth(const Camera* cam) const;
+//TODO: const LightList& getLights(void) const;
+//void copyFromTemplate(OverlayElement* templateOverlay);
+//OverlayElement* clone(const String& instanceName);
+//const OverlayElement* getSourceTemplate () const;
 
 #endif

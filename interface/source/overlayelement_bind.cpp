@@ -288,3 +288,83 @@ void overlayelement__notify_viewport(OverlayElementHandle handle)
     Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
     oe->_notifyViewport();
 }
+
+const char* overlayelement_get_type_name(OverlayElementHandle handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    return oe->getTypeName().c_str();
+}
+
+void overlayelement_set_caption(OverlayElementHandle handle, const char* text)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    oe->setCaption(Ogre::DisplayString(text));
+}
+
+const char* overlayelement_get_caption(OverlayElementHandle handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    return oe->getCaption().asUTF8_c_str();
+}
+
+void overlayelement_set_colour(OverlayElementHandle handle, const ColourValue* c)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    const Ogre::ColourValue colour(c->r, c->b, c->g, c->a);
+    oe->setColour(colour);
+}
+
+void overlayelement_get_colour(OverlayElementHandle handle, ColourValue* c)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    const Ogre::ColourValue& colour = oe->getColour();
+
+    c->r = colour.r;
+    c->b = colour.b;
+    c->g = colour.g;
+    c->a = colour.a;
+}
+
+
+void overlayelement_set_metrics_mode(OverlayElementHandle handle, gui_metrics_mode mode)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    Ogre::GuiMetricsMode gmm = llcoi_gui_metrics_mode_to_ogre_gui_metrics_mode(mode);
+    oe->setMetricsMode(gmm);
+}
+
+gui_metrics_mode overlayelement_get_metrics_mode(OverlayElementHandle handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    Ogre::GuiMetricsMode GMM = oe->getMetricsMode();
+    return ogre_gui_metrics_mode_to_llcoi_metrics_mode(GMM);
+}
+
+
+void overlayelement_set_horizontal_alignment(OverlayElementHandle handle, gui_horizontal_alignment gha)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    Ogre::GuiHorizontalAlignment GHA = llcoi_gui_horizontal_alignment_to_ogre_gui_horizontal_alignment(gha);
+    oe->setHorizontalAlignment(GHA);
+}
+
+gui_horizontal_alignment overlayelement_get_horizontal_alignment(OverlayElementHandle handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    Ogre::GuiHorizontalAlignment GHA = oe->getHorizontalAlignment();
+    return ogre_gui_horizontal_alignment_to_llcoi_gui_horizontal_alignment(GHA);
+}
+
+void overlayelement_set_vertical_alignment(OverlayElementHandle handle, gui_vertical_alignment gva)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    Ogre::GuiVerticalAlignment GVA = llcoi_gui_vertical_alignment_to_ogre_gui_vertical_alignment(gva);
+    oe->setVerticalAlignment(GVA);
+}
+
+gui_vertical_alignment overlayelement_get_vertical_alignment(OverlayElementHandle handle)
+{
+    Ogre::OverlayElement* oe = reinterpret_cast<Ogre::OverlayElement*>(handle);
+    Ogre::GuiVerticalAlignment GVA = oe->getVerticalAlignment();
+    return ogre_gui_vertical_alignment_to_llcoi_gui_vertical_alignment(GVA);
+}

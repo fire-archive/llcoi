@@ -344,6 +344,28 @@ enum world_fragment_type
     WFT_RENDER_OPERATION
 };
 
+enum gui_metrics_mode
+{
+    GMM_RELATIVE,
+    GMM_PIXELS,
+    GMM_RELATIVE_ASPECT_ADJUSTED
+};
+
+enum gui_horizontal_alignment
+{
+    GHA_LEFT,
+    GHA_CENTER,
+    GHA_RIGHT
+};
+
+enum gui_vertical_alignment
+{
+    GVA_TOP,
+    GVA_CENTER,
+    GVA_BOTTOM
+};
+
+
 
 // Root functions
 void release_engine();
@@ -1257,3 +1279,26 @@ ushort overlayelement__notify_zorder(OverlayElementHandle handle, ushort new_zor
 void overlayelement__notify_world_transforms(OverlayElementHandle handle, const ref coiMatrix4 xform);
 //void _notifyViewport();
 void overlayelement__notify_viewport(OverlayElementHandle handle);
+//const String& getTypeName(void) const;
+const(char[]) overlayelement_get_type_name(OverlayElementHandle handle);
+//void setCaption(const DisplayString& text);
+void overlayelement_set_caption(OverlayElementHandle handle, const char[] text);
+//const DisplayString& getCaption(void) const;
+const(char[]) overlayelement_get_caption(OverlayElementHandle handle);
+//void setColour(const ColourValue& col);
+void overlayelement_set_colour(OverlayElementHandle handle, const ref ColourValue col);
+//const ColourValue& getColour(void) const;
+void overlayelement_get_colour(OverlayElementHandle handle, ref ColourValue col);
+//void setMetricsMode(GuiMetricsMode gmm);
+void overlayelement_set_metrics_mode(OverlayElementHandle handle, gui_metrics_mode gmm);
+//GuiMetricsMode getMetricsMode(void) const;
+gui_metrics_mode overlayelement_get_metrics_mode(OverlayElementHandle handle);
+//void setHorizontalAlignment(GuiHorizontalAlignment gha);
+void overlayelement_set_horizontal_alignment(OverlayElementHandle handle, gui_horizontal_alignment gha);
+//GuiHorizontalAlignment getHorizontalAlignment(void) const;
+gui_horizontal_alignment overlayelement_get_horizontal_alignment(OverlayElementHandle handle);
+//void setVerticalAlignment(GuiVerticalAlignment gva);
+void overlayelement_set_vertical_alignment(OverlayElementHandle handle, gui_vertical_alignment gva);
+//GuiVerticalAlignment getVerticalAlignment(void) const;
+gui_vertical_alignment overlayelement_get_vertical_alignment(OverlayElementHandle handle);
+
