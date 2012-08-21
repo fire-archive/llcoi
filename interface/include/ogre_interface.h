@@ -317,14 +317,14 @@ typedef enum
     GMM_RELATIVE_ASPECT_ADJUSTED
 } gui_metrics_mode;
 
-enum
+typedef enum
 {
     GHA_LEFT,
     GHA_CENTER,
     GHA_RIGHT
 } gui_horizontal_alignment;
 
-enum
+typedef enum
 {
     GVA_TOP,
     GVA_CENTER,
