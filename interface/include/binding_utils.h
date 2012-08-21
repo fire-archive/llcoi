@@ -64,6 +64,10 @@ namespace OIS
 
 /* OGRE data <-> LLCOI data converters */
 void ogre_matrix3_to_llcoi_matrix3(const Ogre::Matrix3& o, coiMatrix3& l);
+void llcoi_matrix3_to_ogre_matrix3(const coiMatrix3& l, Ogre::Matrix3& o);
+
+void ogre_matrix4_to_llcoi_matrix4(const Ogre::Matrix4& o, coiMatrix4& l);
+void llcoi_matrix4_to_ogre_matrix4(const coiMatrix4& l, Ogre::Matrix4& o);
 
 
 /* OGRE enum <-> LLCOI enum converters */
