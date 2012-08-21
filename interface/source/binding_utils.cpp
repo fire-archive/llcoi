@@ -773,3 +773,130 @@ frustum_plane ogre_frustum_plane_to_llcoi_frustum_plane(Ogre::FrustumPlane plane
 
     return converted;
 }
+
+
+Ogre::GuiMetricsMode llcoi_gui_metrics_mode_to_ogre_gui_metrics_mode(gui_metrics_mode gmm)
+{
+
+    Ogre::GuiMetricsMode converted;
+    switch(gmm)
+    {
+        case GMM_RELATIVE:
+            converted = Ogre::GMM_RELATIVE;
+            break;
+
+        case GMM_PIXELS:
+            converted = Ogre::GMM_PIXELS;
+            break;
+
+        case GMM_RELATIVE_ASPECT_ADJUSTED:
+            converted = Ogre::GMM_RELATIVE_ASPECT_ADJUSTED;
+            break;
+    }
+    return converted;
+}
+
+gui_metrics_mode ogre_gui_metrics_mode_to_llcoi_metrics_mode(Ogre::GuiMetricsMode gmm)
+{
+    gui_metrics_mode converted;
+    switch(gmm)
+    {
+        case Ogre::GMM_RELATIVE:
+            converted = GMM_RELATIVE;
+            break;
+
+        case Ogre::GMM_PIXELS:
+            converted = GMM_PIXELS;
+            break;
+
+        case Ogre::GMM_RELATIVE_ASPECT_ADJUSTED:
+            converted = GMM_RELATIVE_ASPECT_ADJUSTED;
+            break;
+    }
+    return converted;
+}
+
+Ogre::GuiHorizontalAlignment llcoi_gui_horizontal_alignment_to_ogre_gui_horizontal_alignment(gui_horizontal_alignment gha)
+{
+    Ogre::GuiHorizontalAlignment converted;
+    switch(gha)
+    {
+        case GHA_LEFT:
+            converted = Ogre::GHA_LEFT;
+            break;
+
+        case GHA_CENTER:
+            converted = Ogre::GHA_CENTER;
+            break;
+
+        case GHA_RIGHT:
+            converted = Ogre::GHA_RIGHT;
+            break;
+
+    }
+    return converted;
+}
+
+gui_horizontal_alignment ogre_gui_horizontal_alignment_to_ogre_gui_horizontal_alignment(Ogre::GuiHorizontalAlignment gha)
+{
+    gui_horizontal_alignment converted;
+    switch(gha)
+    {
+        case Ogre::GHA_LEFT:
+            converted = GHA_LEFT;
+            break;
+
+        case Ogre::GHA_CENTER:
+            converted = GHA_CENTER;
+            break;
+
+        case Ogre::GHA_RIGHT:
+            converted = GHA_RIGHT;
+            break;
+
+    }
+    return converted;
+}
+
+Ogre::GuiVerticalAlignment llcoi_gui_vertical_alignment_to_ogre_gui_vertical_alignment(gui_vertical_alignment gva)
+{
+    Ogre::GuiVerticalAlignment converted;
+
+    switch(gva)
+    {
+        case GVA_TOP:
+            converted = Ogre::GVA_TOP;
+            break;
+
+        case GVA_CENTER:
+            converted = Ogre::GVA_CENTER;
+            break;
+
+        case GVA_BOTTOM:
+            converted = Ogre::GVA_BOTTOM;
+            break;
+
+    }
+    return converted;
+}
+
+gui_vertical_alignment ogre_gui_vertical_alignment_to_llcoi_gui_vertical_alignment(Ogre::GuiVerticalAlignment gva)
+{
+    gui_vertical_alignment converted;
+    switch(gva)
+    {
+        case Ogre::GVA_TOP:
+            converted = GVA_TOP;
+            break;
+
+        case Ogre::GVA_CENTER:
+            converted = GVA_CENTER;
+            break;
+
+        case Ogre::GVA_BOTTOM:
+            converted = GVA_BOTTOM;
+            break;
+
+    }
+    return converted;
+}

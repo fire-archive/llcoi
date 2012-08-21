@@ -45,6 +45,7 @@
 #include <OgreSceneQuery.h>     // SceneQuery::WorldFragmentType
 #include <OgreHardwareBuffer.h> // HardwareBuffer::Usage
 #include <OgreFrustum.h>        // Ogre::OrientationMode
+#include <OgreOverlayElement.h> // GuiVerticalAlignment, GuiMetricsMode, GuiHorizontalAlignment
 #include <OgreLight.h>          // Light::LightTypes
 #include <OgreNode.h>           // Node::TransformSpace
 #include <OISMouse.h>           // OIS::MouseButtonID
@@ -108,6 +109,16 @@ projection_type ogre_projection_type_to_llcoi_projection_type(Ogre::ProjectionTy
 
 Ogre::FrustumPlane llcoi_frustum_plane_to_ogre_frustum_plane(frustum_plane plane);
 frustum_plane ogre_frustum_plane_to_llcoi_frustum_plane(Ogre::FrustumPlane plane);
+
+// from OgreOverlayElement.h
+Ogre::GuiMetricsMode llcoi_gui_metrics_mode_to_ogre_gui_metrics_mode(gui_metrics_mode gmm);
+gui_metrics_mode ogre_gui_metrics_mode_to_llcoi_metrics_mode(Ogre::GuiMetricsMode gmm);
+
+Ogre::GuiHorizontalAlignment llcoi_gui_horizontal_alignment_to_ogre_gui_horizontal_alignment(gui_horizontal_alignment gha);
+gui_horizontal_alignment ogre_gui_horizontal_alignment_to_ogre_gui_horizontal_alignment(Ogre::GuiHorizontalAlignment gha);
+
+Ogre::GuiVerticalAlignment llcoi_gui_vertical_alignment_to_ogre_gui_vertical_alignment(gui_vertical_alignment gva);
+gui_vertical_alignment ogre_gui_vertical_alignment_to_llcoi_gui_vertical_alignment(Ogre::GuiVerticalAlignment gva);
 
 /* OIS MouseState <-> LLCOI MouseState converters */
 
