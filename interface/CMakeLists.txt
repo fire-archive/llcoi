@@ -133,6 +133,7 @@ set(HDRS
     ./include/overlay_bind.h
     ./include/overlaymanager_bind.h
     ./include/overlayelement_bind.h
+    ./include/overlaycontainer_bind.h
 )
 
 set(SRCS
@@ -170,6 +171,7 @@ set(SRCS
     ./source/overlay_bind.cpp
     ./source/overlaymanager_bind.cpp
     ./source/overlayelement_bind.cpp
+    ./source/overlaycontainer_bind.cpp
 )
  
 include_directories(${OGRE_INCLUDE_DIRS} ${OIS_INCLUDE_DIRS}
@@ -251,6 +253,7 @@ if(${LLCOI_DYNAMIC_BUILD})
                 ./include/overlay_bind.h
                 ./include/overlaymanager_bind.h
                 ./include/overlayelement_bind.h
+                ./include/overlaycontainer_bind.h
         DESTINATION ${CMAKE_INSTALL_PREFIX}/include/llcoi)
     endif()
 endif()
