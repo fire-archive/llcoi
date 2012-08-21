@@ -68,16 +68,28 @@ DLL void overlaycontainer__remove_child_by_name(OverlayContainerHandle handle, c
 //TODO: ChildIterator getChildIterator(void);
 //TODO: ChildContainerIterator getChildContainerIterator(void);
 //void _positionsOutOfDate(void);
+DLL void overlaycontainer__positions_out_of_date(OverlayContainerHandle handle);
 //void _update(void);
+DLL void overlaycontainer__update(OverlayContainerHandle handle);
 //ushort _notifyZOrder(ushort newZOrder);
+DLL unsigned short overlaycontainer__notify_zorder(OverlayContainerHandle handle, unsigned short new_zorder);
 //void _notifyViewport();
+DLL void overlaycontainer__notify_viewport(OverlayContainerHandle handle);
 //void _notifyWorldTransforms(const Matrix4& xform);
+DLL void overlaycontainer__notify_world_transforms(OverlayContainerHandle handle, const coiMatrix4* xform);
 //void _notifyParent(OverlayContainer* parent, Overlay* overlay);
+DLL void overlaycontainer__notify_parent(OverlayContainerHandle handle, OverlayContainerHandle parent_handle, OverlayHandle overlay_handle);
 // TODO: void _updateRenderQueue(RenderQueue* queue);
 //bool isContainer() const;
+DLL int overlaycontainer_is_container(OverlayContainerHandle handle);
 //bool isChildrenProcessEvents() const;
+DLL int overlaycontainer_is_children_process_events(OverlayContainerHandle handle);
 //void setChildrenProcessEvents(bool val);
+DLL void overlaycontainer_set_children_process_events(OverlayContainerHandle handle, int val);
 //OverlayElement* findElementAt(Real x, Real y);
+DLL OverlayElementHandle overlaycontainer_find_element_at(OverlayContainerHandle handle, coiReal x, coiReal y);
 //void copyFromTemplate(OverlayElement* templateOverlay);
+DLL void overlaycontainer_copy_from_template(OverlayContainerHandle handle, OverlayElementHandle template_overlay);
 //virtual OverlayElement* clone(const String& instanceName);
+DLL OverlayElementHandle overlaycontainer_clone(OverlayContainerHandle handle, const char* instance_name);
 #endif
