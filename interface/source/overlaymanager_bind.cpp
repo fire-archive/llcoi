@@ -130,3 +130,15 @@ void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const c
     Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
     ovm->destroyOverlayElement(Ogre::String(name), is_template);
 }
+
+void overlaymanager_destroy_all_overlay_elements(OverlayManagerHandle handle)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    ovm->destroyAllOverlayElements();
+}
+
+int overlaymanager_is_template(OverlayManagerHandle handle, const char* name)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    return ovm->isTemplate(Ogre::String(name));
+}

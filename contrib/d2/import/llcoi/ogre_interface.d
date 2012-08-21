@@ -1166,4 +1166,8 @@ orientation_mode overlaymanager_get_viewport_orientation_mode(OverlayManagerHand
 int overlaymanager_has_overlay_element(OverlayManagerHandle handle, const char[] name, int is_template);
 //void destroyOverlayElement(const String& instanceName, bool isTemplate = false);
 void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const char[] name, int is_template);
+//void destroyAllOverlayElements(bool isTemplate = false);
+void overlaymanager_destroy_all_overlay_elements(OverlayManagerHandle handle);
+//bool isTemplate (String strName) const
+int overlaymanager_is_template(OverlayManagerHandle handle, const char[] name);
 

@@ -81,6 +81,15 @@ DLL orientation_mode overlaymanager_get_viewport_orientation_mode(OverlayManager
 DLL int overlaymanager_has_overlay_element(OverlayManagerHandle handle, const char* name, int is_template);
 //void destroyOverlayElement(const String& instanceName, bool isTemplate = false);
 DLL void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const char* name, int is_template);
+//TODO: void destroyOverlayElement(OverlayElement* pInstance, bool isTemplate = false);
+//void destroyAllOverlayElements(bool isTemplate = false);
+DLL void overlaymanager_destroy_all_overlay_elements(OverlayManagerHandle handle);
+//TODO: OverlayElement* createOverlayElementFromTemplate(const String& templateName, const String& typeName, const String& instanceName, bool isTemplate = false);
+//TODO: OverlayElement* cloneOverlayElementFromTemplate(const String& templateName, const String& instanceName);
+//TODO: OverlayElement* createOverlayElementFromFactory(const String& typeName, const String& instanceName);
+//bool isTemplate (String strName) const
+DLL int overlaymanager_is_template(OverlayManagerHandle handle, const char* name);
+
 
 
 #endif
