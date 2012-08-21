@@ -612,4 +612,164 @@ world_fragment_type ogre_wft_to_llcoi_wft(Ogre::SceneQuery::WorldFragmentType wf
     return converted;
 }
 
+Ogre::OrientationMode llcoi_orientation_mode_to_ogre_orientation_mode(orientation_mode mode)
+{
+    Ogre::OrientationMode converted;
+    switch(mode)
+    {
+        case OR_DEGREE_0:
+            converted = Ogre::OR_DEGREE_0;
+            break;
 
+        case OR_DEGREE_90:
+            converted = Ogre::OR_DEGREE_90;
+            break;
+
+
+        case OR_DEGREE_180:
+            converted = Ogre::OR_DEGREE_180;
+            break;
+
+
+        case OR_DEGREE_270:
+            converted = Ogre::OR_DEGREE_270;
+            break;
+
+    }
+
+    return converted; 
+}
+
+orientation_mode ogre_orientation_mode_to_llcoi_orientation_mode(Ogre::OrientationMode mode)
+{
+    orientation_mode converted;
+    switch(mode)
+    {
+        case Ogre::OR_DEGREE_0:
+            converted = OR_DEGREE_0;
+            break;
+
+
+        case Ogre::OR_DEGREE_90:
+            converted = OR_DEGREE_90;
+            break;
+
+
+        case Ogre::OR_DEGREE_180:
+            converted = OR_DEGREE_180;
+            break;
+
+
+        case Ogre::OR_DEGREE_270:
+            converted = OR_DEGREE_270;
+            break;
+
+    }
+    return converted;
+}
+
+Ogre::ProjectionType llcoi_projection_type_to_ogre_projection_type(projection_type type)
+{
+    Ogre::ProjectionType converted;
+
+    switch(type)
+    {
+        case PT_ORTHOGRAPHIC:
+            converted = Ogre::PT_ORTHOGRAPHIC;
+            break;
+
+
+        case PT_PERSPECTIVE:
+            converted = Ogre::PT_PERSPECTIVE;
+            break;
+
+    }
+
+    return converted;
+}
+
+projection_type ogre_projection_type_to_llcoi_projection_type(Ogre::ProjectionType type)
+{
+    projection_type converted;
+
+    switch(type)
+    {
+        case Ogre::PT_ORTHOGRAPHIC:
+            converted = PT_ORTHOGRAPHIC;
+            break;
+
+        case Ogre::PT_PERSPECTIVE:
+            converted = PT_PERSPECTIVE;
+            break;
+    }
+
+    return converted;
+}
+
+Ogre::FrustumPlane llcoi_frustum_plane_to_ogre_frustum_plane(frustum_plane plane)
+{
+    Ogre::FrustumPlane converted;
+
+    switch(plane)
+    {
+        case FRUSTUM_PLANE_NEAR:
+            converted = Ogre::FRUSTUM_PLANE_NEAR;
+            break;
+
+        case FRUSTUM_PLANE_FAR:
+            converted = Ogre::FRUSTUM_PLANE_FAR;
+            break;
+
+        case FRUSTUM_PLANE_LEFT:
+            converted = Ogre::FRUSTUM_PLANE_LEFT;
+            break;
+
+        case FRUSTUM_PLANE_RIGHT:
+            converted = Ogre::FRUSTUM_PLANE_RIGHT;
+            break;
+
+        case FRUSTUM_PLANE_TOP:
+            converted = Ogre::FRUSTUM_PLANE_TOP;
+            break;
+
+        case FRUSTUM_PLANE_BOTTOM:
+            converted = Ogre::FRUSTUM_PLANE_BOTTOM;
+            break;
+    }
+
+    return converted;
+}
+
+frustum_plane ogre_frustum_plane_to_llcoi_frustum_plane(Ogre::FrustumPlane plane)
+{
+    frustum_plane converted;
+
+    switch(plane)
+    {
+        case Ogre::FRUSTUM_PLANE_NEAR:
+            converted = FRUSTUM_PLANE_NEAR;
+            break;
+
+        case Ogre::FRUSTUM_PLANE_FAR:
+            converted = FRUSTUM_PLANE_FAR;
+            break;
+
+        case Ogre::FRUSTUM_PLANE_LEFT:
+            converted = FRUSTUM_PLANE_LEFT;
+            break;
+
+        case Ogre::FRUSTUM_PLANE_RIGHT:
+            converted = FRUSTUM_PLANE_RIGHT;
+            break;
+
+        case Ogre::FRUSTUM_PLANE_TOP:
+            converted = FRUSTUM_PLANE_TOP;
+            break;
+
+        case Ogre::FRUSTUM_PLANE_BOTTOM:
+            converted = FRUSTUM_PLANE_BOTTOM;
+            break;
+    }
+
+    return converted;
+}

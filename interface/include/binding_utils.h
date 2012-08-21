@@ -44,6 +44,7 @@
 #include <OgreLog.h>            // LogMessageLevel and LoggingLevel
 #include <OgreSceneQuery.h>     // SceneQuery::WorldFragmentType
 #include <OgreHardwareBuffer.h> // HardwareBuffer::Usage
+#include <OgreFrustum.h>        // Ogre::OrientationMode
 #include <OgreLight.h>          // Light::LightTypes
 #include <OgreNode.h>           // Node::TransformSpace
 #include <OISMouse.h>           // OIS::MouseButtonID
@@ -98,6 +99,15 @@ CornerEnum ogre_cornerenum_to_llcoi_cornerenum(Ogre::AxisAlignedBox::CornerEnum 
 Ogre::SceneQuery::WorldFragmentType llcoi_wft_to_ogre_wft(world_fragment_type wft);
 world_fragment_type ogre_wft_to_llcoi_wft(Ogre::SceneQuery::WorldFragmentType wft);
 
+// from OgreFrustum.h
+Ogre::OrientationMode llcoi_orientation_mode_to_ogre_orientation_mode(orientation_mode mode);
+orientation_mode ogre_orientation_mode_to_llcoi_orientation_mode(Ogre::OrientationMode mode);
+
+Ogre::ProjectionType llcoi_projection_type_to_ogre_projection_type(projection_type type);
+projection_type ogre_projection_type_to_llcoi_projection_type(Ogre::ProjectionType type);
+
+Ogre::FrustumPlane llcoi_frustum_plane_to_ogre_frustum_plane(frustum_plane plane);
+frustum_plane ogre_frustum_plane_to_llcoi_frustum_plane(Ogre::FrustumPlane plane);
 
 /* OIS MouseState <-> LLCOI MouseState converters */
 
