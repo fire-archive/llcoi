@@ -36,4 +36,78 @@
  ******************************************************************************/
 
 #include "overlaymanager_bind.h"
+#include <OgreOverlayManager.h>
+
+OverlayManagerHandle create_overlaymanager()
+{
+    Ogre::OverlayManager* ovm = new Ogre::OverlayManager;
+    return reinterpret_cast<OverlayManagerHandle>(ovm);
+}
+
+void destroy_overlaymanager(OverlayManagerHandle handle)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    delete ovm;
+}
+
+coiReal overlaymanager_get_loading_order(OverlayManagerHandle handle)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    return ovm->getLoadingOrder();
+}
+
+OverlayHandle overlaymanager_create(OverlayManagerHandle handle, const char* name)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    return reinterpret_cast<OverlayHandle>(ovm->create(Ogre::String(name)));
+}
+
+OverlayHandle overlaymanager_get_by_name(OverlayManagerHandle handle, const char* name)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    return reinterpret_cast<OverlayHandle>(ovm->getByName(Ogre::String(name)));
+}
+
+void overlaymanager_destroy_by_name(OverlayManagerHandle handle, const char* name)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    ovm->destroy(Ogre::String(name));
+}
+
+void overlaymanager_destroy(OverlayManagerHandle handle, OverlayHandle overlay_handle)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    Ogre::Overlay* overlay = reinterpret_cast<Ogre::Overlay*>(overlay_handle);
+    ovm->destroy(overlay);
+}
+
+void overlaymanager_destroy_all(OverlayManagerHandle handle)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    ovm->destroyAll();
+}
+
+int overlaymanager_has_viewport_changed(OverlayManagerHandle handle)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    return ovm->hasViewportChanged();
+}
+
+int overlaymanager_get_viewport_height(OverlayManagerHandle handle)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    return ovm->getViewportHeight();
+}
+
+int overlaymanager_get_viewport_width(OverlayManagerHandle handle)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    return ovm->getViewportWidth();
+}
+
+coiReal overlaymanager_get_viewport_aspect_ratio(OverlayManagerHandle handle)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    return ovm->getViewportAspectRatio();
+}
 

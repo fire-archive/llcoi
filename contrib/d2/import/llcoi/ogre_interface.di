@@ -98,6 +98,7 @@ alias void* SceneQueryResultHandle;
 alias void* MovableObjectHandle;
 alias void* RenderOperationHandle;
 alias void* OverlayHandle;
+alias void* OverlayManagerHandle;
 
 
 
@@ -1105,4 +1106,31 @@ void overlay_get_world_transforms(OverlayHandle handle, ref coiMatrix4 xform);
 const(char[]) overlay_get_origin(OverlayHandle handle);
 //void _notifyOrigin(const String& origin);
 void overlay_notify_origin(OverlayHandle handle, const(char[]) origin);
+
+//Ogre::OverlayManager
+//OverlayManager();
+OverlayManagerHandle create_overlaymanager();
+//~OverlayManager();
+void destroy_overlaymanager(OverlayManagerHandle handle);
+//Real getLoadingOrder(void) const;
+coiReal overlaymanager_get_loading_order(OverlayManagerHandle handle);
+//Overlay* create(const String& name);
+OverlayHandle overlaymanager_create(OverlayManagerHandle handle, const char[] name);
+//Overlay* getByName(const String& name);
+OverlayHandle overlaymanager_get_by_name(OverlayManagerHandle handle, const char[] name);
+//void destroy(const String& name);
+void overlaymanager_destroy_by_name(OverlayManagerHandle handle, const char[] name);
+//void destroy(Overlay* overlay);
+void overlaymanager_destroy(OverlayManagerHandle handle, OverlayHandle overlay_handle);
+//void destroyAll(void);
+void overlaymanager_destroy_all(OverlayManagerHandle handle);
+//bool hasViewportChanged(void) const;
+int overlaymanager_has_viewport_changed(OverlayManagerHandle handle);
+//int getViewportHeight(void) const;
+int overlaymanager_get_viewport_height(OverlayManagerHandle handle);
+//int getViewportWidth(void) const;
+int overlaymanager_get_viewport_width(OverlayManagerHandle handle);
+//Real getViewportAspectRatio(void) const;
+coiReal overlaymanager_get_viewport_aspect_ratio(OverlayManagerHandle handle);
+
 
