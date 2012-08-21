@@ -97,6 +97,7 @@ alias void* RaySceneQueryListenerHandle;
 alias void* SceneQueryResultHandle;
 alias void* MovableObjectHandle;
 alias void* RenderOperationHandle;
+alias void* OverlayHandle;
 
 
 
@@ -355,7 +356,7 @@ int restore_config();
 
 int show_config_dialog();
 
-void load_ogre_plugin(const char * plugin);
+void load_ogre_plugin(const char* plugin);
 
 // Doesn't use OgreManager. Can still throw if type_name doesn't exist.
 SceneManagerHandle root_create_scene_manager(const char* type_name, const char* instance_name);
@@ -1054,3 +1055,54 @@ ushort rayscenequery_get_max_results(RaySceneQueryHandle handle);
 // typedef vector<RaySceneQueryResultEntry>::type RaySceneQueryResult;
 size_t rayscenequeryresult_count(RaySceneQueryResultHandle handle);
 void rayscenequeryresult_at(RaySceneQueryResultHandle handle, int index, ref rayscenequery_result_entry result);
+
+// Ogre::Overlay
+//const String& getName(void) const;
+const(char[]) overlay_get_name(OverlayHandle handle);
+//void setZOrder(ushort zorder);
+void overlay_set_zorder(OverlayHandle handle, ushort zorder);
+//ushort getZOrder(void) const;
+ushort overlay_get_zorder(OverlayHandle handle);
+//bool isVisible(void) const;
+int overlay_is_visible(OverlayHandle handle);
+//bool isInitialised(void) const;
+int overlay_is_initialised(OverlayHandle handle);
+//void show(void);
+void overlay_show(OverlayHandle handle);
+//void hide(void);
+void overlay_hide(OverlayHandle handle);
+//void add2D(OverlayContainer* cont);
+//void remove2D(OverlayContainer* cont);
+//void add3D(SceneNode* node);
+void overlay_add_3d(OverlayHandle handle, SceneNodeHandle node_handle);
+//void remove3D(SceneNode* node);
+void overlay_remove_3d(OverlayHandle handle, SceneNodeHandle node_handle);
+// void clear();
+void overlay_clear(OverlayHandle handle);
+//void setScroll(Real x, Real y);
+void overlay_set_scroll(OverlayHandle handle, coiReal x, coiReal y);
+//Real getScrollX(void) const;
+coiReal overlay_get_scroll_x(OverlayHandle handle);
+//Real getScrollY(void) const;
+coiReal overlay_get_scroll_y(OverlayHandle handle);
+//void scroll(Real xoff, Real yoff);
+void overlay_scroll(OverlayHandle handle, coiReal x, coiReal y);
+//void setRotate(const Radian& angle);
+void overlay_set_rotate(OverlayHandle handle, coiReal angle);
+//const Radian &getRotate(void) const;
+coiReal overlay_get_rotate(OverlayHandle handle);
+//void rotate(const Radian& angle);
+void overlay_rotate(OverlayHandle handle, coiReal angle);
+//void setScale(Real x, Real y);
+void overlay_set_scale(OverlayHandle handle, coiReal x, coiReal y);
+//Real getScaleX(void) const;
+coiReal overlay_get_scale_x(OverlayHandle handle);
+//Real getScaleY(void) const;
+coiReal overlay_get_scale_y(OverlayHandle handle);
+//void _getWorldTransforms(Matrix4* xform) const;
+void overlay_get_world_transforms(OverlayHandle handle, ref coiMatrix4 xform);
+//const String& getOrigin(void) const;
+const(char[]) overlay_get_origin(OverlayHandle handle);
+//void _notifyOrigin(const String& origin);
+void overlay_notify_origin(OverlayHandle handle, const(char[]) origin);
+
