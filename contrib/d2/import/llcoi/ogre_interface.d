@@ -219,6 +219,34 @@ enum LogMessageLevel
     LML_CRITICAL = 3
 };
 
+enum orientation_mode
+{
+    OR_DEGREE_0       = 0,
+    OR_DEGREE_90      = 1,
+    OR_DEGREE_180     = 2,
+    OR_DEGREE_270     = 3,
+
+    OR_PORTRAIT       = OR_DEGREE_0,
+    OR_LANDSCAPERIGHT = OR_DEGREE_90,
+    OR_LANDSCAPELEFT  = OR_DEGREE_270
+}
+
+enum projection_type
+{
+    PT_ORTHOGRAPHIC,
+    PT_PERSPECTIVE
+}
+
+enum frustum_plane
+{
+    FRUSTUM_PLANE_NEAR   = 0,
+    FRUSTUM_PLANE_FAR    = 1,
+    FRUSTUM_PLANE_LEFT   = 2,
+    FRUSTUM_PLANE_RIGHT  = 3,
+    FRUSTUM_PLANE_TOP    = 4,
+    FRUSTUM_PLANE_BOTTOM = 5
+}
+
 enum stat_flags
 {
     SF_NONE           = 0,
@@ -228,7 +256,7 @@ enum stat_flags
     SF_WORST_FPS      = 8,
     SF_TRIANGLE_COUNT = 16,
     SF_ALL            = 0xFFFF
-};
+}
 
 enum frame_buffer
 {
@@ -1132,5 +1160,10 @@ int overlaymanager_get_viewport_height(OverlayManagerHandle handle);
 int overlaymanager_get_viewport_width(OverlayManagerHandle handle);
 //Real getViewportAspectRatio(void) const;
 coiReal overlaymanager_get_viewport_aspect_ratio(OverlayManagerHandle handle);
-
+//OrientationMode getViewportOrientationMode(void) const;
+orientation_mode overlaymanager_get_viewport_orientation_mode(OverlayManagerHandle handle);
+//bool hasOverlayElement(const String& name, bool isTemplate = false);
+int overlaymanager_has_overlay_element(OverlayManagerHandle handle, const char[] name, int is_template);
+//void destroyOverlayElement(const String& instanceName, bool isTemplate = false);
+void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const char[] name, int is_template);
 

@@ -36,6 +36,7 @@
  ******************************************************************************/
 
 #include "overlaymanager_bind.h"
+#include "binding_utils.h"
 #include <OgreOverlayManager.h>
 
 OverlayManagerHandle create_overlaymanager()
@@ -111,3 +112,21 @@ coiReal overlaymanager_get_viewport_aspect_ratio(OverlayManagerHandle handle)
     return ovm->getViewportAspectRatio();
 }
 
+orientation_mode overlaymanager_get_viewport_orientation_mode(OverlayManagerHandle handle)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    Ogre::OrientationMode mode = ovm->getViewportOrientationMode();
+    return ogre_orientation_mode_to_llcoi_orientation_mode(mode);
+}
+
+int overlaymanager_has_overlay_element(OverlayManagerHandle handle, const char* name, int is_template)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    return ovm->hasOverlayElement(Ogre::String(name), is_template);
+}
+
+void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const char* name, int is_template)
+{
+    Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
+    ovm->destroyOverlayElement(Ogre::String(name), is_template);
+}

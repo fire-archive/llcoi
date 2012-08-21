@@ -42,12 +42,14 @@
 #include "ogre_interface.h"
 #define OverlayManagerHandle void*
 #define OverlayHandle void*
+
+// overlaymanager_
 //OverlayManager();
 DLL OverlayManagerHandle create_overlaymanager();
 //~OverlayManager();
 DLL void destroy_overlaymanager(OverlayManagerHandle handle);
-//const StringVector& getScriptPatterns(void) const;
-//void parseScript(DataStreamPtr& stream, const String& groupName);
+//TODO const StringVector& getScriptPatterns(void) const;
+//TODO void parseScript(DataStreamPtr& stream, const String& groupName);
 //Real getLoadingOrder(void) const;
 DLL coiReal overlaymanager_get_loading_order(OverlayManagerHandle handle);
 //Overlay* create(const String& name);
@@ -61,8 +63,8 @@ DLL void overlaymanager_destroy(OverlayManagerHandle handle, OverlayHandle overl
 //void destroyAll(void);
 DLL void overlaymanager_destroy_all(OverlayManagerHandle handle);
 //typedef MapIterator<OverlayMap> OverlayMapIterator;
-//OverlayMapIterator getOverlayIterator(void);
-//void _queueOverlaysForRendering(Camera* cam, RenderQueue* pQueue, Viewport *vp);
+//TODO OverlayMapIterator getOverlayIterator(void);
+//TODO void _queueOverlaysForRendering(Camera* cam, RenderQueue* pQueue, Viewport *vp);
 //bool hasViewportChanged(void) const;
 DLL int overlaymanager_has_viewport_changed(OverlayManagerHandle handle);
 //int getViewportHeight(void) const;
@@ -71,6 +73,14 @@ DLL int overlaymanager_get_viewport_height(OverlayManagerHandle handle);
 DLL int overlaymanager_get_viewport_width(OverlayManagerHandle handle);
 //Real getViewportAspectRatio(void) const;
 DLL coiReal overlaymanager_get_viewport_aspect_ratio(OverlayManagerHandle handle);
+//OrientationMode getViewportOrientationMode(void) const;
+DLL orientation_mode overlaymanager_get_viewport_orientation_mode(OverlayManagerHandle handle);
+//TODO OverlayElement* createOverlayElement(const String& typeName, const String& instanceName, bool isTemplate = false);
+//TODO OverlayElement* getOverlayElement(const String& name, bool isTemplate = false);
+//bool hasOverlayElement(const String& name, bool isTemplate = false);
+DLL int overlaymanager_has_overlay_element(OverlayManagerHandle handle, const char* name, int is_template);
+//void destroyOverlayElement(const String& instanceName, bool isTemplate = false);
+DLL void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const char* name, int is_template);
 
 
 #endif
