@@ -837,7 +837,7 @@ Ogre::GuiHorizontalAlignment llcoi_gui_horizontal_alignment_to_ogre_gui_horizont
     return converted;
 }
 
-gui_horizontal_alignment ogre_gui_horizontal_alignment_to_ogre_gui_horizontal_alignment(Ogre::GuiHorizontalAlignment gha)
+gui_horizontal_alignment ogre_gui_horizontal_alignment_to_llcoi_gui_horizontal_alignment(Ogre::GuiHorizontalAlignment gha)
 {
     gui_horizontal_alignment converted;
     switch(gha)
