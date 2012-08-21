@@ -1302,9 +1302,9 @@ void overlayelement_set_vertical_alignment(OverlayElementHandle handle, gui_vert
 //GuiVerticalAlignment getVerticalAlignment(void) const;
 gui_vertical_alignment overlayelement_get_vertical_alignment(OverlayElementHandle handle);
 //bool contains(Real x, Real y) const;
-DLL int overlayelement_contains(OverlayElementHandle handle, coiReal x, coiReal y);
+int overlayelement_contains(OverlayElementHandle handle, coiReal x, coiReal y);
 //OverlayElement* findElementAt(Real x, Real y);
-DLL OverlayElementHandle overlayelement_find_element_at(OverlayElementHandle handle, coiReal x, coiReal y);
+OverlayElementHandle overlayelement_find_element_at(OverlayElementHandle handle, coiReal x, coiReal y);
 //bool isContainer() const;
 int overlayelement_is_container(OverlayElementHandle handle);
 //bool isKeyEnabled() const;
@@ -1322,5 +1322,5 @@ void overlayelement_copy_from_template(OverlayElementHandle handle, OverlayEleme
 //OverlayElement* clone(const String& instanceName);
 OverlayElementHandle overlayelement_clone(OverlayElementHandle handle, const char[] instance_name);
 //const OverlayElement* getSourceTemplate () const;
-const OverlayElementHandle overlayelement_get_source_template(OverlayElementHandle handle);
+const(OverlayElementHandle) overlayelement_get_source_template(OverlayElementHandle handle);
 
