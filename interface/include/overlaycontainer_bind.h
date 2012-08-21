@@ -65,4 +65,19 @@ DLL void overlaycontainer__add_child(OverlayContainerHandle handle, OverlayEleme
 DLL void overlaycontainer__remove_child(OverlayContainerHandle handle, OverlayElementHandle elem);
 //void _removeChild(const String& name);
 DLL void overlaycontainer__remove_child_by_name(OverlayContainerHandle handle, const char* name);
+//TODO: ChildIterator getChildIterator(void);
+//TODO: ChildContainerIterator getChildContainerIterator(void);
+//void _positionsOutOfDate(void);
+//void _update(void);
+//ushort _notifyZOrder(ushort newZOrder);
+//void _notifyViewport();
+//void _notifyWorldTransforms(const Matrix4& xform);
+//void _notifyParent(OverlayContainer* parent, Overlay* overlay);
+// TODO: void _updateRenderQueue(RenderQueue* queue);
+//bool isContainer() const;
+//bool isChildrenProcessEvents() const;
+//void setChildrenProcessEvents(bool val);
+//OverlayElement* findElementAt(Real x, Real y);
+//void copyFromTemplate(OverlayElement* templateOverlay);
+//virtual OverlayElement* clone(const String& instanceName);
 #endif
