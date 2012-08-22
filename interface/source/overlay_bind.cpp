@@ -39,6 +39,9 @@
 #include "binding_utils.h"
 #include <OgreOverlay.h>
 
+#include <iostream>
+using std::cerr;
+
 const char* overlay_get_name(OverlayHandle handle)
 {
     Ogre::Overlay* overlay = reinterpret_cast<Ogre::Overlay*>(handle);
@@ -83,8 +86,12 @@ void overlay_hide(OverlayHandle handle)
 
 void overlay_add_2d(OverlayHandle handle, OverlayContainerHandle c)
 {
-    Ogre::Overlay* overlay = reinterpret_cast<Ogre::Overlay*>(handle);
-    Ogre::OverlayContainer* cont = reinterpret_cast<Ogre::OverlayContainer*>(c);
+    cerr << "casting overlay\n";
+    Ogre::Overlay* overlay = static_cast<Ogre::Overlay*>(handle);
+
+    cerr << "casting container\n";
+    Ogre::OverlayContainer* cont = static_cast<Ogre::OverlayContainer*>(c);
+    cerr << "calling add2D\n";
     overlay->add2D(cont);
 }
 
