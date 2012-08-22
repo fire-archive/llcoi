@@ -159,11 +159,3 @@ OverlayManagerHandle overlaymanager_get_singleton_ptr()
         ovm
     );
 }
-
-OverlayManagerHandle overlaymanager_get_singleton()
-{
-    const Ogre::OverlayManager& o = Ogre::OverlayManager::getSingleton();
-    return reinterpret_cast<OverlayManagerHandle>(
-        Ogre::OverlayManager::getSingletonPtr()
-    );
-}

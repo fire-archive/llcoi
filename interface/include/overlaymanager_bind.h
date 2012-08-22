@@ -91,7 +91,5 @@ DLL void overlaymanager_destroy_all_overlay_elements(OverlayManagerHandle handle
 DLL int overlaymanager_is_template(OverlayManagerHandle handle, const char* name);
 //static OverlayManager* getSingletonPtr(void);
 DLL OverlayManagerHandle overlaymanager_get_singleton_ptr();
-DLL OverlayManagerHandle overlaymanager_get_singleton();
-
 
 #endif
