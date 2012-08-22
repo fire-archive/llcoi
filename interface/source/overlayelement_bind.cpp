@@ -38,6 +38,8 @@
 #include "overlayelement_bind.h"
 #include "binding_utils.h"
 #include <OgreOverlayElement.h>
+#include <OgreOverlay.h>
+#include <OgreOverlayContainer.h>
 #include <OgreCamera.h>
 
 void destroy_overlayelement(OverlayElementHandle handle)
@@ -246,6 +248,15 @@ void overlayelement__update_from_parent(OverlayElementHandle handle)
     oe->_updateFromParent();
 }
 
+void overlayelement__notify_parent(OverlayElementHandle handle, OverlayContainerHandle parent_handle, OverlayHandle overlay_handle)
+{
+    Ogre::OverlayElement* oe = static_cast<Ogre::OverlayElement*>(handle);
+    Ogre::OverlayContainer* oc = static_cast<Ogre::OverlayContainer*>(parent_handle);
+    Ogre::Overlay* overlay = static_cast<Ogre::Overlay*>(overlay_handle);
+
+    oe->_notifyParent(oc, overlay);
+}
+
 coiReal overlayelement__get_derived_left(OverlayElementHandle handle)
 {
     Ogre::OverlayElement* oe = static_cast<Ogre::OverlayElement*>(handle);
@@ -406,6 +417,21 @@ void overlayelement_set_cloneable(OverlayElementHandle handle, int c)
 {
     Ogre::OverlayElement* oe = static_cast<Ogre::OverlayElement*>(handle);
     oe->setCloneable(c);
+}
+
+
+OverlayContainerHandle overlayelement_get_parent(OverlayElementHandle handle)
+{
+    Ogre::OverlayElement* oe = static_cast<Ogre::OverlayElement*>(handle);
+    Ogre::OverlayContainer* oc = oe->getParent();
+    return static_cast<OverlayContainerHandle>(oc);
+}
+
+void overlayelement_set_parent(OverlayElementHandle handle, OverlayContainerHandle parent_handle)
+{
+    Ogre::OverlayElement* oe = static_cast<Ogre::OverlayElement*>(handle);
+    Ogre::OverlayContainer* oc = static_cast<Ogre::OverlayContainer*>(parent_handle);
+    oe->_setParent(oc);
 }
 
 unsigned short overlayelement_get_zorder(OverlayElementHandle handle)

@@ -41,6 +41,8 @@
 
 #include "ogre_interface.h"
 #define OverlayElementHandle void*
+#define OverlayContainerHandle void*
+#define OverlayHandle void*
 #define CameraHandle void*
 
 //overlayelement_
@@ -113,8 +115,8 @@ DLL void overlayelement__positions_out_of_date(OverlayElementHandle handle);
 DLL void overlayelement__update(OverlayElementHandle handle);
 //void _updateFromParent(void);
 DLL void overlayelement__update_from_parent(OverlayElementHandle handle);
-//TODO: void _notifyParent(OverlayContainer* parent, Overlay* overlay);
-//DLL void overlayelement__notify_parent(OverlayElementHandle handle, OverlayContainerHandle parent_handle, OverlayHandle overlay_handle);
+//void _notifyParent(OverlayContainer* parent, Overlay* overlay);
+DLL void overlayelement__notify_parent(OverlayElementHandle handle, OverlayContainerHandle parent_handle, OverlayHandle overlay_handle);
 //Real _getDerivedLeft(void);
 DLL coiReal overlayelement__get_derived_left(OverlayElementHandle handle);
 //Real _getDerivedTop(void);
@@ -164,8 +166,10 @@ DLL int overlayelement_is_key_enabled(OverlayElementHandle handle);
 DLL int overlayelement_is_cloneable(OverlayElementHandle handle);
 //void setCloneable(bool c);
 DLL void overlayelement_set_cloneable(OverlayElementHandle handle, int c);
-//TODO: OverlayContainer* getParent();
-//TODO: void _setParent(OverlayContainer* parent);
+//OverlayContainer* getParent();
+DLL OverlayContainerHandle overlayelement_get_parent(OverlayElementHandle handle);
+//void _setParent(OverlayContainer* parent);
+DLL void overlayelement_set_parent(OverlayElementHandle handle, OverlayContainerHandle parent_handle);
 //ushort getZOrder() const;
 DLL unsigned short overlayelement_get_zorder(OverlayElementHandle handle);
 //Real getSquaredViewDepth(const Camera* cam) const;
