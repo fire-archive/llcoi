@@ -81,6 +81,20 @@ void overlay_hide(OverlayHandle handle)
     overlay->hide();
 }
 
+void overlay_add_2d(OverlayHandle handle, OverlayContainerHandle c)
+{
+    Ogre::Overlay* overlay = reinterpret_cast<Ogre::Overlay*>(handle);
+    Ogre::OverlayContainer* cont = reinterpret_cast<Ogre::OverlayContainer*>(c);
+    overlay->add2D(cont);
+}
+
+void overlay_remove_2d(OverlayHandle handle, OverlayContainerHandle c)
+{
+    Ogre::Overlay* overlay = reinterpret_cast<Ogre::Overlay*>(handle);
+    Ogre::OverlayContainer* cont = reinterpret_cast<Ogre::OverlayContainer*>(c);
+    overlay->remove2D(cont);
+}
+
 void overlay_add_3d(OverlayHandle handle, SceneNodeHandle node_handle)
 {
     Ogre::Overlay* overlay = reinterpret_cast<Ogre::Overlay*>(handle);

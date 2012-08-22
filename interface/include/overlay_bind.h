@@ -41,6 +41,7 @@
 
 #include "ogre_interface.h"
 #define OverlayHandle void*
+#define OverlayContainerHandle void*
 #define SceneNodeHandle void*
 
 //const String& getName(void) const;
@@ -57,8 +58,10 @@ DLL int overlay_is_initialised(OverlayHandle handle);
 DLL void overlay_show(OverlayHandle handle);
 //void hide(void);
 DLL void overlay_hide(OverlayHandle handle);
-//TODO: void add2D(OverlayContainer* cont);
-//TODO: void remove2D(OverlayContainer* cont);
+//void add2D(OverlayContainer* cont);
+DLL void overlay_add_2d(OverlayHandle handle, OverlayContainerHandle cont);
+//void remove2D(OverlayContainer* cont);
+DLL void overlay_remove_2d(OverlayHandle handle, OverlayContainerHandle cont);
 //void add3D(SceneNode* node);
 DLL void overlay_add_3d(OverlayHandle handle, SceneNodeHandle node_handle);
 //void remove3D(SceneNode* node);
