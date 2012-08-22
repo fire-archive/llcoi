@@ -42,7 +42,7 @@
 
 // Vector3
 // TODO: Probably change these to pass pointers to coiV3 rather than passing the 
-// structs on the stack, as was done with ColourValue. 
+// structs on the stack, as was done with coiColourValue. 
 //Vector3::operator !=
 DLL int vector3_notequals_vector3(coiVector3 lhs, coiVector3 rhs);
 

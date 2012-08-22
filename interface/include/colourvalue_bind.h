@@ -41,10 +41,10 @@
 #include "ogre_interface.h"
 
 // ColourValue
-DLL void colourvalue_zero(ColourValue* c);
-DLL void colourvalue_black(ColourValue* c);
-DLL void colourvalue_white(ColourValue* c);
-DLL void colourvalue_red(ColourValue* c);
-DLL void colourvalue_green(ColourValue* c);
-DLL void colourvalue_blue(ColourValue* c);
+DLL void colourvalue_zero(coiColourValue* c);
+DLL void colourvalue_black(coiColourValue* c);
+DLL void colourvalue_white(coiColourValue* c);
+DLL void colourvalue_red(coiColourValue* c);
+DLL void colourvalue_green(coiColourValue* c);
+DLL void colourvalue_blue(coiColourValue* c);
 #endif

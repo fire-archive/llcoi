@@ -60,7 +60,7 @@ DLL void light_get_direction(LightHandle handle, coiVector3* direction);
 //Ogre::Light::setSpotlightRange(Ogre::Radian const&, Ogre::Radian const&, float)
 DLL void light_set_spotlight_range(LightHandle handle, const coiReal inner_angle, const coiReal outer_angle, coiReal fall_off);
 DLL void light_set_type(LightHandle handle, light_types type);
-DLL void light_set_diffuse_colour(LightHandle handle, const ColourValue* colour);
-DLL void light_set_specular_colour(LightHandle handle, const ColourValue* colour);
+DLL void light_set_diffuse_colour(LightHandle handle, const coiColourValue* colour);
+DLL void light_set_specular_colour(LightHandle handle, const coiColourValue* colour);
 
 #endif

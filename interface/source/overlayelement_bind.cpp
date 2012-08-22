@@ -319,14 +319,14 @@ const char* overlayelement_get_caption(OverlayElementHandle handle)
     return oe->getCaption().asUTF8_c_str();
 }
 
-void overlayelement_set_colour(OverlayElementHandle handle, const ColourValue* c)
+void overlayelement_set_colour(OverlayElementHandle handle, const coiColourValue* c)
 {
     Ogre::OverlayElement* oe = static_cast<Ogre::OverlayElement*>(handle);
     const Ogre::ColourValue colour(c->r, c->b, c->g, c->a);
     oe->setColour(colour);
 }
 
-void overlayelement_get_colour(OverlayElementHandle handle, ColourValue* c)
+void overlayelement_get_colour(OverlayElementHandle handle, coiColourValue* c)
 {
     Ogre::OverlayElement* oe = static_cast<Ogre::OverlayElement*>(handle);
     const Ogre::ColourValue& colour = oe->getColour();

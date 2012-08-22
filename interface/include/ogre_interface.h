@@ -162,7 +162,7 @@ typedef struct
     float g;
     float b;
     float a;
-} ColourValue;
+} coiColourValue;
 
 
 typedef struct

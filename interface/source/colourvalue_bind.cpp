@@ -39,7 +39,7 @@
 #include "colourvalue_bind.h"
 #include <OgreColourValue.h>
 
-void colourvalue_zero(ColourValue* c)
+void colourvalue_zero(coiColourValue* c)
 {
     Ogre::ColourValue cv = Ogre::ColourValue::ZERO;
 
@@ -49,7 +49,7 @@ void colourvalue_zero(ColourValue* c)
     c->a = cv.a;
 }
 
-void colourvalue_black(ColourValue* c)
+void colourvalue_black(coiColourValue* c)
 {
     Ogre::ColourValue cv = Ogre::ColourValue::Black;
 
@@ -59,7 +59,7 @@ void colourvalue_black(ColourValue* c)
     c->a = cv.a;
 }
 
-void colourvalue_white(ColourValue* c)
+void colourvalue_white(coiColourValue* c)
 {
     Ogre::ColourValue cv = Ogre::ColourValue::White;
     c->r = cv.r;
@@ -68,7 +68,7 @@ void colourvalue_white(ColourValue* c)
     c->a = cv.a;
 }
 
-void colourvalue_red(ColourValue* c)
+void colourvalue_red(coiColourValue* c)
 {
     Ogre::ColourValue cv = Ogre::ColourValue::Red;
     c->r = cv.r;
@@ -77,7 +77,7 @@ void colourvalue_red(ColourValue* c)
     c->a = cv.a;
 }
 
-void colourvalue_green(ColourValue* c)
+void colourvalue_green(coiColourValue* c)
 {
     Ogre::ColourValue cv = Ogre::ColourValue::Green;
     c->r = cv.r;
@@ -86,7 +86,7 @@ void colourvalue_green(ColourValue* c)
     c->a = cv.a;
 }
 
-void colourvalue_blue(ColourValue* c)
+void colourvalue_blue(coiColourValue* c)
 {
     Ogre::ColourValue cv = Ogre::ColourValue::Blue;
     c->r = cv.r;

@@ -139,9 +139,9 @@ DLL void overlayelement_set_caption(OverlayElementHandle handle, const char* tex
 //const DisplayString& getCaption(void) const;
 DLL const char* overlayelement_get_caption(OverlayElementHandle handle);
 //void setColour(const ColourValue& col);
-DLL void overlayelement_set_colour(OverlayElementHandle handle, const ColourValue* col);
-//const ColourValue& getColour(void) const;
-DLL void overlayelement_get_colour(OverlayElementHandle handle, ColourValue* col);
+DLL void overlayelement_set_colour(OverlayElementHandle handle, const coiColourValue* col);
+//const coiColourValue& getColour(void) const;
+DLL void overlayelement_get_colour(OverlayElementHandle handle, coiColourValue* col);
 //void setMetricsMode(GuiMetricsMode gmm);
 DLL void overlayelement_set_metrics_mode(OverlayElementHandle handle, gui_metrics_mode gmm);
 //GuiMetricsMode getMetricsMode(void) const;

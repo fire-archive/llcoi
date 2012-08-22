@@ -58,7 +58,7 @@ void viewport_set_background_colour(ViewportHandle viewport_handle, float r, flo
 }
 
 //Ogre::Viewport::getBackgroundColour() const
-void viewport_get_background_colour(ViewportHandle handle, ColourValue* cv)
+void viewport_get_background_colour(ViewportHandle handle, coiColourValue* cv)
 {
     Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(handle);
     const Ogre::ColourValue &c = vp->getBackgroundColour();
@@ -69,7 +69,7 @@ void viewport_get_background_colour(ViewportHandle handle, ColourValue* cv)
     cv->a = c.a;
 }
 
-void viewport_set_background_colour_cv(ViewportHandle viewport_handle, ColourValue* cv)
+void viewport_set_background_colour_cv(ViewportHandle viewport_handle, coiColourValue* cv)
 {
     Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(viewport_handle);
     Ogre::ColourValue c(cv->r, cv->b, cv->g, cv->a);

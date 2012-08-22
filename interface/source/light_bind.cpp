@@ -124,15 +124,18 @@ void light_set_type(LightHandle handle, light_types type)
     light->setType(lt);
 }
 
-
-void light_set_diffuse_colour(LightHandle handle, const ColourValue* colour)
+//Ogre::Light::setDiffuseColour(float, float, float)
+//Ogre::Light::setDiffuseColour(Ogre::ColourValue const&)
+void light_set_diffuse_colour(LightHandle handle, const coiColourValue* colour)
 {
     Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
     Ogre::ColourValue cv(colour->r, colour->g, colour->b, colour->a);
     light->setDiffuseColour(cv);
 }
 
-void light_set_specular_colour(LightHandle handle, const ColourValue* colour)
+//Ogre::Light::setSpecularColour(float, float, float)
+//Ogre::Light::setSpecularColour(Ogre::ColourValue const&)
+void light_set_specular_colour(LightHandle handle, const coiColourValue* colour)
 {
     Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
     Ogre::ColourValue cv(colour->r, colour->g, colour->b, colour->a);
@@ -149,11 +152,7 @@ void light_set_specular_colour(LightHandle handle, const ColourValue* colour)
 //Ogre::Light::~Light()
 //Ogre::Light::setType(Ogre::Light::LightTypes)
 //Ogre::Light::getType() const
-//Ogre::Light::setDiffuseColour(float, float, float)
-//Ogre::Light::setDiffuseColour(Ogre::ColourValue const&)
 //Ogre::Light::getDiffuseColour() const
-//Ogre::Light::setSpecularColour(float, float, float)
-//Ogre::Light::setSpecularColour(Ogre::ColourValue const&)
 //Ogre::Light::getSpecularColour() const
 //Ogre::Light::setAttenuation(float, float, float, float)
 //Ogre::Light::getAttenuationRange() const

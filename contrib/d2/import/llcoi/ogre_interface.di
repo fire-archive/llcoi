@@ -160,7 +160,7 @@ struct ray_pair
 }
 
 
-struct ColourValue
+struct coiColourValue
 {
     float r;
     float g;
@@ -641,7 +641,7 @@ SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle handle, const c
 // Viewports
 void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b, float a);
 
-void viewport_set_background_colour_cv(ViewportHandle viewport_handle, ref ColourValue cv);
+void viewport_set_background_colour_cv(ViewportHandle viewport_handle, ref coiColourValue cv);
 
 void viewport_set_auto_updated(ViewportHandle handle, int autoupdate);
 
@@ -668,7 +668,7 @@ void viewport_set_dimensions(ViewportHandle handle, coiReal left, coiReal top, c
 //Ogre::Viewport::getActualDimensions(int&, int&, int&, int&) const
 void viewport_get_actual_dimensions(ViewportHandle handle, ref int left, ref int top, ref int width, ref int height);
 //Ogre::Viewport::getBackgroundColour() const
-void viewport_get_background_colour(ViewportHandle handle, ref ColourValue cv);
+void viewport_get_background_colour(ViewportHandle handle, ref coiColourValue cv);
 
 
 // Resource management
@@ -808,9 +808,9 @@ void light_set_spotlight_range(LightHandle handle, const coiReal inner_angle, co
 
 void light_set_type(LightHandle handle, light_types type);
 
-void light_set_diffuse_colour(LightHandle handle, const ref ColourValue colour);
+void light_set_diffuse_colour(LightHandle handle, const ref coiColourValue colour);
 
-void light_set_specular_colour(LightHandle handle, const ref ColourValue colour);
+void light_set_specular_colour(LightHandle handle, const ref coiColourValue colour);
 
 
 
@@ -904,12 +904,12 @@ void renderwindow_get_statistics(RenderWindowHandle handle, ref FrameStats stats
 void renderwindow_get_statistics_ex(RenderWindowHandle handle, ref float lastFPS, ref float avgFPS, ref float bestFPS, ref float worstFPS);
 
 // ColourValue
-void colourvalue_zero(ref ColourValue c);
-void colourvalue_black(ref ColourValue c);
-void colourvalue_white(ref ColourValue c);
-void colourvalue_red(ref ColourValue c);
-void colourvalue_green(ref ColourValue c);
-void colourvalue_blue(ref ColourValue c);
+void colourvalue_zero(ref coiColourValue c);
+void colourvalue_black(ref coiColourValue c);
+void colourvalue_white(ref coiColourValue c);
+void colourvalue_red(ref coiColourValue c);
+void colourvalue_green(ref coiColourValue c);
+void colourvalue_blue(ref coiColourValue c);
 
 // Vector3
 //Vector3::operator !=
@@ -1305,9 +1305,9 @@ void overlayelement_set_caption(OverlayElementHandle handle, const char* text);
 //const DisplayString& getCaption(void) const;
 const(char[]) overlayelement_get_caption(OverlayElementHandle handle);
 //void setColour(const ColourValue& col);
-void overlayelement_set_colour(OverlayElementHandle handle, const ref ColourValue col);
+void overlayelement_set_colour(OverlayElementHandle handle, const ref coiColourValue col);
 //const ColourValue& getColour(void) const;
-void overlayelement_get_colour(OverlayElementHandle handle, ref ColourValue col);
+void overlayelement_get_colour(OverlayElementHandle handle, ref coiColourValue col);
 //void setMetricsMode(GuiMetricsMode gmm);
 void overlayelement_set_metrics_mode(OverlayElementHandle handle, gui_metrics_mode gmm);
 //GuiMetricsMode getMetricsMode(void) const;

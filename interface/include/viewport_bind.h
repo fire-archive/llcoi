@@ -50,7 +50,7 @@
 DLL ViewportHandle add_viewport(CameraHandle camera_handle);
 DLL void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b, float a);
 
-DLL void viewport_set_background_colour_cv(ViewportHandle viewport_handle, ColourValue* cv);
+DLL void viewport_set_background_colour_cv(ViewportHandle viewport_handle, coiColourValue* cv);
 
 DLL void viewport_set_auto_updated(ViewportHandle handle, int autoupdate);
 
@@ -78,6 +78,6 @@ DLL void viewport_get_actual_dimensions(ViewportHandle handle, int* left, int* t
 
 
 //Ogre::Viewport::getBackgroundColour() const
-DLL void viewport_get_background_colour(ViewportHandle handle, ColourValue* cv);
+DLL void viewport_get_background_colour(ViewportHandle handle, coiColourValue* cv);
 
 #endif
