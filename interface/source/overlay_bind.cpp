@@ -86,12 +86,13 @@ void overlay_hide(OverlayHandle handle)
 
 void overlay_add_2d(OverlayHandle handle, OverlayContainerHandle c)
 {
-    cerr << "casting overlay\n";
+    cerr << "[LLCOI] casting overlay\n";
     Ogre::Overlay* overlay = static_cast<Ogre::Overlay*>(handle);
 
-    cerr << "casting container\n";
+    cerr << "[LLCOI] casting container\n";
     Ogre::OverlayContainer* cont = static_cast<Ogre::OverlayContainer*>(c);
-    cerr << "calling add2D\n";
+
+    cerr << "[LLCOI] calling add2D\n";
     overlay->add2D(cont);
 }
 
