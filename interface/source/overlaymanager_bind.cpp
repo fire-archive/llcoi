@@ -43,7 +43,7 @@
 OverlayManagerHandle create_overlaymanager()
 {
     Ogre::OverlayManager* ovm = new Ogre::OverlayManager;
-    return reinterpret_cast<OverlayManagerHandle>(ovm);
+    return static_cast<OverlayManagerHandle>(ovm);
 }
 
 void destroy_overlaymanager(OverlayManagerHandle handle)
@@ -61,13 +61,13 @@ coiReal overlaymanager_get_loading_order(OverlayManagerHandle handle)
 OverlayHandle overlaymanager_create(OverlayManagerHandle handle, const char* name)
 {
     Ogre::OverlayManager* ovm = static_cast<Ogre::OverlayManager*>(handle);
-    return reinterpret_cast<OverlayHandle>(ovm->create(Ogre::String(name)));
+    return static_cast<OverlayHandle>(ovm->create(Ogre::String(name)));
 }
 
 OverlayHandle overlaymanager_get_by_name(OverlayManagerHandle handle, const char* name)
 {
     Ogre::OverlayManager* ovm = static_cast<Ogre::OverlayManager*>(handle);
-    return reinterpret_cast<OverlayHandle>(ovm->getByName(Ogre::String(name)));
+    return static_cast<OverlayHandle>(ovm->getByName(Ogre::String(name)));
 }
 
 void overlaymanager_destroy_by_name(OverlayManagerHandle handle, const char* name)
@@ -79,7 +79,7 @@ void overlaymanager_destroy_by_name(OverlayManagerHandle handle, const char* nam
 void overlaymanager_destroy(OverlayManagerHandle handle, OverlayHandle overlay_handle)
 {
     Ogre::OverlayManager* ovm = static_cast<Ogre::OverlayManager*>(handle);
-    Ogre::Overlay* overlay = reinterpret_cast<Ogre::Overlay*>(overlay_handle);
+    Ogre::Overlay* overlay = static_cast<Ogre::Overlay*>(overlay_handle);
     ovm->destroy(overlay);
 }
 
@@ -134,7 +134,7 @@ OverlayElementHandle overlaymanager_create_overlayelement(OverlayManagerHandle h
     const Ogre::String instanceName(instance_name);
     Ogre::OverlayElement* oe = ovm->createOverlayElement(typeName, instanceName, is_template);
 
-    return reinterpret_cast<OverlayElementHandle>(oe);
+    return static_cast<OverlayElementHandle>(oe);
 }
 
 OverlayElementHandle overlaymanager_get_overlayelement(OverlayManagerHandle handle, const char* name, int is_template)
@@ -142,7 +142,7 @@ OverlayElementHandle overlaymanager_get_overlayelement(OverlayManagerHandle hand
     Ogre::OverlayManager* ovm = static_cast<Ogre::OverlayManager*>(handle);
     Ogre::OverlayElement* oe = ovm->getOverlayElement(Ogre::String(name), is_template);
 
-    return reinterpret_cast<OverlayElementHandle>(oe);
+    return static_cast<OverlayElementHandle>(oe);
 }
 
 void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const char* name, int is_template)
@@ -154,7 +154,7 @@ void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const c
 void overlaymanager_destroy_overlay_element_instance(OverlayManagerHandle handle, OverlayElementHandle instance, int is_template)
 {
     Ogre::OverlayManager* ovm = static_cast<Ogre::OverlayManager*>(handle);
-    Ogre::OverlayElement* oe  = reinterpret_cast<Ogre::OverlayElement*>(instance);
+    Ogre::OverlayElement* oe  = static_cast<Ogre::OverlayElement*>(instance);
     ovm->destroyOverlayElement(oe, is_template);
 }
 
@@ -174,7 +174,7 @@ OverlayElementHandle overlaymanager_create_overlayelement_from_template(OverlayM
 
     Ogre::OverlayElement* oe = ovm->createOverlayElementFromTemplate(templateName, typeName, instanceName, is_template);
 
-    return reinterpret_cast<OverlayElementHandle>(oe);
+    return static_cast<OverlayElementHandle>(oe);
 }
 
 OverlayElementHandle overlaymanager_clone_overlayelement_from_template(OverlayManagerHandle handle, const char* template_name, const char* instance_name)
@@ -186,7 +186,7 @@ OverlayElementHandle overlaymanager_clone_overlayelement_from_template(OverlayMa
 
     Ogre::OverlayElement* oe = ovm->cloneOverlayElementFromTemplate(templateName, instanceName);
 
-    return reinterpret_cast<OverlayElementHandle>(oe);
+    return static_cast<OverlayElementHandle>(oe);
 }
 
 OverlayElementHandle overlaymanager_create_overlayelement_from_factory(OverlayManagerHandle handle, const char* type_name, const char* instance_name)
@@ -198,7 +198,7 @@ OverlayElementHandle overlaymanager_create_overlayelement_from_factory(OverlayMa
 
     Ogre::OverlayElement* oe = ovm->cloneOverlayElementFromTemplate(typeName, instanceName);
 
-    return reinterpret_cast<OverlayElementHandle>(oe);
+    return static_cast<OverlayElementHandle>(oe);
 }
 
 int overlaymanager_is_template(OverlayManagerHandle handle, const char* name)
@@ -210,7 +210,7 @@ int overlaymanager_is_template(OverlayManagerHandle handle, const char* name)
 OverlayManagerHandle overlaymanager_get_singleton_ptr()
 {
     Ogre::OverlayManager* ovm = Ogre::OverlayManager::getSingletonPtr();
-    return reinterpret_cast<OverlayManagerHandle>(
+    return static_cast<OverlayManagerHandle>(
         ovm
     );
 }
