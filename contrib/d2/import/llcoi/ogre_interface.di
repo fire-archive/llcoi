@@ -1159,7 +1159,7 @@ void overlay_get_world_transforms(OverlayHandle handle, ref coiMatrix4 xform);
 //const String& getOrigin(void) const;
 const(char[]) overlay_get_origin(OverlayHandle handle);
 //void _notifyOrigin(const String& origin);
-void overlay_notify_origin(OverlayHandle handle, const(char[]) origin);
+void overlay_notify_origin(OverlayHandle handle, const(char*) origin);
 
 //Ogre::OverlayManager
 //OverlayManager();
