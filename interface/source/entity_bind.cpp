@@ -44,45 +44,45 @@
 EntityHandle create_entity(const char* entity_name, const char* mesh_file)
 {
     Ogre::Entity* entity = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->createEntity(entity_name, mesh_file);
-    return reinterpret_cast<EntityHandle>(entity);
+    return static_cast<EntityHandle>(entity);
 }
 
 void entity_set_cast_shadows(EntityHandle handle, int enabled)
 {
-    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    Ogre::Entity* entity = static_cast<Ogre::Entity*>(handle);
     entity->setCastShadows(enabled);
 }
 
 int entity_get_cast_shadows(EntityHandle handle)
 {
-    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    Ogre::Entity* entity = static_cast<Ogre::Entity*>(handle);
     return entity->getCastShadows();
 }
 
 int entity_get_receives_shadows(EntityHandle handle)
 {
-    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    Ogre::Entity* entity = static_cast<Ogre::Entity*>(handle);
     return entity->getReceivesShadows();
 }
 
 void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name)
 {
-    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    Ogre::Entity* entity = static_cast<Ogre::Entity*>(handle);
     entity->setMaterialName(Ogre::String(material_name), Ogre::String(group_name));
 }
 
 //Ogre::Entity::getBoundingBox() const
 AxisAlignedBoxHandle entity_get_bounding_box(EntityHandle handle)
 {
-    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    Ogre::Entity* entity = static_cast<Ogre::Entity*>(handle);
     Ogre::AxisAlignedBox& box = const_cast<Ogre::AxisAlignedBox&>(entity->getBoundingBox());
-    return reinterpret_cast<AxisAlignedBoxHandle>(&box);
+    return static_cast<AxisAlignedBoxHandle>(&box);
 }
 
 //Ogre::Entity::getBoundingRadius() const
 coiReal entity_get_bounding_radius(EntityHandle handle)
 {
-    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(handle);
+    Ogre::Entity* entity = static_cast<Ogre::Entity*>(handle);
     return entity->getBoundingRadius();
 }
 
