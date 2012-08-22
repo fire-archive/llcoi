@@ -548,7 +548,7 @@ void node_get_local_axes(NodeHandle handle, ref coiMatrix3 result);
 //Ogre::Node::createChild(Ogre::Vector3 const&, Ogre::Quaternion const&)
 NodeHandle node_create_child(NodeHandle handle, const ref coiVector3 translate, const ref coiQuaternion rotate);
 //Ogre::Node::createChild(std::string const&, Ogre::Vector3 const&, Ogre::Quaternion const&)
-NodeHandle node_create_named_child(NodeHandle handle, const char[] name, const ref coiVector3 translate, const ref coiQuaternion rotate);
+NodeHandle node_create_named_child(NodeHandle handle, const char* name, const ref coiVector3 translate, const ref coiQuaternion rotate);
 //Ogre::Node::addChild(Ogre::Node*)
 void node_add_child(NodeHandle handle, NodeHandle child);
 //Ogre::Node::numChildren() const
@@ -556,7 +556,7 @@ ushort node_num_children(NodeHandle handle);
 //Ogre::Node::getChild(unsigned short) const
 NodeHandle node_get_child_by_index(NodeHandle handle, ushort index);
 //Ogre::Node::getChild(std::string const&) const
-NodeHandle node_get_child_by_name(NodeHandle handle, const char[] name);
+NodeHandle node_get_child_by_name(NodeHandle handle, const char* name);
 
 
 // Ogre::SceneNode
@@ -1169,11 +1169,11 @@ void destroy_overlaymanager(OverlayManagerHandle handle);
 //Real getLoadingOrder(void) const;
 coiReal overlaymanager_get_loading_order(OverlayManagerHandle handle);
 //Overlay* create(const String& name);
-OverlayHandle overlaymanager_create(OverlayManagerHandle handle, const char[] name);
+OverlayHandle overlaymanager_create(OverlayManagerHandle handle, const char* name);
 //Overlay* getByName(const String& name);
-OverlayHandle overlaymanager_get_by_name(OverlayManagerHandle handle, const char[] name);
+OverlayHandle overlaymanager_get_by_name(OverlayManagerHandle handle, const char* name);
 //void destroy(const String& name);
-void overlaymanager_destroy_by_name(OverlayManagerHandle handle, const char[] name);
+void overlaymanager_destroy_by_name(OverlayManagerHandle handle, const char* name);
 //void destroy(Overlay* overlay);
 void overlaymanager_destroy(OverlayManagerHandle handle, OverlayHandle overlay_handle);
 //void destroyAll(void);
@@ -1189,13 +1189,13 @@ coiReal overlaymanager_get_viewport_aspect_ratio(OverlayManagerHandle handle);
 //OrientationMode getViewportOrientationMode(void) const;
 orientation_mode overlaymanager_get_viewport_orientation_mode(OverlayManagerHandle handle);
 //bool hasOverlayElement(const String& name, bool isTemplate = false);
-int overlaymanager_has_overlay_element(OverlayManagerHandle handle, const char[] name, int is_template);
+int overlaymanager_has_overlay_element(OverlayManagerHandle handle, const char* name, int is_template);
 //void destroyOverlayElement(const String& instanceName, bool isTemplate = false);
-void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const char[] name, int is_template);
+void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const char* name, int is_template);
 //void destroyAllOverlayElements(bool isTemplate = false);
 void overlaymanager_destroy_all_overlay_elements(OverlayManagerHandle handle);
 //bool isTemplate (String strName) const
-int overlaymanager_is_template(OverlayManagerHandle handle, const char[] name);
+int overlaymanager_is_template(OverlayManagerHandle handle, const char* name);
 //static OverlayManager* getSingletonPtr(void);
 OverlayManagerHandle overlaymanager_get_singleton_ptr();
 
@@ -1261,7 +1261,7 @@ void overlayelement__set_dimensions(OverlayElementHandle handle, coiReal width, 
 //const String& getMaterialName(void) const;
 const(char[]) overlayelement_get_material_name(OverlayElementHandle handle);
 //void setMaterialName(const String& matName);
-void overlayelement_set_material_name(OverlayElementHandle handle, const char[] name);
+void overlayelement_set_material_name(OverlayElementHandle handle, const char* name);
 //void getWorldTransforms(Matrix4* xform) const;
 void overlayelement_get_world_transforms(OverlayElementHandle handle, ref coiMatrix4 xform);
 //void _positionsOutOfDate(void);
@@ -1287,7 +1287,7 @@ void overlayelement__notify_viewport(OverlayElementHandle handle);
 //const String& getTypeName(void) const;
 const(char[]) overlayelement_get_type_name(OverlayElementHandle handle);
 //void setCaption(const DisplayString& text);
-void overlayelement_set_caption(OverlayElementHandle handle, const char[] text);
+void overlayelement_set_caption(OverlayElementHandle handle, const char* text);
 //const DisplayString& getCaption(void) const;
 const(char[]) overlayelement_get_caption(OverlayElementHandle handle);
 //void setColour(const ColourValue& col);
@@ -1325,7 +1325,7 @@ coiReal overlayelement_get_squared_view_depth(OverlayElementHandle handle, Camer
 //void copyFromTemplate(OverlayElement* templateOverlay);
 void overlayelement_copy_from_template(OverlayElementHandle handle, OverlayElementHandle template_handle);
 //OverlayElement* clone(const String& instanceName);
-OverlayElementHandle overlayelement_clone(OverlayElementHandle handle, const char[] instance_name);
+OverlayElementHandle overlayelement_clone(OverlayElementHandle handle, const char* instance_name);
 //const OverlayElement* getSourceTemplate () const;
 const(OverlayElementHandle) overlayelement_get_source_template(OverlayElementHandle handle);
 
@@ -1339,9 +1339,9 @@ void overlaycontainer_add_child_impl(OverlayContainerHandle handle, OverlayEleme
 //void addChildImpl(OverlayContainer* cont);
 void overlaycontainer_add_child_container_impl(OverlayContainerHandle handle, OverlayContainerHandle child_handle);
 //void removeChild(const String& name);
-void overlaycontainer_remove_child(OverlayContainerHandle handle, const char[] name);
+void overlaycontainer_remove_child(OverlayContainerHandle handle, const char* name);
 //OverlayElement* getChild(const String& name);
-OverlayElementHandle overlaycontainer_get_child(OverlayContainerHandle handle, const char[] name);
+OverlayElementHandle overlaycontainer_get_child(OverlayContainerHandle handle, const char* name);
 //void initialise(void);
 void overlaycontainer_initialise(OverlayContainerHandle handle);
 //void _addChild(OverlayElement* elem);
@@ -1349,7 +1349,7 @@ void overlaycontainer__add_child(OverlayContainerHandle handle, OverlayElementHa
 //void _removeChild(OverlayElement* elem);
 void overlaycontainer__remove_child(OverlayContainerHandle handle, OverlayElementHandle elem);
 //void _removeChild(const String& name);
-void overlaycontainer__remove_child_by_name(OverlayContainerHandle handle, const char[] name);
+void overlaycontainer__remove_child_by_name(OverlayContainerHandle handle, const char* name);
 //void _positionsOutOfDate(void);
 void overlaycontainer__positions_out_of_date(OverlayContainerHandle handle);
 //void _update(void);
@@ -1373,4 +1373,4 @@ OverlayElementHandle overlaycontainer_find_element_at(OverlayContainerHandle han
 //void copyFromTemplate(OverlayElement* templateOverlay);
 void overlaycontainer_copy_from_template(OverlayContainerHandle handle, OverlayElementHandle template_overlay);
 //virtual OverlayElement* clone(const String& instanceName);
-OverlayElementHandle overlaycontainer_clone(OverlayContainerHandle handle, const char[] instance_name);
+OverlayElementHandle overlaycontainer_clone(OverlayContainerHandle handle, const char* instance_name);
