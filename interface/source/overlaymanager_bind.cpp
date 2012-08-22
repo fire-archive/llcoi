@@ -142,3 +142,10 @@ int overlaymanager_is_template(OverlayManagerHandle handle, const char* name)
     Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
     return ovm->isTemplate(Ogre::String(name));
 }
+
+OverlayManagerHandle overlaymanager_get_singleton_ptr()
+{
+    return reinterpret_cast<OverlayManagerHandle>(
+        Ogre::OverlayManager::getSingletonPtr()
+    );
+}

@@ -1194,6 +1194,8 @@ void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const c
 void overlaymanager_destroy_all_overlay_elements(OverlayManagerHandle handle);
 //bool isTemplate (String strName) const
 int overlaymanager_is_template(OverlayManagerHandle handle, const char[] name);
+//static OverlayManager* getSingletonPtr(void);
+OverlayManagerHandle overlaymanager_get_singleton_ptr();
 
 
 // Ogre::OverlayElement
