@@ -41,6 +41,7 @@
 
 #include "ogre_interface.h"
 #define OverlayManagerHandle void*
+#define OverlayElementHandle void*
 #define OverlayHandle void*
 
 // overlaymanager_
@@ -75,18 +76,24 @@ DLL int overlaymanager_get_viewport_width(OverlayManagerHandle handle);
 DLL coiReal overlaymanager_get_viewport_aspect_ratio(OverlayManagerHandle handle);
 //OrientationMode getViewportOrientationMode(void) const;
 DLL orientation_mode overlaymanager_get_viewport_orientation_mode(OverlayManagerHandle handle);
-//TODO OverlayElement* createOverlayElement(const String& typeName, const String& instanceName, bool isTemplate = false);
-//TODO OverlayElement* getOverlayElement(const String& name, bool isTemplate = false);
+//OverlayElement* createOverlayElement(const String& typeName, const String& instanceName, bool isTemplate = false);
+DLL OverlayElementHandle overlaymanager_create_overlayelement(OverlayManagerHandle handle, const char* type_name, const char* instance_name, int is_template);
+//OverlayElement* getOverlayElement(const String& name, bool isTemplate = false);
+DLL OverlayElementHandle overlaymanager_get_overlayelement(OverlayManagerHandle handle, const char* name, int is_template);
 //bool hasOverlayElement(const String& name, bool isTemplate = false);
 DLL int overlaymanager_has_overlay_element(OverlayManagerHandle handle, const char* name, int is_template);
 //void destroyOverlayElement(const String& instanceName, bool isTemplate = false);
 DLL void overlaymanager_destroy_overlay_element(OverlayManagerHandle handle, const char* name, int is_template);
-//TODO: void destroyOverlayElement(OverlayElement* pInstance, bool isTemplate = false);
+//void destroyOverlayElement(OverlayElement* pInstance, bool isTemplate = false);
+DLL void overlaymanager_destroy_overlay_element_instance(OverlayManagerHandle handle, OverlayElementHandle instance, int is_template);
 //void destroyAllOverlayElements(bool isTemplate = false);
 DLL void overlaymanager_destroy_all_overlay_elements(OverlayManagerHandle handle);
-//TODO: OverlayElement* createOverlayElementFromTemplate(const String& templateName, const String& typeName, const String& instanceName, bool isTemplate = false);
-//TODO: OverlayElement* cloneOverlayElementFromTemplate(const String& templateName, const String& instanceName);
-//TODO: OverlayElement* createOverlayElementFromFactory(const String& typeName, const String& instanceName);
+//OverlayElement* createOverlayElementFromTemplate(const String& templateName, const String& typeName, const String& instanceName, bool isTemplate = false);
+DLL OverlayElementHandle overlaymanager_create_overlayelement_from_template(OverlayManagerHandle handle, const char* template_name, const char* type_name, const char* instance_name, int is_template);
+//OverlayElement* cloneOverlayElementFromTemplate(const String& templateName, const String& instanceName);
+DLL OverlayElementHandle overlaymanager_clone_overlayelement_from_template(OverlayManagerHandle handle, const char* template_name, const char* instance_name);
+//OverlayElement* createOverlayElementFromFactory(const String& typeName, const String& instanceName);
+DLL OverlayElementHandle overlaymanager_create_overlayelement_from_factory(OverlayManagerHandle handle, const char* type_name, const char* instance_name);
 //bool isTemplate (String strName) const
 DLL int overlaymanager_is_template(OverlayManagerHandle handle, const char* name);
 //static OverlayManager* getSingletonPtr(void);
