@@ -39,9 +39,6 @@
 #include "binding_utils.h"
 #include <OgreOverlayManager.h>
 
-#include <iostream>
-using std::cerr;
-
 OverlayManagerHandle create_overlaymanager()
 {
     Ogre::OverlayManager* ovm = new Ogre::OverlayManager;
@@ -62,13 +59,7 @@ coiReal overlaymanager_get_loading_order(OverlayManagerHandle handle)
 
 OverlayHandle overlaymanager_create(OverlayManagerHandle handle, const char* name)
 {
-    cerr << "cast\n";
     Ogre::OverlayManager* ovm = reinterpret_cast<Ogre::OverlayManager*>(handle);
-    cerr << "name\n";
-    const Ogre::String n(name);
-    cerr << "create\n";
-    Ogre::Overlay* o = ovm->create(n);
-    cerr << "return\n";
     return reinterpret_cast<OverlayHandle>(ovm->create(Ogre::String(name)));
 }
 
