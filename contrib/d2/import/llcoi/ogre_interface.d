@@ -101,6 +101,7 @@ alias void* OverlayHandle;
 alias void* OverlayManagerHandle;
 alias void* OverlayElementHandle;
 alias void* PanelOverlayElementHandle;
+alias void* TextAreaOverlayElementHandle;
 alias void* OverlayContainerHandle;
 
 
@@ -1424,3 +1425,10 @@ const(char[]) paneloverlayelement_get_type_name(const PanelOverlayElementHandle 
 //void setMaterialName(const String& matName);
 void paneloverlayelement_set_material_name(PanelOverlayElementHandle handle, const char* mat_name);
 //TODO: void _updateRenderQueue(RenderQueue* queue);
+
+// Ogre::TextAreaOverlayElement
+//TextAreaOverlayElement(const String& name);
+TextAreaOverlayElementHandle create_textareaoverlayelement(const char* name);
+//~TextAreaOverlayElement();
+void destroy_textareaoverlayelement(TextAreaOverlayElementHandle handle);
+
