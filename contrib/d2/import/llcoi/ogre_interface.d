@@ -879,6 +879,8 @@ void remove_log_listener(LogListenerHandle llh, LogHandle log_handle);
 //Log::removeListener
 void remove_log_listener_ctx(LogListenerHandle llh, LogHandle log_handle);
 
+//Log::logMessage
+void log_log_message(LogHandle handle, const char* message, log_message_level lml, int maskDebug);
 
 // NameValuePairList 
 NameValuePairListHandle create_name_value_pair_list();
