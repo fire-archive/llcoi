@@ -208,14 +208,14 @@ struct rayscenequery_result_entry
 }
 
 
-enum LoggingLevel
+enum logging_level
 {
     LL_LOW = 1,
     LL_NORMAL = 2,
     LL_BOREME = 3
 };
 
-enum LogMessageLevel
+enum log_message_level
 {
     LML_TRIVIAL = 1,
     LML_NORMAL = 2,
@@ -856,10 +856,10 @@ LogHandle logmanager_create_log(const char* name, int default_log, int debugger_
 // having to supply all these variables. If you don't need this control,
 // use log_message above.
 //LogManager::logMessage
-void logmanager_log_message(const char* message, LogMessageLevel lml, int maskDebug, const char* log_name, int skip_message);
+void logmanager_log_message(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
 
 //LogManager::setLogDetail
-void logmanager_set_log_detail(LoggingLevel lvl);
+void logmanager_set_log_detail(logging_level lvl);
 
 //LogManager::destroyLog
 void logmanager_destroy_log(const char* name);
