@@ -331,8 +331,6 @@ typedef enum
     GVA_BOTTOM
 } gui_vertical_alignment;
 
-
-
 typedef enum
 {
     Left,
