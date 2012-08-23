@@ -46,6 +46,7 @@
 #include <OgreHardwareBuffer.h> // HardwareBuffer::Usage
 #include <OgreFrustum.h>        // Ogre::OrientationMode
 #include <OgreOverlayElement.h> // GuiVerticalAlignment, GuiMetricsMode, GuiHorizontalAlignment
+#include <OgreTextAreaOverlayElement.h> // TextAreaOverlayElement::Alignment
 #include <OgreLight.h>          // Light::LightTypes
 #include <OgreNode.h>           // Node::TransformSpace
 #include <OISMouse.h>           // OIS::MouseButtonID
@@ -119,6 +120,9 @@ gui_horizontal_alignment ogre_gui_horizontal_alignment_to_llcoi_gui_horizontal_a
 
 Ogre::GuiVerticalAlignment llcoi_gui_vertical_alignment_to_ogre_gui_vertical_alignment(gui_vertical_alignment gva);
 gui_vertical_alignment ogre_gui_vertical_alignment_to_llcoi_gui_vertical_alignment(Ogre::GuiVerticalAlignment gva);
+
+Ogre::TextAreaOverlayElement::Alignment llcoi_textarea_alignment_to_ogre_textarea_alignment(textarea_overlayelement_alignment align);
+textarea_overlayelement_alignment ogre_textarea_alignment_to_llcoi_textarea_alignment(Ogre::TextAreaOverlayElement::Alignment align);
 
 /* OIS MouseState <-> LLCOI MouseState converters */
 

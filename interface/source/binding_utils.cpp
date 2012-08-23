@@ -420,15 +420,44 @@ void ois_mouse_event_to_llcoi_mouse_event(const OIS::MouseEvent* oevent, MouseEv
 
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll)
 {
-    // FIXME: Finish this.
     logging_level converted;
+
+    switch(ll)
+    {
+        case Ogre::LL_LOW:
+            converted = LL_LOW;
+            break;
+
+        case Ogre::LL_NORMAL:
+            converted = LL_NORMAL;
+            break;
+
+        case Ogre::LL_BOREME:
+            converted = LL_BOREME;
+            break;
+    }
+
     return converted;
 }
 
 Ogre::LoggingLevel llcoi_ll_to_ogre_ll(logging_level ll)
 {
-    // FIXME: Finish this.
     Ogre::LoggingLevel converted;
+
+    switch(ll)
+    {
+        case LL_LOW:
+            converted = Ogre::LL_LOW;
+            break;
+
+        case LL_NORMAL:
+            converted = Ogre::LL_NORMAL;
+            break;
+
+        case LL_BOREME:
+            converted = Ogre::LL_BOREME;
+            break;
+    }
     return converted;
 }
 
@@ -898,5 +927,50 @@ gui_vertical_alignment ogre_gui_vertical_alignment_to_llcoi_gui_vertical_alignme
             break;
 
     }
+    return converted;
+}
+
+
+Ogre::TextAreaOverlayElement::Alignment llcoi_textarea_alignment_to_ogre_textarea_alignment(textarea_overlayelement_alignment align)
+{
+    Ogre::TextAreaOverlayElement::Alignment converted;
+
+    switch(align)
+    {
+        case Left:
+            converted = Ogre::TextAreaOverlayElement::Left;
+            break;
+
+        case Right:
+            converted = Ogre::TextAreaOverlayElement::Right;
+            break;
+
+        case Center:
+            converted = Ogre::TextAreaOverlayElement::Center;
+            break;
+    }
+
+    return converted;
+}
+
+textarea_overlayelement_alignment ogre_textarea_alignment_to_llcoi_textarea_alignment(Ogre::TextAreaOverlayElement::Alignment align)
+{
+    textarea_overlayelement_alignment converted;
+
+    switch(align)
+    {
+        case Ogre::TextAreaOverlayElement::Left:
+            converted = Left;
+            break;
+
+        case Ogre::TextAreaOverlayElement::Right:
+            converted = Right;
+            break;
+
+        case Ogre::TextAreaOverlayElement::Center:
+            converted = Center;
+            break;
+    }
+
     return converted;
 }
