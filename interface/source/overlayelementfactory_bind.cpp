@@ -36,3 +36,16 @@
  ******************************************************************************/
 
 #include "overlayelementfactory_bind.h"
+
+#include <OgreOverlayElementFactory.h>
+#include <OgreOverlayElement.h>
+#include <OgrePanelOverlayElement.h>
+
+class PanelOverlayElementFactoryBind : public Ogre::PanelOverlayElementFactory
+{
+public:
+    Ogre::OverlayElement* createOverlayElement(const Ogre::String& instanceName)
+    {
+    }
+};
+
