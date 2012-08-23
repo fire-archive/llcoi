@@ -187,13 +187,32 @@ void textareaoverlayelement_get_colour_top(const TextAreaOverlayElementHandle ha
 }
 
 //void setAlignment( Alignment a );
-void textareaoverlayelement_set_alignment(TextAreaOverlayElementHandle handle, textarea_overlayelement_alignment a);
+void textareaoverlayelement_set_alignment(TextAreaOverlayElementHandle handle, textarea_overlayelement_alignment a)
+{
+    Ogre::TextAreaOverlayElement* toe = static_cast<Ogre::TextAreaOverlayElement*>(handle);
+    Ogre::TextAreaOverlayElement::Alignment align = llcoi_textarea_alignment_to_ogre_textarea_alignment(a);
+    toe->setAlignment(align);
+}
 
 //Alignment getAlignment() const
-textarea_overlayelement_alignment textareaoverlayelement_get_alignment(const TextAreaOverlayElementHandle handle);
+textarea_overlayelement_alignment textareaoverlayelement_get_alignment(const TextAreaOverlayElementHandle handle)
+{
+    const Ogre::TextAreaOverlayElement* toe = static_cast<const Ogre::TextAreaOverlayElement*>(handle);
+    Ogre::TextAreaOverlayElement::Alignment align = toe->getAlignment();
+    return ogre_textarea_alignment_to_llcoi_textarea_alignment(align);
+}
 
 //void setMetricsMode(GuiMetricsMode gmm);
-void textareaoverlayelement_set_metrics_mode(TextAreaOverlayElementHandle handle, gui_metrics_mode gmm);
+void textareaoverlayelement_set_metrics_mode(TextAreaOverlayElementHandle handle, gui_metrics_mode gmm)
+{
+    Ogre::TextAreaOverlayElement* toe = static_cast<Ogre::TextAreaOverlayElement*>(handle);
+    Ogre::GuiMetricsMode GMM = llcoi_gui_metrics_mode_to_ogre_gui_metrics_mode(gmm);
+    toe->setMetricsMode(GMM);
+}
 
 //void _update(void);
-void textareaoverlayelement__update(TextAreaOverlayElementHandle handle);
+void textareaoverlayelement__update(TextAreaOverlayElementHandle handle)
+{
+    Ogre::TextAreaOverlayElement* toe = static_cast<Ogre::TextAreaOverlayElement*>(handle);
+    toe->_update();
+}

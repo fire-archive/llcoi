@@ -80,11 +80,11 @@ DLL void textareaoverlayelement_get_colour_bottom(const TextAreaOverlayElementHa
 DLL void textareaoverlayelement_set_colour_top(TextAreaOverlayElementHandle handle, const coiColourValue* col);
 //const ColourValue& getColourTop(void) const;
 DLL void textareaoverlayelement_get_colour_top(const TextAreaOverlayElementHandle handle, coiColourValue* result);
-///void setAlignment( Alignment a );
+//void setAlignment( Alignment a );
 DLL void textareaoverlayelement_set_alignment(TextAreaOverlayElementHandle handle, textarea_overlayelement_alignment a);
-///Alignment getAlignment() const
+//Alignment getAlignment() const
 DLL textarea_overlayelement_alignment textareaoverlayelement_get_alignment(const TextAreaOverlayElementHandle handle);
-///void setMetricsMode(GuiMetricsMode gmm);
+//void setMetricsMode(GuiMetricsMode gmm);
 DLL void textareaoverlayelement_set_metrics_mode(TextAreaOverlayElementHandle handle, gui_metrics_mode gmm);
 ///void _update(void);
 DLL void textareaoverlayelement__update(TextAreaOverlayElementHandle handle);
