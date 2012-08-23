@@ -368,6 +368,12 @@ enum gui_vertical_alignment
     GVA_BOTTOM
 };
 
+enum textarea_overlayelement_alignment
+{
+    Left,
+    Right,
+    Center
+};
 
 
 // Root functions
@@ -1431,4 +1437,45 @@ void paneloverlayelement_set_material_name(PanelOverlayElementHandle handle, con
 TextAreaOverlayElementHandle create_textareaoverlayelement(const char* name);
 //~TextAreaOverlayElement();
 void destroy_textareaoverlayelement(TextAreaOverlayElementHandle handle);
-
+//void initialise(void);
+void textareaoverlayelement_initialise(TextAreaOverlayElementHandle handle);
+//void setCaption(const DisplayString& text);
+void textareaoverlayelement_set_caption(TextAreaOverlayElementHandle handle, const char* text);
+//void setCharHeight( Real height );
+void textareaoverlayelement_set_char_height(TextAreaOverlayElementHandle handle, coiReal height);
+//Real getCharHeight() const;
+coiReal textareaoverlayelement_get_char_height(const TextAreaOverlayElementHandle handle);
+//void setSpaceWidth( Real width );
+void textareaoverlayelement_set_space_width(TextAreaOverlayElementHandle handle, coiReal width);
+//Real getSpaceWidth() const;
+coiReal textareaoverlayelement_get_space_width(const TextAreaOverlayElementHandle handle);
+//void setFontName( const String& font );
+void textareaoverlayelement_set_font_name(TextAreaOverlayElementHandle handle, const char* font);
+//const String& getFontName() const;
+const(char[]) textareaoverlayelement_get_font_name(const TextAreaOverlayElementHandle handle);
+//const String& getTypeName(void) const;
+const(char[]) textareaoverlayelement_get_type_name(const TextAreaOverlayElementHandle handle);
+//TODO: const MaterialPtr& getMaterial(void) const;
+//TODO: void getRenderOperation(RenderOperation& op);
+//void setMaterialName(const String& matName);
+void textareaoverlayelement_set_material_name(TextAreaOverlayElementHandle handle, const char* mat_name);
+//void setColour(const ColourValue& col);
+void textareaoverlayelement_set_colour(TextAreaOverlayElementHandle handle, ref const(coiColourValue) col);
+//const ColourValue& getColour(void) const;
+void textareaoverlayelement_get_colour(const TextAreaOverlayElementHandle handle, ref coiColourValue result);
+//void setColourBottom(const ColourValue& col);
+void textareaoverlayelement_set_colour_bottom(TextAreaOverlayElementHandle handle, ref const(coiColourValue) col);
+//const ColourValue& getColourBottom(void) const;
+void textareaoverlayelement_get_colour_bottom(const TextAreaOverlayElementHandle handle, ref coiColourValue result);
+//void setColourTop(const ColourValue& col);
+void textareaoverlayelement_set_colour_top(TextAreaOverlayElementHandle handle, ref const(coiColourValue) col);
+//const ColourValue& getColourTop(void) const;
+void textareaoverlayelement_get_colour_top(const TextAreaOverlayElementHandle handle, ref coiColourValue result);
+//void setAlignment( Alignment a );
+void textareaoverlayelement_set_alignment(TextAreaOverlayElementHandle handle, textarea_overlayelement_alignment a);
+//Alignment getAlignment() const
+textarea_overlayelement_alignment textareaoverlayelement_get_alignment(const TextAreaOverlayElementHandle handle);
+//void setMetricsMode(GuiMetricsMode gmm);
+void textareaoverlayelement_set_metrics_mode(TextAreaOverlayElementHandle handle, gui_metrics_mode gmm);
+//void _update(void);
+void textareaoverlayelement__update(TextAreaOverlayElementHandle handle);
