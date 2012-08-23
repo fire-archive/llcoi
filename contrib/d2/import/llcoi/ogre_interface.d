@@ -100,6 +100,7 @@ alias void* RenderOperationHandle;
 alias void* OverlayHandle;
 alias void* OverlayManagerHandle;
 alias void* OverlayElementHandle;
+alias void* PanelOverlayElementHandle;
 alias void* OverlayContainerHandle;
 
 
@@ -1392,3 +1393,32 @@ OverlayElementHandle overlaycontainer_find_element_at(OverlayContainerHandle han
 void overlaycontainer_copy_from_template(OverlayContainerHandle handle, OverlayElementHandle template_overlay);
 //virtual OverlayElement* clone(const String& instanceName);
 OverlayElementHandle overlaycontainer_clone(OverlayContainerHandle handle, const char* instance_name);
+
+// Ogre::PanelOverlayElement
+
+//PanelOverlayElement(const String& name);
+PanelOverlayElementHandle create_paneloverlayelement(const char* name);
+//~PanelOverlayElement();
+void destroy_paneloverlayelement(PanelOverlayElementHandle handle);
+//void initialise(void);
+void paneloverlayelement_initialise(PanelOverlayElementHandle handle);
+//void setTiling(Real x, Real y, ushort layer = 0);
+void paneloverlayelement_set_tiling(PanelOverlayElementHandle handle, coiReal x, coiReal y, ushort layer);
+//Real getTileX(ushort layer = 0) const;
+coiReal paneloverlayelement_get_tile_x(const PanelOverlayElementHandle handle, ushort layer);
+//Real getTileY(ushort layer = 0) const;
+coiReal paneloverlayelement_get_tile_y(const PanelOverlayElementHandle handle, ushort layer);
+//void setUV(Real u1, Real v1, Real u2, Real v2);
+void paneloverlayelement_set_uv(PanelOverlayElementHandle handle, coiReal u1, coiReal v1, coiReal u2, coiReal v2);
+//void getUV(Real& u1, Real& v1, Real& u2, Real& v2) const;
+void paneloverlayelement_get_uv(const PanelOverlayElementHandle handle, ref coiReal u1, ref coiReal v1, ref coiReal u2, ref coiReal v2);
+//void setTransparent(bool isTransparent);
+void paneloverlayelement_set_transparent(PanelOverlayElementHandle handle, int is_transparent);
+//bool isTransparent(void) const;
+int paneloverlayelement_is_transparent(const PanelOverlayElementHandle handle);
+//const String& getTypeName(void) const;
+const(char[]) paneloverlayelement_get_type_name(const PanelOverlayElementHandle handle);
+//TODO: void getRenderOperation(RenderOperation& op);
+//void setMaterialName(const String& matName);
+void paneloverlayelement_set_material_name(PanelOverlayElementHandle handle, const char* mat_name);
+//TODO: void _updateRenderQueue(RenderQueue* queue);
