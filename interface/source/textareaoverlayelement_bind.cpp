@@ -64,7 +64,7 @@ void textareaoverlayelement_initialise(TextAreaOverlayElementHandle handle)
 void textareaoverlayelement_set_caption(TextAreaOverlayElementHandle handle, const char* text)
 {
     Ogre::TextAreaOverlayElement* toe = static_cast<Ogre::TextAreaOverlayElement*>(handle);
-    toe->setCaption(Ogre::String(text));
+    toe->setCaption(Ogre::DisplayString(text));
 }
 
 //void setCharHeight( Real height );
