@@ -187,9 +187,7 @@ void textareaoverlayelement_get_colour_top(const TextAreaOverlayElementHandle ha
 }
 
 //void setAlignment( Alignment a );
-void textareaoverlayelement_set_alignment(TextAreaOverlayElementHandle handle, textarea_overlayelement_alignment a)
-{
-}
+void textareaoverlayelement_set_alignment(TextAreaOverlayElementHandle handle, textarea_overlayelement_alignment a);
 
 //Alignment getAlignment() const
 textarea_overlayelement_alignment textareaoverlayelement_get_alignment(const TextAreaOverlayElementHandle handle);
