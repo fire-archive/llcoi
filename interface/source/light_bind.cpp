@@ -45,26 +45,26 @@
 LightHandle create_light(const char* light_name)
 {
     Ogre::Light* light = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->createLight(light_name);
-    return reinterpret_cast<LightHandle>(light);
+    return static_cast<LightHandle>(light);
 }
 
 void destroy_light(LightHandle handle)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::Light* light = static_cast<Ogre::Light*>(handle);
     delete light;
 }
 
 //Ogre::Light::setPosition() const
 void light_set_position(LightHandle light_handle, const float x, const float y, const float z)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(light_handle);
+    Ogre::Light* light = static_cast<Ogre::Light*>(light_handle);
     light->setPosition(Ogre::Vector3(x, y, z));
 }
 
 //Ogre::Light::getPosition() const
 void light_get_position_xyz(LightHandle handle, float* x, float* y, float* z)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::Light* light = static_cast<Ogre::Light*>(handle);
     const Ogre::Vector3& p = light->getPosition();
     *x = p.x;
     *y = p.y;
@@ -74,7 +74,7 @@ void light_get_position_xyz(LightHandle handle, float* x, float* y, float* z)
 //Ogre::Light::getPosition() const
 void light_get_position(LightHandle handle, coiVector3* pos)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::Light* light = static_cast<Ogre::Light*>(handle);
     const Ogre::Vector3& p = light->getPosition();
     pos->x = p.x;
     pos->y = p.y;
@@ -84,14 +84,14 @@ void light_get_position(LightHandle handle, coiVector3* pos)
 //Ogre::Light::setDirection(float, float, float)
 void light_set_direction_xyz(LightHandle handle, const float x, const float y, const float z)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::Light* light = static_cast<Ogre::Light*>(handle);
     light->setDirection(x,y,z);
 }
 
 //Ogre::Light::setDirection(Ogre::Vector3 const&)
 void light_set_direction(LightHandle handle, const coiVector3* v)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::Light* light = static_cast<Ogre::Light*>(handle);
     const Ogre::Vector3 direction(v->x, v->y, v->z);
     light->setDirection(direction);
 }
@@ -99,7 +99,7 @@ void light_set_direction(LightHandle handle, const coiVector3* v)
 //Ogre::Light::getDirection() const
 void light_get_direction(LightHandle handle, coiVector3* v)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::Light* light = static_cast<Ogre::Light*>(handle);
     const Ogre::Vector3& d = light->getDirection();
     v->x = d.x;
     v->y = d.y;
@@ -109,7 +109,7 @@ void light_get_direction(LightHandle handle, coiVector3* v)
 //Ogre::Light::setSpotlightRange(Ogre::Radian const&, Ogre::Radian const&, float)
 void light_set_spotlight_range(LightHandle handle, const coiReal i, const coiReal o, coiReal f)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::Light* light = static_cast<Ogre::Light*>(handle);
     const Ogre::Radian inner(i);
     const Ogre::Radian outer(o);
     Ogre::Real falloff(f);
@@ -119,7 +119,7 @@ void light_set_spotlight_range(LightHandle handle, const coiReal i, const coiRea
 
 void light_set_type(LightHandle handle, light_types type)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::Light* light = static_cast<Ogre::Light*>(handle);
     Ogre::Light::LightTypes lt = llcoi_light_types_to_ogre_light_types(type);
     light->setType(lt);
 }
@@ -128,7 +128,7 @@ void light_set_type(LightHandle handle, light_types type)
 //Ogre::Light::setDiffuseColour(Ogre::ColourValue const&)
 void light_set_diffuse_colour(LightHandle handle, const coiColourValue* colour)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::Light* light = static_cast<Ogre::Light*>(handle);
     Ogre::ColourValue cv(colour->r, colour->g, colour->b, colour->a);
     light->setDiffuseColour(cv);
 }
@@ -137,7 +137,7 @@ void light_set_diffuse_colour(LightHandle handle, const coiColourValue* colour)
 //Ogre::Light::setSpecularColour(Ogre::ColourValue const&)
 void light_set_specular_colour(LightHandle handle, const coiColourValue* colour)
 {
-    Ogre::Light* light = reinterpret_cast<Ogre::Light*>(handle);
+    Ogre::Light* light = static_cast<Ogre::Light*>(handle);
     Ogre::ColourValue cv(colour->r, colour->g, colour->b, colour->a);
     light->setSpecularColour(cv);
 }
