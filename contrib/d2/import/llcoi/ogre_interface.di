@@ -1188,6 +1188,8 @@ void overlaymanager_destroy_by_name(OverlayManagerHandle handle, const char* nam
 void overlaymanager_destroy(OverlayManagerHandle handle, OverlayHandle overlay_handle);
 //void destroyAll(void);
 void overlaymanager_destroy_all(OverlayManagerHandle handle);
+// XXX: for debugging.
+//void overlaymanager_list_overlays(OverlayManagerHandle handle);
 //bool hasViewportChanged(void) const;
 int overlaymanager_has_viewport_changed(OverlayManagerHandle handle);
 //int getViewportHeight(void) const;

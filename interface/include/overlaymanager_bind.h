@@ -65,6 +65,7 @@ DLL void overlaymanager_destroy(OverlayManagerHandle handle, OverlayHandle overl
 DLL void overlaymanager_destroy_all(OverlayManagerHandle handle);
 //typedef MapIterator<OverlayMap> OverlayMapIterator;
 //TODO OverlayMapIterator getOverlayIterator(void);
+DLL void overlaymanager_list_overlays(OverlayManagerHandle handle);
 //TODO void _queueOverlaysForRendering(Camera* cam, RenderQueue* pQueue, Viewport *vp);
 //bool hasViewportChanged(void) const;
 DLL int overlaymanager_has_viewport_changed(OverlayManagerHandle handle);

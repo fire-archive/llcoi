@@ -40,6 +40,10 @@
 #include <OgreOverlayManager.h>
 #include <OgreOverlayElement.h>
 
+/*#define protected public
+#include <iostream>
+#include <boost/format.hpp> */
+
 OverlayManagerHandle create_overlaymanager()
 {
     Ogre::OverlayManager* ovm = new Ogre::OverlayManager;
@@ -88,6 +92,30 @@ void overlaymanager_destroy_all(OverlayManagerHandle handle)
     Ogre::OverlayManager* ovm = static_cast<Ogre::OverlayManager*>(handle);
     ovm->destroyAll();
 }
+
+/*
+void overlaymanager_list_overlays(OverlayManagerHandle handle)
+{
+    using std::cerr;
+    using boost::format;
+
+    Ogre::OverlayManager* ovm = static_cast<Ogre::OverlayManager*>(handle);
+
+    Ogre::OverlayManager::OverlayMapIterator map_iter = ovm->getOverlayIterator();
+    Ogre::OverlayManager::OverlayMapIterator::iterator end = map_iter.end();
+
+    for(Ogre::OverlayManager::OverlayMapIterator::iterator start = map_iter.begin(); start != end; ++start)
+    {
+        cerr << map_iter.current()->first << "\n";
+    }
+
+    Ogre::OverlayManager::ElementMap & elements = ovm->getElementMap(false);
+    for(Ogre::OverlayManager::ElementMap::iterator e_iter = elements.begin(); e_iter != elements.end(); ++e_iter)
+    {
+        cerr << e_iter->first << "\n";
+    }
+}
+*/
 
 int overlaymanager_has_viewport_changed(OverlayManagerHandle handle)
 {
