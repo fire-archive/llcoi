@@ -42,4 +42,73 @@
 #include "ogre_interface.h"
 #define MovableObjectHandle void*
 
+///~MovableObject();
+///void _notifyCreator(MovableObjectFactory* fact);
+///MovableObjectFactory*  _getCreator(void) const;
+///void _notifyManager(SceneManager* man);
+///SceneManager* _getManager(void) const;
+///const String& getName(void) const;
+///const String& getMovableType(void) const = 0;
+///Node* getParentNode(void) const;
+///SceneNode* getParentSceneNode(void) const;
+///bool isParentTagPoint() const;
+///void _notifyAttached(Node* parent, bool isTagPoint = false);
+///bool isAttached(void) const;
+///void detachFromParent(void);
+///bool isInScene(void) const;
+///void _notifyMoved(void);
+///void _notifyCurrentCamera(Camera* cam);
+///const AxisAlignedBox& getBoundingBox(void) const = 0;
+///Real getBoundingRadius(void) const = 0;
+///const AxisAlignedBox& getWorldBoundingBox(bool derive = false) const;
+///const Sphere& getWorldBoundingSphere(bool derive = false) const;
+///void _updateRenderQueue(RenderQueue* queue) = 0;
+///void setVisible(bool visible);
+///bool getVisible(void) const;
+///bool isVisible(void) const;
+///void setRenderingDistance(Real dist);
+///Real getRenderingDistance(void) const;
+///void setRenderingMinPixelSize(Real pixelSize);
+///Real getRenderingMinPixelSize() const;
+//void setUserAny(const Any& anything); XXX: deprecated
+//const Any& getUserAny(void) const; XXX: deprecated
+///UserObjectBindings&	getUserObjectBindings();
+///const UserObjectBindings& getUserObjectBindings() const;
+///void setRenderQueueGroup(uint8 queueID);
+///void setRenderQueueGroupAndPriority(uint8 queueID, ushort priority);
+///uint8 getRenderQueueGroup(void) const;
+///const Matrix4& _getParentNodeFullTransform(void) const;
+///void setQueryFlags(uint32 flags);
+///void addQueryFlags(uint32 flags);
+///void removeQueryFlags(uint32 flags);
+///uint32 getQueryFlags(void) const;
+///static void setDefaultQueryFlags(uint32 flags);
+///static uint32 getDefaultQueryFlags();
+///void setVisibilityFlags(uint32 flags)
+///void addVisibilityFlags(uint32 flags);
+///void removeVisibilityFlags(uint32 flags);
+///uint32 getVisibilityFlags(void) const;
+///static void setDefaultVisibilityFlags(uint32 flags);
+///static uint32 getDefaultVisibilityFlags();
+///void setListener(Listener* listener);
+///Listener* getListener(void) const;
+///const LightList& queryLights(void) const;
+///uint32 getLightMask() const;
+///void setLightMask(uint32 lightMask);
+///LightList* _getLightList();
+///EdgeData* getEdgeList(void);
+///bool hasEdgeList(void);
+///ShadowRenderableListIterator getShadowVolumeRenderableIterator(ShadowTechnique shadowTechnique, const Light* light, HardwareIndexBufferSharedPtr* indexBuffer,  bool extrudeVertices, Real extrusionDist, unsigned long flags = 0);
+///const AxisAlignedBox& getLightCapBounds(void) const;
+///const AxisAlignedBox& getDarkCapBounds(const Light& light, Real dirLightExtrusionDist) const;
+///void setCastShadows(bool enabled);
+///bool getCastShadows(void) const;
+///bool getReceivesShadows();
+///Real getPointExtrusionDistance(const Light* l) const;
+///uint32 getTypeFlags(void) const;
+///void visitRenderables(Renderable::Visitor* visitor,bool debugRenderables = false) = 0;
+///void setDebugDisplayEnabled(bool enabled) { mDebugDisplay = enabled; }
+///bool isDebugDisplayEnabled(void) const { return mDebugDisplay; }
+
+
 #endif
