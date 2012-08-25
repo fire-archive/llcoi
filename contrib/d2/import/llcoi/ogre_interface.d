@@ -89,6 +89,8 @@ alias void* WindowListenerHandle;
 alias void* AxisAlignedBoxHandle;
 alias void* RayHandle;
 alias void* SphereHandle;
+alias void* BoneHandle;
+alias void* SkeletonHandle;
 alias void* SceneQueryHandle;
 alias void* RaySceneQueryHandle;
 alias void* RaySceneQueryResultHandle;
@@ -566,6 +568,35 @@ NodeHandle node_get_child_by_index(NodeHandle handle, ushort index);
 //Ogre::Node::getChild(std::string const&) const
 NodeHandle node_get_child_by_name(NodeHandle handle, const char* name);
 
+// Ogre::Bone
+//Bone(unsigned short handle, Skeleton* creator);
+BoneHandle create_bone(ushort handle, SkeletonHandle creator);
+//Bone(const String& name, unsigned short handle, Skeleton* creator);
+BoneHandle create_named_bone(const char* name, ushort handle, SkeletonHandle creator);
+//~Bone();
+void destroy_bone(BoneHandle handle);
+//Bone* createChild(unsigned short handle, const Vector3& translate = Vector3::ZERO, const Quaternion& rotate = Quaternion::IDENTITY);
+BoneHandle bone_create_child(BoneHandle handle, ushort hnd, ref const(coiVector3) translate, ref const(coiQuaternion) rotate);
+//unsigned short getHandle(void) const;
+ushort bone_get_handle(const BoneHandle handle);
+//void setBindingPose(void);
+void bone_set_binding_pose(BoneHandle handle);
+//void reset(void);
+void bone_reset(BoneHandle handle);
+//void setManuallyControlled(bool manuallyControlled);
+void bone_set_manually_controlled(BoneHandle handle, int manually_controlled);
+//bool isManuallyControlled() const;
+int bone_is_manually_controlled(const BoneHandle handle);
+//void _getOffsetTransform(Matrix4& m) const;
+void bone__get_offset_transform(const BoneHandle handle, ref coiMatrix4 m);
+//const Vector3& _getBindingPoseInverseScale(void) const;
+void bone__get_binding_pose_inverse_scale(const BoneHandle handle, ref coiVector3 result);
+//const Vector3& _getBindingPoseInversePosition(void) const;
+void bone__get_binding_pose_inverse_position(const BoneHandle handle, ref coiVector3 result);
+//const Quaternion& _getBindingPoseInverseOrientation(void) const;
+void bone__get_binding_pose_inverse_orientation(const BoneHandle handle, ref coiQuaternion result);
+//void needUpdate(bool forceParentUpdate = false);
+void bone_need_update(BoneHandle handle, int force_parent_update);
 
 // Ogre::SceneNode
 SceneNodeHandle create_child_scenenode(const char* node_name);
