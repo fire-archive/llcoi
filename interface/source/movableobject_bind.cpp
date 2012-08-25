@@ -343,6 +343,13 @@ unsigned int movableobject_get_default_visibility_flags()
 ///Listener* getListener(void) const;
 //movableobject_get_listener(MovableObjectHandle handle, 
 ///const LightList& queryLights(void) const;
+size_t movableobject_query_lights(const MovableObjectHandle handle, LightHandle result)
+{
+    const Ogre::MovableObject* obj = static_cast<const Ogre::MovableObject*>(handle); 
+    const Ogre::LightList& ll = obj->queryLights();
+    size_t len = ogre_light_list_to_llcoi(ll, result);
+}
+
 ///uint32 getLightMask() const;
 unsigned int movableobject_get_light_mask(const MovableObjectHandle handle)
 {

@@ -145,6 +145,7 @@ DLL unsigned int movableobject_get_default_visibility_flags();
 ///Listener* getListener(void) const;
 //movableobject_get_listener(MovableObjectHandle handle, 
 ///const LightList& queryLights(void) const;
+DLL size_t movableobject_query_lights(const MovableObjectHandle handle, LightHandle result);
 ///uint32 getLightMask() const;
 DLL unsigned int movableobject_get_light_mask(const MovableObjectHandle handle); 
 ///void setLightMask(uint32 lightMask);
