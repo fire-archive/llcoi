@@ -45,7 +45,7 @@
 // Entity
 DLL EntityHandle create_entity(const char* entity_name, const char* mesh_file);
 DLL void entity_set_cast_shadows(EntityHandle handle, int enabled);
-DLL int entity_get_cast_shadows(EntityHandle handle);
+DLL int entity_get_cast_shadows(const EntityHandle handle);
 DLL int entity_get_receives_shadows(EntityHandle handle);
 DLL void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name);
 //Ogre::Entity::getBoundingBox() const

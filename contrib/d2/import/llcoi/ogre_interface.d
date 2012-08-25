@@ -908,7 +908,7 @@ EntityHandle create_entity(const char* entity_name, const char* mesh_file);
 
 void entity_set_cast_shadows(EntityHandle handle, int enabled);
 
-int entity_get_cast_shadows(EntityHandle handle);
+int entity_get_cast_shadows(const EntityHandle handle);
 
 int entity_get_receives_shadows(EntityHandle handle);
 

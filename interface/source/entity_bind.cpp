@@ -53,9 +53,9 @@ void entity_set_cast_shadows(EntityHandle handle, int enabled)
     entity->setCastShadows(enabled);
 }
 
-int entity_get_cast_shadows(EntityHandle handle)
+int entity_get_cast_shadows(const EntityHandle handle)
 {
-    Ogre::Entity* entity = static_cast<Ogre::Entity*>(handle);
+    const Ogre::Entity* entity = static_cast<const Ogre::Entity*>(handle);
     return entity->getCastShadows();
 }
 
