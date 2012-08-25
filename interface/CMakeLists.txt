@@ -128,6 +128,7 @@ set(HDRS
     ./include/axisalignedbox_bind.h
     ./include/ray_bind.h
     ./include/sphere_bind.h
+    ./include/bone_bind.h
     ./include/planeboundedvolume_bind.h
     ./include/scenequery_bind.h
     ./include/overlay_bind.h
@@ -169,6 +170,7 @@ set(SRCS
     ./source/axisalignedbox_bind.cpp
     ./source/ray_bind.cpp
     ./source/sphere_bind.cpp
+    ./source/bone_bind.cpp
     ./source/planeboundedvolume_bind.cpp
     ./source/scenequery_bind.cpp
     ./source/overlay_bind.cpp
@@ -254,6 +256,7 @@ if(${LLCOI_DYNAMIC_BUILD})
                 ./include/axisalignedbox_bind.h
                 ./include/ray_bind.h
                 ./include/sphere_bind.h
+                ./include/bone_bind.h
                 ./include/planeboundedvolume_bind.h
                 ./include/scenequery_bind.h
                 ./include/overlay_bind.h
