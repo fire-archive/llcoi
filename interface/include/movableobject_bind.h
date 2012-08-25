@@ -121,7 +121,7 @@ DLL void movableobject_set_query_flags(MovableObjectHandle handle, unsigned int 
 ///void addQueryFlags(uint32 flags);
 DLL void movableobject_add_query_flags(MovableObjectHandle handle, unsigned int flags);
 ///void removeQueryFlags(uint32 flags);
-void movableobject_remove_query_flags(MovableObjectHandle handle, unsigned int flags);
+DLL void movableobject_remove_query_flags(MovableObjectHandle handle, unsigned int flags);
 ///uint32 getQueryFlags(void) const;
 DLL unsigned int movableobject_get_query_flags(const MovableObjectHandle handle); 
 ///static void setDefaultQueryFlags(uint32 flags);
