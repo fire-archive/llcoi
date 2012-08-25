@@ -72,17 +72,17 @@ void entity_set_material_name(EntityHandle handle, const char* material_name, co
 }
 
 //Ogre::Entity::getBoundingBox() const
-AxisAlignedBoxHandle entity_get_bounding_box(EntityHandle handle)
+const AxisAlignedBoxHandle entity_get_bounding_box(const EntityHandle handle)
 {
-    Ogre::Entity* entity = static_cast<Ogre::Entity*>(handle);
-    Ogre::AxisAlignedBox& box = const_cast<Ogre::AxisAlignedBox&>(entity->getBoundingBox());
-    return static_cast<AxisAlignedBoxHandle>(&box);
+    const Ogre::Entity* entity = static_cast<const Ogre::Entity*>(handle);
+    const Ogre::AxisAlignedBox& box = const_cast<Ogre::AxisAlignedBox&>(entity->getBoundingBox());
+    return static_cast<const AxisAlignedBoxHandle>(&box);
 }
 
 //Ogre::Entity::getBoundingRadius() const
-coiReal entity_get_bounding_radius(EntityHandle handle)
+coiReal entity_get_bounding_radius(const EntityHandle handle)
 {
-    Ogre::Entity* entity = static_cast<Ogre::Entity*>(handle);
+    const Ogre::Entity* entity = static_cast<const Ogre::Entity*>(handle);
     return entity->getBoundingRadius();
 }
 
