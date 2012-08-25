@@ -40,16 +40,34 @@
 #include "ogre_interface.h"
 
 #define EntityHandle void*
+#define CameraHandle void*
 #define AxisAlignedBoxHandle void*
 
 // Entity
 DLL EntityHandle create_entity(const char* entity_name, const char* mesh_file);
+///Ogre::Entity::getNumSubEntities() const
+DLL unsigned int entity_get_num_sub_entities(const EntityHandle handle);
+//Ogre::Entity::clone(std::string const&) const
+DLL EntityHandle entity_clone(const EntityHandle handle, const char* name);
 DLL void entity_set_cast_shadows(EntityHandle handle, int enabled);
 DLL int entity_get_cast_shadows(const EntityHandle handle);
 DLL int entity_get_receives_shadows(EntityHandle handle);
+///Ogre::Entity::setMaterialName(std::string const&, std::string const&)
+///Ogre::Entity::setMaterial(Ogre::MaterialPtr const&)
 DLL void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name);
+///Ogre::Entity::_notifyCurrentCamera(Ogre::Camera*)
+DLL void entity__notify_current_camera(EntityHandle handle, CameraHandle cam);
+///Ogre::Entity::setRenderQueueGroup(unsigned char)
+DLL void entity_set_render_queue_group(EntityHandle handle, unsigned char queue_id);
+///Ogre::Entity::setRenderQueueGroupAndPriority(unsigned char, unsigned short)
+DLL void entity_set_render_queue_group_and_priority(EntityHandle handle, unsigned char queue_id, unsigned short priority);
 //Ogre::Entity::getBoundingBox() const
 DLL const AxisAlignedBoxHandle entity_get_bounding_box(const EntityHandle handle);
 //Ogre::Entity::getBoundingRadius() const
 DLL coiReal entity_get_bounding_radius(const EntityHandle handle);
+//Ogre::Entity::setDisplaySkeleton(bool)
+DLL void entity_set_display_skeleton(EntityHandle handle, int display);
+//Ogre::Entity::getDisplaySkeleton() const
+DLL int entity_get_display_skeleton(const EntityHandle handle);
+
 #endif

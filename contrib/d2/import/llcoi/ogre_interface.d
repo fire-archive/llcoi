@@ -784,9 +784,9 @@ void movableobject__notify_manager(MovableObjectHandle handle, SceneManagerHandl
 ///SceneManager* _getManager(void) const;
 SceneManagerHandle movableobject__get_manager(const MovableObjectHandle handle);
 ///const String& getName(void) const;
-const(char[]) movableobject_get_name(const MovableObjectHandle handle);
+const(char*) movableobject_get_name(const MovableObjectHandle handle);
 ///const String& getMovableType(void) const = 0;
-const(char[]) movableobject_get_movable_type(const MovableObjectHandle handle);
+const(char*) movableobject_get_movable_type(const MovableObjectHandle handle);
 ///Node* getParentNode(void) const;
 NodeHandle movableobject_get_parent_node(const MovableObjectHandle handle);
 ///SceneNode* getParentSceneNode(void) const;
@@ -905,18 +905,30 @@ int movableobject_is_debug_display_enabled(const MovableObjectHandle handle);
 
 // Ogre::Entity
 EntityHandle create_entity(const char* entity_name, const char* mesh_file);
-
+///Ogre::Entity::getNumSubEntities() const
+uint entity_get_num_sub_entities(const EntityHandle handle);
+//Ogre::Entity::clone(std::string const&) const
+EntityHandle entity_clone(const EntityHandle handle, const char* name);
 void entity_set_cast_shadows(EntityHandle handle, int enabled);
-
 int entity_get_cast_shadows(const EntityHandle handle);
-
 int entity_get_receives_shadows(EntityHandle handle);
-
+///Ogre::Entity::setMaterialName(std::string const&, std::string const&)
+///Ogre::Entity::setMaterial(Ogre::MaterialPtr const&)
 void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name);
+///Ogre::Entity::_notifyCurrentCamera(Ogre::Camera*)
+void entity__notify_current_camera(EntityHandle handle, CameraHandle cam);
+///Ogre::Entity::setRenderQueueGroup(unsigned char)
+void entity_set_render_queue_group(EntityHandle handle, ubyte queue_id);
+///Ogre::Entity::setRenderQueueGroupAndPriority(unsigned char, unsigned short)
+void entity_set_render_queue_group_and_priority(EntityHandle handle, ubyte queue_id, ushort priority);
 //Ogre::Entity::getBoundingBox() const
 const(AxisAlignedBoxHandle) entity_get_bounding_box(const EntityHandle handle);
 //Ogre::Entity::getBoundingRadius() const
 coiReal entity_get_bounding_radius(const EntityHandle handle);
+//Ogre::Entity::setDisplaySkeleton(bool)
+void entity_set_display_skeleton(EntityHandle handle, int display);
+//Ogre::Entity::getDisplaySkeleton() const
+int entity_get_display_skeleton(const EntityHandle handle);
 
 // Light
 LightHandle create_light(const char* light_name);
@@ -1248,7 +1260,7 @@ void rayscenequeryresult_at(RaySceneQueryResultHandle handle, int index, ref ray
 
 // Ogre::Overlay
 //const String& getName(void) const;
-const(char[]) overlay_get_name(OverlayHandle handle);
+const(char*) overlay_get_name(OverlayHandle handle);
 //void setZOrder(ushort zorder);
 void overlay_set_zorder(OverlayHandle handle, ushort zorder);
 //ushort getZOrder(void) const;
@@ -1294,7 +1306,7 @@ coiReal overlay_get_scale_y(OverlayHandle handle);
 //void _getWorldTransforms(Matrix4* xform) const;
 void overlay_get_world_transforms(OverlayHandle handle, ref coiMatrix4 xform);
 //const String& getOrigin(void) const;
-const(char[]) overlay_get_origin(OverlayHandle handle);
+const(char*) overlay_get_origin(OverlayHandle handle);
 //void _notifyOrigin(const String& origin);
 void overlay_notify_origin(OverlayHandle handle, const(char*) origin);
 
@@ -1358,7 +1370,7 @@ void destroy_overlayelement(OverlayElementHandle handle);
 //void initialise(void)
 void overlayelement_initialise(OverlayElementHandle handle);
 //const String& getName(void) const;
-const(char[]) overlayelement_get_name(OverlayElementHandle handle);
+const(char*) overlayelement_get_name(OverlayElementHandle handle);
 //void show(void);
 void overlayelement_show(OverlayElementHandle handle);
 //void hide(void);
@@ -1410,7 +1422,7 @@ void overlayelement__set_position(OverlayElementHandle handle, coiReal left, coi
 //void _setDimensions(Real width, Real height);
 void overlayelement__set_dimensions(OverlayElementHandle handle, coiReal width, coiReal height);
 //const String& getMaterialName(void) const;
-const(char[]) overlayelement_get_material_name(OverlayElementHandle handle);
+const(char*) overlayelement_get_material_name(OverlayElementHandle handle);
 //void setMaterialName(const String& matName);
 void overlayelement_set_material_name(OverlayElementHandle handle, const char* name);
 //void getWorldTransforms(Matrix4* xform) const;
@@ -1438,11 +1450,11 @@ void overlayelement__notify_world_transforms(OverlayElementHandle handle, const 
 //void _notifyViewport();
 void overlayelement__notify_viewport(OverlayElementHandle handle);
 //const String& getTypeName(void) const;
-const(char[]) overlayelement_get_type_name(OverlayElementHandle handle);
+const(char*) overlayelement_get_type_name(OverlayElementHandle handle);
 //void setCaption(const DisplayString& text);
 void overlayelement_set_caption(OverlayElementHandle handle, const char* text);
 //const DisplayString& getCaption(void) const;
-const(char[]) overlayelement_get_caption(OverlayElementHandle handle);
+const(char*) overlayelement_get_caption(OverlayElementHandle handle);
 //void setColour(const ColourValue& col);
 void overlayelement_set_colour(OverlayElementHandle handle, const ref coiColourValue col);
 //const ColourValue& getColour(void) const;
@@ -1555,7 +1567,7 @@ void paneloverlayelement_set_transparent(PanelOverlayElementHandle handle, int i
 //bool isTransparent(void) const;
 int paneloverlayelement_is_transparent(const PanelOverlayElementHandle handle);
 //const String& getTypeName(void) const;
-const(char[]) paneloverlayelement_get_type_name(const PanelOverlayElementHandle handle);
+const(char*) paneloverlayelement_get_type_name(const PanelOverlayElementHandle handle);
 //TODO: void getRenderOperation(RenderOperation& op);
 //void setMaterialName(const String& matName);
 void paneloverlayelement_set_material_name(PanelOverlayElementHandle handle, const char* mat_name);
@@ -1581,9 +1593,9 @@ coiReal textareaoverlayelement_get_space_width(const TextAreaOverlayElementHandl
 //void setFontName( const String& font );
 void textareaoverlayelement_set_font_name(TextAreaOverlayElementHandle handle, const char* font);
 //const String& getFontName() const;
-const(char[]) textareaoverlayelement_get_font_name(const TextAreaOverlayElementHandle handle);
+const(char*) textareaoverlayelement_get_font_name(const TextAreaOverlayElementHandle handle);
 //const String& getTypeName(void) const;
-const(char[]) textareaoverlayelement_get_type_name(const TextAreaOverlayElementHandle handle);
+const(char*) textareaoverlayelement_get_type_name(const TextAreaOverlayElementHandle handle);
 //TODO: const MaterialPtr& getMaterial(void) const;
 //TODO: void getRenderOperation(RenderOperation& op);
 //void setMaterialName(const String& matName);
