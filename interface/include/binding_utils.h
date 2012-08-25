@@ -86,7 +86,8 @@ Ogre::HardwareBuffer::Usage llcoi_hbu_to_ogre_hbu(hardware_buffer_usage llcoi_hb
 light_types ogre_light_type_to_llcoi_light_type(Ogre::Light::LightTypes type);
 Ogre::Light::LightTypes llcoi_light_types_to_ogre_light_types(light_types type);
 
-size_t ogre_light_list_to_llcoi(const Ogre::LightList& l, LightHandle c_vector);
+size_t ogre_light_list_to_llcoi(const Ogre::LightList& l, const LightHandle c_vector);
+size_t ogre_light_list_to_llcoi(Ogre::LightList& l, LightHandle c_vector);
 
 
 Ogre::Node::TransformSpace llcoi_ts_to_ogre_ts(transform_space llcoi_ts);

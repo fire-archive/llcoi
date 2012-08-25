@@ -294,6 +294,12 @@ transform_space ogre_ts_to_llcoi_ts(Ogre::Node::TransformSpace ogre_ts)
     return converted;
 }
 
+size_t ogre_light_list_to_llcoi(const Ogre::LightList& l, const LightHandle c_vector)
+{
+    c_vector = static_cast<const LightHandle>(&l[0]);
+    return l.size();
+}
+
 size_t ogre_light_list_to_llcoi(Ogre::LightList& l, LightHandle c_vector)
 {
     c_vector = static_cast<LightHandle>(&l[0]);
