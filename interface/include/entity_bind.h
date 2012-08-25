@@ -49,7 +49,7 @@ DLL int entity_get_cast_shadows(EntityHandle handle);
 DLL int entity_get_receives_shadows(EntityHandle handle);
 DLL void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name);
 //Ogre::Entity::getBoundingBox() const
-DLL AxisAlignedBoxHandle entity_get_bounding_box(EntityHandle handle);
+DLL const AxisAlignedBoxHandle entity_get_bounding_box(const EntityHandle handle);
 //Ogre::Entity::getBoundingRadius() const
-DLL coiReal entity_get_bounding_radius(EntityHandle handle);
+DLL coiReal entity_get_bounding_radius(const EntityHandle handle);
 #endif
