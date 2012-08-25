@@ -273,7 +273,11 @@ void movableobject_add_query_flags(MovableObjectHandle handle, unsigned int flag
 }
 
 ///void removeQueryFlags(uint32 flags);
-void movableobject_remove_query_flags(MovableObjectHandle handle, unsigned int flags);
+void movableobject_remove_query_flags(MovableObjectHandle handle, unsigned int flags)
+{
+    Ogre::MovableObject* obj = static_cast<Ogre::MovableObject*>(handle);
+    obj->removeQueryFlags(flags);
+}
 
 ///uint32 getQueryFlags(void) const;
 unsigned int movableobject_get_query_flags(const MovableObjectHandle handle)
@@ -295,50 +299,141 @@ unsigned int movableobject_get_default_query_flags()
 }
 
 ///void setVisibilityFlags(uint32 flags)
-void movableobject_set_visibility_flags(MovableObjectHandle handle, unsigned int flags);
+void movableobject_set_visibility_flags(MovableObjectHandle handle, unsigned int flags)
+{ 
+    Ogre::MovableObject* obj = static_cast<Ogre::MovableObject*>(handle);
+    obj->setVisibilityFlags(flags);
+}
+
 ///void addVisibilityFlags(uint32 flags);
-void movableobject_add_visibility_flags(MovableObjectHandle handle, unsigned int flags);
+void movableobject_add_visibility_flags(MovableObjectHandle handle, unsigned int flags)
+{
+    Ogre::MovableObject* obj = static_cast<Ogre::MovableObject*>(handle);
+    obj->addVisibilityFlags(flags);
+}
+
 ///void removeVisibilityFlags(uint32 flags);
-void movableobject_remove_visibility_flags(MovableObjectHandle handle, unsigned int flags);
+void movableobject_remove_visibility_flags(MovableObjectHandle handle, unsigned int flags)
+{
+    Ogre::MovableObject* obj = static_cast<Ogre::MovableObject*>(handle);
+    obj->removeVisibilityFlags(flags);
+}
+
 ///uint32 getVisibilityFlags(void) const;
-unsigned int movableobject_get_visibility_flags(const MovableObjectHandle handle); 
+unsigned int movableobject_get_visibility_flags(const MovableObjectHandle handle)
+{
+    const Ogre::MovableObject* obj = static_cast<const Ogre::MovableObject*>(handle);
+    return obj->getVisibilityFlags();
+}
+
 ///static void setDefaultVisibilityFlags(uint32 flags);
-void movableobject_set_default_visibility_flags(unsigned int flags);
+void movableobject_set_default_visibility_flags(unsigned int flags)
+{
+    Ogre::MovableObject::setDefaultVisibilityFlags(flags);
+}
+
 ///static uint32 getDefaultVisibilityFlags();
-unsigned int movableobject_get_default_visibility_flags();
+unsigned int movableobject_get_default_visibility_flags()
+{
+    return Ogre::MovableObject::getDefaultVisibilityFlags();
+}
+
 ///void setListener(Listener* listener);
 //movableobject_set_listener(MovableObjectHandle handle, 
 ///Listener* getListener(void) const;
 //movableobject_get_listener(MovableObjectHandle handle, 
 ///const LightList& queryLights(void) const;
 ///uint32 getLightMask() const;
-unsigned int movableobject_get_light_mask(const MovableObjectHandle handle); 
+unsigned int movableobject_get_light_mask(const MovableObjectHandle handle)
+{
+    const Ogre::MovableObject* obj = static_cast<const Ogre::MovableObject*>(handle);
+    return obj->getLightMask();
+}
+
 ///void setLightMask(uint32 lightMask);
-void movableobject_set_light_mask(MovableObjectHandle handle, unsigned int light_mask);
+void movableobject_set_light_mask(MovableObjectHandle handle, unsigned int light_mask)
+{
+    Ogre::MovableObject* obj = static_cast<Ogre::MovableObject*>(handle);
+    obj->setLightMask(light_mask);
+}
+
 ///LightList* _getLightList();
 ///EdgeData* getEdgeList(void);
 ///bool hasEdgeList(void);
-int movableobject_has_edge_list(MovableObjectHandle handle);
+int movableobject_has_edge_list(MovableObjectHandle handle)
+{
+    Ogre::MovableObject* obj = static_cast<Ogre::MovableObject*>(handle);
+    return obj->hasEdgeList();
+}
+
 ///ShadowRenderableListIterator getShadowVolumeRenderableIterator(ShadowTechnique shadowTechnique, const Light* light, HardwareIndexBufferSharedPtr* indexBuffer,  bool extrudeVertices, Real extrusionDist, unsigned long flags = 0);
 ///const AxisAlignedBox& getLightCapBounds(void) const;
-const AxisAlignedBoxHandle movableobject_get_light_cap_bounds(const MovableObjectHandle handle); 
+const AxisAlignedBoxHandle movableobject_get_light_cap_bounds(const MovableObjectHandle handle)
+{
+    const Ogre::MovableObject* obj = static_cast<const Ogre::MovableObject*>(handle);
+    const Ogre::AxisAlignedBox& aabb = obj->getLightCapBounds();
+    return static_cast<const AxisAlignedBoxHandle>(&aabb);
+}
+
 ///const AxisAlignedBox& getDarkCapBounds(const Light& light, Real dirLightExtrusionDist) const;
-const AxisAlignedBoxHandle movableobject_get_dark_cap_bounds(const MovableObjectHandle handle, coiReal dir_light_extrusion_dist);
+const AxisAlignedBoxHandle movableobject_get_dark_cap_bounds(const MovableObjectHandle handle, const LightHandle light, coiReal dir_light_extrusion_dist)
+{
+    const Ogre::MovableObject* obj = static_cast<const Ogre::MovableObject*>(handle);
+    const Ogre::Light* l = static_cast<const Ogre::Light*>(light);
+    const Ogre::AxisAlignedBox& aabb = obj->getDarkCapBounds(*l, dir_light_extrusion_dist);
+    return static_cast<const AxisAlignedBoxHandle>(&aabb);
+}
+
 ///void setCastShadows(bool enabled);
-void movableobject_set_cast_shadows(MovableObjectHandle handle);
+void movableobject_set_cast_shadows(MovableObjectHandle handle, int enabled)
+{
+    Ogre::MovableObject* obj = static_cast<Ogre::MovableObject*>(handle);
+    obj->setCastShadows(enabled);
+}
+
 ///bool getCastShadows(void) const;
-int movableobject_get_cast_shadows(const MovableObjectHandle handle); 
+int movableobject_get_cast_shadows(const MovableObjectHandle handle)
+{
+    const Ogre::MovableObject* obj = static_cast<const Ogre::MovableObject*>(handle);
+    return obj->getCastShadows();
+}
+
 ///bool getReceivesShadows();
-int movableobject_get_receives_shadows(MovableObjectHandle handle);
+int movableobject_get_receives_shadows(MovableObjectHandle handle)
+{
+    Ogre::MovableObject* obj = static_cast<Ogre::MovableObject*>(handle);
+    return obj->getReceivesShadows();
+}
+
 ///Real getPointExtrusionDistance(const Light* l) const;
-coiReal movableobject_get_point_extrusion_distance(const MovableObjectHandle handle, const LightHandle l);
+coiReal movableobject_get_point_extrusion_distance(const MovableObjectHandle handle, const LightHandle l)
+{
+    const Ogre::MovableObject* obj = static_cast<const Ogre::MovableObject*>(handle);
+    const Ogre::Light* light = static_cast<const Ogre::Light*>(l);
+    return obj->getPointExtrusionDistance(light);
+}
+
 ///uint32 getTypeFlags(void) const;
-unsigned int movableobject_get_type_flags(const MovableObjectHandle handle);
+unsigned int movableobject_get_type_flags(const MovableObjectHandle handle)
+{
+    const Ogre::MovableObject* obj = static_cast<const Ogre::MovableObject*>(handle); 
+    return obj->getTypeFlags();
+}
+
 ///void visitRenderables(Renderable::Visitor* visitor,bool debugRenderables = false) = 0;
 ///void setDebugDisplayEnabled(bool enabled);
-void movableobject_set_debug_display_enabled(MovableObjectHandle handle, int enabled);
+void movableobject_set_debug_display_enabled(MovableObjectHandle handle, int enabled)
+{
+    Ogre::MovableObject* obj = static_cast<Ogre::MovableObject*>(handle);
+    obj->setDebugDisplayEnabled(enabled);
+}
+
 ///bool isDebugDisplayEnabled(void) const;
-int movableobject_is_debug_display_enabled(const MovableObjectHandle handle); 
+int movableobject_is_debug_display_enabled(const MovableObjectHandle handle)
+{
+    const Ogre::MovableObject* obj = static_cast<const Ogre::MovableObject*>(handle);
+    return obj->isDebugDisplayEnabled();
+}
 
 
 
