@@ -338,4 +338,11 @@ typedef enum
     Center
 } textarea_overlayelement_alignment;
 
+typedef enum
+{
+    ANIMBLEND_AVERAGE = 0,
+    ANIMBLEND_CUMULATIVE = 1
+} skeleton_animation_blend_mode;
+
+
 #endif

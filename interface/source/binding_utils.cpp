@@ -986,3 +986,40 @@ textarea_overlayelement_alignment ogre_textarea_alignment_to_llcoi_textarea_alig
 
     return converted;
 }
+
+// from OgreSkeleton.h
+Ogre::SkeletonAnimationBlendMode llcoi_skeleton_blend_mode_to_ogre(skeleton_animation_blend_mode mode)
+{
+    Ogre::SkeletonAnimationBlendMode converted;
+
+    switch(mode)
+    {
+        case ANIMBLEND_AVERAGE:
+            converted = Ogre::ANIMBLEND_AVERAGE;
+            break;
+
+        case ANIMBLEND_CUMULATIVE:
+            converted = Ogre::ANIMBLEND_CUMULATIVE;
+            break;
+    }
+
+    return converted;
+}
+
+skeleton_animation_blend_mode ogre_skeleton_blend_mode_to_llcoi(Ogre::SkeletonAnimationBlendMode mode)
+{
+    skeleton_animation_blend_mode converted;
+
+    switch(mode)
+    {
+        case Ogre::ANIMBLEND_AVERAGE:
+            converted = ANIMBLEND_AVERAGE;
+            break;
+
+        case Ogre::ANIMBLEND_CUMULATIVE:
+            converted = ANIMBLEND_CUMULATIVE;
+            break;
+    }
+
+    return converted;
+}

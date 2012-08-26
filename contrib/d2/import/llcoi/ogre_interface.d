@@ -377,6 +377,13 @@ enum textarea_overlayelement_alignment
     Center
 };
 
+enum skeleton_animation_blend_mode
+{
+    ANIMBLEND_AVERAGE = 0,
+    ANIMBLEND_CUMULATIVE = 1
+};
+
+
 
 // Root functions
 void release_engine();
@@ -597,6 +604,81 @@ void bone__get_binding_pose_inverse_position(const BoneHandle handle, ref coiVec
 void bone__get_binding_pose_inverse_orientation(const BoneHandle handle, ref coiQuaternion result);
 //void needUpdate(bool forceParentUpdate = false);
 void bone_need_update(BoneHandle handle, int force_parent_update);
+
+// Ogre::Skeleton
+
+//Skeleton(ResourceManager* creator, const String& name, ResourceHandle handle, const String& group, bool isManual = false, ManualResourceLoader* loader = 0);
+//~Skeleton();
+void destroy_skeleton(SkeletonHandle handle);
+//Bone* createBone(void);
+BoneHandle skeleton_create_bone(SkeletonHandle handle);
+//Bone* createBone(unsigned short handle);
+BoneHandle skeleton_create_bone_with_handle(SkeletonHandle handle, ushort bone_handle);
+//Bone* createBone(const String& name);
+BoneHandle skeleton_create_bone_with_name(SkeletonHandle handle, const char* name);
+//Bone* createBone(const String& name, unsigned short handle);
+BoneHandle skeleton_create_bone_with_name_and_handle(SkeletonHandle handle, const char* name, ushort bone_handle);
+//unsigned short getNumBones(void) const;
+ushort skeleton_get_num_bones(const SkeletonHandle handle);
+//Bone* getRootBone(void) const;
+BoneHandle skeleton_get_root_bone(const SkeletonHandle handle);
+//typedef vector<Bone*>::type BoneList;
+//typedef VectorIterator<BoneList> BoneIterator;
+//TODO: BoneIterator getRootBoneIterator(void);
+//TODO: BoneIterator getBoneIterator(void);
+//Bone* getBone(unsigned short handle) const;
+BoneHandle skeleton_get_bone_by_handle(const SkeletonHandle handle, ushort bone_handle);
+//Bone* getBone(const String& name) const;
+BoneHandle skeleton_get_bone_by_name(const SkeletonHandle handle, const char* name);
+//bool hasBone(const String& name) const;
+int skeleton_has_bone(const SkeletonHandle handle, const char* name);
+//void setBindingPose(void);
+void skeleton_set_binding_pose(SkeletonHandle handle);
+//void reset(bool resetManualBones = false);
+void skeleton_reset(SkeletonHandle handle, int reset_manual_bones);
+//TODO: Animation* createAnimation(const String& name, Real length);
+//TODO: Animation* getAnimation(const String& name, const LinkedSkeletonAnimationSource** linker) const;
+//TODO: Animation* getAnimation(const String& name) const;
+//TODO: Animation* _getAnimationImpl(const String& name, const LinkedSkeletonAnimationSource** linker = 0) const;
+//bool hasAnimation(const String& name) const;
+int skeleton_has_animation(const SkeletonHandle handle, const char* name);
+//void removeAnimation(const String& name);
+void skeleton_remove_animation(SkeletonHandle handle, const char* name);
+//TODO: void setAnimationState(const AnimationStateSet& animSet);
+//TODO: void _initAnimationState(AnimationStateSet* animSet);
+//TODO: void _refreshAnimationState(AnimationStateSet* animSet);
+//void _getBoneMatrices(Matrix4* pMatrices);
+void skeleton__get_bone_matrices(SkeletonHandle handle, coiMatrix4* matrices);
+//unsigned short getNumAnimations(void) const;
+ushort skeleton_get_num_animations(const SkeletonHandle handle);
+//TODO: Animation* getAnimation(unsigned short index) const;
+//SkeletonAnimationBlendMode getBlendMode() const;
+skeleton_animation_blend_mode skeleton_get_blend_mode(const SkeletonHandle handle);
+//void setBlendMode(SkeletonAnimationBlendMode state);
+void skeleton_set_blend_mode(SkeletonHandle handle, skeleton_animation_blend_mode state);
+//void _updateTransforms(void);
+void skeleton__update_transforms(SkeletonHandle handle);
+//void optimiseAllAnimations(bool preservingIdentityNodeTracks = false);
+void skeleton_optimise_all_animations(SkeletonHandle handle, int preserving_identity_node_tracks);
+//void addLinkedSkeletonAnimationSource(const String& skelName, Real scale = 1.0f);
+void skeleton_add_linked_skeleton_animation_source(SkeletonHandle handle, const char* skel_name, coiReal scale);
+//void removeAllLinkedSkeletonAnimationSources(void);
+void skeleton_remove_all_linked_skeleton_animation_sources(SkeletonHandle handle);
+//typedef vector<LinkedSkeletonAnimationSource>::type LinkedSkeletonAnimSourceList;
+//typedef ConstVectorIterator<LinkedSkeletonAnimSourceList> LinkedSkeletonAnimSourceIterator;
+//TODO: LinkedSkeletonAnimSourceIterator getLinkedSkeletonAnimationSourceIterator(void) const;
+//void _notifyManualBonesDirty(void);
+void skeleton__notify_manual_bones_dirty(SkeletonHandle handle);
+//void _notifyManualBoneStateChange(Bone* bone);
+void skeleton__notify_manual_bone_state_change(SkeletonHandle handle, BoneHandle bone);
+//bool getManualBonesDirty(void) const;
+int skeleton_get_manual_bones_dirty(const SkeletonHandle handle);
+//bool hasManualBones(void) const;
+int skeleton_has_manual_bones(const SkeletonHandle handle);
+//typedef vector<ushort>::type BoneHandleMap;
+//TODO: void _mergeSkeletonAnimations(const Skeleton* source, const BoneHandleMap& boneHandleMap, const StringVector& animations = StringVector());
+//TODO: void _buildMapBoneByHandle(const Skeleton* source, BoneHandleMap& boneHandleMap) const;
+//TODO: void _buildMapBoneByName(const Skeleton* source,BoneHandleMap& boneHandleMap) const;
 
 // Ogre::SceneNode
 SceneNodeHandle create_child_scenenode(const char* node_name);

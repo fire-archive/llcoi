@@ -51,6 +51,7 @@
 #include <OgreTextAreaOverlayElement.h> // TextAreaOverlayElement::Alignment
 #include <OgreLight.h>          // Light::LightTypes
 #include <OgreNode.h>           // Node::TransformSpace
+#include <OgreSkeleton.h>       // SkeletonAnimationBlendMode
 #include <OISMouse.h>           // OIS::MouseButtonID
 
 // tempting...
@@ -130,6 +131,11 @@ gui_vertical_alignment ogre_gui_vertical_alignment_to_llcoi_gui_vertical_alignme
 
 Ogre::TextAreaOverlayElement::Alignment llcoi_textarea_alignment_to_ogre_textarea_alignment(textarea_overlayelement_alignment align);
 textarea_overlayelement_alignment ogre_textarea_alignment_to_llcoi_textarea_alignment(Ogre::TextAreaOverlayElement::Alignment align);
+
+// from OgreSkeleton.h
+Ogre::SkeletonAnimationBlendMode llcoi_skeleton_blend_mode_to_ogre(skeleton_animation_blend_mode mode);
+skeleton_animation_blend_mode ogre_skeleton_blend_mode_to_llcoi(Ogre::SkeletonAnimationBlendMode mode);
+
 
 /* OIS MouseState <-> LLCOI MouseState converters */
 
