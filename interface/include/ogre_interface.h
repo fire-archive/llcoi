@@ -178,6 +178,11 @@ typedef struct
 } FrameStats;
 
 
+typedef struct
+{
+    unsigned short target_buffer_index;
+    coiReal parametric;
+} hardware_animation_data;
 
 typedef enum
 {
