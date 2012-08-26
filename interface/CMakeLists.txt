@@ -129,6 +129,7 @@ set(HDRS
     ./include/ray_bind.h
     ./include/sphere_bind.h
     ./include/bone_bind.h
+    ./include/skeleton_bind.h
     ./include/tagpoint_bind.h
     ./include/planeboundedvolume_bind.h
     ./include/scenequery_bind.h
@@ -172,6 +173,7 @@ set(SRCS
     ./source/ray_bind.cpp
     ./source/sphere_bind.cpp
     ./source/bone_bind.cpp
+    ./source/skeleton_bind.cpp
     ./source/tagpoint_bind.cpp
     ./source/planeboundedvolume_bind.cpp
     ./source/scenequery_bind.cpp
@@ -259,6 +261,7 @@ if(${LLCOI_DYNAMIC_BUILD})
                 ./include/ray_bind.h
                 ./include/sphere_bind.h
                 ./include/bone_bind.h
+                ./include/skeleton_bind.h
                 ./include/tagpoint_bind.h
                 ./include/planeboundedvolume_bind.h
                 ./include/scenequery_bind.h
