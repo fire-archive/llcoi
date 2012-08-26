@@ -157,9 +157,22 @@ void skeleton_remove_animation(SkeletonHandle handle, const char* name)
 //TODO: void setAnimationState(const AnimationStateSet& animSet);
 //TODO: void _initAnimationState(AnimationStateSet* animSet);
 //TODO: void _refreshAnimationState(AnimationStateSet* animSet);
+
 //void _getBoneMatrices(Matrix4* pMatrices);
-void skeleton__get_bone_matrices(SkeletonHandle handle, coiMatrix4* matrices)
+void skeleton__get_bone_matrices(SkeletonHandle handle, coiMatrix4* matrices[])
 {
+    Ogre::Skeleton* skeleton = static_cast<Ogre::Skeleton*>(handle);
+
+    // Borrowed from OgreEntity.cpp
+    unsigned short num = skeleton->getNumBones();
+    Ogre::Matrix4* BoneMatrices = static_cast<Ogre::Matrix4*>(OGRE_MALLOC_SIMD(sizeof(Ogre::Matrix4) * num, Ogre::MEMCATEGORY_ANIMATION));
+    skeleton->_getBoneMatrices(BoneMatrices);
+
+    for (unsigned short current = 0; current != num; ++current)
+    {
+        Ogre::Matrix4 o_matrix = *BoneMatrices;
+        ogre_matrix4_to_llcoi_matrix4(o_matrix, *matrices[current]);
+    }
 }
 
 //unsigned short getNumAnimations(void) const;

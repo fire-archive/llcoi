@@ -83,7 +83,7 @@ DLL void skeleton_remove_animation(SkeletonHandle handle, const char* name);
 //TODO: void _initAnimationState(AnimationStateSet* animSet);
 //TODO: void _refreshAnimationState(AnimationStateSet* animSet);
 //void _getBoneMatrices(Matrix4* pMatrices);
-DLL void skeleton__get_bone_matrices(SkeletonHandle handle, coiMatrix4* matrices);
+DLL void skeleton__get_bone_matrices(SkeletonHandle handle, coiMatrix4* matrices[]);
 //unsigned short getNumAnimations(void) const;
 DLL unsigned short skeleton_get_num_animations(const SkeletonHandle handle);
 //TODO: Animation* getAnimation(unsigned short index) const;
