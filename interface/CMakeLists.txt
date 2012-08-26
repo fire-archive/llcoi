@@ -112,6 +112,7 @@ set(HDRS
     ./include/renderwindow_bind.h
     ./include/rendersystem_bind.h
     ./include/renderoperation_bind.h
+    ./include/vertexindexdata_bind.h
     ./include/light_bind.h
     ./include/logmanager_bind.h
     ./include/log_bind.h
@@ -158,6 +159,7 @@ set(SRCS
     ./source/renderwindow_bind.cpp
     ./source/rendersystem_bind.cpp
     ./source/renderoperation_bind.cpp
+    ./source/vertexindexdata_bind.cpp
     ./source/light_bind.cpp
     ./source/logmanager_bind.cpp
     ./source/log_bind.cpp
@@ -248,6 +250,7 @@ if(${LLCOI_DYNAMIC_BUILD})
                 ./include/renderwindow_bind.h
                 ./include/rendersystem_bind.h
                 ./include/renderoperation_bind.h
+                ./include/vertexindexdata_bind.h
                 ./include/light_bind.h
                 ./include/logmanager_bind.h
                 ./include/log_bind.h
