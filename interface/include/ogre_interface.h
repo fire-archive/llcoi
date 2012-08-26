@@ -345,4 +345,14 @@ typedef enum
 } skeleton_animation_blend_mode;
 
 
+typedef enum
+{
+    OT_POINT_LIST = 1,
+    OT_LINE_LIST = 2,
+    OT_LINE_STRIP = 3,
+    OT_TRIANGLE_LIST = 4,
+    OT_TRIANGLE_STRIP = 5,
+    OT_TRIANGLE_FAN = 6
+} operation_type;
+
 #endif

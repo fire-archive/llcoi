@@ -1,5 +1,5 @@
 /******************************************************************************
- * renderoperation_bind.h -  bindings for Ogre::RenderOperation
+ * renderoperation_bind.cpp -  bindings for Ogre::RenderOperation
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
@@ -35,14 +35,5 @@
  * THE SOFTWARE.
  ******************************************************************************/
 
-#pragma once
-#ifndef RENDEROPERATION_BIND_H
-#define RENDEROPERATION_BIND_H
-#include "ogre_interface.h"
+#include "renderoperation_bind.h"
 
-#define RenderOperationHandle void*
-
-
-
-
-#endif
