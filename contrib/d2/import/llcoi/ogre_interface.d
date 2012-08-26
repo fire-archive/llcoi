@@ -90,7 +90,9 @@ alias void* AxisAlignedBoxHandle;
 alias void* RayHandle;
 alias void* SphereHandle;
 alias void* BoneHandle;
+alias void* TagPointHandle;
 alias void* SkeletonHandle;
+alias void* SkeletonInstanceHandle;
 alias void* SceneQueryHandle;
 alias void* RaySceneQueryHandle;
 alias void* RaySceneQueryResultHandle;
@@ -604,6 +606,38 @@ void bone__get_binding_pose_inverse_position(const BoneHandle handle, ref coiVec
 void bone__get_binding_pose_inverse_orientation(const BoneHandle handle, ref coiQuaternion result);
 //void needUpdate(bool forceParentUpdate = false);
 void bone_need_update(BoneHandle handle, int force_parent_update);
+
+// Ogre::TagPoint
+//TagPoint(unsigned short handle, Skeleton* creator);
+TagPointHandle create_tagpoint(ushort bone_handle, SkeletonHandle creator);
+//~TagPoint();
+void destroy_tagpoint(TagPointHandle handle);
+//Entity *getParentEntity(void) const;
+EntityHandle tagpoint_get_parent_entity(const TagPointHandle handle);
+//MovableObject* getChildObject(void) const;
+MovableObjectHandle tagpoint_get_child_object(const TagPointHandle handle);
+//void setParentEntity(Entity *pEntity);
+void tagpoint_set_parent_entity(TagPointHandle handle, EntityHandle entity);
+//void setChildObject(MovableObject *pObject);
+void tagpoint_set_child_object(TagPointHandle handle, MovableObjectHandle obj);
+//void setInheritParentEntityOrientation(bool inherit);
+void tagpoint_set_inherit_parent_entity_orientation(TagPointHandle handle, int inherit);
+//bool getInheritParentEntityOrientation(void) const;
+int tagpoint_get_inherit_parent_entity_orientation(const TagPointHandle handle);
+//void setInheritParentEntityScale(bool inherit);
+void tagpoint_set_inherit_parent_entity_scale(TagPointHandle handle, int inherit);
+//bool getInheritParentEntityScale(void) const;
+int tagpoint_get_inherit_parent_entity_scale(const TagPointHandle handle);
+//const Matrix4& getParentEntityTransform(void) const;
+void tagpoint_get_parent_entity_transform(const TagPointHandle handle, ref coiMatrix4 result);
+//const Matrix4& _getFullLocalTransform(void) const;
+void tagpoint__get_full_local_transform(const TagPointHandle handle, ref coiMatrix4 result);
+//void needUpdate(bool forceParentUpdate = false);
+void tagpoint_need_update(TagPointHandle handle, int force_parent_update);
+//void updateFromParentImpl(void) const;
+void tagpoint_update_from_parent_impl(const TagPointHandle handle);
+//TODO: const LightList& getLights(void) const;
+
 
 // Ogre::Skeleton
 
