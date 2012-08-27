@@ -50,19 +50,24 @@
 #define SceneQueryHandle void*
 #define RaySceneQueryHandle void*
 #define RayHandle void*
-
-typedef enum
-{
-    ST_GENERIC = 1,
-    ST_EXTERIOR_CLOSE = 2,
-    ST_EXTERIOR_FAR = 4,
-    ST_EXTERIOR_REAL_FAR = 8,
-    ST_INTERIOR = 16
-} scene_type;
-
+#define ManualObjectHandle void*
 
 // Ogre::SceneManager calls
 DLL EntityHandle scenemanager_create_entity(SceneManagerHandle handle, const char* name, const char* mesh_name, const char* group_name);
+//createManualObject(std::string const&)
+DLL ManualObjectHandle scenemanager_create_manual_object(SceneManagerHandle handle, const char* name);
+//createManualObject()
+DLL ManualObjectHandle scenemanager_create_manual_object_unnamed(SceneManagerHandle handle);
+//getManualObject(std::string const&) const
+DLL ManualObjectHandle scenemanager_get_manual_object(const SceneManagerHandle handle, const char* name);
+//hasManualObject(std::string const&) const
+DLL int scenemanager_has_manual_object(const SceneManagerHandle handle, const char* name);
+//destroyManualObject(Ogre::ManualObject*)
+DLL void scenemanager_destroy_manual_object(SceneManagerHandle handle, ManualObjectHandle obj);
+//destroyManualObject(std::string const&)
+DLL void scenemanager_destroy_manual_object_by_name(SceneManagerHandle handle, const char* name);
+//destroyAllManualObjects()
+DLL void scenemanager_destroy_all_manual_objects(SceneManagerHandle handle);
 
 DLL SceneNodeHandle scenemanager_get_root_scene_node(SceneManagerHandle handle);
 // Does use OgreManager.

@@ -496,6 +496,21 @@ RenderSystemListHandle root_get_available_renderers();
 
 EntityHandle scenemanager_create_entity(SceneManagerHandle handle, const char* name, const char* mesh_name, const char* group_name);
 
+//createManualObject(std::string const&)
+ManualObjectHandle scenemanager_create_manual_object(SceneManagerHandle handle, const char* name);
+//createManualObject()
+ManualObjectHandle scenemanager_create_manual_object_unnamed(SceneManagerHandle handle);
+//getManualObject(std::string const&) const
+ManualObjectHandle scenemanager_get_manual_object(const SceneManagerHandle handle, const char* name);
+//hasManualObject(std::string const&) const
+int scenemanager_has_manual_object(const SceneManagerHandle handle, const char* name);
+//destroyManualObject(Ogre::ManualObject*)
+void scenemanager_destroy_manual_object(SceneManagerHandle handle, ManualObjectHandle obj);
+//destroyManualObject(std::string const&)
+void scenemanager_destroy_manual_object_by_name(SceneManagerHandle handle, const char* name);
+//destroyAllManualObjects()
+void scenemanager_destroy_all_manual_objects(SceneManagerHandle handle);
+
 SceneNodeHandle scenemanager_get_root_scene_node(SceneManagerHandle handle);
 
 LightHandle scenemanager_create_light(SceneManagerHandle handle, const char* name);
