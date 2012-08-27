@@ -126,18 +126,32 @@ typedef uint16 SceneTypeMask;
 
 typedef struct
 {
-    float w;
-    float x;
-    float y;
-    float z;
+    coiReal w;
+    coiReal x;
+    coiReal y;
+    coiReal z;
 } coiQuaternion;
 
 typedef struct
 {
-    float x;
-    float y;
-    float z;
+    coiReal x;
+    coiReal y;
+} coiVector2;
+
+typedef struct
+{
+    coiReal x;
+    coiReal y;
+    coiReal z;
 } coiVector3;
+
+typedef struct
+{
+    coiReal x;
+    coiReal y;
+    coiReal z;
+    coiReal w;
+} coiVector4;
 
 typedef struct
 {
