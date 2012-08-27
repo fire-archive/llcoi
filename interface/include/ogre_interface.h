@@ -374,4 +374,13 @@ typedef enum
     OT_TRIANGLE_FAN = 6
 } operation_type;
 
+typedef enum
+{
+    ST_GENERIC = 1,
+    ST_EXTERIOR_CLOSE = 2,
+    ST_EXTERIOR_FAR = 4,
+    ST_EXTERIOR_REAL_FAR = 8,
+    ST_INTERIOR = 16
+} scene_type;
+
 #endif
