@@ -34,11 +34,159 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "ogre_interface.h"
-
-#include <OgreRoot.h>
+#include "manualobject_bind.h"
+#include "binding_utils.h"
 #include <OgreManualObject.h>
-#include "ogre_manager.h"
+
+//ManualObject(const String& name)
+ManualObjectHandle create_manualobject(const char* name)
+{
+    Ogre::ManualObject* obj = new Ogre::ManualObject(Ogre::String(name));
+    return static_cast<ManualObjectHandle>(obj);
+}
+
+//~ManualObject()
+void destroy_manualobject(ManualObjectHandle handle)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    delete obj;
+}
+
+//void clear(void)
+void manualobject_clear(ManualObjectHandle handle)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->clear();
+}
+
+//void estimateVertexCount(size_t vcount)
+void manualobject_estimate_vertex_count(ManualObjectHandle handle, size_t vcount)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->estimateVertexCount(vcount);
+}
+
+//void estimateIndexCount(size_t icount)
+void manualobject_estimate_index_count(ManualObjectHandle handle, size_t icount)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->estimateIndexCount(icount);
+}
+
+//void begin(const String& materialName, RenderOperation::OperationType opType = RenderOperation::OT_TRIANGLE_LIST, const String & groupName = ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
+void manualobject_begin(ManualObjectHandle handle, const char* material_name, operation_type op_type, const char* group_name)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    Ogre::RenderOperation::OperationType opType = llcoi_operation_type_to_ogre(op_type);
+    obj->begin(Ogre::String(material_name), opType, Ogre::String(group_name));
+}
+
+//void setDynamic(bool dyn)
+void manualobject_set_dynamic(ManualObjectHandle handle, int dyn)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->setDynamic(dyn);
+}
+
+//bool getDynamic() const
+int manualobject_get_dynamic(const ManualObjectHandle handle)
+{
+    const Ogre::ManualObject* obj = static_cast<const Ogre::ManualObject*>(handle);
+    return obj->getDynamic();
+}
+
+//void beginUpdate(size_t sectionIndex)
+void manualobject_begin_update(ManualObjectHandle handle, size_t section_index)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->beginUpdate(section_index);
+}
+
+//void position(const Vector3& pos)
+//void position(Real x, Real y, Real z)
+void manualobject_position(ManualObjectHandle handle, const coiVector3* pos)
+{
+
+}
+
+//void normal(const Vector3& norm)
+//void normal(Real x, Real y, Real z)
+void manualobject_normal(ManualObjectHandle handle, const coiVector3* norm)
+{
+
+}
+
+//void tangent(const Vector3& tan)
+//void tangent(Real x, Real y, Real z)
+void manualobject_tangent(ManualObjectHandle handle, const coiVector3* tan)
+{
+
+}
+
+//void textureCoord(Real u)
+void manualobject_texture_coord_u(ManualObjectHandle handle, coiReal u)
+{
+
+}
+
+//void textureCoord(Real u, Real v)
+//void textureCoord(Real u, Real v, Real w)
+//void textureCoord(Real x, Real y, Real z, Real w)
+//void textureCoord(const Vector2& uv)
+void manualobject_texture_coord_uv(ManualObjectHandle handle, const coiVector3* uv)
+{
+
+}
+
+//void textureCoord(const Vector3& uvw)
+void manualobject_texture_coord_uvw(ManualObjectHandle handle, const coiVector3* uvw)
+{
+
+}
+
+//void textureCoord(const Vector4& xyzw)
+void manualobject_texture_coord_xyxw(ManualObjectHandle handle, const coiVector3* xyzw)
+{
+
+}
+
+//void colour(const ColourValue& col)
+void manualobject_colour(ManualObjectHandle handle, const coiColourValue* col)
+{
+
+}
+
+//void colour(Real r, Real g, Real b, Real a = 1.0f)
+//void index(uint32 idx)
+void manualobject_index(ManualObjectHandle handle, uint32 idx)
+{
+
+}
+
+//void triangle(uint32 i1, uint32 i2, uint32 i3)
+void manualobject_triangle(ManualObjectHandle handle, uint32 i1, uint32 i2, uint32 i3)
+{
+
+}
+
+//void quad(uint32 i1, uint32 i2, uint32 i3, uint32 i4)
+void manualobject_quad(ManualObjectHandle handle, uint32 i1, uint32 i2, uint32 i3, uint32 i4)
+{
+
+}
+
+//size_t getCurrentVertexCount() const
+size_t  manualobject_get_current_vertex_count(const ManualObjectHandle handle)
+{
+
+}
+
+//size_t getCurrentIndexCount() const
+size_t manualobject_get_current_index_count(const ManualObjectHandle handle)
+{
+
+}
+
 
 /*
 Ogre::ManualObject::ManualObjectSection
@@ -118,86 +266,4 @@ Ogre::ManualObject::TempVertex::~TempVertex()
 Ogre::ManualObject::TempVertex::operator=(Ogre::ManualObject::TempVertex const&)
 Ogre::ManualObject::TempVertex::TempVertex(Ogre::ManualObject::TempVertex const&)
 Ogre::ManualObject::TempVertex::TempVertex()
-*/
-/*
-Ogre::MovableObject::Listener
-Ogre::MovableObject::operator=(Ogre::MovableObject const&)
-Ogre::MovableObject::MovableObject(Ogre::MovableObject const&)
-Ogre::MovableObject::MovableObject()
-Ogre::MovableObject::MovableObject(std::string const&)
-Ogre::MovableObject::~MovableObject()
-Ogre::MovableObject::_notifyCreator(Ogre::MovableObjectFactory*)
-Ogre::MovableObject::_getCreator() const
-Ogre::MovableObject::_notifyManager(Ogre::SceneManager*)
-Ogre::MovableObject::_getManager() const
-Ogre::MovableObject::getName() const
-Ogre::MovableObject::getMovableType() const
-Ogre::MovableObject::getParentNode() const
-Ogre::MovableObject::getParentSceneNode() const
-Ogre::MovableObject::isParentTagPoint() const
-Ogre::MovableObject::_notifyAttached(Ogre::Node*, bool)
-Ogre::MovableObject::isAttached() const
-Ogre::MovableObject::detachFromParent()
-Ogre::MovableObject::isInScene() const
-Ogre::MovableObject::_notifyMoved()
-Ogre::MovableObject::_notifyCurrentCamera(Ogre::Camera*)
-Ogre::MovableObject::getBoundingBox() const
-Ogre::MovableObject::getBoundingRadius() const
-Ogre::MovableObject::getWorldBoundingBox(bool) const
-Ogre::MovableObject::getWorldBoundingSphere(bool) const
-Ogre::MovableObject::_updateRenderQueue(Ogre::RenderQueue*)
-Ogre::MovableObject::setVisible(bool)
-Ogre::MovableObject::getVisible() const
-Ogre::MovableObject::isVisible() const
-Ogre::MovableObject::setRenderingDistance(float)
-Ogre::MovableObject::getRenderingDistance() const
-Ogre::MovableObject::setUserAny(Ogre::Any const&)
-Ogre::MovableObject::getUserAny() const
-Ogre::MovableObject::getUserObjectBindings()
-Ogre::MovableObject::getUserObjectBindings() const
-Ogre::MovableObject::setRenderQueueGroup(unsigned char)
-Ogre::MovableObject::setRenderQueueGroupAndPriority(unsigned char, unsigned short)
-Ogre::MovableObject::getRenderQueueGroup() const
-Ogre::MovableObject::_getParentNodeFullTransform() const
-Ogre::MovableObject::setQueryFlags(unsigned int)
-Ogre::MovableObject::addQueryFlags(unsigned int)
-Ogre::MovableObject::removeQueryFlags(unsigned long)
-Ogre::MovableObject::getQueryFlags() const
-Ogre::MovableObject::setDefaultQueryFlags(unsigned int)
-Ogre::MovableObject::getDefaultQueryFlags()
-Ogre::MovableObject::setVisibilityFlags(unsigned int)
-Ogre::MovableObject::addVisibilityFlags(unsigned int)
-Ogre::MovableObject::removeVisibilityFlags(unsigned int)
-Ogre::MovableObject::getVisibilityFlags() const
-Ogre::MovableObject::setDefaultVisibilityFlags(unsigned int)
-Ogre::MovableObject::getDefaultVisibilityFlags()
-Ogre::MovableObject::setListener(Ogre::MovableObject::Listener*)
-Ogre::MovableObject::getListener() const
-Ogre::MovableObject::queryLights() const
-Ogre::MovableObject::getLightMask() const
-Ogre::MovableObject::setLightMask(unsigned int)
-Ogre::MovableObject::_getLightList()
-Ogre::MovableObject::getEdgeList()
-Ogre::MovableObject::hasEdgeList()
-Ogre::MovableObject::getShadowVolumeRenderableIterator(Ogre::ShadowTechnique, Ogre::Light const*, Ogre::HardwareIndexBufferSharedPtr*, bool, float, unsigned long)
-Ogre::MovableObject::getLightCapBounds() const
-Ogre::MovableObject::getDarkCapBounds(Ogre::Light const&, float) const
-Ogre::MovableObject::setCastShadows(bool)
-Ogre::MovableObject::getCastShadows() const
-Ogre::MovableObject::getReceivesShadows()
-Ogre::MovableObject::getPointExtrusionDistance(Ogre::Light const*) const
-Ogre::MovableObject::getTypeFlags() const
-Ogre::MovableObject::visitRenderables(Ogre::Renderable::Visitor*, bool)
-Ogre::MovableObject::setDebugDisplayEnabled(bool)
-Ogre::MovableObject::isDebugDisplayEnabled() const
-Ogre::MovableObject::Listener::operator=(Ogre::MovableObject::Listener const&)
-Ogre::MovableObject::Listener::Listener(Ogre::MovableObject::Listener const&)
-Ogre::MovableObject::Listener::Listener()
-Ogre::MovableObject::Listener::~Listener()
-Ogre::MovableObject::Listener::objectDestroyed(Ogre::MovableObject*)
-Ogre::MovableObject::Listener::objectAttached(Ogre::MovableObject*)
-Ogre::MovableObject::Listener::objectDetached(Ogre::MovableObject*)
-Ogre::MovableObject::Listener::objectMoved(Ogre::MovableObject*)
-Ogre::MovableObject::Listener::objectRendering(Ogre::MovableObject const*, Ogre::Camera const*)
-Ogre::MovableObject::Listener::objectQueryLights(Ogre::MovableObject const*)
 */
