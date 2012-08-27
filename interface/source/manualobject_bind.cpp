@@ -140,7 +140,7 @@ void manualobject_texture_coord_u(ManualObjectHandle handle, coiReal u)
 //void textureCoord(Real u, Real v, Real w)
 //void textureCoord(Real x, Real y, Real z, Real w)
 //void textureCoord(const Vector2& uv)
-void manualobject_texture_coord_uv(ManualObjectHandle handle, const coiVector3* uv)
+void manualobject_texture_coord_uv(ManualObjectHandle handle, const coiVector2* uv)
 {
     Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
     const Ogre::Vector2 UV(uv->x, uv->y);
