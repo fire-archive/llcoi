@@ -1922,26 +1922,26 @@ int manualobject_get_dynamic(const ManualObjectHandle handle);
 void manualobject_begin_update(ManualObjectHandle handle, size_t section_index);
 //void position(const Vector3& pos);
 //void position(Real x, Real y, Real z);
-void manualobject_position(ManualObjectHandle handle, const coiVector3* pos);
+void manualobject_position(ManualObjectHandle handle, ref const(coiVector3) pos);
 //void normal(const Vector3& norm);
 //void normal(Real x, Real y, Real z);
-void manualobject_normal(ManualObjectHandle handle, const coiVector3* norm);
+void manualobject_normal(ManualObjectHandle handle, ref const(coiVector3) norm);
 //void tangent(const Vector3& tan);
 //void tangent(Real x, Real y, Real z);
-void manualobject_tangent(ManualObjectHandle handle, const coiVector3* tan);
+void manualobject_tangent(ManualObjectHandle handle, ref const(coiVector3) tan);
 //void textureCoord(Real u);
 void manualobject_texture_coord_u(ManualObjectHandle handle, coiReal u);
 //void textureCoord(Real u, Real v);
 //void textureCoord(Real u, Real v, Real w);
 //void textureCoord(Real x, Real y, Real z, Real w);
 //void textureCoord(const Vector2& uv);
-void manualobject_texture_coord_uv(ManualObjectHandle handle, const coiVector2* uv);
+void manualobject_texture_coord_uv(ManualObjectHandle handle, ref const(coiVector2) uv);
 //void textureCoord(const Vector3& uvw);
-void manualobject_texture_coord_uvw(ManualObjectHandle handle, const coiVector3* uvw);
+void manualobject_texture_coord_uvw(ManualObjectHandle handle, ref const(coiVector3) uvw);
 //void textureCoord(const Vector4& xyzw);
-void manualobject_texture_coord_xyxw(ManualObjectHandle handle, const coiVector4* xyzw);
+void manualobject_texture_coord_xyxw(ManualObjectHandle handle, ref const(coiVector4) xyzw);
 //void colour(const ColourValue& col);
-void manualobject_colour(ManualObjectHandle handle, const coiColourValue* col);
+void manualobject_colour(ManualObjectHandle handle, ref const(coiColourValue) col);
 //void colour(Real r, Real g, Real b, Real a = 1.0f);
 //void index(uint32 idx);
 void manualobject_index(ManualObjectHandle handle, uint32 idx);
@@ -2012,7 +2012,7 @@ int manualobjectsection_get_32_bit_indices(const ManualObjectSectionHandle handl
 //void getRenderOperation(RenderOperation& op)
 void manualobjectsection_renderable_get_render_operation(ManualObjectSectionHandle handle, RenderOperationHandle renderOp);
 //void getWorldTransforms(Matrix4* xform) const
-void manualobjectsection_get_world_transforms(const ManualObjectSectionHandle handle, coiMatrix4* xform);
+void manualobjectsection_get_world_transforms(const ManualObjectSectionHandle handle, ref coiMatrix4 xform);
 //Real getSquaredViewDepth(const Ogre::Camera *) const
 coiReal manualobjectsection_get_squared_view_depth(const ManualObjectSectionHandle handle, const CameraHandle cam);
 //TODO: const LightList &getLights(void) const
