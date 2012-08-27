@@ -1023,3 +1023,69 @@ skeleton_animation_blend_mode ogre_skeleton_blend_mode_to_llcoi(Ogre::SkeletonAn
 
     return converted;
 }
+
+// OgreRenderOperation.h
+Ogre::RenderOperation::OperationType llcoi_operation_type_to_ogre(operation_type op_type)
+{
+    Ogre::RenderOperation::OperationType converted;
+    switch(op_type)
+    {
+        case OT_POINT_LIST:
+            converted = Ogre::RenderOperation::OT_POINT_LIST;
+            break;
+
+        case OT_LINE_LIST:
+            converted = Ogre::RenderOperation::OT_LINE_LIST;
+            break;
+
+        case OT_LINE_STRIP:
+            converted = Ogre::RenderOperation::OT_LINE_STRIP;
+            break;
+
+        case OT_TRIANGLE_LIST:
+            converted = Ogre::RenderOperation::OT_TRIANGLE_LIST;
+            break;
+
+        case OT_TRIANGLE_STRIP:
+            converted = Ogre::RenderOperation::OT_TRIANGLE_STRIP;
+            break;
+
+        case OT_TRIANGLE_FAN:
+            converted = Ogre::RenderOperation::OT_TRIANGLE_FAN;
+            break;
+    }
+    return converted;
+}
+
+operation_type ogre_operation_type_to_llcoi(Ogre::RenderOperation::OperationType op_type)
+{
+
+    operation_type converted;
+    switch(op_type)
+    {
+        case Ogre::RenderOperation::OT_POINT_LIST:
+            converted = OT_POINT_LIST;
+            break;
+
+        case Ogre::RenderOperation::OT_LINE_LIST:
+            converted = OT_LINE_LIST;
+            break;
+
+        case Ogre::RenderOperation::OT_LINE_STRIP:
+            converted = OT_LINE_STRIP;
+            break;
+
+        case Ogre::RenderOperation::OT_TRIANGLE_LIST:
+            converted = OT_TRIANGLE_LIST;
+            break;
+
+        case Ogre::RenderOperation::OT_TRIANGLE_STRIP:
+            converted = OT_TRIANGLE_STRIP;
+            break;
+
+        case Ogre::RenderOperation::OT_TRIANGLE_FAN:
+            converted = OT_TRIANGLE_FAN;
+            break;
+    }
+    return converted;
+}

@@ -49,6 +49,7 @@
 #include <OgreFrustum.h>        // Ogre::OrientationMode
 #include <OgreOverlayElement.h> // GuiVerticalAlignment, GuiMetricsMode, GuiHorizontalAlignment
 #include <OgreTextAreaOverlayElement.h> // TextAreaOverlayElement::Alignment
+#include <OgreRenderOperation.h> // RenderOperation::OperationType
 #include <OgreLight.h>          // Light::LightTypes
 #include <OgreNode.h>           // Node::TransformSpace
 #include <OgreSkeleton.h>       // SkeletonAnimationBlendMode
@@ -136,6 +137,9 @@ textarea_overlayelement_alignment ogre_textarea_alignment_to_llcoi_textarea_alig
 Ogre::SkeletonAnimationBlendMode llcoi_skeleton_blend_mode_to_ogre(skeleton_animation_blend_mode mode);
 skeleton_animation_blend_mode ogre_skeleton_blend_mode_to_llcoi(Ogre::SkeletonAnimationBlendMode mode);
 
+// OgreRenderOperation.h
+Ogre::RenderOperation::OperationType llcoi_operation_type_to_ogre(operation_type op_type);
+operation_type ogre_operation_type_to_llcoi(Ogre::RenderOperation::OperationType op_type);
 
 /* OIS MouseState <-> LLCOI MouseState converters */
 

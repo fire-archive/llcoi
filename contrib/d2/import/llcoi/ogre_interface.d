@@ -392,6 +392,16 @@ enum skeleton_animation_blend_mode
     ANIMBLEND_CUMULATIVE = 1
 };
 
+enum operation_type
+{
+    OT_POINT_LIST = 1,
+    OT_LINE_LIST = 2,
+    OT_LINE_STRIP = 3,
+    OT_TRIANGLE_LIST = 4,
+    OT_TRIANGLE_STRIP = 5,
+    OT_TRIANGLE_FAN = 6
+};
+
 
 
 // Root functions
@@ -1848,3 +1858,29 @@ size_t indexdata_index_count(IndexDataHandle handle);
 IndexDataHandle indexdata_clone(const IndexDataHandle handle, int copy_data);
 //void optimiseVertexCacheTriList(void);
 void indexdata_optimise_vertex_cache_tri_list(IndexDataHandle handle);
+
+
+// Ogre::RenderOperation
+
+RenderOperationHandle create_renderoperation();
+void destroy_renderoperation(RenderOperationHandle handle);
+
+//VertexData *vertexData;
+VertexDataHandle renderoperation_get_vertex_data(RenderOperationHandle handle);
+void renderoperation_set_vertex_data(RenderOperationHandle handle, VertexDataHandle vertex_data);
+//OperationType operationType;
+operation_type renderoperation_get_operation_type(RenderOperationHandle handle);
+void renderoperation_set_operation_type(RenderOperationHandle handle, operation_type op_type);
+//bool useIndexes;
+int renderoperation_get_use_indexes(RenderOperationHandle handle);
+void renderoperation_set_use_indexes(RenderOperationHandle, bool use_indexes);
+//IndexData *indexData;
+IndexDataHandle renderoperation_get_index_data(RenderOperationHandle handle);
+void renderoperation_set_index_data(RenderOperationHandle handle, IndexDataHandle index_data);
+//TODO: const Renderable* srcRenderable;
+//size_t numberOfInstances;
+size_t renderoperation_get_number_of_instances(RenderOperationHandle handle);
+void renderoperation_set_number_of_instances(RenderOperationHandle handle, size_t num);
+//bool useGlobalInstancingVertexBufferIsAvailable;
+int renderoperation_get_use_global_instancing_vertex_buffer_is_available(RenderOperationHandle handle);
+void renderoperation_set_use_global_instancing_vertex_buffer_is_available(RenderOperationHandle handle, int use);
