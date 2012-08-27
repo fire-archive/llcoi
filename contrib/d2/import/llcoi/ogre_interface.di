@@ -1791,7 +1791,8 @@ void paneloverlayelement_set_transparent(PanelOverlayElementHandle handle, int i
 int paneloverlayelement_is_transparent(const PanelOverlayElementHandle handle);
 //const String& getTypeName(void) const;
 const(char*) paneloverlayelement_get_type_name(const PanelOverlayElementHandle handle);
-//TODO: void getRenderOperation(RenderOperation& op);
+//void getRenderOperation(RenderOperation& op);
+void paneloverlayelement_get_renderoperation(PanelOverlayElementHandle handle, RenderOperationHandle renderOp);
 //void setMaterialName(const String& matName);
 void paneloverlayelement_set_material_name(PanelOverlayElementHandle handle, const char* mat_name);
 //TODO: void _updateRenderQueue(RenderQueue* queue);

@@ -41,6 +41,7 @@
 #include "ogre_interface.h"
 
 #define PanelOverlayElementHandle void*
+#define RenderOperationHandle void*
 
 //PanelOverlayElement(const String& name);
 DLL PanelOverlayElementHandle create_paneloverlayelement(const char* name);
@@ -64,7 +65,8 @@ DLL void paneloverlayelement_set_transparent(PanelOverlayElementHandle handle, i
 DLL int paneloverlayelement_is_transparent(const PanelOverlayElementHandle handle);
 //const String& getTypeName(void) const;
 DLL const char* paneloverlayelement_get_type_name(const PanelOverlayElementHandle handle);
-//TODO: void getRenderOperation(RenderOperation& op);
+//void getRenderOperation(RenderOperation& op);
+DLL void paneloverlayelement_get_renderoperation(PanelOverlayElementHandle handle, RenderOperationHandle renderOp);
 //void setMaterialName(const String& matName);
 DLL void paneloverlayelement_set_material_name(PanelOverlayElementHandle handle, const char* mat_name);
 //TODO: void _updateRenderQueue(RenderQueue* queue);

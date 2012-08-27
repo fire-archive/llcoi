@@ -116,7 +116,13 @@ const char* paneloverlayelement_get_type_name(const PanelOverlayElementHandle ha
     return poe->getTypeName().c_str();
 }
 
-//TODO: void getRenderOperation(RenderOperation& op);
+//void getRenderOperation(RenderOperation& op);
+void paneloverlayelement_get_renderoperation(PanelOverlayElementHandle handle, RenderOperationHandle renderOp)
+{
+    Ogre::PanelOverlayElement* poe = static_cast<Ogre::PanelOverlayElement*>(handle);
+    Ogre::RenderOperation* op = static_cast<Ogre::RenderOperation*>(renderOp);
+    poe->getRenderOperation(*op);
+}
 //void setMaterialName(const String& matName);
 void paneloverlayelement_set_material_name(PanelOverlayElementHandle handle, const char* mat_name)
 {
