@@ -74,6 +74,7 @@ alias void* RootHandle;
 alias void* RenderSystemHandle;
 alias void* RenderSystemListHandle;
 alias void* ManualObjectHandle;
+alias void* ManualObjectSectionHandle;
 alias void* SceneManagerHandle;
 alias void* ViewportHandle;
 alias void* LogManagerHandle;
@@ -126,17 +127,31 @@ alias int function(MovableObjectHandle handle, coiReal distance, void* userdata)
 
 struct coiQuaternion
 {
-    float w;
-    float x;
-    float y;
-    float z;
+    coiReal w;
+    coiReal x;
+    coiReal y;
+    coiReal z;
+}
+
+struct coiVector2
+{
+    coiReal x;
+    coiReal y;
 }
 
 struct coiVector3
 {
-    float x;
-    float y;
-    float z;
+    coiReal x;
+    coiReal y;
+    coiReal z;
+}
+
+struct coiVector4
+{
+    coiReal x;
+    coiReal y;
+    coiReal z;
+    coiReal w;
 }
 
 struct coiMatrix3
@@ -1920,11 +1935,11 @@ void manualobject_texture_coord_u(ManualObjectHandle handle, coiReal u);
 //void textureCoord(Real u, Real v, Real w);
 //void textureCoord(Real x, Real y, Real z, Real w);
 //void textureCoord(const Vector2& uv);
-void manualobject_texture_coord_uv(ManualObjectHandle handle, const coiVector3* uv);
+void manualobject_texture_coord_uv(ManualObjectHandle handle, const coiVector2* uv);
 //void textureCoord(const Vector3& uvw);
 void manualobject_texture_coord_uvw(ManualObjectHandle handle, const coiVector3* uvw);
 //void textureCoord(const Vector4& xyzw);
-void manualobject_texture_coord_xyxw(ManualObjectHandle handle, const coiVector3* xyzw);
+void manualobject_texture_coord_xyxw(ManualObjectHandle handle, const coiVector4* xyzw);
 //void colour(const ColourValue& col);
 void manualobject_colour(ManualObjectHandle handle, const coiColourValue* col);
 //void colour(Real r, Real g, Real b, Real a = 1.0f);
@@ -1938,3 +1953,46 @@ void manualobject_quad(ManualObjectHandle handle, uint32 i1, uint32 i2, uint32 i
 size_t  manualobject_get_current_vertex_count(const ManualObjectHandle handle);
 //size_t getCurrentIndexCount() const;
 size_t manualobject_get_current_index_count(const ManualObjectHandle handle);
+//ManualObjectSection* end(void);
+ManualObjectSectionHandle manualobject_end(ManualObjectHandle handle);
+//void setMaterialName(size_t subIndex, const String& name, const String & group = ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+void manualobject_set_material_name(ManualObjectHandle handle, size_t sub_index, const char* name, const char* group);
+//MeshPtr convertToMesh(const String& meshName, const String& groupName = ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+MeshHandle manualobject_convert_to_mesh(ManualObjectHandle handle, const char* mesh_name, const char* group_name);
+//void setUseIdentityProjection(bool useIdentityProjection);
+void manualobject_set_use_identity_projection(ManualObjectHandle handle, bool use_identity_projection);
+//bool getUseIdentityProjection(void) const;
+int manualobject_get_use_identity_projection(const ManualObjectHandle handle);
+//void setUseIdentityView(bool useIdentityView);
+void manualobject_set_use_identity_view(ManualObjectHandle handle, int use_identity_view);
+//bool getUseIdentityView(void) const;
+int manualobject_get_use_identity_view(const ManualObjectHandle handle);
+//void setBoundingBox(const AxisAlignedBox& box);
+void manualobject_set_bounding_box(ManualObjectHandle handle, const AxisAlignedBoxHandle box);
+//ManualObjectSection* getSection(unsigned int index) const;
+ManualObjectSectionHandle manualobject_get_section(const ManualObjectHandle handle, uint index);
+//unsigned int getNumSections(void) const;
+uint manualobject_get_num_sections(const ManualObjectHandle handle);
+//void setKeepDeclarationOrder(bool keepOrder);
+void manualobject_set_keep_declaration_order(ManualObjectHandle handle, int keep_order);
+//bool getKeepDeclarationOrder() const;
+int manualobject_get_keep_declaration_order(const ManualObjectHandle handle);
+//const String& getMovableType(void) const;
+const(char*) manualobject_get_movable_type(const ManualObjectHandle handle);
+//const AxisAlignedBox& getBoundingBox(void) const;
+const(AxisAlignedBoxHandle) manualobject_get_bounding_box(const ManualObjectHandle handle);
+//Real getBoundingRadius(void) const;
+coiReal manualobject_get_bounding_radius(const ManualObjectHandle handle);
+//TODO: void _updateRenderQueue(RenderQueue* queue);
+//TODO: EdgeData* getEdgeList(void);
+//bool hasEdgeList(void);
+int manualobject_has_edge_list(ManualObjectHandle handle);
+//TODO: ShadowRenderableListIterator getShadowVolumeRenderableIterator(ShadowTechnique shadowTechnique, const Light* light, HardwareIndexBufferSharedPtr* indexBuffer,  bool extrudeVertices, Real extrusionDist, unsigned long flags = 0);
+
+
+
+// Ogre::ManualObject::ManualObjectSection
+//ManualObjectSection(ManualObject* parent, const String& materialName, RenderOperation::OperationType opType, const String & groupName = ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME); 
+ManualObjectSectionHandle create_manualobjectsection(ManualObjectHandle parent, const char* material_name, operation_type op_type, const char* group_name);
+//~ManualObjectSection();
+void destroy_manualobjectsection(ManualObjectSectionHandle handle);

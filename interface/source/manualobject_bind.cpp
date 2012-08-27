@@ -104,29 +104,36 @@ void manualobject_begin_update(ManualObjectHandle handle, size_t section_index)
 
 //void position(const Vector3& pos)
 //void position(Real x, Real y, Real z)
-void manualobject_position(ManualObjectHandle handle, const coiVector3* pos)
+void manualobject_position(ManualObjectHandle handle, const coiVector3* p)
 {
-
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    const Ogre::Vector3 pos(p->x, p->y, p->z);
+    obj->position(pos);
 }
 
 //void normal(const Vector3& norm)
 //void normal(Real x, Real y, Real z)
-void manualobject_normal(ManualObjectHandle handle, const coiVector3* norm)
+void manualobject_normal(ManualObjectHandle handle, const coiVector3* n)
 {
-
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    const Ogre::Vector3 norm(n->x, n->y, n->z);
+    obj->normal(norm);
 }
 
 //void tangent(const Vector3& tan)
 //void tangent(Real x, Real y, Real z)
-void manualobject_tangent(ManualObjectHandle handle, const coiVector3* tan)
+void manualobject_tangent(ManualObjectHandle handle, const coiVector3* t)
 {
-
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    const Ogre::Vector3 tan(t->x, t->y, t->z);
+    obj->tangent(tan);
 }
 
 //void textureCoord(Real u)
 void manualobject_texture_coord_u(ManualObjectHandle handle, coiReal u)
 {
-
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->textureCoord(u);
 }
 
 //void textureCoord(Real u, Real v)
@@ -135,58 +142,211 @@ void manualobject_texture_coord_u(ManualObjectHandle handle, coiReal u)
 //void textureCoord(const Vector2& uv)
 void manualobject_texture_coord_uv(ManualObjectHandle handle, const coiVector3* uv)
 {
-
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    const Ogre::Vector2 UV(uv->x, uv->y);
+    obj->textureCoord(UV);
 }
 
 //void textureCoord(const Vector3& uvw)
 void manualobject_texture_coord_uvw(ManualObjectHandle handle, const coiVector3* uvw)
 {
-
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    const Ogre::Vector3 UVW(uvw->x, uvw->y, uvw->z);
+    obj->textureCoord(UVW);
 }
 
 //void textureCoord(const Vector4& xyzw)
-void manualobject_texture_coord_xyxw(ManualObjectHandle handle, const coiVector3* xyzw)
+void manualobject_texture_coord_xyxw(ManualObjectHandle handle, const coiVector4* xyzw)
 {
-
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    const Ogre::Vector3 XYZW(xyzw->x, xyzw->y, xyzw->z);
+    obj->textureCoord(XYZW);
 }
 
 //void colour(const ColourValue& col)
 void manualobject_colour(ManualObjectHandle handle, const coiColourValue* col)
 {
-
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    Ogre::ColourValue c(col->r, col->b, col->g, col->a);
+    obj->colour(c);
 }
 
 //void colour(Real r, Real g, Real b, Real a = 1.0f)
 //void index(uint32 idx)
 void manualobject_index(ManualObjectHandle handle, uint32 idx)
 {
-
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->index(idx);
 }
 
 //void triangle(uint32 i1, uint32 i2, uint32 i3)
 void manualobject_triangle(ManualObjectHandle handle, uint32 i1, uint32 i2, uint32 i3)
 {
-
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->triangle(i1, i2, i3);
 }
 
 //void quad(uint32 i1, uint32 i2, uint32 i3, uint32 i4)
 void manualobject_quad(ManualObjectHandle handle, uint32 i1, uint32 i2, uint32 i3, uint32 i4)
 {
-
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->quad(i1, i2, i3, i4);
 }
 
 //size_t getCurrentVertexCount() const
 size_t  manualobject_get_current_vertex_count(const ManualObjectHandle handle)
 {
-
+    const Ogre::ManualObject* obj = static_cast<const Ogre::ManualObject*>(handle);
+    return obj->getCurrentVertexCount();
 }
 
 //size_t getCurrentIndexCount() const
 size_t manualobject_get_current_index_count(const ManualObjectHandle handle)
 {
-
+    const Ogre::ManualObject* obj = static_cast<const Ogre::ManualObject*>(handle);
+    return obj->getCurrentIndexCount();
 }
 
+//ManualObjectSection* end(void)
+ManualObjectSectionHandle manualobject_end(ManualObjectHandle handle)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    Ogre::ManualObject::ManualObjectSection* section = obj->end();
+    return static_cast<ManualObjectSectionHandle>(section);
+}
+
+//void setMaterialName(size_t subIndex, const String& name, const String & group = ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
+void manualobject_set_material_name(ManualObjectHandle handle, size_t sub_index, const char* name, const char* group)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->setMaterialName(sub_index, Ogre::String(name), Ogre::String(group));
+}
+
+//MeshPtr convertToMesh(const String& meshName, const String& groupName = ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME)
+MeshHandle manualobject_convert_to_mesh(ManualObjectHandle handle, const char* mesh_name, const char* group_name)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    Ogre::MeshPtr ptr = obj->convertToMesh(Ogre::String(mesh_name), Ogre::String(group_name));
+    return static_cast<MeshHandle>(ptr.get());
+}
+
+
+//void setUseIdentityProjection(bool useIdentityProjection)
+void manualobject_set_use_identity_projection(ManualObjectHandle handle, bool use_identity_projection)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->setUseIdentityProjection(use_identity_projection);
+}
+
+//bool getUseIdentityProjection(void) const
+int manualobject_get_use_identity_projection(const ManualObjectHandle handle)
+{
+    const Ogre::ManualObject* obj = static_cast<const Ogre::ManualObject*>(handle);
+    return obj->getUseIdentityProjection();
+}
+
+
+//void setUseIdentityView(bool useIdentityView)
+void manualobject_set_use_identity_view(ManualObjectHandle handle, int use_identity_view)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->setUseIdentityView(use_identity_view);
+}
+
+//bool getUseIdentityView(void) const
+int manualobject_get_use_identity_view(const ManualObjectHandle handle)
+{
+    const Ogre::ManualObject* obj = static_cast<const Ogre::ManualObject*>(handle);
+    return obj->getUseIdentityView();
+}
+
+//void setBoundingBox(const AxisAlignedBox& box)
+void manualobject_set_bounding_box(ManualObjectHandle handle, const AxisAlignedBoxHandle box)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    const Ogre::AxisAlignedBox* aabb = static_cast<const Ogre::AxisAlignedBox*>(box);
+    obj->setBoundingBox(*aabb);
+}
+
+//ManualObjectSection* getSection(unsigned int index) const
+ManualObjectSectionHandle manualobject_get_section(const ManualObjectHandle handle, unsigned int index)
+{
+    const Ogre::ManualObject* obj = static_cast<const Ogre::ManualObject*>(handle);
+    Ogre::ManualObject::ManualObjectSection* section = obj->getSection(index);
+    return static_cast<ManualObjectSectionHandle>(section);
+}
+
+//unsigned int getNumSections(void) const
+unsigned int manualobject_get_num_sections(const ManualObjectHandle handle)
+{
+    const Ogre::ManualObject* obj = static_cast<const Ogre::ManualObject*>(handle);
+    return obj->getNumSections();
+}
+
+//void setKeepDeclarationOrder(bool keepOrder)
+void manualobject_set_keep_declaration_order(ManualObjectHandle handle, int keep_order)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    obj->setKeepDeclarationOrder(keep_order);
+}
+
+//bool getKeepDeclarationOrder() const
+int manualobject_get_keep_declaration_order(const ManualObjectHandle handle)
+{
+    const Ogre::ManualObject* obj = static_cast<const Ogre::ManualObject*>(handle);
+    return obj->getKeepDeclarationOrder();
+}
+
+//const String& getMovableType(void) const
+const char* manualobject_get_movable_type(const ManualObjectHandle handle)
+{
+    const Ogre::ManualObject* obj = static_cast<const Ogre::ManualObject*>(handle);
+    return obj->getMovableType().c_str();
+}
+
+//const AxisAlignedBox& getBoundingBox(void) const
+const AxisAlignedBoxHandle manualobject_get_bounding_box(const ManualObjectHandle handle)
+{
+    const Ogre::ManualObject* obj = static_cast<const Ogre::ManualObject*>(handle);
+    const Ogre::AxisAlignedBox& box = obj->getBoundingBox();
+    return static_cast<const AxisAlignedBoxHandle>(&box);
+}
+
+//Real getBoundingRadius(void) const
+coiReal manualobject_get_bounding_radius(const ManualObjectHandle handle)
+{
+    const Ogre::ManualObject* obj = static_cast<const Ogre::ManualObject*>(handle);
+    return obj->getBoundingRadius();
+}
+
+//TODO: void _updateRenderQueue(RenderQueue* queue)
+//TODO: EdgeData* getEdgeList(void)
+//bool hasEdgeList(void)
+int manualobject_has_edge_list(ManualObjectHandle handle)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(handle);
+    return obj->hasEdgeList();
+}
+
+//TODO: ShadowRenderableListIterator getShadowVolumeRenderableIterator(ShadowTechnique shadowTechnique, const Light* light, HardwareIndexBufferSharedPtr* indexBuffer,  bool extrudeVertices, Real extrusionDist, unsigned long flags = 0)
+
+
+// Ogre::ManualObject::ManualObjectSection
+
+//ManualObjectSection(ManualObject* parent, const String& materialName, RenderOperation::OperationType opType, const String & groupName = ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME); 
+ManualObjectSectionHandle create_manualobjectsection(ManualObjectHandle parent, const char* material_name, operation_type op_type, const char* group_name)
+{
+    Ogre::ManualObject* obj = static_cast<Ogre::ManualObject*>(parent); 
+    Ogre::RenderOperation::OperationType opType = llcoi_operation_type_to_ogre(op_type);
+    Ogre::ManualObject::ManualObjectSection* section = new Ogre::ManualObject::ManualObjectSection(obj, Ogre::String(material_name), opType, Ogre::String(group_name));
+    return static_cast<ManualObjectSectionHandle>(section);
+}
+
+void destroy_manualobjectsection(ManualObjectSectionHandle handle)
+{
+    Ogre::ManualObject::ManualObjectSection* section = static_cast<Ogre::ManualObject::ManualObjectSection*>(handle); 
+    delete section;
+}
 
 /*
 Ogre::ManualObject::ManualObjectSection
