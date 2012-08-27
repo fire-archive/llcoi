@@ -1996,3 +1996,23 @@ int manualobject_has_edge_list(ManualObjectHandle handle);
 ManualObjectSectionHandle create_manualobjectsection(ManualObjectHandle parent, const char* material_name, operation_type op_type, const char* group_name);
 //~ManualObjectSection();
 void destroy_manualobjectsection(ManualObjectSectionHandle handle);
+//RenderOperation* getRenderOperation(void);
+RenderOperationHandle manualobjectsection_get_render_operation(ManualObjectSectionHandle handle);
+//const String& getMaterialName(void) const
+const(char*) manualobjectsection_get_material_name(const ManualObjectSectionHandle handle);
+//const String& getMaterialGroup(void) const
+const(char*) manualobjectsection_get_material_group(const ManualObjectSectionHandle handle);
+//void setMaterialName(const String& name, const String& groupName = ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME )
+void manualobjectsection_set_material_name(ManualObjectSectionHandle handle, const char* name, const char* group_name);
+//void set32BitIndices(bool n32)
+void manualobjectsection_set_32_bit_indices(ManualObjectSectionHandle handle, int n32);
+//bool get32BitIndices() const
+int manualobjectsection_get_32_bit_indices(const ManualObjectSectionHandle handle);
+//TODO:const MaterialPtr& getMaterial(void) const
+//void getRenderOperation(RenderOperation& op)
+void manualobjectsection_renderable_get_render_operation(ManualObjectSectionHandle handle, RenderOperationHandle renderOp);
+//void getWorldTransforms(Matrix4* xform) const
+void manualobjectsection_get_world_transforms(const ManualObjectSectionHandle handle, coiMatrix4* xform);
+//Real getSquaredViewDepth(const Ogre::Camera *) const
+coiReal manualobjectsection_get_squared_view_depth(const ManualObjectSectionHandle handle, const CameraHandle cam);
+//TODO: const LightList &getLights(void) const

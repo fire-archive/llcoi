@@ -44,6 +44,8 @@
 #define ManualObjectSectionHandle void*
 #define MeshHandle void*
 #define AxisAlignedBoxHandle void*
+#define RenderOperationHandle void*
+#define CameraHandle void*
 
 //ManualObject(const String& name);
 DLL ManualObjectHandle create_manualobject(const char* name);
@@ -138,6 +140,24 @@ DLL ManualObjectSectionHandle create_manualobjectsection(ManualObjectHandle pare
 //~ManualObjectSection();
 DLL void destroy_manualobjectsection(ManualObjectSectionHandle handle);
 //RenderOperation* getRenderOperation(void);
-//manualobjectsection_
+DLL RenderOperationHandle manualobjectsection_get_render_operation(ManualObjectSectionHandle handle);
+//const String& getMaterialName(void) const
+DLL const char* manualobjectsection_get_material_name(const ManualObjectSectionHandle handle);
+//const String& getMaterialGroup(void) const
+DLL const char* manualobjectsection_get_material_group(const ManualObjectSectionHandle handle);
+//void setMaterialName(const String& name, const String& groupName = ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME )
+DLL void manualobjectsection_set_material_name(ManualObjectSectionHandle handle, const char* name, const char* group_name);
+//void set32BitIndices(bool n32)
+DLL void manualobjectsection_set_32_bit_indices(ManualObjectSectionHandle handle, int n32);
+//bool get32BitIndices() const
+DLL int manualobjectsection_get_32_bit_indices(const ManualObjectSectionHandle handle);
+//TODO:const MaterialPtr& getMaterial(void) const
+//void getRenderOperation(RenderOperation& op)
+DLL void manualobjectsection_renderable_get_render_operation(ManualObjectSectionHandle handle, RenderOperationHandle renderOp);
+//void getWorldTransforms(Matrix4* xform) const
+DLL void manualobjectsection_get_world_transforms(const ManualObjectSectionHandle handle, coiMatrix4* xform);
+//Real getSquaredViewDepth(const Ogre::Camera *) const
+DLL coiReal manualobjectsection_get_squared_view_depth(const ManualObjectSectionHandle handle, const CameraHandle cam);
+//TODO: const LightList &getLights(void) const
 
 #endif

@@ -348,6 +348,77 @@ void destroy_manualobjectsection(ManualObjectSectionHandle handle)
     delete section;
 }
 
+
+//RenderOperation* getRenderOperation(void)
+RenderOperationHandle manualobjectsection_get_render_operation(ManualObjectSectionHandle handle)
+{
+    Ogre::ManualObject::ManualObjectSection* section = static_cast<Ogre::ManualObject::ManualObjectSection*>(handle);
+    return static_cast<RenderOperationHandle>(section->getRenderOperation());
+}
+
+//const String& getMaterialName(void) const
+const char* manualobjectsection_get_material_name(const ManualObjectSectionHandle handle)
+{
+    const Ogre::ManualObject::ManualObjectSection* section = static_cast<const Ogre::ManualObject::ManualObjectSection*>(handle);
+    return section->getMaterialName().c_str();
+}
+
+//const String& getMaterialGroup(void) const
+const char* manualobjectsection_get_material_group(const ManualObjectSectionHandle handle)
+{
+    const Ogre::ManualObject::ManualObjectSection* section = static_cast<const Ogre::ManualObject::ManualObjectSection*>(handle);
+    return section->getMaterialGroup().c_str();
+}
+
+//void setMaterialName(const String& name, const String& groupName = ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME )
+void manualobjectsection_set_material_name(ManualObjectSectionHandle handle, const char* name, const char* group_name)
+{
+    Ogre::ManualObject::ManualObjectSection* section = static_cast<Ogre::ManualObject::ManualObjectSection*>(handle);
+    section->setMaterialName(Ogre::String(name), Ogre::String(group_name));
+}
+
+//void set32BitIndices(bool n32)
+void manualobjectsection_set_32_bit_indices(ManualObjectSectionHandle handle, int n32)
+{
+    Ogre::ManualObject::ManualObjectSection* section = static_cast<Ogre::ManualObject::ManualObjectSection*>(handle);
+    section->set32BitIndices(n32);
+}
+
+//bool get32BitIndices() const
+int manualobjectsection_get_32_bit_indices(const ManualObjectSectionHandle handle)
+{
+    const Ogre::ManualObject::ManualObjectSection* section = static_cast<const Ogre::ManualObject::ManualObjectSection*>(handle);
+    return section->get32BitIndices();
+}
+
+//TODO:const MaterialPtr& getMaterial(void) const
+//void getRenderOperation(RenderOperation& op)
+void manualobjectsection_renderable_get_render_operation(ManualObjectSectionHandle handle, RenderOperationHandle renderOp)
+{
+    Ogre::ManualObject::ManualObjectSection* section = static_cast<Ogre::ManualObject::ManualObjectSection*>(handle);
+    Ogre::RenderOperation* op = static_cast<Ogre::RenderOperation*>(renderOp);
+    section->getRenderOperation(*op);
+}
+
+//void getWorldTransforms(Matrix4* xform) const
+void manualobjectsection_get_world_transforms(const ManualObjectSectionHandle handle, coiMatrix4* xform)
+{
+    const Ogre::ManualObject::ManualObjectSection* section = static_cast<const Ogre::ManualObject::ManualObjectSection*>(handle);
+    Ogre::Matrix4 m;
+    section->getWorldTransforms(&m);
+    ogre_matrix4_to_llcoi_matrix4(m, *xform);
+}
+
+//Real getSquaredViewDepth(const Ogre::Camera *) const
+coiReal manualobjectsection_get_squared_view_depth(const ManualObjectSectionHandle handle, const CameraHandle cam)
+{
+    const Ogre::ManualObject::ManualObjectSection* section = static_cast<const Ogre::ManualObject::ManualObjectSection*>(handle);
+    const Ogre::Camera* c = static_cast<const Ogre::Camera*>(cam);
+    return section->getSquaredViewDepth(c);
+}
+
+//TODO: const LightList &getLights(void) const
+
 /*
 Ogre::ManualObject::ManualObjectSection
 Ogre::ManualObject::ManualObjectSectionShadowRenderable
