@@ -113,3 +113,46 @@ unsigned short vertexdata_allocate_hardware_animation_elements(VertexDataHandle 
     return vdata->allocateHardwareAnimationElements(count, animate_normals);
 }
 
+//IndexData();
+IndexDataHandle create_indexdata()
+{
+    Ogre::IndexData* idata = new Ogre::IndexData;
+    return static_cast<IndexDataHandle>(idata);
+}
+
+//~IndexData();
+void destroy_indexdata(IndexDataHandle handle)
+{
+    Ogre::IndexData* idata = static_cast<Ogre::IndexData*>(handle);
+    delete idata;
+}
+
+//HardwareIndexBufferSharedPtr indexBuffer;
+//size_t indexStart;
+size_t indexdata_index_start(IndexDataHandle handle)
+{
+    Ogre::IndexData* idata = static_cast<Ogre::IndexData*>(handle);
+    return idata->indexStart;
+}
+
+//size_t indexCount;
+size_t indexdata_index_count(IndexDataHandle handle)
+{
+    Ogre::IndexData* idata = static_cast<Ogre::IndexData*>(handle);
+    return idata->indexCount;
+}
+
+//IndexData* clone(bool copyData = true, HardwareBufferManagerBase* mgr = 0) const;
+IndexDataHandle indexdata_clone(const IndexDataHandle handle, int copy_data)
+{
+    const Ogre::IndexData* idata = static_cast<const Ogre::IndexData*>(handle);
+    Ogre::IndexData* cloned = idata->clone(copy_data);
+}
+
+//void optimiseVertexCacheTriList(void);
+void indexdata_optimise_vertex_cache_tri_list(IndexDataHandle handle)
+{
+    Ogre::IndexData* idata = static_cast<Ogre::IndexData*>(handle);
+    idata->optimiseVertexCacheTriList();
+}
+

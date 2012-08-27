@@ -1834,3 +1834,17 @@ void vertexdata_remove_unused_buffers(VertexDataHandle handle);
 //ushort allocateHardwareAnimationElements(ushort count, bool animateNormals);
 ushort vertexdata_allocate_hardware_animation_elements(VertexDataHandle handle, ushort count, int animate_normals);
 
+// Ogre::IndexData
+//IndexData();
+IndexDataHandle create_indexdata();
+//~IndexData();
+void destroy_indexdata(IndexDataHandle handle);
+//HardwareIndexBufferSharedPtr indexBuffer;
+//size_t indexStart;
+size_t indexdata_index_start(IndexDataHandle handle);
+//size_t indexCount;
+size_t indexdata_index_count(IndexDataHandle handle);
+//IndexData* clone(bool copyData = true, HardwareBufferManagerBase* mgr = 0) const;
+IndexDataHandle indexdata_clone(const IndexDataHandle handle, int copy_data);
+//void optimiseVertexCacheTriList(void);
+void indexdata_optimise_vertex_cache_tri_list(IndexDataHandle handle);
