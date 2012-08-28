@@ -619,11 +619,29 @@ NodeHandle node_create_named_child(NodeHandle handle, const char* name, const re
 //Ogre::Node::addChild(Ogre::Node*)
 void node_add_child(NodeHandle handle, NodeHandle child);
 //Ogre::Node::numChildren() const
-ushort node_num_children(NodeHandle handle);
+ushort node_num_children(const NodeHandle handle);
 //Ogre::Node::getChild(unsigned short) const
-NodeHandle node_get_child_by_index(NodeHandle handle, ushort index);
+NodeHandle node_get_child_by_index(const NodeHandle handle, ushort index);
 //Ogre::Node::getChild(std::string const&) const
-NodeHandle node_get_child_by_name(NodeHandle handle, const char* name);
+NodeHandle node_get_child_by_name(const NodeHandle handle, const char* name);
+//Ogre::Node::removeChild(unsigned short)
+NodeHandle node_remove_child_by_index(NodeHandle handle, ushort index);
+//Ogre::Node::removeChild(Ogre::Node*)
+NodeHandle node_remove_child(NodeHandle handle, NodeHandle child);
+//Ogre::Node::removeChild(std::string const&)
+NodeHandle node_remove_child_by_name(NodeHandle handle, const char* name);
+//Ogre::Node::removeAllChildren()
+void node_remove_all_children(NodeHandle handle);
+//Ogre::Node::_setDerivedPosition(Ogre::Vector3 const&)
+void node__set_derived_position(NodeHandle handle, ref const(coiVector3) position);
+//Ogre::Node::_setDerivedOrientation(Ogre::Quaternion const&)
+void node__set_derived_orientation(NodeHandle handle, ref const(coiQuaternion) orientation);
+//Ogre::Node::_getDerivedOrientation() const
+void node__get_derived_orientation(const NodeHandle handle, ref coiQuaternion orientation);
+//Ogre::Node::_getDerivedPosition() const
+void node__get_derived_position(const NodeHandle handle, ref coiVector3 position);
+//Ogre::Node::_getDerivedScale() const
+void node__get_derived_scale(const NodeHandle handle, ref coiVector3 scale);
 
 // Ogre::Bone
 //Bone(unsigned short handle, Skeleton* creator);

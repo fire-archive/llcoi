@@ -96,11 +96,27 @@ DLL NodeHandle node_create_named_child(NodeHandle handle, const char* name, cons
 //Ogre::Node::addChild(Ogre::Node*)
 DLL void node_add_child(NodeHandle handle, NodeHandle child);
 //Ogre::Node::numChildren() const
-DLL unsigned short node_num_children(NodeHandle handle);
+DLL unsigned short node_num_children(const NodeHandle handle);
 //Ogre::Node::getChild(unsigned short) const
-DLL NodeHandle node_get_child_by_index(NodeHandle handle, unsigned short index);
+DLL NodeHandle node_get_child_by_index(const NodeHandle handle, unsigned short index);
 //Ogre::Node::getChild(std::string const&) const
-DLL NodeHandle node_get_child_by_name(NodeHandle handle, const char* name);
-
-
+DLL NodeHandle node_get_child_by_name(const NodeHandle handle, const char* name);
+//Ogre::Node::removeChild(unsigned short)
+DLL NodeHandle node_remove_child_by_index(NodeHandle handle, unsigned short index);
+//Ogre::Node::removeChild(Ogre::Node*)
+DLL NodeHandle node_remove_child(NodeHandle handle, NodeHandle child);
+//Ogre::Node::removeChild(std::string const&)
+DLL NodeHandle node_remove_child_by_name(NodeHandle handle, const char* name);
+//Ogre::Node::removeAllChildren()
+DLL void node_remove_all_children(NodeHandle handle);
+//Ogre::Node::_setDerivedPosition(Ogre::Vector3 const&)
+DLL void node__set_derived_position(NodeHandle handle, const coiVector3* position);
+//Ogre::Node::_setDerivedOrientation(Ogre::Quaternion const&)
+DLL void node__set_derived_orientation(NodeHandle handle, const coiQuaternion* orientation);
+//Ogre::Node::_getDerivedOrientation() const
+DLL void node__get_derived_orientation(const NodeHandle handle, coiQuaternion* orientation);
+//Ogre::Node::_getDerivedPosition() const
+DLL void node__get_derived_position(const NodeHandle handle, coiVector3* position);
+//Ogre::Node::_getDerivedScale() const
+DLL void node__get_derived_scale(const NodeHandle handle, coiVector3* scale);
 #endif
