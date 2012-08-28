@@ -198,6 +198,9 @@ typedef struct
     coiReal parametric;
 } hardware_animation_data;
 
+// Start enums
+
+// OgreRenderTarget.h
 typedef enum
 {
     SF_NONE           = 0,
@@ -216,7 +219,7 @@ typedef enum
     FB_AUTO
 } frame_buffer;
 
-
+// OgreHardwareBuffer.h
 typedef enum 
 {
     HBU_STATIC = 1,
@@ -228,7 +231,7 @@ typedef enum
     HBU_DYNAMIC_WRITE_ONLY_DISCARDABLE = 14
 } hardware_buffer_usage;
 
-
+//OgreLight.h
 typedef enum
 {
     LT_POINT = 0,
@@ -236,7 +239,7 @@ typedef enum
     LT_SPOTLIGHT = 2
 } light_types;
 
-
+//OgreNode.h
 typedef enum
 {
     TS_LOCAL,
@@ -244,6 +247,7 @@ typedef enum
     TS_WORLD
 } transform_space;
 
+// OgrePlane.h
 typedef enum
 {
     NO_SIDE,
@@ -252,6 +256,8 @@ typedef enum
     BOTH_SIDE
 } plane_side;
 
+
+//OgreAxisAlignedBox.h
 typedef enum
 {
     EXTENT_NULL,
@@ -270,21 +276,17 @@ typedef enum {
     NEAR_RIGHT_TOP = 4
 } CornerEnum;
 
+//OgreSceneQuery.h
 typedef enum 
 {
-    /// Return no world geometry hits at all
     WFT_NONE,
-    /// Return pointers to convex plane-bounded regions
     WFT_PLANE_BOUNDED_REGION,
-    /// Return a single intersection point (typically RaySceneQuery only)
     WFT_SINGLE_INTERSECTION,
-    /// Custom geometry as defined by the SceneManager
     WFT_CUSTOM_GEOMETRY,
-    /// General RenderOperation structure
     WFT_RENDER_OPERATION
 } world_fragment_type;
 
-
+//OgreLog.h
 typedef enum
 {
     LL_LOW = 1,
@@ -382,5 +384,148 @@ typedef enum
     ST_EXTERIOR_REAL_FAR = 8,
     ST_INTERIOR = 16
 } scene_type;
+
+
+
+// OgreCommon.h
+
+typedef enum
+{
+    CMPF_ALWAYS_FAIL,
+    CMPF_ALWAYS_PASS,
+    CMPF_LESS,
+    CMPF_LESS_EQUAL,
+    CMPF_EQUAL,
+    CMPF_NOT_EQUAL,
+    CMPF_GREATER_EQUAL,
+    CMPF_GREATER
+} compare_function;
+
+typedef enum
+{
+    TFO_NONE,
+    TFO_BILINEAR,
+    TFO_TRILINEAR,
+    TFO_ANISOTROPIC
+} texture_filter_options;
+
+typedef enum
+{
+    FT_MIN,
+    FT_MAG,
+    FT_MIP
+} filter_type;
+
+typedef enum
+{
+    FO_NONE,
+    FO_POINT,
+    FO_LINEAR,
+    FO_ANISOTROPIC
+} filter_options;
+
+typedef enum
+{
+    SO_FLAT,
+    SO_GOURAUD,
+    SO_PHONG
+} shade_options;
+
+typedef enum
+{
+    FOG_NONE,
+    FOG_EXP,
+    FOG_EXP2,
+    FOG_LINEAR
+} fog_mode;
+
+typedef enum
+{
+    CULL_NONE = 1,
+    CULL_CLOCKWISE = 2,
+    CULL_ANTICLOCKWISE = 3
+} culling_mode;
+
+typedef enum
+{
+    MANUAL_CULL_NONE = 1,
+    MANUAL_CULL_BACK = 2,
+    MANUAL_CULL_FRONT = 3
+} manual_culling_mode;
+
+typedef enum
+{
+    WFT_SINE,
+    WFT_TRIANGLE,
+    WFT_SQUARE,
+    WFT_SAWTOOTH,
+    WFT_INVERSE_SAWTOOTH,
+    WFT_PWM
+} waveform_type;
+
+typedef enum
+{
+    PM_POINTS = 1,
+    PM_WIREFRAME = 2,
+    PM_SOLID = 3
+} polygon_mode;
+
+typedef enum
+{
+    SHADOWTYPE_NONE = 0x00,
+    SHADOWDETAILTYPE_ADDITIVE = 0x01,
+    SHADOWDETAILTYPE_MODULATIVE = 0x02,
+    SHADOWDETAILTYPE_INTEGRATED = 0x04,
+    SHADOWDETAILTYPE_STENCIL = 0x10,
+    SHADOWDETAILTYPE_TEXTURE = 0x20,
+    SHADOWTYPE_STENCIL_MODULATIVE = 0x12,
+    SHADOWTYPE_STENCIL_ADDITIVE = 0x11,
+    SHADOWTYPE_TEXTURE_MODULATIVE = 0x22,
+    SHADOWTYPE_TEXTURE_ADDITIVE = 0x21,
+    SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED = 0x25,
+    SHADOWTYPE_TEXTURE_MODULATIVE_INTEGRATED = 0x26
+} shadow_technique;
+
+typedef int track_vertex_colour_type;
+
+typedef enum
+{
+    TVC_NONE        = 0x0,
+    TVC_AMBIENT     = 0x1,        
+    TVC_DIFFUSE     = 0x2,
+    TVC_SPECULAR    = 0x4,
+    TVC_EMISSIVE    = 0x8
+} track_vertex_colour_enum;
+
+typedef enum
+{
+    SM_DIRECTION,
+    SM_DISTANCE
+} sort_mode;
+
+typedef enum
+{
+    FBT_COLOUR  = 0x1,
+    FBT_DEPTH   = 0x2,
+    FBT_STENCIL = 0x4
+} frame_buffer_type;
+
+typedef enum
+{
+    IM_USE16BIT		= 0x0001,
+    IM_VTFBESTFIT	= 0x0002,
+    IM_VTFBONEMATRIXLOOKUP = 0x0004,
+    IM_USEBONEDUALQUATERNIONS = 0x0008,
+    IM_USEONEWEIGHT = 0x0010,
+    IM_FORCEONEWEIGHT = 0x0020,
+    IM_USEALL		= IM_USE16BIT|IM_VTFBESTFIT|IM_USEONEWEIGHT
+} instance_manager_flags;
+
+typedef enum
+{
+    CLIPPED_NONE = 0,
+    CLIPPED_SOME = 1, 
+    CLIPPED_ALL = 2
+} clip_result;
 
 #endif

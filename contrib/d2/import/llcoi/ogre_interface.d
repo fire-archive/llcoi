@@ -318,11 +318,8 @@ enum hardware_buffer_usage
 
 enum light_types
 {
-    /// Point light sources give off light equally in all directions, so require only position not direction
     LT_POINT = 0,
-    /// Directional lights simulate parallel light beams from a distant source, hence have direction but no position
     LT_DIRECTIONAL = 1,
-    /// Spotlights simulate a cone of light from a source so require position and direction, plus extra values for falloff
     LT_SPOTLIGHT = 2
 };
 
@@ -362,15 +359,10 @@ enum plane_side
 
 enum world_fragment_type
 {
-    /// Return no world geometry hits at all
     WFT_NONE,
-    /// Return pointers to convex plane-bounded regions
     WFT_PLANE_BOUNDED_REGION,
-    /// Return a single intersection point (typically RaySceneQuery only)
     WFT_SINGLE_INTERSECTION,
-    /// Custom geometry as defined by the SceneManager
     WFT_CUSTOM_GEOMETRY,
-    /// General RenderOperation structure
     WFT_RENDER_OPERATION
 };
 
@@ -418,6 +410,146 @@ enum operation_type
     OT_TRIANGLE_FAN = 6
 };
 
+// OgreCommon.h
+
+enum compare_function
+{
+    CMPF_ALWAYS_FAIL,
+    CMPF_ALWAYS_PASS,
+    CMPF_LESS,
+    CMPF_LESS_EQUAL,
+    CMPF_EQUAL,
+    CMPF_NOT_EQUAL,
+    CMPF_GREATER_EQUAL,
+    CMPF_GREATER
+};
+
+enum texture_filter_options
+{
+    TFO_NONE,
+    TFO_BILINEAR,
+    TFO_TRILINEAR,
+    TFO_ANISOTROPIC
+}
+
+enum filter_type
+{
+    FT_MIN,
+    FT_MAG,
+    FT_MIP
+};
+
+enum filter_options
+{
+    FO_NONE,
+    FO_POINT,
+    FO_LINEAR,
+    FO_ANISOTROPIC
+};
+
+enum shade_options
+{
+    SO_FLAT,
+    SO_GOURAUD,
+    SO_PHONG
+};
+
+enum fog_mode
+{
+    FOG_NONE,
+    FOG_EXP,
+    FOG_EXP2,
+    FOG_LINEAR
+};
+
+enum culling_mode
+{
+    CULL_NONE = 1,
+    CULL_CLOCKWISE = 2,
+    CULL_ANTICLOCKWISE = 3
+};
+
+enum manual_culling_mode
+{
+    MANUAL_CULL_NONE = 1,
+    MANUAL_CULL_BACK = 2,
+    MANUAL_CULL_FRONT = 3
+};
+
+enum waveform_type
+{
+    WFT_SINE,
+    WFT_TRIANGLE,
+    WFT_SQUARE,
+    WFT_SAWTOOTH,
+    WFT_INVERSE_SAWTOOTH,
+    WFT_PWM
+};
+
+enum polygon_mode
+{
+    PM_POINTS = 1,
+    PM_WIREFRAME = 2,
+    PM_SOLID = 3
+};
+
+enum shadow_technique
+{
+    SHADOWTYPE_NONE = 0x00,
+    SHADOWDETAILTYPE_ADDITIVE = 0x01,
+    SHADOWDETAILTYPE_MODULATIVE = 0x02,
+    SHADOWDETAILTYPE_INTEGRATED = 0x04,
+    SHADOWDETAILTYPE_STENCIL = 0x10,
+    SHADOWDETAILTYPE_TEXTURE = 0x20,
+    SHADOWTYPE_STENCIL_MODULATIVE = 0x12,
+    SHADOWTYPE_STENCIL_ADDITIVE = 0x11,
+    SHADOWTYPE_TEXTURE_MODULATIVE = 0x22,
+    SHADOWTYPE_TEXTURE_ADDITIVE = 0x21,
+    SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED = 0x25,
+    SHADOWTYPE_TEXTURE_MODULATIVE_INTEGRATED = 0x26
+};
+
+alias int track_vertex_colour_type;
+
+enum track_vertex_colour_enum
+{
+    TVC_NONE        = 0x0,
+    TVC_AMBIENT     = 0x1,        
+    TVC_DIFFUSE     = 0x2,
+    TVC_SPECULAR    = 0x4,
+    TVC_EMISSIVE    = 0x8
+}
+
+enum sort_mode
+{
+    SM_DIRECTION,
+    SM_DISTANCE
+};
+
+enum frame_buffer_type
+{
+    FBT_COLOUR  = 0x1,
+    FBT_DEPTH   = 0x2,
+    FBT_STENCIL = 0x4
+};
+
+enum instance_manager_flags
+{
+    IM_USE16BIT		= 0x0001,
+    IM_VTFBESTFIT	= 0x0002,
+    IM_VTFBONEMATRIXLOOKUP = 0x0004,
+    IM_USEBONEDUALQUATERNIONS = 0x0008,
+    IM_USEONEWEIGHT = 0x0010,
+    IM_FORCEONEWEIGHT = 0x0020,
+    IM_USEALL		= IM_USE16BIT|IM_VTFBESTFIT|IM_USEONEWEIGHT
+};
+
+enum clip_result
+{
+    CLIPPED_NONE = 0,
+    CLIPPED_SOME = 1, 
+    CLIPPED_ALL = 2
+};
 
 
 // Root functions
