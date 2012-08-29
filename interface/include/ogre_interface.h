@@ -107,6 +107,10 @@
 
 #define NameValuePairListHandle void*
 
+
+// From OgreResource.h
+typedef unsigned long long int ResourceHandle;
+
 // From OgrePlatform.h
 typedef unsigned int uint32;
 typedef unsigned short uint16;
@@ -365,7 +369,7 @@ typedef enum
     ANIMBLEND_CUMULATIVE = 1
 } skeleton_animation_blend_mode;
 
-
+// OgreRenderOperation.h
 typedef enum
 {
     OT_POINT_LIST = 1,
@@ -384,6 +388,19 @@ typedef enum
     ST_EXTERIOR_REAL_FAR = 8,
     ST_INTERIOR = 16
 } scene_type;
+
+
+// OgreResource.h
+
+typedef enum
+{
+    LOADSTATE_UNLOADED,
+    LOADSTATE_LOADING,
+    LOADSTATE_LOADED,
+    LOADSTATE_UNLOADING,
+    LOADSTATE_PREPARED,
+    LOADSTATE_PREPARING
+} loading_state;
 
 
 

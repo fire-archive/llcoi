@@ -1089,3 +1089,73 @@ operation_type ogre_operation_type_to_llcoi(Ogre::RenderOperation::OperationType
     }
     return converted;
 }
+
+//OgreResource.h
+Ogre::Resource::LoadingState llcoi_loading_state_to_ogre(loading_state state)
+{
+    Ogre::Resource::LoadingState converted;
+    switch(state)
+    {
+
+        case LOADSTATE_UNLOADED:
+            converted = Ogre::Resource::LOADSTATE_UNLOADED;
+            break;
+
+        case LOADSTATE_LOADING:
+            converted = Ogre::Resource::LOADSTATE_LOADING;
+            break;
+
+        case LOADSTATE_LOADED:
+            converted = Ogre::Resource::LOADSTATE_LOADED;
+            break;
+
+        case LOADSTATE_UNLOADING:
+            converted = Ogre::Resource::LOADSTATE_UNLOADING;
+            break;
+
+        case LOADSTATE_PREPARED:
+            converted = Ogre::Resource::LOADSTATE_PREPARED;
+            break;
+
+        case LOADSTATE_PREPARING:
+            converted = Ogre::Resource::LOADSTATE_PREPARING;
+            break;
+
+    }
+    return converted;
+}
+
+loading_state ogre_loading_state_to_llcoi(Ogre::Resource::LoadingState state)
+{
+    loading_state converted;
+    switch(state)
+    {
+
+        case Ogre::Resource::LOADSTATE_UNLOADED:
+            converted = LOADSTATE_UNLOADED;
+            break;
+
+        case Ogre::Resource::LOADSTATE_LOADING:
+            converted = LOADSTATE_LOADING;
+            break;
+
+        case Ogre::Resource::LOADSTATE_LOADED:
+            converted = LOADSTATE_LOADED;
+            break;
+
+        case Ogre::Resource::LOADSTATE_UNLOADING:
+            converted = LOADSTATE_UNLOADING;
+            break;
+
+        case Ogre::Resource::LOADSTATE_PREPARED:
+            converted = LOADSTATE_PREPARED;
+            break;
+
+        case Ogre::Resource::LOADSTATE_PREPARING:
+            converted = LOADSTATE_PREPARING;
+            break;
+
+    }
+    return converted;
+}
+

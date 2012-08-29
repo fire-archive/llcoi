@@ -46,6 +46,9 @@ const int EVENT_FRAME_STARTED = 1;
 const int EVENT_FRAME_RENDERING_QUEUED = 2;
 const int EVENT_FRAME_ENDED = 4;
 
+// From OgreResource.h
+alias ulong ResourceHandle;
+
 // From OgrePlatform.h
 alias uint uint32;
 alias ushort uint16;
@@ -111,6 +114,10 @@ alias void* TextAreaOverlayElementHandle;
 alias void* OverlayContainerHandle;
 alias void* VertexDataHandle;
 alias void* IndexDataHandle;
+alias void* coiResourceHandle;
+alias void* ManualResourceLoaderHandle;
+alias void* ResourceManagerHandle;
+alias void* ResourceListenerHandle;
 
 
 // listener typedefs
@@ -121,6 +128,7 @@ alias void function(const char* message, int lml, int maskDebug, const char* log
 
 //alias int function(const ref FrameEvent evt, int frame_type, void* userdata) FrameListenerCtx;
 
+//Ogre::FrameListener callbacks.
 alias int function(ref const(FrameEvent) event, void* userdata) FrameStarted;
 alias int function(ref const(FrameEvent) event, void* userdata) FrameEnded;
 alias int function(ref const(FrameEvent) event, void* userdata) FrameQueued;
@@ -129,6 +137,11 @@ alias int function(const ref world_fragment frag, void* userdata) SceneQueryFrag
 alias int function(MovableObjectHandle handle, void* userdata) SceneQueryObjectResult;
 alias int function(const ref world_fragment frag, coiReal distance, void* userdata) RaySceneQueryFragmentResult;
 alias int function(MovableObjectHandle handle, coiReal distance, void* userdata) RaySceneQueryObjectResult;
+
+//Ogre::Resource::Listener callbacks
+alias void function(coiResourceHandle handle, void* userdata) loadingCompleteCB;
+alias void function(coiResourceHandle handle, void* userdata) preparingCompleteCB;
+alias void function(coiResourceHandle handle, void* userdata) unloadingCompleteCB;
 
 struct coiQuaternion
 {
@@ -308,6 +321,18 @@ enum scene_type
     ST_EXTERIOR_FAR = 4,
     ST_EXTERIOR_REAL_FAR = 8,
     ST_INTERIOR = 16
+};
+
+
+// OgreResource.h
+enum loading_state
+{
+    LOADSTATE_UNLOADED,
+    LOADSTATE_LOADING,
+    LOADSTATE_LOADED,
+    LOADSTATE_UNLOADING,
+    LOADSTATE_PREPARED,
+    LOADSTATE_PREPARING
 };
 
 enum hardware_buffer_usage
@@ -2187,3 +2212,70 @@ void manualobjectsection_get_world_transforms(const ManualObjectSectionHandle ha
 //Real getSquaredViewDepth(const Ogre::Camera *) const
 coiReal manualobjectsection_get_squared_view_depth(const ManualObjectSectionHandle handle, const CameraHandle cam);
 //TODO: const LightList &getLights(void) const
+
+
+//Ogre::Resource::Listener
+ResourceListenerHandle create_resourcelistener(loadingCompleteCB loading_cb, preparingCompleteCB preparing_cb, unloadingCompleteCB unloading_cb, void* userdata);
+void destroy_resourcelistener(ResourceListenerHandle handle);
+
+// Ogre::Resource
+void destroy_resource(coiResourceHandle handle);
+//void prepare(bool backgroundThread = false)
+void resource_prepare(coiResourceHandle handle, int background_thread);
+//void load(bool backgroundThread = false)
+void resource_load(coiResourceHandle handle, int background_thread);
+//void reload()
+void resource_reload(coiResourceHandle handle);
+//bool isReloadable(void) const
+int resource_is_reloadable(const coiResourceHandle handle);
+//bool isManuallyLoaded(void) const
+int resource_is_manually_loaded(const coiResourceHandle handle);
+//void unload(void)
+void resource_unload(coiResourceHandle handle);
+//size_t getSize(void) const
+size_t resource_get_size(const coiResourceHandle handle);
+//void touch(void)
+void resource_touch(coiResourceHandle handle);
+//const String& getName(void) const 
+const(char*) resource_get_name(const coiResourceHandle handle);
+//ResourceHandle getHandle(void) const
+ResourceHandle resource_get_handle(const coiResourceHandle handle);
+//bool isPrepared(void) const 
+int resource_is_prepared(const coiResourceHandle handle);
+//bool isLoaded(void) const 
+int resource_is_loaded(const coiResourceHandle handle);
+//bool isLoading() const
+int resource_is_loading(const coiResourceHandle handle);
+//LoadingState getLoadingState() const
+loading_state resource_get_loading_state(const coiResourceHandle handle);
+//bool isBackgroundLoaded(void) const
+int resource_is_backgruond_loaded(const coiResourceHandle handle);
+//void setBackgroundLoaded(bool bl)
+void resource_set_background_loaded(coiResourceHandle handle, int bl);
+//void escalateLoading()
+void resource_escalate_loading(coiResourceHandle handle);
+//void addListener(Listener* lis)
+void resource_add_listener(coiResourceHandle handle, ResourceListenerHandle listener);
+//void removeListener(Listener* lis)
+void resource_remove_listener(coiResourceHandle handle, ResourceListenerHandle listener);
+//const String& getGroup(void) const
+const(char*) resource_get_group(const coiResourceHandle handle);
+//void changeGroupOwnership(const String& newGroup)
+void  resource_change_group_ownership(coiResourceHandle handle, const char* new_group);
+//ResourceManager* getCreator(void)
+ResourceManagerHandle resource_get_creator(coiResourceHandle handle);
+//const String& getOrigin(void) const
+const(char*) resource_get_origin(const coiResourceHandle handle);
+//void _notifyOrigin(const String& origin)
+void resource__notify_origin(coiResourceHandle handle, const char* origin);
+//size_t getStateCount() const
+size_t resource_get_state_count(const coiResourceHandle handle);
+//void _dirtyState()
+void resource__dirty_state(coiResourceHandle handle);
+//void _fireLoadingComplete(bool wasBackgroundLoaded)
+void resource__fire_loading_complete(coiResourceHandle handle, int was_background_loaded);
+//void _firePreparingComplete(bool wasBackgroundLoaded)
+void resource__fire_preparing_complete(coiResourceHandle handle, int was_background_loaded);
+//void _fireUnloadingComplete(void)
+void resource_fire_unloading_complete(coiResourceHandle handle);
+//typedef SharedPtr<Resource> ResourcePtr

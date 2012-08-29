@@ -52,6 +52,7 @@
 #include <OgreRenderOperation.h> // RenderOperation::OperationType
 #include <OgreLight.h>          // Light::LightTypes
 #include <OgreNode.h>           // Node::TransformSpace
+#include <OgreResource.h>       // Resource::LoadingState
 #include <OgreSkeleton.h>       // SkeletonAnimationBlendMode
 #include <OISMouse.h>           // OIS::MouseButtonID
 
@@ -140,6 +141,10 @@ skeleton_animation_blend_mode ogre_skeleton_blend_mode_to_llcoi(Ogre::SkeletonAn
 // OgreRenderOperation.h
 Ogre::RenderOperation::OperationType llcoi_operation_type_to_ogre(operation_type op_type);
 operation_type ogre_operation_type_to_llcoi(Ogre::RenderOperation::OperationType op_type);
+
+// OgreResource.h
+Ogre::Resource::LoadingState llcoi_loading_state_to_ogre(loading_state state);
+loading_state ogre_loading_state_to_llcoi(Ogre::Resource::LoadingState state);
 
 /* OIS MouseState <-> LLCOI MouseState converters */
 

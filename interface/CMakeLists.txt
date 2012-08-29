@@ -109,6 +109,7 @@ set(HDRS
     ./include/scenenode_bind.h
     ./include/camera_bind.h
     ./include/resourcegroupmanager_bind.h
+    ./include/resource_bind.h
     ./include/renderwindow_bind.h
     ./include/rendersystem_bind.h
     ./include/renderoperation_bind.h
@@ -156,6 +157,7 @@ set(SRCS
     ./source/scenenode_bind.cpp
     ./source/camera_bind.cpp
     ./source/resourcegroupmanager_bind.cpp
+    ./source/resource_bind.cpp
     ./source/renderwindow_bind.cpp
     ./source/rendersystem_bind.cpp
     ./source/renderoperation_bind.cpp
@@ -247,6 +249,7 @@ if(${LLCOI_DYNAMIC_BUILD})
                 ./include/scenenode_bind.h
                 ./include/camera_bind.h
                 ./include/resourcegroupmanager_bind.h
+                ./include/resource_bind.h
                 ./include/renderwindow_bind.h
                 ./include/rendersystem_bind.h
                 ./include/renderoperation_bind.h
