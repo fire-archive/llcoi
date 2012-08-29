@@ -115,56 +115,46 @@ void remove_frame_listener(FrameListenerEvent frame_event)
 class FrameListenerCTX: public Ogre::FrameListener
 {
 public:
-    FrameListenerCTX(FrameListenerCtx cb, void* data)
-        : callback(cb), userdata(data)
+    FrameListenerCTX(FrameStarted started_cb, FrameQueued queued_cb, FrameEnded ended_cb, void* data)
+        : started(started_cb), queued(queued_cb), ended(ended_cb), userdata(data)
     {
     }
 
     bool frameStarted(const Ogre::FrameEvent& evt)
     {
-        if (callback)
-        {
-            FrameEvent e;
-            e.time_since_last_event = evt.timeSinceLastEvent;
-            e.time_since_last_frame = evt.timeSinceLastFrame;
-            return callback(&e, EVENT_FRAME_STARTED, userdata);
-        }
-        return true;
+        FrameEvent e;
+        e.time_since_last_event = evt.timeSinceLastEvent;
+        e.time_since_last_frame = evt.timeSinceLastFrame;
+        return started(&e, userdata);
     }
 
     bool frameRenderingQueued(const Ogre::FrameEvent& evt)
     {
-        if (callback)
-        {
-            FrameEvent e;
-            e.time_since_last_event = evt.timeSinceLastEvent;
-            e.time_since_last_frame = evt.timeSinceLastFrame;
-            return callback(&e, EVENT_FRAME_RENDERING_QUEUED, userdata);
-        }
-        return true;
+        FrameEvent e;
+        e.time_since_last_event = evt.timeSinceLastEvent;
+        e.time_since_last_frame = evt.timeSinceLastFrame;
+        return queued(&e, userdata);
     }
 
     bool frameEnded(const Ogre::FrameEvent& evt)
     {
-        if (callback)
-        {
-            FrameEvent e;
-            e.time_since_last_event = evt.timeSinceLastEvent;
-            e.time_since_last_frame = evt.timeSinceLastFrame;
-            return callback(&e, EVENT_FRAME_ENDED, userdata);
-        }
-        return true;
+        FrameEvent e;
+        e.time_since_last_event = evt.timeSinceLastEvent;
+        e.time_since_last_frame = evt.timeSinceLastFrame;
+        return ended(&e, userdata);
     }
 
-    FrameListenerCtx callback;
+    FrameStarted started;
+    FrameQueued queued;
+    FrameEnded ended;
     void* userdata;
 };
 
 
 
-FrameListenerHandle add_frame_listener_ctx(FrameListenerCtx callback, void* userdata)
+FrameListenerHandle add_frame_listener_ctx(FrameStarted started_cb, FrameQueued queued_cb, FrameEnded ended_cb, void* userdata)
 {
-    FrameListenerCTX *frameListener = new FrameListenerCTX(callback, userdata);
+    FrameListenerCTX *frameListener = new FrameListenerCTX(started_cb, queued_cb, ended_cb, userdata);
     Ogre::Root::getSingletonPtr()->addFrameListener(frameListener);
     return reinterpret_cast<FrameListenerHandle>(frameListener);
 }

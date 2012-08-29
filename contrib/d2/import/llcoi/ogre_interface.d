@@ -118,7 +118,12 @@ alias int function(float,float,int) FrameListenerEvent;
 alias void function(RenderWindowHandle) WindowListenerEvent;
 alias void function(const char* message, int lml, int maskDebug, const char* log_name, int skip_message) LogListenerEvent;
 alias void function(const char* message, int lml, int maskDebug, const char* log_name, int skip_message, void* userdata) LogListenerCtx;
-alias int function(const ref FrameEvent evt, int frame_type, void* userdata) FrameListenerCtx;
+
+//alias int function(const ref FrameEvent evt, int frame_type, void* userdata) FrameListenerCtx;
+
+alias int function(ref const(FrameEvent) event, void* userdata) FrameStarted;
+alias int function(ref const(FrameEvent) event, void* userdata) FrameEnded;
+alias int function(ref const(FrameEvent) event, void* userdata) FrameQueued;
 
 alias int function(const ref world_fragment frag, void* userdata) SceneQueryFragmentResult;
 alias int function(MovableObjectHandle handle, void* userdata) SceneQueryObjectResult;
@@ -1339,7 +1344,7 @@ void add_frame_listener(FrameListenerEvent frame_event,const int frame_event_typ
 
 void remove_frame_listener(FrameListenerEvent frame_event);
 
-FrameListenerHandle add_frame_listener_ctx(FrameListenerCtx callback, void* userdata);
+FrameListenerHandle add_frame_listener_ctx(FrameStarted started_cb, FrameQueued queued_cb, FrameEnded ended_cb, void* userdata);
 
 void remove_frame_listener_ctx(FrameListenerHandle handle);
 

@@ -52,7 +52,10 @@ typedef struct
     coiReal time_since_last_frame;
 } FrameEvent;
 
-typedef int(*FrameListenerCtx)(const FrameEvent* event, int evt_type, void* userdata);
+typedef int(*FrameStarted)(const FrameEvent* event, void* userdata);
+typedef int(*FrameEnded)(const FrameEvent* event, void* userdata);
+typedef int(*FrameQueued)(const FrameEvent* event, void* userdata);
+
 typedef int(*FrameListenerEvent)(float,float,int);
 
 // FrameListener
@@ -60,7 +63,7 @@ DLL void add_frame_listener(FrameListenerEvent frame_event,int frame_event_type)
 
 DLL void remove_frame_listener(FrameListenerEvent frame_event);
 
-DLL FrameListenerHandle add_frame_listener_ctx(FrameListenerCtx callback, void* userdata);
+DLL FrameListenerHandle add_frame_listener_ctx(FrameStarted started_cb, FrameQueued queued_cb, FrameEnded ended_cb, void* userdata);
 
 DLL void remove_frame_listener_ctx(FrameListenerHandle handle);
 
