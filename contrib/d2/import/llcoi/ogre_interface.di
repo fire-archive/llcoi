@@ -2294,7 +2294,7 @@ void manualresourceloader_load_resource(ManualResourceLoaderHandle handle, coiRe
 //~ResourceManager();
 void destroy_resourcemanager(ResourceManagerHandle handle);
 //ResourcePtr create(const String& name, const String& group, bool isManual = false, ManualResourceLoader* loader = 0, const NameValuePairList* createParams = 0)
-ResourcePtrHandle resourcemanager_create(ResourceManagerHandle handle, const char* name, const char* group, int is_manual, ManualResourceLoaderHandle l, const NameValuePairListHandle nvp)
+ResourcePtrHandle resourcemanager_create(ResourceManagerHandle handle, const char* name, const char* group, int is_manual, ManualResourceLoaderHandle l, const NameValuePairListHandle nvp);
 //typedef std::pair<ResourcePtr, bool> ResourceCreateOrRetrieveResult
 //TODO: ResourceCreateOrRetrieveResult createOrRetrieve(const String& name, const String& group, bool isManual = false, ManualResourceLoader* loader = 0, const NameValuePairList* createParams = 0)
 //void setMemoryBudget( size_t bytes)
