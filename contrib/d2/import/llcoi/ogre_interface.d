@@ -2249,7 +2249,7 @@ int resource_is_loading(const coiResourceHandle handle);
 //LoadingState getLoadingState() const
 loading_state resource_get_loading_state(const coiResourceHandle handle);
 //bool isBackgroundLoaded(void) const
-int resource_is_backgruond_loaded(const coiResourceHandle handle);
+int resource_is_background_loaded(const coiResourceHandle handle);
 //void setBackgroundLoaded(bool bl)
 void resource_set_background_loaded(coiResourceHandle handle, int bl);
 //void escalateLoading()
@@ -2277,5 +2277,13 @@ void resource__fire_loading_complete(coiResourceHandle handle, int was_backgroun
 //void _firePreparingComplete(bool wasBackgroundLoaded)
 void resource__fire_preparing_complete(coiResourceHandle handle, int was_background_loaded);
 //void _fireUnloadingComplete(void)
-void resource_fire_unloading_complete(coiResourceHandle handle);
+void resource__fire_unloading_complete(coiResourceHandle handle);
 //typedef SharedPtr<Resource> ResourcePtr
+
+//Ogre::ManualResourceLoader
+//~ManualResourceLoader()
+void destroy_manualresourceloader(ManualResourceLoaderHandle handle);
+//void prepareResource(Resource* resource)
+void manualresourceloader_prepare_resource(ManualResourceLoaderHandle handle, coiResourceHandle resource);
+//void loadResource(Resource* resource)
+void manualresourceloader_load_resource(ManualResourceLoaderHandle handle, coiResourceHandle resource);

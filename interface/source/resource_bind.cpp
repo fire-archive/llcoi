@@ -294,9 +294,34 @@ void resource__fire_preparing_complete(coiResourceHandle handle, int was_backgro
 }
 
 //void _fireUnloadingComplete(void)
-void resource_fire_unloading_complete(coiResourceHandle handle)
+void resource__fire_unloading_complete(coiResourceHandle handle)
 {
     Ogre::Resource* res = static_cast<Ogre::Resource*>(handle);
     res->_fireUnloadingComplete();
+}
+
+//Ogre::ManualResourceLoader
+
+//~ManualResourceLoader()
+void destroy_manualresourceloader(ManualResourceLoaderHandle handle)
+{
+    Ogre::ManualResourceLoader* loader = static_cast<Ogre::ManualResourceLoader*>(handle);
+    delete loader;
+}
+
+//void prepareResource(Resource* resource)
+void manualresourceloader_prepare_resource(ManualResourceLoaderHandle handle, coiResourceHandle resource)
+{
+    Ogre::ManualResourceLoader* loader = static_cast<Ogre::ManualResourceLoader*>(handle);
+    Ogre::Resource* res = static_cast<Ogre::Resource*>(resource);
+    loader->prepareResource(res);
+}
+
+//void loadResource(Resource* resource)
+void manualresourceloader_load_resource(ManualResourceLoaderHandle handle, coiResourceHandle resource)
+{
+    Ogre::ManualResourceLoader* loader = static_cast<Ogre::ManualResourceLoader*>(handle);
+    Ogre::Resource* res = static_cast<Ogre::Resource*>(resource);
+    loader->loadResource(res);
 }
 

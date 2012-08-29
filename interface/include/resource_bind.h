@@ -112,9 +112,16 @@ DLL void resource__fire_loading_complete(coiResourceHandle handle, int was_backg
 //void _firePreparingComplete(bool wasBackgroundLoaded)
 DLL void resource__fire_preparing_complete(coiResourceHandle handle, int was_background_loaded);
 //void _fireUnloadingComplete(void)
-DLL void resource_fire_unloading_complete(coiResourceHandle handle);
+DLL void resource__fire_unloading_complete(coiResourceHandle handle);
 //typedef SharedPtr<Resource> ResourcePtr
 
 
+//Ogre::ManualResourceLoader
+//~ManualResourceLoader()
+DLL void destroy_manualresourceloader(ManualResourceLoaderHandle handle);
+//void prepareResource(Resource* resource)
+DLL void manualresourceloader_prepare_resource(ManualResourceLoaderHandle handle, coiResourceHandle resource);
+//void loadResource(Resource* resource)
+DLL void manualresourceloader_load_resource(ManualResourceLoaderHandle handle, coiResourceHandle resource);
 
 #endif
