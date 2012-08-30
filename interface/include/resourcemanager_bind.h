@@ -109,7 +109,7 @@ DLL const char* resourcemanager_get_resource_type(const ResourceManagerHandle ha
 //void setVerbose(bool v)
 DLL void resourcemanager_set_verbose(ResourceManagerHandle handle, int v);
 //bool getVerbose(void)
-DLL bool resourcemanager_get_verbose(ResourceManagerHandle handle);
+DLL int resourcemanager_get_verbose(ResourceManagerHandle handle);
 
 
 #endif

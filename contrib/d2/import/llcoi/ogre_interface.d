@@ -2352,5 +2352,4 @@ const(char*) resourcemanager_get_resource_type(const ResourceManagerHandle handl
 //void setVerbose(bool v)
 void resourcemanager_set_verbose(ResourceManagerHandle handle, int v);
 //bool getVerbose(void)
-bool resourcemanager_get_verbose(ResourceManagerHandle handle);
-
+int resourcemanager_get_verbose(ResourceManagerHandle handle);
