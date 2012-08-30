@@ -114,6 +114,7 @@ alias void* TextAreaOverlayElementHandle;
 alias void* OverlayContainerHandle;
 alias void* VertexDataHandle;
 alias void* IndexDataHandle;
+alias void* ResourceGroupManagerHandle;
 alias void* coiResourceHandle;
 alias void* ResourcePtrHandle;
 alias void* ManualResourceLoaderHandle;
@@ -1086,19 +1087,15 @@ void viewport_get_actual_dimensions(ViewportHandle handle, ref int left, ref int
 void viewport_get_background_colour(ViewportHandle handle, ref coiColourValue cv);
 
 
-// Resource management
-void setup_resources(const char* resources_cfg);
-
-void add_resource_location(const char* location, const char* type, const char* group);
-
-void initialise_all_resourcegroups();
-
+// Ogre::ResourceGroupManager
+ResourceGroupManagerHandle create_resourcegroupmanager();
+void destroy_resourcegroupmanager(ResourceGroupManagerHandle handle);
+void resourcegroupmanager_setup_resources(const char* resources_cfg);
+void resourcegroupmanager_add_resource_location(ResourceGroupManagerHandle handle, const char* location, const char* type, const char* group);
+void resourcegroupmanager_initialise_all_resourcegroups(ResourceGroupManagerHandle handle);
 const(char*) resourcegroupmanager_DEFAULT_RESOURCE_GROUP_NAME();
-
 const(char*) resourcegroupmanager_INTERNAL_RESOURCE_GROUP_NAME();
-
-const(char*)  resourcegroupmanager_AUTODETECT_RESOURCE_GROUP_NAME();
-
+const(char*) resourcegroupmanager_AUTODETECT_RESOURCE_GROUP_NAME();
 size_t resourcegroupmanager_RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS();
 
 // Camera
