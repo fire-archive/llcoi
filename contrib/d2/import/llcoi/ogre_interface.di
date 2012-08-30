@@ -119,6 +119,9 @@ alias void* ResourcePtrHandle;
 alias void* ManualResourceLoaderHandle;
 alias void* ResourceManagerHandle;
 alias void* ResourceListenerHandle;
+alias void* MaterialManagerHandle;
+alias void* MaterialPtrHandle;
+alias void* MaterialHandle;
 
 
 // listener typedefs
@@ -2353,3 +2356,6 @@ const(char*) resourcemanager_get_resource_type(const ResourceManagerHandle handl
 void resourcemanager_set_verbose(ResourceManagerHandle handle, int v);
 //bool getVerbose(void)
 int resourcemanager_get_verbose(ResourceManagerHandle handle);
+
+// Ogre::MaterialManager
+
