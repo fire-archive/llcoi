@@ -123,6 +123,7 @@ alias void* ResourceListenerHandle;
 alias void* MaterialManagerHandle;
 alias void* MaterialPtrHandle;
 alias void* MaterialHandle;
+alias void* TechniqueHandle;
 
 
 // listener typedefs
@@ -2398,3 +2399,6 @@ void materialmanager_set_active_scheme(MaterialManagerHandle handle, const char*
 MaterialManagerHandle materialmanager_get_singleton();
 //static MaterialManager* getSingletonPtr()
 MaterialManagerHandle materialmanager_get_singleton_ptr();
+
+// Ogre::Material
+

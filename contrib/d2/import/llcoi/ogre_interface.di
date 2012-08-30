@@ -123,6 +123,7 @@ alias void* ResourceListenerHandle;
 alias void* MaterialManagerHandle;
 alias void* MaterialPtrHandle;
 alias void* MaterialHandle;
+alias void* TechniqueHandle;
 
 
 // listener typedefs
@@ -1097,6 +1098,8 @@ const(char*) resourcegroupmanager_DEFAULT_RESOURCE_GROUP_NAME();
 const(char*) resourcegroupmanager_INTERNAL_RESOURCE_GROUP_NAME();
 const(char*) resourcegroupmanager_AUTODETECT_RESOURCE_GROUP_NAME();
 size_t resourcegroupmanager_RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS();
+ResourceGroupManagerHandle resourcegroupmanager_get_singleton();
+ResourceGroupManagerHandle resourcegroupmanager_get_singleton_ptr();
 
 // Camera
 CameraHandle create_camera(const char* camera_name);
@@ -2396,3 +2399,6 @@ void materialmanager_set_active_scheme(MaterialManagerHandle handle, const char*
 MaterialManagerHandle materialmanager_get_singleton();
 //static MaterialManager* getSingletonPtr()
 MaterialManagerHandle materialmanager_get_singleton_ptr();
+
+// Ogre::Material
+
