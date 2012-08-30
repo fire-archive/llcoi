@@ -119,6 +119,7 @@ void ogre_matrix4_to_llcoi_matrix4(const Ogre::Matrix4&o, coiMatrix4& l)
 }
 
 
+// TODO: Since we're not exposing the utils to C, refactor all of these enum converters to be overloads of 'enum_converter'
 log_message_level ogre_lml_to_llcoi_lml(Ogre::LogMessageLevel lml)
 {
     log_message_level converted;
@@ -1159,3 +1160,242 @@ loading_state ogre_loading_state_to_llcoi(Ogre::Resource::LoadingState state)
     return converted;
 }
 
+// OgreCommon.h
+Ogre::CompareFunction enum_converter(compare_function func)
+{
+    Ogre::CompareFunction converted;
+
+    switch(func)
+    {
+        case CMPF_ALWAYS_FAIL:
+            converted = Ogre::CMPF_ALWAYS_FAIL;
+            break;
+
+        case CMPF_ALWAYS_PASS:
+            converted = Ogre::CMPF_ALWAYS_PASS;
+            break;
+
+        case CMPF_LESS:
+            converted = Ogre::CMPF_LESS;
+            break;
+
+        case CMPF_LESS_EQUAL:
+            converted = Ogre::CMPF_LESS_EQUAL;
+            break;
+
+        case CMPF_EQUAL:
+            converted = Ogre::CMPF_EQUAL;
+            break;
+
+        case CMPF_NOT_EQUAL:
+            converted = Ogre::CMPF_NOT_EQUAL;
+            break;
+
+        case CMPF_GREATER_EQUAL:
+            converted = Ogre::CMPF_GREATER_EQUAL;
+            break;
+
+        case CMPF_GREATER:
+            converted = Ogre::CMPF_GREATER;
+            break;
+
+    }
+
+    return converted;
+}
+
+compare_function enum_converter(Ogre::CompareFunction func)
+{
+
+    compare_function converted;
+
+    switch(func)
+    {
+        case Ogre::CMPF_ALWAYS_FAIL:
+            converted = CMPF_ALWAYS_FAIL;
+            break;
+
+        case Ogre::CMPF_ALWAYS_PASS:
+            converted = CMPF_ALWAYS_PASS;
+            break;
+
+        case Ogre::CMPF_LESS:
+            converted = CMPF_LESS;
+            break;
+
+        case Ogre::CMPF_LESS_EQUAL:
+            converted = CMPF_LESS_EQUAL;
+            break;
+
+        case Ogre::CMPF_EQUAL:
+            converted = CMPF_EQUAL;
+            break;
+
+        case Ogre::CMPF_NOT_EQUAL:
+            converted = CMPF_NOT_EQUAL;
+            break;
+
+        case Ogre::CMPF_GREATER_EQUAL:
+            converted = CMPF_GREATER_EQUAL;
+            break;
+
+        case Ogre::CMPF_GREATER:
+            converted = CMPF_GREATER;
+            break;
+
+        
+    }
+
+    return converted;
+}
+
+
+Ogre::TextureFilterOptions enum_converter(texture_filter_options opts)
+{
+    Ogre::TextureFilterOptions converted;
+    switch(opts)
+    {
+        case TFO_NONE:
+            converted = Ogre::TFO_NONE;
+            break;
+
+        case TFO_BILINEAR:
+            converted = Ogre::TFO_BILINEAR;
+            break;
+
+        case TFO_TRILINEAR:
+            converted = Ogre::TFO_TRILINEAR;
+            break;
+
+        case TFO_ANISOTROPIC:
+            converted = Ogre::TFO_ANISOTROPIC;
+            break;
+
+
+    }
+    return converted;
+}
+
+texture_filter_options enum_converter(Ogre::TextureFilterOptions opts)
+{
+    texture_filter_options converted;
+
+    switch(opts)
+    {
+        case Ogre::TFO_NONE:
+            converted = TFO_NONE;
+            break;
+
+        case Ogre::TFO_BILINEAR:
+            converted = TFO_BILINEAR;
+            break;
+
+        case Ogre::TFO_TRILINEAR:
+            converted = TFO_TRILINEAR;
+            break;
+
+        case Ogre::TFO_ANISOTROPIC:
+            converted = TFO_ANISOTROPIC;
+            break;
+
+    }
+    return converted;
+}
+
+
+Ogre::FilterType enum_converter(filter_type ftype)
+{
+    Ogre::FilterType converted;
+
+    switch(ftype)
+    {
+        case FT_MIN:
+            converted = Ogre::FT_MIN;
+            break;
+
+        case FT_MAG:
+            converted = Ogre::FT_MAG;
+            break;
+
+        case FT_MIP:
+            converted = Ogre::FT_MIP;
+            break;
+
+    }
+
+    return converted;
+}
+
+filter_type enum_converter(Ogre::FilterType ftype)
+{
+    filter_type converted;
+
+    switch(ftype)
+    {
+        case Ogre::FT_MIN:
+            converted = FT_MIN;
+            break;
+
+        case Ogre::FT_MAG:
+            converted = FT_MAG;
+            break;
+
+        case Ogre::FT_MIP:
+            converted = FT_MIP;
+            break;
+    }
+
+    return converted;
+}
+
+
+Ogre::FilterOptions enum_converter(filter_options opts)
+{
+    Ogre::FilterOptions converted;
+
+    switch(opts)
+    {
+        case FO_NONE:
+            converted = Ogre::FO_NONE;
+            break;
+
+        case FO_POINT:
+            converted = Ogre::FO_POINT;
+            break;
+
+        case FO_LINEAR:
+            converted = Ogre::FO_LINEAR;
+            break;
+
+        case FO_ANISOTROPIC:
+            converted = Ogre::FO_ANISOTROPIC;
+            break;
+
+    }
+    return converted;
+}
+
+filter_options enum_converter(Ogre::FilterOptions opts)
+{
+    filter_options converted;
+    switch(opts)
+    {
+        case Ogre::FO_NONE:
+            converted = FO_NONE;
+            break;
+
+        case Ogre::FO_POINT:
+            converted = FO_POINT;
+            break;
+
+        case Ogre::FO_LINEAR:
+            converted = FO_LINEAR;
+            break;
+
+        case Ogre::FO_ANISOTROPIC:
+            converted = FO_ANISOTROPIC;
+            break;
+
+    }
+    return converted;
+}

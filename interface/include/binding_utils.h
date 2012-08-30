@@ -42,7 +42,7 @@
 #include "log_bind.h"            // log_message_level, logging_level
 #include "light_bind.h"
 
-//#include <OgreCommon.h>
+#include <OgreCommon.h>         // Oodles of enums.
 #include <OgreLog.h>            // LogMessageLevel and LoggingLevel
 #include <OgreSceneQuery.h>     // SceneQuery::WorldFragmentType
 #include <OgreHardwareBuffer.h> // HardwareBuffer::Usage
@@ -145,6 +145,21 @@ operation_type ogre_operation_type_to_llcoi(Ogre::RenderOperation::OperationType
 // OgreResource.h
 Ogre::Resource::LoadingState llcoi_loading_state_to_ogre(loading_state state);
 loading_state ogre_loading_state_to_llcoi(Ogre::Resource::LoadingState state);
+
+// OgreCommon.h
+Ogre::CompareFunction enum_converter(compare_function func);
+compare_function enum_converter(Ogre::CompareFunction func);
+
+Ogre::TextureFilterOptions enum_converter(texture_filter_options opts);
+texture_filter_options enum_converter(Ogre::TextureFilterOptions opts);
+
+Ogre::FilterType enum_converter(filter_type ftype);
+filter_type enum_converter(Ogre::FilterType ftype);
+
+Ogre::FilterOptions enum_converter(filter_options opts);
+filter_options enum_converter(Ogre::FilterOptions opts);
+
+
 
 /* OIS MouseState <-> LLCOI MouseState converters */
 
