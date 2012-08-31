@@ -203,6 +203,82 @@ typedef struct
 } hardware_animation_data;
 
 // Start enums
+// OgreBlendMode.h
+
+typedef enum
+{
+    SBT_TRANSPARENT_ALPHA,
+    SBT_TRANSPARENT_COLOUR,
+    SBT_ADD,
+    SBT_MODULATE,
+    SBT_REPLACE
+} scene_blend_type;
+
+typedef enum
+{
+    SBF_ONE,
+    SBF_ZERO,
+    SBF_DEST_COLOUR,
+    SBF_SOURCE_COLOUR,
+    SBF_ONE_MINUS_DEST_COLOUR,
+    SBF_ONE_MINUS_SOURCE_COLOUR,
+    SBF_DEST_ALPHA,
+    SBF_SOURCE_ALPHA,
+    SBF_ONE_MINUS_DEST_ALPHA,
+    SBF_ONE_MINUS_SOURCE_ALPHA
+} scene_blend_factor;
+
+typedef enum
+{
+    SBO_ADD,
+    SBO_SUBTRACT,
+    SBO_REVERSE_SUBTRACT,
+    SBO_MIN,
+    SBO_MAX
+} scene_blend_operation;
+
+typedef enum
+{
+    LBT_COLOUR,
+    LBT_ALPHA
+} layer_blend_type;
+
+typedef enum
+{
+    LBO_REPLACE,
+    LBO_ADD,
+    LBO_MODULATE,
+    LBO_ALPHA_BLEND
+} layer_blend_operation;
+
+typedef enum
+{
+    LBX_SOURCE1,
+    LBX_SOURCE2,
+    LBX_MODULATE,
+    LBX_MODULATE_X2,
+    LBX_MODULATE_X4,
+    LBX_ADD,
+    LBX_ADD_SIGNED,
+    LBX_ADD_SMOOTH,
+    LBX_SUBTRACT,
+    LBX_BLEND_DIFFUSE_ALPHA,
+    LBX_BLEND_TEXTURE_ALPHA,
+    LBX_BLEND_CURRENT_ALPHA,
+    LBX_BLEND_MANUAL,
+    LBX_DOTPRODUCT,
+    LBX_BLEND_DIFFUSE_COLOUR
+} layer_blend_operation_ex;
+
+typedef enum
+{
+    LBS_CURRENT,
+    LBS_TEXTURE,
+    LBS_DIFFUSE,
+    LBS_SPECULAR,
+    LBS_MANUAL
+} layer_blend_source;
+
 
 // OgreRenderTarget.h
 typedef enum

@@ -71,10 +71,10 @@ DLL void material_remove_technique(MaterialHandle handle, unsigned short index);
 //void removeAllTechniques()
 DLL void material_remove_all_techniques(MaterialHandle handle);
 //typedef VectorIterator<Techniques> TechniqueIterator
-//TechniqueIterator getTechniqueIterator()
-//TechniqueIterator getSupportedTechniqueIterator()
+//TODO: TechniqueIterator getTechniqueIterator()
+//TODO: TechniqueIterator getSupportedTechniqueIterator()
 //Technique* getSupportedTechnique(unsigned short index)
-DLL void material_get_supported_technique(MaterialHandle handle, unsigned short index);
+DLL TechniqueHandle material_get_supported_technique(MaterialHandle handle, unsigned short index);
 //unsigned short getNumSupportedTechniques() const
 DLL unsigned short material_get_num_supported_techniques(const MaterialHandle handle);
 //const String& getUnsupportedTechniquesExplanation() const
@@ -120,26 +120,44 @@ DLL void material_set_depth_function(MaterialHandle handle, compare_function fun
 //void setColourWriteEnabled(bool enabled)
 DLL void material_set_colour_write_enabled(MaterialHandle handle, int enabled);
 //void setCullingMode( CullingMode mode )
+DLL void material_set_culling_mode(MaterialHandle handle, culling_mode mode);
 //void setManualCullingMode( ManualCullingMode mode )
+DLL void material_set_manual_culling_mode(MaterialHandle handle, manual_culling_mode mode);
 //void setLightingEnabled(bool enabled)
+DLL void material_set_lighting_enabled(MaterialHandle handle, int enabled);
 //void setShadingMode( ShadeOptions mode )
+DLL void material_set_shading_mode(MaterialHandle handle, shade_options mode);
 //void setFog(bool overrideScene,  FogMode mode = FOG_NONE, const ColourValue& colour = ColourValue::White, Real expDensity = 0.001, Real linearStart = 0.0, Real linearEnd = 1.0 )
+DLL void material_set_fog(MaterialHandle handle, int overrride_scene, fog_mode mode, const coiColourValue* colour, coiReal exp_density, coiReal linear_start, coiReal linear_end);
 //void setDepthBias(float constantBias, float slopeScaleBias)
+DLL void material_set_depth_bias(MaterialHandle handle, float constant_bias, float slope_scale_bias);
 //void setTextureFiltering(TextureFilterOptions filterType)
+DLL void material_set_texture_filtering(MaterialHandle handle, texture_filter_options filter_type);
 //void setTextureAnisotropy(int maxAniso)
+DLL void material_set_texture_anisotropy(MaterialHandle handle, int max_aniso);
 //void setSceneBlending( const SceneBlendType sbt )
+DLL void material_set_scene_blending(MaterialHandle handle, const scene_blend_type sbt);
 //void setSeparateSceneBlending( const SceneBlendType sbt, const SceneBlendType sbta )
+DLL void material_set_separate_scene_blending(MaterialHandle handle, const scene_blend_type sbt, const scene_blend_type sbta);
 //void setSceneBlending( const SceneBlendFactor sourceFactor, const SceneBlendFactor destFactor)
+DLL void material_set_scene_blending_ex(MaterialHandle handle, const scene_blend_factor source_factor, const scene_blend_factor dest_factor);
 //void setSeparateSceneBlending( const SceneBlendFactor sourceFactor, const SceneBlendFactor destFactor, const SceneBlendFactor sourceFactorAlpha, const SceneBlendFactor destFactorAlpha)
+DLL void material_set_separate_scene_blending_ex(MaterialHandle handle, const scene_blend_factor source_factor, const scene_blend_factor dest_factor, const scene_blend_factor source_factor_alpha, const scene_blend_factor dest_factor_alpha);
 //void _notifyNeedsRecompile()
+DLL void material__notify_needs_recompile(MaterialHandle handle);
 //void setLodLevels(const LodValueList& lodValues)
-//LodValueIterator getLodValueIterator() const
-//LodValueIterator getUserLodValueIterator() const
+DLL void material_set_lod_levels(MaterialHandle handle, coiReal lod_values[], size_t lod_count);
+//TODO: LodValueIterator getLodValueIterator() const
+//TODO: LodValueIterator getUserLodValueIterator() const
 //ushort getLodIndex(Real value) const
-//const LodStrategy *getLodStrategy() const
-//void setLodStrategy(LodStrategy *lodStrategy)
+DLL void material_get_lod_index(const MaterialHandle handle, coiReal value);
+//TODO: const LodStrategy *getLodStrategy() const
+//TODO: void setLodStrategy(LodStrategy *lodStrategy)
 //void touch() 
+DLL void material_touch(MaterialHandle handle);
 //bool applyTextureAliases(const AliasTextureNamePairList& aliasList, const bool apply = true) const
+DLL int material_apply_texture_aliases(const MaterialHandle handle, const NameValuePairListHandle alias_list, int apply);
 //bool getCompilationRequired() const
+DLL int material_get_compilation_required(const MaterialHandle handle);
 
 #endif
