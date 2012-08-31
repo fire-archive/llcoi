@@ -51,7 +51,7 @@ DLL void destroy_material(MaterialHandle handle);
 //bool isTransparent() const
 DLL int material_is_transparent(const MaterialHandle handle);
 //void setReceiveShadows(bool enabled) 
-DLL void material_set_receive_shadows(MaterialHandle handle);
+DLL void material_set_receive_shadows(MaterialHandle handle, int enabled);
 //bool getReceiveShadows() const 
 DLL int material_get_receive_shadows(const MaterialHandle handle);
 //void setTransparencyCastsShadows(bool enabled)

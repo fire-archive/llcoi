@@ -2486,7 +2486,7 @@ void destroy_material(MaterialHandle handle);
 //bool isTransparent() const
 int material_is_transparent(const MaterialHandle handle);
 //void setReceiveShadows(bool enabled) 
-void material_set_receive_shadows(MaterialHandle handle);
+void material_set_receive_shadows(MaterialHandle handle, int enabled);
 //bool getReceiveShadows() const 
 int material_get_receive_shadows(const MaterialHandle handle);
 //void setTransparencyCastsShadows(bool enabled)
