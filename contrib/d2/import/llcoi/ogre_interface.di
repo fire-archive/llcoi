@@ -2585,7 +2585,7 @@ void material_set_lod_levels(MaterialHandle handle, coiReal lod_values[], size_t
 //TODO: LodValueIterator getLodValueIterator() const
 //TODO: LodValueIterator getUserLodValueIterator() const
 //ushort getLodIndex(Real value) const
-void material_get_lod_index(const MaterialHandle handle, coiReal value);
+ushort material_get_lod_index(const MaterialHandle handle, coiReal value);
 //TODO: const LodStrategy *getLodStrategy() const
 //TODO: void setLodStrategy(LodStrategy *lodStrategy)
 //void touch() 

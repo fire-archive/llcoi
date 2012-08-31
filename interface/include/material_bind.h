@@ -150,7 +150,7 @@ DLL void material_set_lod_levels(MaterialHandle handle, coiReal lod_values[], si
 //TODO: LodValueIterator getLodValueIterator() const
 //TODO: LodValueIterator getUserLodValueIterator() const
 //ushort getLodIndex(Real value) const
-DLL void material_get_lod_index(const MaterialHandle handle, coiReal value);
+DLL unsigned short material_get_lod_index(const MaterialHandle handle, coiReal value);
 //TODO: const LodStrategy *getLodStrategy() const
 //TODO: void setLodStrategy(LodStrategy *lodStrategy)
 //void touch() 
