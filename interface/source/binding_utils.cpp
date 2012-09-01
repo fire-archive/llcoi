@@ -1160,6 +1160,251 @@ loading_state ogre_loading_state_to_llcoi(Ogre::Resource::LoadingState state)
     return converted;
 }
 
+// OgreBlendMode.h
+Ogre::SceneBlendType enum_converter(scene_blend_type arg)
+{
+    Ogre::SceneBlendType converted;
+    switch(arg)
+    {
+        case SBT_TRANSPARENT_ALPHA:
+            converted = Ogre::SBT_TRANSPARENT_ALPHA;
+            break;
+
+        case SBT_TRANSPARENT_COLOUR:
+            converted = Ogre::SBT_TRANSPARENT_COLOUR;
+            break;
+
+        case SBT_ADD:
+            converted = Ogre::SBT_ADD;
+            break;
+
+        case SBT_MODULATE:
+            converted = Ogre::SBT_MODULATE;
+            break;
+
+        case SBT_REPLACE:
+            converted = Ogre::SBT_REPLACE;
+            break;
+
+    }
+    return converted;
+}
+
+scene_blend_type enum_converter(Ogre::SceneBlendType arg)
+{
+    scene_blend_type converted;
+    switch(arg)
+    {
+        case Ogre::SBT_TRANSPARENT_ALPHA:
+            converted = SBT_TRANSPARENT_ALPHA;
+            break;
+
+        case Ogre::SBT_TRANSPARENT_COLOUR:
+            converted = SBT_TRANSPARENT_COLOUR;
+            break;
+
+        case Ogre::SBT_ADD:
+            converted = SBT_ADD;
+            break;
+
+        case Ogre::SBT_MODULATE:
+            converted = SBT_MODULATE;
+            break;
+
+        case Ogre::SBT_REPLACE:
+            converted = SBT_REPLACE;
+            break;
+
+    }
+    return converted;
+}
+
+
+Ogre::LayerBlendType enum_converter(layer_blend_type arg)
+{
+    Ogre::LayerBlendType converted;
+    switch(arg)
+    {
+        case LBT_COLOUR:
+            converted = Ogre::LBT_COLOUR;
+            break;
+
+        case LBT_ALPHA:
+            converted = Ogre::LBT_ALPHA;
+            break;
+
+    }
+    return converted;
+}
+
+layer_blend_type enum_converter(Ogre::LayerBlendType arg)
+{
+    layer_blend_type converted;
+    switch(arg)
+    {
+        case Ogre::LBT_COLOUR:
+            converted = LBT_COLOUR;
+            break;
+
+        case Ogre::LBT_ALPHA:
+            converted = LBT_ALPHA;
+            break;
+
+    }
+    return converted;
+}
+
+
+Ogre::SceneBlendFactor enum_converter(scene_blend_factor arg)
+{
+    Ogre::SceneBlendFactor converted;
+    switch(arg)
+    {
+        case SBF_ONE:
+            converted = Ogre::SBF_ONE;
+            break;
+
+        case SBF_ZERO:
+            converted = Ogre::SBF_ZERO;
+            break;
+
+        case SBF_DEST_COLOUR:
+            converted = Ogre::SBF_DEST_COLOUR;
+            break;
+
+        case SBF_SOURCE_COLOUR:
+            converted = Ogre::SBF_SOURCE_COLOUR;
+            break;
+
+        case SBF_ONE_MINUS_DEST_COLOUR:
+            converted = Ogre::SBF_ONE_MINUS_DEST_COLOUR;
+            break;
+
+        case SBF_ONE_MINUS_SOURCE_COLOUR:
+            converted = Ogre::SBF_ONE_MINUS_SOURCE_COLOUR;
+            break;
+
+        case SBF_DEST_ALPHA:
+            converted = Ogre::SBF_DEST_ALPHA;
+            break;
+
+        case SBF_SOURCE_ALPHA:
+            converted = Ogre::SBF_SOURCE_ALPHA;
+            break;
+
+        case SBF_ONE_MINUS_DEST_ALPHA:
+            converted = Ogre::SBF_ONE_MINUS_DEST_ALPHA;
+            break;
+
+        case SBF_ONE_MINUS_SOURCE_ALPHA:
+            converted = Ogre::SBF_ONE_MINUS_SOURCE_ALPHA;
+            break;
+
+    }
+    return converted;
+}
+
+scene_blend_factor enum_converter(Ogre::SceneBlendFactor arg)
+{
+    scene_blend_factor converted;
+    switch(arg)
+    {
+        case Ogre::SBF_ONE:
+            converted = SBF_ONE;
+            break;
+
+        case Ogre::SBF_ZERO:
+            converted = SBF_ZERO;
+            break;
+
+        case Ogre::SBF_DEST_COLOUR:
+            converted = SBF_DEST_COLOUR;
+            break;
+
+        case Ogre::SBF_SOURCE_COLOUR:
+            converted = SBF_SOURCE_COLOUR;
+            break;
+
+        case Ogre::SBF_ONE_MINUS_DEST_COLOUR:
+            converted = SBF_ONE_MINUS_DEST_COLOUR;
+            break;
+
+        case Ogre::SBF_ONE_MINUS_SOURCE_COLOUR:
+            converted = SBF_ONE_MINUS_SOURCE_COLOUR;
+            break;
+
+        case Ogre::SBF_DEST_ALPHA:
+            converted = SBF_DEST_ALPHA;
+            break;
+
+        case Ogre::SBF_SOURCE_ALPHA:
+            converted = SBF_SOURCE_ALPHA;
+            break;
+
+        case Ogre::SBF_ONE_MINUS_DEST_ALPHA:
+            converted = SBF_ONE_MINUS_DEST_ALPHA;
+            break;
+
+        case Ogre::SBF_ONE_MINUS_SOURCE_ALPHA:
+            converted = SBF_ONE_MINUS_SOURCE_ALPHA;
+            break;
+
+    }
+    return converted;
+}
+
+Ogre::LayerBlendOperation enum_converter(layer_blend_operation arg)
+{
+    Ogre::LayerBlendOperation converted;
+    switch(arg)
+    {
+        case LBO_REPLACE:
+            converted = Ogre::LBO_REPLACE;
+            break;
+
+        case LBO_ADD:
+            converted = Ogre::LBO_ADD;
+            break;
+
+        case LBO_MODULATE:
+            converted = Ogre::LBO_MODULATE;
+            break;
+
+        case LBO_ALPHA_BLEND:
+            converted = Ogre::LBO_ALPHA_BLEND;
+            break;
+
+    }
+    return converted;
+}
+
+layer_blend_operation enum_converter(Ogre::LayerBlendOperation arg)
+{
+    layer_blend_operation converted;
+    switch(arg)
+    {
+        case Ogre::LBO_REPLACE:
+            converted = LBO_REPLACE;
+            break;
+
+        case Ogre::LBO_ADD:
+            converted = LBO_ADD;
+            break;
+
+        case Ogre::LBO_MODULATE:
+            converted = LBO_MODULATE;
+            break;
+
+        case Ogre::LBO_ALPHA_BLEND:
+            converted = LBO_ALPHA_BLEND;
+            break;
+
+    }
+    return converted;
+}
+
+
+
 // OgreCommon.h
 Ogre::CompareFunction enum_converter(compare_function func)
 {
@@ -1399,3 +1644,177 @@ filter_options enum_converter(Ogre::FilterOptions opts)
     }
     return converted;
 }
+
+Ogre::CullingMode enum_converter(culling_mode arg)
+{
+    Ogre::CullingMode converted;
+    switch(arg)
+    {
+        case CULL_NONE:
+            converted = Ogre::CULL_NONE;
+            break;
+
+        case CULL_CLOCKWISE:
+            converted = Ogre::CULL_CLOCKWISE;
+            break;
+
+        case CULL_ANTICLOCKWISE:
+            converted = Ogre::CULL_ANTICLOCKWISE;
+            break;
+
+    }
+    return converted;
+}
+
+culling_mode enum_converter(Ogre::CullingMode arg)
+{
+    culling_mode converted;
+    switch(arg)
+    {
+        case Ogre::CULL_NONE:
+            converted = CULL_NONE;
+            break;
+
+        case Ogre::CULL_CLOCKWISE:
+            converted = CULL_CLOCKWISE;
+            break;
+
+        case Ogre::CULL_ANTICLOCKWISE:
+            converted = CULL_ANTICLOCKWISE;
+            break;
+
+    }
+    return converted;
+}
+
+Ogre::ManualCullingMode enum_converter(manual_culling_mode arg)
+{
+    Ogre::ManualCullingMode converted;
+    switch(arg)
+    {
+        case MANUAL_CULL_NONE:
+            converted = Ogre::MANUAL_CULL_NONE;
+            break;
+
+        case MANUAL_CULL_BACK:
+            converted = Ogre::MANUAL_CULL_BACK;
+            break;
+
+        case MANUAL_CULL_FRONT:
+            converted = Ogre::MANUAL_CULL_FRONT;
+            break;
+    }
+    return converted;
+}
+
+manual_culling_mode enum_converter(Ogre::ManualCullingMode arg)
+{
+    manual_culling_mode converted;
+    switch(arg)
+    {
+        case Ogre::MANUAL_CULL_NONE:
+            converted = MANUAL_CULL_NONE;
+            break;
+
+        case Ogre::MANUAL_CULL_BACK:
+            converted = MANUAL_CULL_BACK;
+            break;
+
+        case Ogre::MANUAL_CULL_FRONT:
+            converted = MANUAL_CULL_FRONT;
+            break;
+
+    }
+    return converted;
+}
+
+Ogre::ShadeOptions enum_converter(shade_options arg)
+{
+    Ogre::ShadeOptions converted;
+    switch(arg)
+    {
+        case SO_FLAT:
+            converted = Ogre::SO_FLAT;
+            break;
+
+        case SO_GOURAUD:
+            converted = Ogre::SO_GOURAUD;
+            break;
+
+        case SO_PHONG:
+            converted = Ogre::SO_PHONG;
+            break;
+    }
+    return converted;
+}
+
+shade_options enum_converter(Ogre::ShadeOptions arg)
+{
+    shade_options converted;
+    switch(arg)
+    {
+        case Ogre::SO_FLAT:
+            converted = SO_FLAT;
+            break;
+
+        case Ogre::SO_GOURAUD:
+            converted = SO_GOURAUD;
+            break;
+
+        case Ogre::SO_PHONG:
+            converted = SO_PHONG;
+            break;
+
+    }
+    return converted;
+}
+
+Ogre::FogMode enum_converter(fog_mode arg)
+{
+    Ogre::FogMode converted;
+    switch(arg)
+    {
+        case FOG_NONE:
+            converted = Ogre::FOG_NONE;
+            break;
+
+        case FOG_EXP:
+            converted = Ogre::FOG_EXP;
+            break;
+
+        case FOG_EXP2:
+            converted = Ogre::FOG_EXP2;
+            break;
+
+        case FOG_LINEAR:
+            converted = Ogre::FOG_LINEAR;
+            break;
+
+    }
+    return converted;
+}
+
+fog_mode enum_converter(Ogre::FogMode arg)
+{
+    fog_mode converted;
+    switch(arg)
+    {
+        case Ogre::FOG_NONE:
+            converted = FOG_NONE;
+            break;
+
+        case Ogre::FOG_EXP:
+            converted = FOG_EXP;
+            break;
+
+        case Ogre::FOG_EXP2:
+            converted = FOG_EXP2;
+            break;
+
+        case Ogre::FOG_LINEAR:
+            converted = FOG_LINEAR;
+            break;
+    }
+    return converted;
+}
+

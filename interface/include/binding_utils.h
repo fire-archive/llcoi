@@ -44,6 +44,7 @@
 
 #include <OgreCommon.h>         // Oodles of enums.
 #include <OgreLog.h>            // LogMessageLevel and LoggingLevel
+#include <OgreBlendMode.h>      // SceneBlendType, SceneBlendFactor, LayerBlendType
 #include <OgreSceneQuery.h>     // SceneQuery::WorldFragmentType
 #include <OgreHardwareBuffer.h> // HardwareBuffer::Usage
 #include <OgreFrustum.h>        // Ogre::OrientationMode
@@ -146,6 +147,19 @@ operation_type ogre_operation_type_to_llcoi(Ogre::RenderOperation::OperationType
 Ogre::Resource::LoadingState llcoi_loading_state_to_ogre(loading_state state);
 loading_state ogre_loading_state_to_llcoi(Ogre::Resource::LoadingState state);
 
+// OgreBlendMode.h
+Ogre::SceneBlendType enum_converter(scene_blend_type arg);
+scene_blend_type enum_converter(Ogre::SceneBlendType arg);
+
+Ogre::LayerBlendType enum_converter(layer_blend_type arg);
+layer_blend_type enum_converter(Ogre::LayerBlendType arg);
+
+Ogre::SceneBlendFactor enum_converter(scene_blend_factor arg);
+scene_blend_factor enum_converter(Ogre::SceneBlendFactor arg);
+
+Ogre::LayerBlendOperation enum_converter(layer_blend_operation arg);
+layer_blend_operation enum_converter(Ogre::LayerBlendOperation arg);
+
 // OgreCommon.h
 Ogre::CompareFunction enum_converter(compare_function func);
 compare_function enum_converter(Ogre::CompareFunction func);
@@ -153,13 +167,23 @@ compare_function enum_converter(Ogre::CompareFunction func);
 Ogre::TextureFilterOptions enum_converter(texture_filter_options opts);
 texture_filter_options enum_converter(Ogre::TextureFilterOptions opts);
 
+Ogre::CullingMode enum_converter(culling_mode arg);
+culling_mode enum_converter(Ogre::CullingMode arg);
+
+Ogre::ManualCullingMode enum_converter(manual_culling_mode arg);
+manual_culling_mode enum_converter(Ogre::ManualCullingMode arg);
+
 Ogre::FilterType enum_converter(filter_type ftype);
 filter_type enum_converter(Ogre::FilterType ftype);
 
 Ogre::FilterOptions enum_converter(filter_options opts);
 filter_options enum_converter(Ogre::FilterOptions opts);
 
+Ogre::ShadeOptions enum_converter(shade_options arg);
+shade_options enum_converter(Ogre::ShadeOptions arg);
 
+Ogre::FogMode enum_converter(fog_mode arg);
+fog_mode enum_converter(Ogre::FogMode arg);
 
 /* OIS MouseState <-> LLCOI MouseState converters */
 
