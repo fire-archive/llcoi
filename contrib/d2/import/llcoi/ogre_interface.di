@@ -1057,6 +1057,10 @@ const(char*) skeletoninstance_get_group(SkeletonInstanceHandle handle);
 // Ogre::SceneNode
 SceneNodeHandle create_child_scenenode(const char* node_name);
 
+SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle handle, const char* name, const ref coiVector3 translate, const ref coiQuaternion rotate);
+
+SceneNodeHandle scenenode_create_child_scenenode_anon(SceneNodeHandle handle, ref const(coiVector3) translate, ref const(coiQuaternion) rotate);
+
 void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle);
 
 void scenenode_update(SceneNodeHandle scenenode_handle, int update_children, int parent_has_changed);
@@ -1131,7 +1135,6 @@ void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians, transform
 
 void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
 
-SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle handle, const char* name, const ref coiVector3 translate, const ref coiQuaternion rotate);
 
 // Viewports
 void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b, float a);

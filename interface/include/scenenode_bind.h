@@ -48,6 +48,8 @@
 // Scene nodes
 DLL SceneNodeHandle create_child_scenenode(const char* node_name);
 
+DLL SceneNodeHandle scenenode_create_child_scenenode_anon(SceneNodeHandle handle, const coiVector3* translate, const coiQuaternion* rotate);
+
 DLL void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle);
 
 DLL void scenenode_update(SceneNodeHandle scenenode_handle, int update_children, int parent_has_changed);

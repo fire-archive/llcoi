@@ -53,6 +53,17 @@ SceneNodeHandle create_child_scenenode(const char* node_name)
     return static_cast<SceneNodeHandle>(scene_node);
 }
 
+SceneNodeHandle scenenode_create_child_scenenode_anon(SceneNodeHandle handle, const coiVector3* translate, const coiQuaternion* rotate)
+{
+    Ogre::SceneNode* parent = static_cast<Ogre::SceneNode*>(handle);
+    const Ogre::Vector3 trans(translate->x, translate->y, translate->z);
+    const Ogre::Quaternion rot(rotate->w, rotate->x, rotate->y, rotate->z);
+
+    Ogre::SceneNode* child = parent->createChildSceneNode(trans, rot);
+
+    return static_cast<SceneNodeHandle>(child);
+}
+
 // Ogre::SceneNode::attachObject(Ogre::MovableObject*)
 void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle)
 {
