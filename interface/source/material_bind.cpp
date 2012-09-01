@@ -295,7 +295,8 @@ void material_set_depth_write_enabled(MaterialHandle handle, int enabled)
 //void setDepthFunction( CompareFunction func )
 void material_set_depth_function(MaterialHandle handle, compare_function func)
 {
-    //TODO
+    Ogre::Material* mat = static_cast<Ogre::Material*>(handle);
+    mat->setDepthFunction(enum_converter(func));
 }
 
 //void setColourWriteEnabled(bool enabled)
@@ -308,13 +309,15 @@ void material_set_colour_write_enabled(MaterialHandle handle, int enabled)
 //void setCullingMode( CullingMode mode )
 void material_set_culling_mode(MaterialHandle handle, culling_mode mode)
 {
-    //TODO
+    Ogre::Material* mat = static_cast<Ogre::Material*>(handle);
+    mat->setCullingMode(enum_converter(mode));
 }
 
 //void setManualCullingMode( ManualCullingMode mode )
 void material_set_manual_culling_mode(MaterialHandle handle, manual_culling_mode mode)
 {
-    // TODO
+    Ogre::Material* mat = static_cast<Ogre::Material*>(handle); 
+    mat->setManualCullingMode(enum_converter(mode));
 }
 
 //void setLightingEnabled(bool enabled)
@@ -327,13 +330,23 @@ void material_set_lighting_enabled(MaterialHandle handle, int enabled)
 //void setShadingMode( ShadeOptions mode )
 void material_set_shading_mode(MaterialHandle handle, shade_options mode)
 {
-    //TODO
+    Ogre::Material* mat = static_cast<Ogre::Material*>(handle);
+    mat->setShadingMode(enum_converter(mode));
 }
 
 //void setFog(bool overrideScene,  FogMode mode = FOG_NONE, const ColourValue& colour = ColourValue::White, Real expDensity = 0.001, Real linearStart = 0.0, Real linearEnd = 1.0 )
-void material_set_fog(MaterialHandle handle, int overrride_scene, fog_mode mode, const coiColourValue* colour, coiReal exp_density, coiReal linear_start, coiReal linear_end)
+void material_set_fog(MaterialHandle handle, int overrride_scene, fog_mode mode, const coiColourValue* c, coiReal exp_density, coiReal linear_start, coiReal linear_end)
 {
-   // TODO 
+    Ogre::Material* mat = static_cast<Ogre::Material*>(handle);
+    const Ogre::ColourValue colour(c->r, c->g, c->b, c->a);
+    mat->setFog(
+        overrride_scene,
+        enum_converter(mode),
+        colour,
+        exp_density,
+        linear_start,
+        linear_end
+    );
 }
 
 //void setDepthBias(float constantBias, float slopeScaleBias)
@@ -346,7 +359,8 @@ void material_set_depth_bias(MaterialHandle handle, float constant_bias, float s
 //void setTextureFiltering(TextureFilterOptions filterType)
 void material_set_texture_filtering(MaterialHandle handle, texture_filter_options filter_type)
 {
-    // TODO
+    Ogre::Material* mat = static_cast<Ogre::Material*>(handle);
+    mat->setTextureFiltering(enum_converter(filter_type));
 }
 
 //void setTextureAnisotropy(int maxAniso)
@@ -359,25 +373,35 @@ void material_set_texture_anisotropy(MaterialHandle handle, int max_aniso)
 //void setSceneBlending( const SceneBlendType sbt )
 void material_set_scene_blending(MaterialHandle handle, const scene_blend_type sbt)
 {
-    //TODO
+    Ogre::Material* mat = static_cast<Ogre::Material*>(handle);
+    mat->setSceneBlending(enum_converter(sbt));
+
 }
 
 //void setSeparateSceneBlending( const SceneBlendType sbt, const SceneBlendType sbta )
 void material_set_separate_scene_blending(MaterialHandle handle, const scene_blend_type sbt, const scene_blend_type sbta)
 {
-    //TODO
+    Ogre::Material* mat = static_cast<Ogre::Material*>(handle); 
+    mat->setSeparateSceneBlending(enum_converter(sbt), enum_converter(sbta));
 }
 
 //void setSceneBlending( const SceneBlendFactor sourceFactor, const SceneBlendFactor destFactor)
 void material_set_scene_blending_ex(MaterialHandle handle, const scene_blend_factor source_factor, const scene_blend_factor dest_factor)
 {
-    //TODO
+    Ogre::Material* mat = static_cast<Ogre::Material*>(handle);
+    mat->setSceneBlending(enum_converter(source_factor), enum_converter(dest_factor));
 }
 
 //void setSeparateSceneBlending( const SceneBlendFactor sourceFactor, const SceneBlendFactor destFactor, const SceneBlendFactor sourceFactorAlpha, const SceneBlendFactor destFactorAlpha)
 void material_set_separate_scene_blending_ex(MaterialHandle handle, const scene_blend_factor source_factor, const scene_blend_factor dest_factor, const scene_blend_factor source_factor_alpha, const scene_blend_factor dest_factor_alpha)
 {
-    //TODO
+    Ogre::Material* mat = static_cast<Ogre::Material*>(handle);
+    mat->setSeparateSceneBlending(
+        enum_converter(source_factor),
+        enum_converter(dest_factor),
+        enum_converter(source_factor_alpha),
+        enum_converter(dest_factor_alpha)
+    );
 }
 
 //void _notifyNeedsRecompile()
