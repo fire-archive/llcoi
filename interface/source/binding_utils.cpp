@@ -1818,3 +1818,46 @@ fog_mode enum_converter(Ogre::FogMode arg)
     return converted;
 }
 
+Ogre::PolygonMode enum_converter(polygon_mode arg)
+{
+    Ogre::PolygonMode converted;
+    switch(arg)
+    {
+        case PM_POINTS:
+            converted = Ogre::PM_POINTS;
+            break;
+
+        case PM_WIREFRAME:
+            converted = Ogre::PM_WIREFRAME;
+            break;
+
+        case PM_SOLID:
+            converted = Ogre::PM_SOLID;
+            break;
+
+    }
+    return converted;
+}
+
+polygon_mode enum_converter(Ogre::PolygonMode arg)
+{
+    polygon_mode converted;
+
+    switch(arg)
+    {
+        case Ogre::PM_POINTS:
+            converted = PM_POINTS;
+            break;
+
+        case Ogre::PM_WIREFRAME:
+            converted = PM_WIREFRAME;
+            break;
+
+        case Ogre::PM_SOLID:
+            converted = PM_SOLID;
+            break;
+
+    }
+    return converted;
+}
+

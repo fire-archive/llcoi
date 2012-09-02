@@ -185,6 +185,9 @@ shade_options enum_converter(Ogre::ShadeOptions arg);
 Ogre::FogMode enum_converter(fog_mode arg);
 fog_mode enum_converter(Ogre::FogMode arg);
 
+Ogre::PolygonMode enum_converter(polygon_mode arg);
+polygon_mode enum_converter(Ogre::PolygonMode arg);
+
 /* OIS MouseState <-> LLCOI MouseState converters */
 
 void ois_mouse_event_to_llcoi_mouse_event(const OIS::MouseEvent* ois_mouse_event, MouseEvent* llcoi_mouse_event);
