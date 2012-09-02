@@ -54,6 +54,8 @@
 
 // Ogre::SceneManager calls
 DLL EntityHandle scenemanager_create_entity(SceneManagerHandle handle, const char* name, const char* mesh_name, const char* group_name);
+//createCamera(const String& name);
+DLL CameraHandle scenemanager_create_camera(SceneManagerHandle handle, const char* name);
 //createManualObject(std::string const&)
 DLL ManualObjectHandle scenemanager_create_manual_object(SceneManagerHandle handle, const char* name);
 //createManualObject()

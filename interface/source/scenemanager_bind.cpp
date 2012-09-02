@@ -87,6 +87,14 @@ EntityHandle scenemanager_create_entity(SceneManagerHandle handle, const char* n
     return static_cast<EntityHandle>(ent);
 }
 
+//createCamera(const String& name);
+CameraHandle scenemanager_create_camera(SceneManagerHandle handle, const char* name)
+{
+    Ogre::SceneManager* sm = static_cast<Ogre::SceneManager*>(handle);
+    Ogre::Camera* cam = sm->createCamera(Ogre::String(name));
+    return static_cast<CameraHandle>(cam);
+}
+
 //createManualObject(std::string const&)
 ManualObjectHandle scenemanager_create_manual_object(SceneManagerHandle handle, const char* name)
 {
