@@ -42,9 +42,15 @@
 #define EntityHandle void*
 #define CameraHandle void*
 #define AxisAlignedBoxHandle void*
+#define MeshHandle void*
+#define MeshPtrHandle void*
+#define MaterialPtrHandle void*
+#define SkeletonInstanceHandle void*
 
 // Entity
 DLL EntityHandle create_entity(const char* entity_name, const char* mesh_file);
+///Ogre::Entity::getMesh() const
+DLL const MeshPtrHandle entity_get_mesh(const EntityHandle handle);
 ///Ogre::Entity::getNumSubEntities() const
 DLL unsigned int entity_get_num_sub_entities(const EntityHandle handle);
 //Ogre::Entity::clone(std::string const&) const
@@ -53,8 +59,9 @@ DLL void entity_set_cast_shadows(EntityHandle handle, int enabled);
 DLL int entity_get_cast_shadows(const EntityHandle handle);
 DLL int entity_get_receives_shadows(EntityHandle handle);
 ///Ogre::Entity::setMaterialName(std::string const&, std::string const&)
-///Ogre::Entity::setMaterial(Ogre::MaterialPtr const&)
 DLL void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name);
+///Ogre::Entity::setMaterial(Ogre::MaterialPtr const&)
+DLL void entity_set_material(EntityHandle handle, MaterialPtrHandle mat);
 ///Ogre::Entity::_notifyCurrentCamera(Ogre::Camera*)
 DLL void entity__notify_current_camera(EntityHandle handle, CameraHandle cam);
 ///Ogre::Entity::setRenderQueueGroup(unsigned char)
@@ -69,5 +76,10 @@ DLL coiReal entity_get_bounding_radius(const EntityHandle handle);
 DLL void entity_set_display_skeleton(EntityHandle handle, int display);
 //Ogre::Entity::getDisplaySkeleton() const
 DLL int entity_get_display_skeleton(const EntityHandle handle);
-
+///Ogre::Entity::hasSkeleton() const
+DLL int entity_has_skeleton(const EntityHandle handle);
+///Ogre::Entity::getSkeleton() const
+DLL SkeletonInstanceHandle entity_get_skeleton(const EntityHandle handle);
+///Ogre::Entity::isHardwareAnimationEnabled()
+DLL int entity_is_hardware_animation_enabled(EntityHandle handle);
 #endif

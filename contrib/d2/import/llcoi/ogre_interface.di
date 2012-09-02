@@ -89,6 +89,7 @@ alias void* PlaneHandle;
 alias void* PlaneListHandle;
 alias void* PlaneBoundedVolumeHandle;
 alias void* MeshHandle;
+alias void* MeshPtrHandle;
 alias void* TimerHandle;
 alias void* WindowListenerHandle;
 alias void* AxisAlignedBoxHandle;
@@ -1393,6 +1394,8 @@ int movableobject_is_debug_display_enabled(const MovableObjectHandle handle);
 
 // Ogre::Entity
 EntityHandle create_entity(const char* entity_name, const char* mesh_file);
+///Ogre::Entity::getMesh() const
+const(MeshPtrHandle) entity_get_mesh(const EntityHandle handle);
 ///Ogre::Entity::getNumSubEntities() const
 uint entity_get_num_sub_entities(const EntityHandle handle);
 //Ogre::Entity::clone(std::string const&) const
@@ -1401,8 +1404,9 @@ void entity_set_cast_shadows(EntityHandle handle, int enabled);
 int entity_get_cast_shadows(const EntityHandle handle);
 int entity_get_receives_shadows(EntityHandle handle);
 ///Ogre::Entity::setMaterialName(std::string const&, std::string const&)
-///Ogre::Entity::setMaterial(Ogre::MaterialPtr const&)
 void entity_set_material_name(EntityHandle handle, const char* material_name, const char* group_name);
+///Ogre::Entity::setMaterial(Ogre::MaterialPtr const&)
+void entity_set_material(EntityHandle handle, MaterialPtrHandle mat);
 ///Ogre::Entity::_notifyCurrentCamera(Ogre::Camera*)
 void entity__notify_current_camera(EntityHandle handle, CameraHandle cam);
 ///Ogre::Entity::setRenderQueueGroup(unsigned char)
@@ -1417,14 +1421,18 @@ coiReal entity_get_bounding_radius(const EntityHandle handle);
 void entity_set_display_skeleton(EntityHandle handle, int display);
 //Ogre::Entity::getDisplaySkeleton() const
 int entity_get_display_skeleton(const EntityHandle handle);
+///Ogre::Entity::hasSkeleton() const
+int entity_has_skeleton(const EntityHandle handle);
+///Ogre::Entity::getSkeleton() const
+SkeletonInstanceHandle entity_get_skeleton(const EntityHandle handle);
+///Ogre::Entity::isHardwareAnimationEnabled()
+int entity_is_hardware_animation_enabled(EntityHandle handle);
+
 
 // Light
 LightHandle create_light(const char* light_name);
-
 void destroy_light(LightHandle handle);
-
 void light_set_position(LightHandle light_handle, const float x, const float y, const float z);
-
 //Ogre::Light::getPosition() const
 void light_get_position(LightHandle handle, ref coiVector3 pos);
 //Ogre::Light::getPosition() const
