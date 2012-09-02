@@ -50,6 +50,11 @@ DLL CameraHandle create_camera(const char* camera_name);
 
 DLL CameraHandle get_camera(const char* camera_name);
 
+//void setPolygonMode(PolygonMode sd)
+DLL void camera_set_polygon_mode(CameraHandle handle, polygon_mode sd);
+//PolygonMode getPolygonMode() const
+DLL polygon_mode camera_get_polygon_mode(const CameraHandle handle);
+
 DLL void camera_move(CameraHandle handle, const float x, const float y, const float z);
 
 DLL void camera_move_relative(CameraHandle handle, const float x, const float y, const float z);
@@ -84,7 +89,6 @@ DLL void camera_set_position(CameraHandle camera_handle, const float x, const fl
 
 DLL void camera_get_position(CameraHandle handle, coiVector3* result);
 
-
 DLL void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z);
 
 DLL void camera_roll(CameraHandle handle, coiReal angle);
@@ -102,7 +106,6 @@ DLL void camera_set_fixed_yaw_axis(CameraHandle handle, int on, const coiVector3
 DLL void camera_get_orientation(CameraHandle handle, coiQuaternion* orientation);
 //Ogre::Camera::setOrientation(Ogre::Quaternion const&)
 DLL void camera_set_orientation(CameraHandle handle, const coiQuaternion* orientation);
-
 //Ogre::Camera::getDerivedOrientation() const
 DLL void camera_get_derived_orientation(CameraHandle handle, coiQuaternion* orientation);
 //Ogre::Camera::getDerivedPosition() const
@@ -123,8 +126,6 @@ DLL coiReal camera_get_lod_bias(CameraHandle handle);
 DLL void camera_get_camera_to_viewport_ray(CameraHandle handle, coiReal screenx, coiReal screeny, RayHandle ray);
 //Ogre::Camera::setWindow(float, float, float, float)
 DLL void camera_set_window(CameraHandle handle, coiReal left, coiReal top, coiReal right, coiReal bottom);
-
-
 
 DLL SceneManagerHandle camera_get_scenemanager(CameraHandle handle);
 

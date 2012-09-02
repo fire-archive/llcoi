@@ -34,8 +34,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "ogre_interface.h"
 #include "camera_bind.h"
+#include "binding_utils.h"
 
 #include <OgreRoot.h>
 #include <OgreRenderWindow.h>
@@ -44,43 +44,43 @@
 
 void camera_set_near_clip_distance(CameraHandle camera_handle, float d)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setNearClipDistance( d );
 }
 
 void camera_set_far_clip_distance(CameraHandle camera_handle, float d)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFarClipDistance( d );
 }
 
 void camera_set_aspect_ratio(CameraHandle camera_handle, float w, float h)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setAspectRatio(Ogre::Real(Ogre::Real(w)/Ogre::Real(h)));
 }
 
 void camera_set_auto_aspect_ratio(CameraHandle camera_handle, bool on)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setAutoAspectRatio(on);
 }
 
 void camera_set_fovy(CameraHandle camera_handle, float angle)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFOVy((Ogre::Radian)angle);
 }
 
 void camera_set_frustum_offset(CameraHandle camera_handle, const int offset_x, const int offset_y)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFrustumOffset(Ogre::Vector2(offset_x, offset_y));
 }
 
 void camera_set_focal_length(CameraHandle camera_handle, float fl)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setFocalLength(fl);
 }
 
@@ -88,13 +88,13 @@ void camera_set_focal_length(CameraHandle camera_handle, float fl)
 // Ogre::Camera::setPosition(Ogre::Vector3 const&)
 void camera_set_position(CameraHandle camera_handle, const float x, const float y, const float z)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->setPosition(Ogre::Vector3(x, y, z));
 }
 
 void camera_get_position(CameraHandle handle, coiVector3* result)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Vector3& pos = camera->getPosition();
     result->x = pos.x;
     result->y = pos.y;
@@ -105,47 +105,61 @@ void camera_get_position(CameraHandle handle, coiVector3* result)
 // Ogre::Camera::lookAt(float, float, float)
 void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(camera_handle);
     camera->lookAt(Ogre::Vector3(x, y, z));
 }
 
 CameraHandle create_camera(const char* camera_name)
 {
     Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->createCamera(camera_name);
-    return reinterpret_cast<CameraHandle>(camera);
+    return static_cast<CameraHandle>(camera);
 }
 
 CameraHandle get_camera(const char* camera_name)
 {
     Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->getCamera(camera_name);
-    return reinterpret_cast<CameraHandle>(camera);
+    return static_cast<CameraHandle>(camera);
+}
+
+//void setPolygonMode(PolygonMode sd)
+void camera_set_polygon_mode(CameraHandle handle, polygon_mode sd)
+{
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
+    camera->setPolygonMode(enum_converter(sd));
+}
+
+//PolygonMode getPolygonMode() const
+polygon_mode camera_get_polygon_mode(const CameraHandle handle)
+{
+    const Ogre::Camera* cam = static_cast<const Ogre::Camera*>(handle);
+    return enum_converter(cam->getPolygonMode());
 }
 
 //Ogre::Camera::move(Ogre::Vector3 const&)
 void camera_move(CameraHandle handle, const float x, const float y, const float z)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     camera->move(Ogre::Vector3(x, y, z));
 }
 
 //Ogre::Camera::moveRelative(Ogre::Vector3 const&)
 void camera_move_relative(CameraHandle handle, const float x, const float y, const float z)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     camera->moveRelative(Ogre::Vector3(x, y, z));
 }
 
 //Ogre::Frustum::setAspectRatio(float)
 void camera_set_aspect_ratio_ex(CameraHandle handle, float ratio)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     camera->setAspectRatio(Ogre::Real(ratio));
 }
 
 //Ogre::Frustum::getAspectRatio() const
 float camera_get_aspect_ratio(CameraHandle handle)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     return camera->getAspectRatio();
 }
 
@@ -153,14 +167,14 @@ float camera_get_aspect_ratio(CameraHandle handle)
 //Ogre::Camera::setDirection(Ogre::Vector3 const&)
 void camera_set_direction(CameraHandle handle, const float x, const float y, const float z)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     camera->setDirection(Ogre::Vector3(x, y, z));
 }
 
 // Ogre::Camera::getDirection() const
 void camera_get_direction(CameraHandle handle, coiVector3* v3)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Vector3& v = camera->getDirection();
     v3->x = v.x;
     v3->y = v.y;
@@ -170,7 +184,7 @@ void camera_get_direction(CameraHandle handle, coiVector3* v3)
 //Ogre::Camera::roll(Ogre::Radian const&)
 void camera_roll(CameraHandle handle, coiReal angle)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Radian r(angle);
     camera->roll(r);
 }
@@ -178,7 +192,7 @@ void camera_roll(CameraHandle handle, coiReal angle)
 //Ogre::Camera::yaw(Ogre::Radian const&)
 void camera_yaw(CameraHandle handle, coiReal angle)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Radian r(angle);
     camera->yaw(r);
 }
@@ -186,7 +200,7 @@ void camera_yaw(CameraHandle handle, coiReal angle)
 //Ogre::Camera::pitch(Ogre::Radian const&)
 void camera_pitch(CameraHandle handle, coiReal angle)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Radian r(angle);
     camera->pitch(r);
 }
@@ -194,7 +208,7 @@ void camera_pitch(CameraHandle handle, coiReal angle)
 //Ogre::Camera::rotate(Ogre::Vector3 const&, Ogre::Radian const&)
 void camera_rotate(CameraHandle handle, const coiVector3* axis, coiReal angle)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Vector3 v(axis->x, axis->y, axis->z);
     Ogre::Radian r(angle);
 
@@ -204,7 +218,7 @@ void camera_rotate(CameraHandle handle, const coiVector3* axis, coiReal angle)
 //Ogre::Camera::rotate(Ogre::Quaternion const&)
 void camera_rotate_q(CameraHandle handle, const coiQuaternion* q)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Quaternion quat(q->w, q->x, q->y, q->z);
 
     camera->rotate(quat);
@@ -213,15 +227,15 @@ void camera_rotate_q(CameraHandle handle, const coiQuaternion* q)
 //Ogre::Camera::getSceneManager() const
 SceneManagerHandle camera_get_scenemanager(CameraHandle handle)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
-    return reinterpret_cast<SceneManagerHandle>(camera->getSceneManager());
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
+    return static_cast<SceneManagerHandle>(camera->getSceneManager());
     
 }
 
 // Ogre::Camera::getUp() const
 void camera_get_up(CameraHandle handle, coiVector3* up)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Vector3& u = camera->getUp();
 
     up->x = u.x;
@@ -232,7 +246,7 @@ void camera_get_up(CameraHandle handle, coiVector3* up)
 //Ogre::Camera::getRight() const
 void camera_get_right(CameraHandle handle, coiVector3* right)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Vector3& u = camera->getRight();
 
     right->x = u.x;
@@ -243,7 +257,7 @@ void camera_get_right(CameraHandle handle, coiVector3* right)
 //Ogre::Camera::setFixedYawAxis(bool, Ogre::Vector3 const&)
 void camera_set_fixed_yaw_axis(CameraHandle handle, int on, const coiVector3* fixed_axis)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     Ogre::Vector3 axis(fixed_axis->x, fixed_axis->y, fixed_axis->z);
     camera->setFixedYawAxis(on, axis);
 }
@@ -251,7 +265,7 @@ void camera_set_fixed_yaw_axis(CameraHandle handle, int on, const coiVector3* fi
 //Ogre::Camera::getOrientation() const
 void camera_get_orientation(CameraHandle handle, coiQuaternion* orientation)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Quaternion& getter = camera->getOrientation();
 
     orientation->w = getter.w;
@@ -264,7 +278,7 @@ void camera_get_orientation(CameraHandle handle, coiQuaternion* orientation)
 //Ogre::Camera::setOrientation(Ogre::Quaternion const&)
 void camera_set_orientation(CameraHandle handle, const coiQuaternion* orientation)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Quaternion setter(orientation->w, orientation->x, orientation->y, orientation->z);
     camera->setOrientation(setter);
 }
@@ -272,7 +286,7 @@ void camera_set_orientation(CameraHandle handle, const coiQuaternion* orientatio
 //Ogre::Camera::getDerivedOrientation() const
 void camera_get_derived_orientation(CameraHandle handle, coiQuaternion* orientation)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Quaternion & getter = camera->getDerivedOrientation();
 
     orientation->w = getter.w;
@@ -284,7 +298,7 @@ void camera_get_derived_orientation(CameraHandle handle, coiQuaternion* orientat
 //Ogre::Camera::getDerivedPosition() const
 void camera_get_derived_position(CameraHandle handle, coiVector3* position)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Vector3& getter = camera->getDerivedPosition();
 
     position->x = getter.x;
@@ -295,7 +309,7 @@ void camera_get_derived_position(CameraHandle handle, coiVector3* position)
 //Ogre::Camera::getDerivedDirection() const
 void camera_get_derived_direction(CameraHandle handle, coiVector3* direction)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Vector3& getter = camera->getDerivedDirection();
 
     direction->x = getter.x;
@@ -306,7 +320,7 @@ void camera_get_derived_direction(CameraHandle handle, coiVector3* direction)
 //Ogre::Camera::getDerivedUp() const
 void camera_get_derived_up(CameraHandle handle, coiVector3* up)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Vector3& getter = camera->getDerivedUp();
 
     up->x = getter.x;
@@ -317,7 +331,7 @@ void camera_get_derived_up(CameraHandle handle, coiVector3* up)
 //Ogre::Camera::getDerivedRight() const
 void camera_get_derived_right(CameraHandle handle, coiVector3* right)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     const Ogre::Vector3& getter = camera->getDerivedRight();
 
     right->x = getter.x;
@@ -328,8 +342,8 @@ void camera_get_derived_right(CameraHandle handle, coiVector3* right)
 //Ogre::Camera::setAutoTracking(bool, Ogre::SceneNode*, Ogre::Vector3 const&)
 void camera_set_autotracking(CameraHandle handle, int on, SceneNodeHandle sn_handle, const coiVector3* offset)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
-    Ogre::SceneNode* node= reinterpret_cast<Ogre::SceneNode*>(sn_handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
+    Ogre::SceneNode* node= static_cast<Ogre::SceneNode*>(sn_handle);
     const Ogre::Vector3 setter(offset->x, offset->y, offset->z);
     camera->setAutoTracking(on, node, setter);
     
@@ -338,29 +352,29 @@ void camera_set_autotracking(CameraHandle handle, int on, SceneNodeHandle sn_han
 //Ogre::Camera::setLodBias(float)
 void camera_set_lod_bias(CameraHandle handle, coiReal factor)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     camera->setLodBias(factor);
 }
 
 //Ogre::Camera::getLodBias() const
 coiReal camera_get_lod_bias(CameraHandle handle)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     return camera->getLodBias();
 }
 
 //Ogre::Camera::getCameraToViewportRay(float, float, Ogre::Ray*) const
 void camera_get_camera_to_viewport_ray(CameraHandle handle, coiReal screenx, coiReal screeny, RayHandle result)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
-    Ogre::Ray* ray = reinterpret_cast<Ogre::Ray*>(result);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
+    Ogre::Ray* ray = static_cast<Ogre::Ray*>(result);
     camera->getCameraToViewportRay(screenx, screeny, ray);
 }
 
 //Ogre::Camera::setWindow(float, float, float, float)
 void camera_set_window(CameraHandle handle, coiReal left, coiReal top, coiReal right, coiReal bottom)
 {
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(handle);
+    Ogre::Camera* camera = static_cast<Ogre::Camera*>(handle);
     camera->setWindow(left, top, right, bottom);
 }
 
