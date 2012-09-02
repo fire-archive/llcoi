@@ -742,7 +742,8 @@ RenderSystemListHandle root_get_available_renderers();
 // Ogre::SceneManager calls
 
 EntityHandle scenemanager_create_entity(SceneManagerHandle handle, const char* name, const char* mesh_name, const char* group_name);
-
+//createCamera(const String& name);
+CameraHandle scenemanager_create_camera(SceneManagerHandle handle, const char* name);
 //createManualObject(std::string const&)
 ManualObjectHandle scenemanager_create_manual_object(SceneManagerHandle handle, const char* name);
 //createManualObject()
@@ -1183,11 +1184,14 @@ size_t resourcegroupmanager_RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS();
 ResourceGroupManagerHandle resourcegroupmanager_get_singleton();
 ResourceGroupManagerHandle resourcegroupmanager_get_singleton_ptr();
 
-// Camera
+// Ogre::Camera
 CameraHandle create_camera(const char* camera_name);
-
 CameraHandle get_camera(const char* camera_name);
 
+//void setPolygonMode(PolygonMode sd)
+void camera_set_polygon_mode(CameraHandle handle, polygon_mode sd);
+//PolygonMode getPolygonMode() const
+polygon_mode camera_get_polygon_mode(const CameraHandle handle);
 void camera_move(CameraHandle handle, const float x, const float y, const float z);
 
 void camera_move_relative(CameraHandle handle, const float x, const float y, const float z);
