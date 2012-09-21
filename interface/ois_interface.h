@@ -38,9 +38,10 @@
 
 #include "ogre_interface.h"
 
-COI_DECLARE_HANDLE(InputSystemHandle);
-COI_DECLARE_HANDLE(MouseInputHandle);
-COI_DECLARE_HANDLE(KeyboardInputHandle);
+// handle typedefs
+typedef void* InputSystemHandle;
+typedef void* MouseInputHandle;
+typedef void* KeyboardInputHandle;
 
 //! Keyboard scan codes
 enum KeyCode

@@ -93,29 +93,16 @@
 #define EVENT_FRAME_RENDERING_QUEUED 2
 #define EVENT_FRAME_ENDED 4
 
-
-#define COI_DECLARE_HANDLE(name) struct name##__ { int unused; }; typedef struct name##__ *name
-
-// COI_DECLARE_HANDLE(CameraHandle);
-// COI_DECLARE_HANDLE(EntityHandle);
-// COI_DECLARE_HANDLE(SceneNodeHandle);
-// COI_DECLARE_HANDLE(LightHandle);
-// COI_DECLARE_HANDLE(RenderWindowHandle);
-// COI_DECLARE_HANDLE(RootHandle);
-// COI_DECLARE_HANDLE(RenderSystemHandle);
-// COI_DECLARE_HANDLE(SceneManagerHandle);
-// COI_DECLARE_HANDLE(ViewportHandle);
-
-#define CameraHandle void*
-#define EntityHandle void*
-#define SceneNodeHandle void*
-#define LightHandle void*
-#define RenderWindowHandle void*
-#define RootHandle void*
-#define RenderSystemHandle void*
-#define SceneManagerHandle void*
-#define ViewportHandle void*
-
+// handle typedefs
+typedef void* CameraHandle;
+typedef void* EntityHandle;
+typedef void* SceneNodeHandle;
+typedef void* LightHandle;
+typedef void* RenderWindowHandle;
+typedef void* RootHandle;
+typedef void* RenderSystemHandle;
+typedef void* SceneManagerHandle;
+typedef void* ViewportHandle;
 
 // listener typedefs
 typedef int(*FrameListenerEvent)(float,float,int);
@@ -130,7 +117,7 @@ typedef struct
 } coiQuaternion;
 
 typedef struct
-{
+i{
     float x;
     float y;
     float z;
