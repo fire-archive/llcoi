@@ -19,6 +19,12 @@
  ******************************************************************************
  * Installation instructions goes here 
  *
+ * There is a very simple shell script for compiling llcoi. It's specific to
+ * Linux, but it uses g++ so the command can probably be used with very 
+ * little modification on Mac and Windows (mingw?) as well.
+ *
+ * TODO: Config and install using CMake (?)
+ *
  *
  ******************************************************************************/
 
