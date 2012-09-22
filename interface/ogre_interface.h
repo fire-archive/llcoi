@@ -117,7 +117,7 @@ typedef struct
 } coiQuaternion;
 
 typedef struct
-i{
+{
     float x;
     float y;
     float z;
