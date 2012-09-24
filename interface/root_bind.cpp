@@ -61,7 +61,7 @@ void default_engine_options(engine_options* options)
     options->log_name = "Ogre.log";
 }
 
-void init_engine(const engine_options options)
+RootHandle init_engine(const engine_options options)
 {
     new OgreManager();
     
@@ -102,11 +102,14 @@ void init_engine(const engine_options options)
     } else {
         root->initialise(false , options.window_title);
     }
+
+    return reinterpret_cast<RootHandle>(root);
 }
 
-void release_engine()
+void release_engine(RootHandle root_handle)
 {
-    delete Ogre::Root::getSingletonPtr();
+    Ogre::Root* r = reinterpret_cast<Ogre::Root*>(root_handle);
+    delete r;
 }
 
 // Ogre::Root::initialise(bool, std::string const&, std::string const&)

@@ -85,6 +85,10 @@
 #   endif
 #endif
 
+#ifdef __cplusplus
+#define DLL extern "C"
+#endif
+
 //defines
 
 #define coiReal float
@@ -133,11 +137,11 @@ typedef struct
 } engine_options;
 
 // Root functions
-DLL void release_engine();
+DLL void release_engine(RootHandle root_handle);
 
 DLL void default_engine_options(engine_options* options);
 
-DLL void init_engine(const engine_options options);
+DLL RootHandle init_engine(const engine_options options);
 
 DLL RootHandle create_root(const char* pluginFileName, const char* configFileName, const char* logFileName);
 
