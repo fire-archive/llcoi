@@ -34,7 +34,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "ogre_interface.h"
+#include "windoweventlistener_bind.h"
 
 #include <vector>
 #include <OgreRoot.h>
@@ -74,6 +74,12 @@ void remove_window_listener(RenderWindowHandle window_handle)
 {
 	Ogre::WindowEventUtilities::removeWindowEventListener(reinterpret_cast<Ogre::RenderWindow*>(window_handle), windowEventListener);
 }
+
+void pump_messages()
+{
+  Ogre::WindowEventUtilities::messagePump();
+}
+
 
 /*
 Ogre::WindowEventUtilities::_msListeners

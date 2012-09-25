@@ -38,7 +38,6 @@
 
 #include <OgreRoot.h>
 #include <OgreMovableObject.h>
-#include "ogre_manager.h"
 
 /*
 Ogre::MovableObject::Listener

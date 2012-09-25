@@ -37,8 +37,6 @@
 #include <ogre_interface.h>
 
 #include <OgreRoot.h>
-#include <OgreEntity.h>
-#include "ogre_manager.h"
 
 void log_message(const char* message)
 {
@@ -50,21 +48,24 @@ void set_default_num_mipmaps(int number)
     Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(number);
 }
 
-#ifdef PLATFORM_WIN
-BOOL APIENTRY DllMain( HANDLE /*hModule*/, DWORD /*ul_reason_for_call*/, LPVOID /*lpReserved*/ )
-{
-#if defined( _MSC_VER ) && defined( _DEBUG )
-    //_crtBreakAlloc = 1397;
-    _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
-#endif
+// no need for main in llcoi
 
-    /*switch( ul_reason_for_call )
-    {
-    case DLL_PROCESS_DETACH:
-        _CrtDumpMemoryLeaks();
-        break;
-    }*/
+//#ifdef PLATFORM_WIN
+//BOOL APIENTRY DllMain( HANDLE /*hModule*/, DWORD /*ul_reason_for_call*/, LPVOID /*lpReserved*/ )
+//{
+//#if defined( _MSC_VER ) && defined( _DEBUG )
+//    //_crtBreakAlloc = 1397;
+//    _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+//#endif
+//
+//    //switch( ul_reason_for_call )
+//    //{
+//    //case DLL_PROCESS_DETACH:
+//    //    _CrtDumpMemoryLeaks();
+//    //    break;
+//    //}
+//
+//    return TRUE;
+//}
+//#endif
 
-    return TRUE;
-}
-#endif

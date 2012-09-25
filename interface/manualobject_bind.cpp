@@ -38,7 +38,6 @@
 
 #include <OgreRoot.h>
 #include <OgreManualObject.h>
-#include "ogre_manager.h"
 
 /*
 Ogre::ManualObject::ManualObjectSection

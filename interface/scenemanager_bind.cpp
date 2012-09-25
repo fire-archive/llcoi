@@ -34,50 +34,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "ogre_interface.h"
+#include "scenemanager_bind.h"
 
-#include <OgreRoot.h>
-#include <OgreRenderWindow.h>
 #include <OgreCamera.h>
-#include "ogre_manager.h"
+#include <OgreLight.h>
+#include <OgreEntity.h>
+#include <OgreSceneManager.h>
 
-void set_ambient_light_rgba(const float r, const float g, const float b, const float a)
+
+SceneNodeHandle create_child_scenenode(SceneManagerHandle scene_manager_handle, const char* node_name)
 {
-    Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->setAmbientLight(Ogre::ColourValue(r, g, b, a));
+    Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
+    Ogre::SceneNode* scene_node = scene_manager->getRootSceneNode()->createChildSceneNode(node_name);
+    return reinterpret_cast<SceneNodeHandle>(scene_node);
 }
 
-void set_ambient_light_rgb(const float r, const float g, const float b)
+EntityHandle create_entity(SceneManagerHandle scene_manager_handle, const char* entity_name, const char* mesh_file)
 {
-    Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->setAmbientLight(Ogre::ColourValue(r, g, b));
+    Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
+    Ogre::Entity* entity = scene_manager->createEntity(entity_name, mesh_file);
+    return reinterpret_cast<EntityHandle>(entity);
 }
 
-SceneManagerHandle create_scene_manager(const char* type_name, const char* instance_name)
+CameraHandle create_camera(SceneManagerHandle scene_manager_handle, const char* camera_name)
 {
-/*    va_list arg_list;
-    const char* instance_name = NULL;
-    va_start(arg_list, type_name);
-    instance_name = va_arg(arg_list, const char*);
-    va_end(arg_list);
-
-    if(instance_name == NULL) instance_name = "default";*/
-    
-    OgreManager::getSingletonPtr()->set_active_scene_manager_name(instance_name);
-    
-    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->createSceneManager(Ogre::String(type_name), Ogre::String(instance_name));
-    return reinterpret_cast<SceneManagerHandle>(sm);
+    Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
+    Ogre::Camera* camera = scene_manager->createCamera(camera_name);
+    return reinterpret_cast<CameraHandle>(camera);
 }
 
-SceneManagerHandle get_scene_manager()
+LightHandle create_light(SceneManagerHandle scene_manager_handle, const char* light_name)
 {
-    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name());
-    return reinterpret_cast<SceneManagerHandle>(sm);
+    Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
+    Ogre::Light* light = scene_manager->createLight(light_name);
+    return reinterpret_cast<LightHandle>(light);
 }
 
-SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_name)
+CameraHandle get_camera(SceneManagerHandle scene_manager_handle, const char* camera_name)
 {
-    Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->getSceneManager(scene_manager_instance_name);
-    return reinterpret_cast<SceneManagerHandle>(sm);
+    Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
+    Ogre::Camera* camera =  scene_manager->getCamera(camera_name);
+    return reinterpret_cast<CameraHandle>(camera);
 }
+
+void set_ambient_light_rgba(SceneManagerHandle scene_manager_handle, const float r, const float g, const float b, const float a)
+{
+    Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
+    scene_manager->setAmbientLight(Ogre::ColourValue(r, g, b, a));
+}
+
+void set_ambient_light_rgb(SceneManagerHandle scene_manager_handle, const float r, const float g, const float b)
+{
+    Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
+    scene_manager->setAmbientLight(Ogre::ColourValue(r, g, b));
+}
+
 
 /*
 Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK

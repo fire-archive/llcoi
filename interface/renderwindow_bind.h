@@ -1,5 +1,5 @@
 /******************************************************************************
- * rendersystem_bind.cpp - bindings for Ogre::RenderSystem
+ * renderwindow_bind.h - bindings for Ogre::RenderWindow
  ******************************************************************************
  * This file is part of
  *     __ __              _ 
@@ -10,9 +10,9 @@
  *                          
  * Low Level C Ogre Interface (llcoi)
  *
- * See http://code.google.com/p/llcoi/ for more information.
+ * See https://bitbucket.org/galaktor/llcoi for more information.
  *
- * Copyright (c) 2011, Llcoi Team
+ * Copyright (c) 2012, Llcoi Team
  * 
  * License: MIT
  * 
@@ -34,12 +34,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "rendersystem_bind.h"
+#pragma once
 
-#include <OgreRenderSystem.h>
+#include "ogre_interface.h"
 
-void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value)
-{
-    Ogre::RenderSystem* rs = reinterpret_cast<Ogre::RenderSystem*>(render_system_handle);
-    rs->setConfigOption(option, value);
-}
+DLL ViewportHandle add_viewport(RenderWindowHandle render_window_handle, CameraHandle camera_handle);
+
+DLL unsigned int render_window_get_hwnd(RenderWindowHandle window_handle);
+
+DLL void render_window_set_visible(RenderWindowHandle window_handle, int visible);
+
+DLL void render_window_update(RenderWindowHandle window_handle, int swap_buffers);
+
+DLL void current_window_update(RenderWindowHandle window_handle, int swap_buffers);
+
+DLL void render_window_resize(RenderWindowHandle window_handle, unsigned int width, unsigned int height);
+
+DLL void render_window_moved_or_resized(RenderWindowHandle window_handle);
+
+DLL int render_window_closed(RenderWindowHandle window_handle);
+
+
+

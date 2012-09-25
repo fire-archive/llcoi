@@ -10,9 +10,9 @@
  *                          
  * Low Level C Ogre Interface (llcoi)
  *
- * See http://code.google.com/p/llcoi/ for more information.
+ * See https://bitbucket.org/galaktor/llcoi for more information.
  *
- * Copyright (c) 2011, Llcoi Team
+ * Copyright (c) 2012, Llcoi Team
  * 
  * License: MIT
  * 
@@ -34,12 +34,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "rendersystem_bind.h"
+#pragma once
 
-#include <OgreRenderSystem.h>
+#include "ogre_interface.h"
 
-void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value)
-{
-    Ogre::RenderSystem* rs = reinterpret_cast<Ogre::RenderSystem*>(render_system_handle);
-    rs->setConfigOption(option, value);
-}
+DLL void render_system_set_config_option(RenderSystemHandle render_system_handle, const char* option, const char* value);

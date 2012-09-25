@@ -34,17 +34,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "ogre_interface.h"
+#include "light_bind.h"
 
-#include <OgreRoot.h>
 #include <OgreLight.h>
-#include "ogre_manager.h"
-
-LightHandle create_light(const char* light_name)
-{
-    Ogre::Light* light = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->createLight(light_name);
-    return reinterpret_cast<LightHandle>(light);
-}
 
 void light_set_position(LightHandle light_handle, const float x, const float y, const float z)
 {

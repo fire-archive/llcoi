@@ -34,14 +34,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "ogre_interface.h"
+#include "resourcegroupmanager_bind.h"
 
-#include <OgreRoot.h>
 #include <OgreConfigFile.h>
 #include <OgreResourceManager.h>
 #include <OgreResourceGroupManager.h>
-#include <OgreResource.h>
-
 
 void setup_resources(const char* resources_cfg)
 {

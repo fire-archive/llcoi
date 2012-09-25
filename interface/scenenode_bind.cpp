@@ -34,13 +34,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "ogre_interface.h"
+#include "scenenode_bind.h"
 
-#include <OgreRoot.h>
 #include <OgreSceneNode.h>
-#include <OgreMovableObject.h>
 #include <OgreEntity.h>
-#include "ogre_manager.h"
 
 // SceneNode is going to carry Node's code - we'll duplicate for Bone
 
@@ -50,35 +47,27 @@
 // Maybe this would be enough? One could set position and orientation afterwards..
 // Ogre::SceneNode::createChildSceneNode(Ogre::Vector3 const&, Ogre::Quaternion const&)
 // Ogre::SceneNode::createChildSceneNode(std::string const&, Ogre::Vector3 const&, Ogre::Quaternion const&)
-SceneNodeHandle create_child_scenenode(const char* node_name)
+
+
+void scenenode_attach_entity(SceneNodeHandle scenenode_handle, EntityHandle entity_handle)
 {
-    Ogre::SceneNode* scene_node = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->getRootSceneNode()->createChildSceneNode(node_name);
-    return reinterpret_cast<SceneNodeHandle>(scene_node);
+  Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);   Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(entity_handle);
+
+  scene_node->attachObject(entity);
 }
 
-// Ogre::SceneNode::attachObject(Ogre::MovableObject*)
-void attach_entity_to_scenenode(EntityHandle entity_handle, SceneNodeHandle scenenode_handle)
-{
-    Ogre::Entity* entity = reinterpret_cast<Ogre::Entity*>(entity_handle);
-    Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
-    scene_node->attachObject(entity);
-}
-
-// Ogre::SceneNode::_update(bool, bool)
 void scenenode_update(SceneNodeHandle scenenode_handle, int update_children, int parent_has_changed)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->_update(update_children, parent_has_changed);
 }
 
-// Ogre::SceneNode::_updateBounds()
 void scenenode_update_bounds(SceneNodeHandle scenenode_handle)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->_updateBounds();
 }
 
-// Ogre::SceneNode::getAttachedObject(unsigned short)
 EntityHandle scenenode_get_attached_entity_int(SceneNodeHandle scenenode_handle, int entity_index)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
@@ -86,7 +75,6 @@ EntityHandle scenenode_get_attached_entity_int(SceneNodeHandle scenenode_handle,
     return reinterpret_cast<EntityHandle>(entity);
 }
 
-// Ogre::SceneNode::getAttachedObject(std::string const&)
 EntityHandle scenenode_get_attached_entity(SceneNodeHandle scenenode_handle, const char* entity_name)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
@@ -94,21 +82,18 @@ EntityHandle scenenode_get_attached_entity(SceneNodeHandle scenenode_handle, con
     return reinterpret_cast<EntityHandle>(entity);
 }
 
-//Ogre::SceneNode::numAttachedObjects() const
 int scenenode_num_attached_objects(SceneNodeHandle scenenode_handle)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     return scene_node->numAttachedObjects();
 }
 
-// Ogre::SceneNode::detachObject(unsigned short)
 void scenenode_detach_entity_int(SceneNodeHandle scenenode_handle, int entity_index)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->detachObject(entity_index);
 }
 
-// Ogre::SceneNode::detachObject(Ogre::MovableObject*)
 void scenenode_detach_entity(SceneNodeHandle scenenode_handle, EntityHandle entity_handle)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
@@ -116,21 +101,18 @@ void scenenode_detach_entity(SceneNodeHandle scenenode_handle, EntityHandle enti
     scene_node->detachObject(entity);
 }
 
-// Ogre::SceneNode::detachObject(std::string const&)
 void scenenode_detach_entity_string(SceneNodeHandle scenenode_handle, const char* entity_name)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->detachObject(entity_name);
 }
 
-// Ogre::SceneNode::detachAllObjects()
 void scenenode_detach_all_objects(SceneNodeHandle scenenode_handle)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->detachAllObjects();
 }
 
-// Ogre::SceneNode::isInSceneGraph() const
 int scenenode_is_in_scenegraph(SceneNodeHandle scenenode_handle)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
@@ -139,28 +121,24 @@ int scenenode_is_in_scenegraph(SceneNodeHandle scenenode_handle)
     return 0;
 }
 
-// Ogre::SceneNode::_notifyRootNode()
 void scenenode_notify_rootnode(SceneNodeHandle scenenode_handle)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->_notifyRootNode();
 }
 
-// Ogre::SceneNode::showBoundingBox(bool)
 void scenenode_show_boundingbox(SceneNodeHandle scenenode_handle, int show_boundingbox)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->showBoundingBox(show_boundingbox);
 }
 
-// Ogre::SceneNode::hideBoundingBox(bool)
 void scenenode_hide_boundingbox(SceneNodeHandle scenenode_handle, int hide_boundingbox)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->hideBoundingBox(hide_boundingbox);
 }
 
-// Ogre::SceneNode::getShowBoundingBox() const
 int scenenode_get_show_boundingbox(SceneNodeHandle scenenode_handle)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
@@ -169,120 +147,102 @@ int scenenode_get_show_boundingbox(SceneNodeHandle scenenode_handle)
     return 0;
 }
 
-// Ogre::SceneNode::getParentSceneNode() const
 SceneNodeHandle scenenode_get_parent_scenenode(SceneNodeHandle scenenode_handle)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     return reinterpret_cast<SceneNodeHandle>(scene_node->getParentSceneNode());
 }
 
-// Ogre::SceneNode::setVisible(bool, bool)
 void scenenode_set_visible(SceneNodeHandle scenenode_handle, int visible)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->setVisible(visible);
 }
 
-// Ogre::SceneNode::setVisible(bool, bool)
 void scenenode_set_visible_ex(SceneNodeHandle scenenode_handle, int visible, int cascade)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->setVisible(visible, cascade);
 }
 
-// Ogre::SceneNode::flipVisibility(bool)
 void scenenode_flip_visibility(SceneNodeHandle scenenode_handle)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->flipVisibility();
 }
 
-// Ogre::SceneNode::flipVisibility(bool)
 void scenenode_flip_visibility_ex(SceneNodeHandle scenenode_handle, int cascade)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->flipVisibility(cascade);
 }
 
-// Ogre::SceneNode::setDebugDisplayEnabled(bool, bool)
 void scenenode_set_debug_display_enabled(SceneNodeHandle scenenode_handle, int enabled)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->setDebugDisplayEnabled(enabled);
 }
 
-// Ogre::SceneNode::setDebugDisplayEnabled(bool, bool)
 void scenenode_set_debug_display_enabled_ex(SceneNodeHandle scenenode_handle, int enabled, int cascade)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->setDebugDisplayEnabled(enabled, cascade);
 }
 
-// Ogre::SceneNode::getCreator() const
 SceneManagerHandle scenenode_get_creator(SceneNodeHandle scenenode_handle)
 {
     Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle)->getCreator();
     return reinterpret_cast<SceneManagerHandle>(scene_manager);
 }
 
-// Ogre::SceneNode::setDirection(float, float, float, Ogre::Node::TransformSpace, Ogre::Vector3 const&)
 void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->setDirection(x, y, z);
 }
 
-// Ogre::Node::setOrientation(float, float, float, float)
 void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, float x, float y, float z)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->setOrientation(w, x, y, z);
 }
 
-//Ogre::Node::setPosition(float, float, float)
 void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, float z)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->setPosition(x, y, z);
 }
 
-// Ogre::SceneNode::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
-// Ogre::Node::yaw(Ogre::Radian const&, Ogre::Node::TransformSpace)
 void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->yaw(Ogre::Radian(radians));
 }
 
-// Ogre::Node::setScale(float, float, float)
 void scenenode_set_scale(SceneNodeHandle scenenode_handle, float x, float y, float z)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->setScale(x, y, z);
 }
 
-// Ogre::Node::scale(float, float, float)
 void scenenode_scale(SceneNodeHandle scenenode_handle, float x, float y, float z)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->scale(x, y, z);
 }
 
-// Ogre::Node::translate(float, float, float, Ogre::Node::TransformSpace)
 void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, float z)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->translate(x, y, z);
 }
 
-// Ogre::Node::roll(Ogre::Radian const&, Ogre::Node::TransformSpace)
 void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);
     scene_node->roll(Ogre::Radian(radians));
 }
 
-// Ogre::Node::pitch(Ogre::Radian const&, Ogre::Node::TransformSpace)
 void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians)
 {
     Ogre::SceneNode* scene_node = reinterpret_cast<Ogre::SceneNode*>(scenenode_handle);

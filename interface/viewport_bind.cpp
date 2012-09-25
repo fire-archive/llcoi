@@ -34,21 +34,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "ogre_interface.h"
+#include "viewport_bind.h"
 
-#include <OgreRoot.h>
 #include <OgreViewport.h>
-#include <OgreRenderWindow.h>
-#include <OgreCamera.h>
-#include "ogre_manager.h"
-
-ViewportHandle add_viewport(CameraHandle camera_handle)
-{
-    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
-    Ogre::RenderWindow* window = OgreManager::getSingletonPtr()->getActiveRenderWindow();
-    Ogre::Viewport* vp = window->addViewport(camera);
-    return reinterpret_cast<ViewportHandle>(vp);
-}
 
 void viewport_set_background_colour(ViewportHandle viewport_handle, float r, float g, float b)
 {

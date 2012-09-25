@@ -34,12 +34,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "ogre_interface.h"
+#include "camera_bind.h"
 
-#include <OgreRoot.h>
-#include <OgreRenderWindow.h>
 #include <OgreCamera.h>
-#include "ogre_manager.h"
 
 void camera_set_near_clip_distance(CameraHandle camera_handle, float d)
 {
@@ -83,33 +80,18 @@ void camera_set_focal_length(CameraHandle camera_handle, float fl)
     camera->setFocalLength(fl);
 }
 
-// Ogre::Camera::setPosition(float, float, float)
-// Ogre::Camera::setPosition(Ogre::Vector3 const&)
 void camera_set_position(CameraHandle camera_handle, const float x, const float y, const float z)
 {
     Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
     camera->setPosition(Ogre::Vector3(x, y, z));
 }
 
-// Ogre::Camera::lookAt(Ogre::Vector3 const&)
-// Ogre::Camera::lookAt(float, float, float)
 void camera_lookat(CameraHandle camera_handle, const float x, const float y, const float z)
 {
     Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
     camera->lookAt(Ogre::Vector3(x, y, z));
 }
 
-CameraHandle create_camera(const char* camera_name)
-{
-    Ogre::Camera* camera = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->createCamera(camera_name);
-    return reinterpret_cast<CameraHandle>(camera);
-}
-
-CameraHandle get_camera(const char* camera_name)
-{
-    Ogre::Camera* camera =  Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name())->getCamera(camera_name);
-    return reinterpret_cast<CameraHandle>(camera);
-}
 
 /*
 Ogre::Camera::Listener
