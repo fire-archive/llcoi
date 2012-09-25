@@ -85,12 +85,6 @@
 #   endif
 #endif
 
-// RAPH force extern c
-#ifdef __cplusplus
-#define DLL extern "C"
-#endif
-
-
 // handle typedefs
 typedef void* RootHandle;
 typedef void* CameraHandle;
