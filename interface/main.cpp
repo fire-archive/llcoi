@@ -10,9 +10,9 @@
  *                          
  * Low Level C Ogre Interface (llcoi)
  *
- * See http://code.google.com/p/llcoi/ for more information.
+ * See https://bitbucket.org/galaktor/llcoi for more information.
  *
- * Copyright (c) 2011, Llcoi Team
+ * Copyright (c) 2011-2012, Llcoi Team
  * 
  * License: MIT
  * 

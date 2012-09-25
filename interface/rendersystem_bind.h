@@ -12,7 +12,7 @@
  *
  * See https://bitbucket.org/galaktor/llcoi for more information.
  *
- * Copyright (c) 2012, Llcoi Team
+ * Copyright (c) 2011-2012, Llcoi Team
  * 
  * License: MIT
  * 
