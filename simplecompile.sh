@@ -23,4 +23,4 @@ oishdrdir=~/downloads/ogredeps/build/ogredeps/include/OIS
 # compile llcoi to shared object
 # outputs libllcoi.so in this same folder
 # use -ansi -pedantic to check c90 compatibility
-g++ -g -O2 -fPIC -m64 -I$ogrehdrdir -I$ogrebstdir -I$oishdrdir -I./interface -L$ogrelibdir -L$oislibdir -lOgreMain -lOIS -shared -o libllcoi.so interface/*.cpp #-ansi -pedantic
+g++ -g -O2 -fPIC -m64 -I$ogrehdrdir -I$ogrebstdir -I$oishdrdir -I./interface/include -L$ogrelibdir -L$oislibdir -lOgreMain -lOIS -shared -o libllcoi.so interface/sources/*.cpp #-ansi -pedantic
