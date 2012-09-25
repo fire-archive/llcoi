@@ -98,28 +98,40 @@ if (NOT OGRE_BUILD_PLATFORM_IPHONE)
 endif()
  
 set(HDRS
-	./ogre_interface.h
-	./ois_interface.h
-	./ogre_manager.h
-)
+  ./ogre_interface.h
+  ./scenenode_bind.h
+  ./windoweventlistener_bind.h
+  ./viewport_bind.h
+  ./light_bind.h
+  ./camera_bind.h
+  ./root_bind.h
+  ./rendersystem_bind.h
+  ./resourcegroupmanager_bind.h
+  ./common.h
+  ./scenemanager_bind.h
+  ./framelistener_bind.h
+  ./renderwindow_bind.h
+  ./entity_bind.h
+  ./ois_interface.h
+  )
 
 set(SRCS
-	./main.cpp
-	./ois_bind.cpp
-	./root_bind.cpp
-	./entity_bind.cpp
-	./scenemanager_bind.cpp
-	./scenenode_bind.cpp
-	./camera_bind.cpp
-	./resourcegroupmanager_bind.cpp
-	./renderwindow_bind.cpp
-	./rendersystem_bind.cpp
-	./light_bind.cpp
-	./framelistener_bind.cpp
-	./viewport_bind.cpp
-	./movableobject_bind.cpp
-	./windoweventlistener_bind.cpp
-	./manualobject_bind.cpp
+./root_bind.cpp
+./movableobject_bind.cpp
+./scenemanager_bind.cpp
+./renderwindow_bind.cpp
+./entity_bind.cpp
+./resourcegroupmanager_bind.cpp
+./camera_bind.cpp
+./windoweventlistener_bind.cpp
+./scenenode_bind.cpp
+./framelistener_bind.cpp
+./manualobject_bind.cpp
+./ois_bind.cpp
+./rendersystem_bind.cpp
+./viewport_bind.cpp
+./light_bind.cpp
+./main.cpp
 )
  
 include_directories(${OGRE_INCLUDE_DIRS} ${OIS_INCLUDE_DIRS}
