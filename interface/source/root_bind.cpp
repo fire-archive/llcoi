@@ -54,8 +54,8 @@ RootHandle create_root(const char* pluginFileName, const char* configFileName, c
 
 void delete_root(RootHandle root_handle)
 {
-    Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
-    delete root;
+  Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
+  delete root;
 }
 
 RenderWindowHandle root_initialise(RootHandle root_handle, int auto_create_window, const char* render_window_title)
@@ -64,6 +64,7 @@ RenderWindowHandle root_initialise(RootHandle root_handle, int auto_create_windo
   Ogre::RenderWindow* window = root->initialise(auto_create_window, render_window_title);
   return reinterpret_cast<RenderWindowHandle>(window);
 }
+
 
 RenderWindowHandle create_render_window(RootHandle root_handle, const char* name, const int width, const int height, const int full_screen)
 {
@@ -194,118 +195,31 @@ SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_
   return reinterpret_cast<SceneManagerHandle>(sm);
 }
 
-
-// ******** convenience/boilerplate helpers ***********
-
-/*
-SceneManagerHandle get_scene_manager(RootHandle root_handle)
+// Ogre::Root::getAvailableRenderers
+RenderSystemListHandle root_get_available_renderers()
 {
-  Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
-  Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->getSceneManager(OgreManager::getSingletonPtr()->get_active_scene_manager_name());
-  return reinterpret_cast<SceneManagerHandle>(sm);
+  const Ogre::RenderSystemList& rslist = Ogre::Root::getSingletonPtr()->getAvailableRenderers();
+  Ogre::RenderSystemList *l = new Ogre::RenderSystemList(rslist);
+  return reinterpret_cast<RenderSystemListHandle>(l);
 }
 
 
+SceneManagerHandle root_create_scene_manager_by_mask(SceneTypeMask type_mask, const char* instance_name)
+{
+  Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->createSceneManager(type_mask, Ogre::String(instance_name));
+  return reinterpret_cast<SceneManagerHandle>(sm);
+}
 
-  void default_engine_options(engine_options* options)
-  {
-  options->renderer_s = "OpenGL";
-  #ifdef PLATFORM_WIN
-  options->plugin_folder_s = ".";
-  #else
-  options->plugin_folder_s = "/usr/local/lib/OGRE";
-  #endif
-  options->window_title = "Renderwindow";
-  options->width = 800;
-  options->height = 600;
-  options->auto_window = 1;
-  options->log_name = "Ogre.log";
-  }
-
-  RootHandle init_engine(const engine_options options)
-  {
-  // suppress console logging
-  Ogre::LogManager * log_man = new Ogre::LogManager();
-  Ogre::Log * vge_log = log_man->createLog(options.log_name, true, false);
-  Ogre::Root * root = new Ogre::Root("", "", "");
-
-  // default
-  const char * renderer = "OpenGL Rendering Subsystem";
-  const char * render_plugin = "RenderSystem_GL";
-
-  if (strstr(options.renderer_s,"Direct") || strstr(options.renderer_s,"D3D")) {
-  renderer = "Direct3D9 Rendering Subsystem";
-  render_plugin = "RenderSystem_Direct3D9";
-  } else if (!strstr(options.renderer_s,"GL"))
-  Ogre::LogManager::getSingleton().logMessage(
-  "Can't parse renderer string, using default (OpenGL)");
-
-  load_ogre_plugin(render_plugin);
-  Ogre::RenderSystem* rs = root->getRenderSystemByName( Ogre::String(renderer) );
-  rs->setConfigOption("Full Screen", "No");
-  rs->setConfigOption("VSync", "No");
-  rs->setConfigOption("Video Mode", Ogre::StringConverter::toString(options.width) + " x " +
-  Ogre::StringConverter::toString(options.height) + " @ 32-bit");
-
-  root->setRenderSystem(rs);
-
-  load_ogre_plugin("Plugin_OctreeSceneManager");
-
-  Ogre::SceneManager * scene_manager =
-  root->createSceneManager(Ogre::ST_GENERIC, "scene-manager");
-
-  root->initialise(options.auto_window, options.window_title)
-
-  return reinterpret_cast<RootHandle>(root);
-  }
-
-  void release_engine(RootHandle root_handle)
-  {
-  Ogre::Root* r = reinterpret_cast<Ogre::Root*>(root_handle);
-  delete r;
-  }
-
-
-
-  void current_window_update(int swap_buffers)
-  {
-  OgreManager::getSingletonPtr()->getActiveRenderWindow()->update(swap_buffers);
-  }
-
-*/
-
-// this is not needed - apps typically have their own loop
-/*
-  static bool do_render = 1;
-  void render_loop(RootHandle root_handle, RenderWindowHandle render_window_handle)
-  {
-  Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
-  Ogre::Renderwindow* window = reinterpret_cast<Ogre::Renderwindow*>(render_window_handle);
-
-  while (do_render)
-  {
-  // Pump window messages for nice behaviour
-  pump_messages();
-
-  // Render a frame
-  if(!root->renderOneFrame())
-  {
-  do_render = 0;
-  }
-
-  if (window->isClosed())
-  {
-  do_render = 0;
-  }
-  }
-  }
-*/
+TimerHandle root_get_timer()
+{
+  Ogre::Timer* timer = Ogre::Root::getSingletonPtr()->getTimer();
+  return reinterpret_cast<TimerHandle>(timer);
+}
 
 /*
   Ogre::Root::~Root()
   Ogre::Root::saveConfig()
   Ogre::Root::addRenderSystem(Ogre::RenderSystem*)
-  Ogre::Root::getAvailableRenderers()
   Ogre::Root::getRenderSystemByName(std::string const&)
   Ogre::Root::setRenderSystem(Ogre::RenderSystem*)
   Ogre::Root::getRenderSystem()

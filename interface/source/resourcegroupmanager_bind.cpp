@@ -40,7 +40,18 @@
 #include <OgreResourceManager.h>
 #include <OgreResourceGroupManager.h>
 
-void setup_resources(const char* resources_cfg)
+ResourceGroupManagerHandle create_resourcegroupmanager()
+{
+    Ogre::ResourceGroupManager* mgr = new Ogre::ResourceGroupManager;
+    return static_cast<ResourceGroupManagerHandle>(mgr);
+}
+
+void destroy_resourcegroupmanager(ResourceGroupManagerHandle handle)
+{
+    Ogre::ResourceGroupManager* mgr = static_cast<Ogre::ResourceGroupManager*>(handle);
+    delete mgr;
+}
+void resourcegroupmanager_setup_resources(const char* resources_cfg)
 {
     // set up resources
     // Load resource paths from config file
@@ -67,15 +78,52 @@ void setup_resources(const char* resources_cfg)
 }
 
 // Ogre::ResourceGroupManager::addResourceLocation(std::string const&, std::string const&, std::string const&, bool)
-void add_resource_location(const char* location, const char* type, const char* group)
+void resourcegroupmanager_add_resource_location(ResourceGroupManagerHandle handle, const char* location, const char* type, const char* group)
 {
-    Ogre::ResourceGroupManager::getSingleton().addResourceLocation(location, type, group);
+    Ogre::ResourceGroupManager* mgr = static_cast<Ogre::ResourceGroupManager*>(handle);
+    mgr->addResourceLocation(location, type, group);
 }
 
 // Ogre::ResourceGroupManager::initialiseAllResourceGroups()
-void initialise_all_resourcegroups()
+void resourcegroupmanager_initialise_all_resourcegroups(ResourceGroupManagerHandle handle)
 {
-    Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+    Ogre::ResourceGroupManager* mgr = static_cast<Ogre::ResourceGroupManager*>(handle);
+    mgr->initialiseAllResourceGroups();
+}
+
+const char * resourcegroupmanager_DEFAULT_RESOURCE_GROUP_NAME()
+{
+    return Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME.c_str();
+}
+
+const char * resourcegroupmanager_INTERNAL_RESOURCE_GROUP_NAME()
+{
+    return Ogre::ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME.c_str();
+}
+
+const char * resourcegroupmanager_AUTODETECT_RESOURCE_GROUP_NAME()
+{
+    return Ogre::ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME.c_str();
+}
+
+size_t resourcegroupmanager_RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS()
+{
+    return Ogre::ResourceGroupManager::RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS;
+}
+
+
+ResourceGroupManagerHandle resourcegroupmanager_get_singleton()
+{
+    return static_cast<ResourceGroupManagerHandle>(
+        &Ogre::ResourceGroupManager::getSingleton()
+    );
+}
+
+ResourceGroupManagerHandle resourcegroupmanager_get_singleton_ptr()
+{
+    return static_cast<ResourceGroupManagerHandle>(
+        Ogre::ResourceGroupManager::getSingletonPtr()
+    );
 }
 
 

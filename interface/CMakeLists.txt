@@ -42,17 +42,17 @@ set(OGREINTERFACE_VERSION_STRING "0.2.6")
 set(abi_version ${OGREINTERFACE_VERSION_STRING})
 
 if(WIN32)
-	set(CMAKE_MODULE_PATH "$ENV{OGRE_HOME}/CMake/;${CMAKE_MODULE_PATH}")
-	set(OGRE_SAMPLES_INCLUDEPATH
-		$ENV{OGRE_HOME}/Samples/include
-	)
+    set(CMAKE_MODULE_PATH "$ENV{OGRE_HOME}/CMake/;${CMAKE_MODULE_PATH}")
+    set(OGRE_SAMPLES_INCLUDEPATH
+        $ENV{OGRE_HOME}/Samples/include
+    )
 endif(WIN32)
  
 if(UNIX)
-	set(CMAKE_MODULE_PATH "/usr/local/lib/OGRE/cmake/;${CMAKE_MODULE_PATH}")
-	set(OGRE_SAMPLES_INCLUDEPATH
-		/usr/local/share/OGRE/samples/Common/include/
-	)
+    set(CMAKE_MODULE_PATH "/usr/local/lib/OGRE/cmake/;${CMAKE_MODULE_PATH}")
+    set(OGRE_SAMPLES_INCLUDEPATH
+        /usr/local/share/OGRE/samples/Common/include/
+    )
 endif(UNIX)
  
 if (CMAKE_BUILD_TYPE STREQUAL "")
@@ -68,74 +68,144 @@ find_package(OIS REQUIRED)
 
 # Find Boost
 if (NOT OGRE_BUILD_PLATFORM_IPHONE)
-	if (WIN32 OR APPLE)
-		set(Boost_USE_STATIC_LIBS TRUE)
-	else ()
-		# Statically linking boost to a dynamic Ogre build doesn't work on Linux 64bit
-		set(Boost_USE_STATIC_LIBS ${OGRE_STATIC})
-	endif ()
-	if (MINGW)
-		# this is probably a bug in CMake: the boost find module tries to look for
-		# boost libraries with name libboost_*, but CMake already prefixes library
-		# search names with "lib". This is the workaround.
-		set(CMAKE_FIND_LIBRARY_PREFIXES ${CMAKE_FIND_LIBRARY_PREFIXES} "")
-	endif ()
-	set(Boost_ADDITIONAL_VERSIONS "1.45" "1.44" "1.43" "1.42" "1.42.0" "1.41.0" "1.41" "1.40.0" "1.40" "1.39.0" "1.39" "1.38.0" "1.38" "1.37.0" "1.37" )
-	# Components that need linking (NB does not include header-only components like bind)
-	set(OGRE_BOOST_COMPONENTS thread date_time)
-	find_package(Boost COMPONENTS ${OGRE_BOOST_COMPONENTS} QUIET)
-	if (NOT Boost_FOUND)
-		# Try again with the other type of libs
-		set(Boost_USE_STATIC_LIBS NOT ${Boost_USE_STATIC_LIBS})
-		find_package(Boost COMPONENTS ${OGRE_BOOST_COMPONENTS} QUIET)
-	endif()
-	find_package(Boost QUIET)
+    if (WIN32 OR APPLE)
+        set(Boost_USE_STATIC_LIBS TRUE)
+    else ()
+        # Statically linking boost to a dynamic Ogre build doesn't work on Linux 64bit
+        set(Boost_USE_STATIC_LIBS ${OGRE_STATIC})
+    endif ()
+    if (MINGW)
+        # this is probably a bug in CMake: the boost find module tries to look for
+        # boost libraries with name libboost_*, but CMake already prefixes library
+        # search names with "lib". This is the workaround.
+        set(CMAKE_FIND_LIBRARY_PREFIXES ${CMAKE_FIND_LIBRARY_PREFIXES} "")
+    endif ()
+    set(Boost_ADDITIONAL_VERSIONS "1.45" "1.44" "1.43" "1.42" "1.42.0" "1.41.0" "1.41" "1.40.0" "1.40" "1.39.0" "1.39" "1.38.0" "1.38" "1.37.0" "1.37" )
+    # Components that need linking (NB does not include header-only components like bind)
+    set(OGRE_BOOST_COMPONENTS thread date_time)
+    find_package(Boost COMPONENTS ${OGRE_BOOST_COMPONENTS} QUIET)
+    if (NOT Boost_FOUND)
+        # Try again with the other type of libs
+        set(Boost_USE_STATIC_LIBS NOT ${Boost_USE_STATIC_LIBS})
+        find_package(Boost COMPONENTS ${OGRE_BOOST_COMPONENTS} QUIET)
+    endif()
+    find_package(Boost QUIET)
  
-	# Set up referencing of Boost
-	include_directories(${Boost_INCLUDE_DIR})
-	add_definitions(-DBOOST_ALL_NO_LIB)
-	set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${Boost_LIBRARIES})
+    # Set up referencing of Boost
+    include_directories(${Boost_INCLUDE_DIR})
+    add_definitions(-DBOOST_ALL_NO_LIB)
+    set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${Boost_LIBRARIES})
 endif()
  
 set(HDRS
-  ./ogre_interface.h
-  ./scenenode_bind.h
-  ./windoweventlistener_bind.h
-  ./viewport_bind.h
-  ./light_bind.h
-  ./camera_bind.h
-  ./root_bind.h
-  ./rendersystem_bind.h
-  ./resourcegroupmanager_bind.h
-  ./common.h
-  ./scenemanager_bind.h
-  ./framelistener_bind.h
-  ./renderwindow_bind.h
-  ./entity_bind.h
-  ./ois_interface.h
-  )
+    ./include/ogre_interface.h
+    ./include/ois_interface.h
+    ./include/ogre_manager.h
+    ./include/binding_utils.h
+    ./include/root_bind.h
+    ./include/entity_bind.h
+    ./include/scenemanager_bind.h
+    ./include/node_bind.h
+    ./include/scenenode_bind.h
+    ./include/camera_bind.h
+    ./include/resourcegroupmanager_bind.h
+    ./include/resource_bind.h
+    ./include/resourcemanager_bind.h
+    ./include/materialmanager_bind.h
+    ./include/material_bind.h
+    ./include/renderwindow_bind.h
+    ./include/rendersystem_bind.h
+    ./include/renderoperation_bind.h
+    ./include/vertexindexdata_bind.h
+    ./include/light_bind.h
+    ./include/logmanager_bind.h
+    ./include/log_bind.h
+    ./include/vector3_bind.h
+    ./include/colourvalue_bind.h
+    ./include/framelistener_bind.h
+    ./include/viewport_bind.h
+    ./include/movableobject_bind.h
+    ./include/windoweventlistener_bind.h
+    ./include/manualobject_bind.h
+    ./include/configfile_bind.h
+    ./include/plane_bind.h
+    ./include/meshmanager_bind.h
+    ./include/timer_bind.h
+    ./include/axisalignedbox_bind.h
+    ./include/ray_bind.h
+    ./include/sphere_bind.h
+    ./include/bone_bind.h
+    ./include/skeleton_bind.h
+    ./include/skeletoninstance_bind.h
+    ./include/tagpoint_bind.h
+    ./include/technique_bind.h
+    ./include/pass_bind.h
+    ./include/planeboundedvolume_bind.h
+    ./include/scenequery_bind.h
+    ./include/overlay_bind.h
+    ./include/overlaymanager_bind.h
+    ./include/overlayelement_bind.h
+    ./include/overlaycontainer_bind.h
+    ./include/overlayelementfactory_bind.h
+    ./include/paneloverlayelement_bind.h
+    ./include/textareaoverlayelement_bind.h
+)
 
 set(SRCS
-./root_bind.cpp
-./movableobject_bind.cpp
-./scenemanager_bind.cpp
-./renderwindow_bind.cpp
-./entity_bind.cpp
-./resourcegroupmanager_bind.cpp
-./camera_bind.cpp
-./windoweventlistener_bind.cpp
-./scenenode_bind.cpp
-./framelistener_bind.cpp
-./manualobject_bind.cpp
-./ois_bind.cpp
-./rendersystem_bind.cpp
-./viewport_bind.cpp
-./light_bind.cpp
-./main.cpp
+    ./source/binding_utils.cpp
+    ./source/main.cpp
+    ./source/ois_bind.cpp
+    ./source/root_bind.cpp
+    ./source/entity_bind.cpp
+    ./source/scenemanager_bind.cpp
+    ./source/node_bind.cpp
+    ./source/scenenode_bind.cpp
+    ./source/camera_bind.cpp
+    ./source/resourcegroupmanager_bind.cpp
+    ./source/resource_bind.cpp
+    ./source/resourcemanager_bind.cpp
+    ./source/materialmanager_bind.cpp
+    ./source/material_bind.cpp
+    ./source/renderwindow_bind.cpp
+    ./source/rendersystem_bind.cpp
+    ./source/renderoperation_bind.cpp
+    ./source/vertexindexdata_bind.cpp
+    ./source/light_bind.cpp
+    ./source/logmanager_bind.cpp
+    ./source/log_bind.cpp
+    ./source/vector3_bind.cpp
+    ./source/colourvalue_bind.cpp
+    ./source/framelistener_bind.cpp
+    ./source/viewport_bind.cpp
+    ./source/movableobject_bind.cpp
+    ./source/windoweventlistener_bind.cpp
+    ./source/manualobject_bind.cpp
+    ./source/configfile_bind.cpp
+    ./source/plane_bind.cpp
+    ./source/meshmanager_bind.cpp
+    ./source/timer_bind.cpp
+    ./source/axisalignedbox_bind.cpp
+    ./source/ray_bind.cpp
+    ./source/sphere_bind.cpp
+    ./source/bone_bind.cpp
+    ./source/skeleton_bind.cpp
+    ./source/skeletoninstance_bind.cpp
+    ./source/tagpoint_bind.cpp
+    ./source/technique_bind.cpp
+    ./source/pass_bind.cpp
+    ./source/planeboundedvolume_bind.cpp
+    ./source/scenequery_bind.cpp
+    ./source/overlay_bind.cpp
+    ./source/overlaymanager_bind.cpp
+    ./source/overlayelement_bind.cpp
+    ./source/overlaycontainer_bind.cpp
+    ./source/overlayelementfactory_bind.cpp
+    ./source/paneloverlayelement_bind.cpp
+    ./source/textareaoverlayelement_bind.cpp
 )
  
 include_directories(${OGRE_INCLUDE_DIRS} ${OIS_INCLUDE_DIRS}
-	${OGRE_SAMPLES_INCLUDEPATH}
+    ${OGRE_SAMPLES_INCLUDEPATH}
 )
  
 if(${LLCOI_DYNAMIC_BUILD})
@@ -161,25 +231,74 @@ set(LIBRARY_OUTPUT_PATH "${BUILD_ROOTDIR}/lib")
 
 # post-build copy for win32
 if(WIN32 AND NOT MINGW)
-	add_custom_command( TARGET llcoi PRE_BUILD
-		COMMAND if not exist ..\\test\\dist\\bin mkdir ..\\test\\dist\\bin )
-	add_custom_command( TARGET llcoi POST_BUILD
-		COMMAND copy \"$(TargetPath)\" ..\\test\\dist\\bin )
+    add_custom_command( TARGET llcoi PRE_BUILD
+        COMMAND if not exist ..\\test\\dist\\bin mkdir ..\\test\\dist\\bin )
+    add_custom_command( TARGET llcoi POST_BUILD
+        COMMAND copy \"$(TargetPath)\" ..\\test\\dist\\bin )
 endif(WIN32 AND NOT MINGW)
 
 if(${LLCOI_DYNAMIC_BUILD})
-	if(WIN32)
-		install(TARGETS llcoi
-			RUNTIME DESTINATION bin
-			CONFIGURATIONS All)
-	endif()
+    if(WIN32)
+        install(TARGETS llcoi
+            RUNTIME DESTINATION bin
+            CONFIGURATIONS All)
+    endif()
     if(UNIX)
         install(TARGETS llcoi
             LIBRARY DESTINATION lib
             CONFIGURATIONS RelWithDebInfo Release)
         install(FILES
-            ogre_interface.h
-            ois_interface.h
+                ./include/llcoi.h
+                ./include/ogre_interface.h
+                ./include/ois_interface.h
+                ./include/binding_utils.h
+                ./include/root_bind.h
+                ./include/entity_bind.h
+                ./include/scenemanager_bind.h
+                ./include/node_bind.h
+                ./include/scenenode_bind.h
+                ./include/camera_bind.h
+                ./include/resourcegroupmanager_bind.h
+                ./include/resource_bind.h
+                ./include/resourcemanager_bind.h
+                ./include/materialmanager_bind.h
+                ./include/material_bind.h
+                ./include/renderwindow_bind.h
+                ./include/rendersystem_bind.h
+                ./include/renderoperation_bind.h
+                ./include/vertexindexdata_bind.h
+                ./include/light_bind.h
+                ./include/logmanager_bind.h
+                ./include/log_bind.h
+                ./include/vector3_bind.h
+                ./include/colourvalue_bind.h
+                ./include/framelistener_bind.h
+                ./include/viewport_bind.h
+                ./include/movableobject_bind.h
+                ./include/windoweventlistener_bind.h
+                ./include/manualobject_bind.h
+                ./include/configfile_bind.h
+                ./include/plane_bind.h
+                ./include/meshmanager_bind.h
+                ./include/timer_bind.h
+                ./include/axisalignedbox_bind.h
+                ./include/ray_bind.h
+                ./include/sphere_bind.h
+                ./include/bone_bind.h
+                ./include/skeleton_bind.h
+                ./include/skeletoninstance_bind.h
+                ./include/tagpoint_bind.h
+                ./include/technique_bind.h
+                ./include/pass_bind.h
+                ./include/planeboundedvolume_bind.h
+                ./include/scenequery_bind.h
+                ./include/overlay_bind.h
+                ./include/overlaymanager_bind.h
+                ./include/overlayelement_bind.h
+                ./include/overlaycontainer_bind.h
+                ./include/overlayelementfactory_bind.h
+                ./include/paneloverlayelement_bind.h
+                ./include/textareaoverlayelement_bind.h
         DESTINATION ${CMAKE_INSTALL_PREFIX}/include/llcoi)
     endif()
 endif()

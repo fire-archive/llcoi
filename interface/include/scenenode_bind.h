@@ -1,8 +1,51 @@
+/******************************************************************************
+ * scenenode_bind.h - bindings for Ogre::SceneNode
+ ******************************************************************************
+ * This file is part of
+ *     __ __              _ 
+ *    / // /_____ ____   (_)
+ *   / // // ___// __ \ / / 
+ *  / // // /__ / /_/ // /  
+ * /_//_/ \___/ \____//_/   
+ *                          
+ * Low Level C Ogre Interface (llcoi)
+ *
+ * See http://code.google.com/p/llcoi/ for more information.
+ *
+ * Copyright (c) 2011, Llcoi Team
+ * 
+ * License: MIT
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ ******************************************************************************/
 #pragma once
+
+typedef void* SceneNodeHandle;
 
 #include "ogre_interface.h"
 
 DLL void scenenode_attach_entity(SceneNodeHandle scenenode_handle, EntityHandle entity_handle);
+
+// Scene nodes
+DLL SceneNodeHandle create_child_scenenode(const char* node_name);
+
+DLL SceneNodeHandle scenenode_create_child_scenenode_anon(SceneNodeHandle handle, const coiVector3* translate, const coiQuaternion* rotate);
 
 DLL void scenenode_update(SceneNodeHandle scenenode_handle, int update_children, int parent_has_changed);
 
@@ -12,7 +55,7 @@ DLL EntityHandle scenenode_get_attached_entity_int(SceneNodeHandle scenenode_han
 
 DLL EntityHandle scenenode_get_attached_entity(SceneNodeHandle scenenode_handle, const char* entity_name);
 
-DLL int scenenode_num_attached_objects(SceneNodeHandle scenenode_handle);
+DLL unsigned short scenenode_num_attached_objects(SceneNodeHandle scenenode_handle);
 
 DLL void scenenode_detach_entity_int(SceneNodeHandle scenenode_handle, int entity_index);
 
@@ -48,20 +91,27 @@ DLL void scenenode_set_debug_display_enabled_ex(SceneNodeHandle scenenode_handle
 
 DLL SceneManagerHandle scenenode_get_creator(SceneNodeHandle scenenode_handle);
 
-DLL void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z);
+DLL void scenenode_set_direction(SceneNodeHandle scenenode_handle, float x, float y, float z, transform_space relative_to);
 
 DLL void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, float x, float y, float z);
 
 DLL void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, float z);
 
-DLL void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians);
+DLL void scenenode_get_position(SceneNodeHandle handle, coiVector3* pos);
+
+DLL void scenenode_set_derived_position(SceneNodeHandle handle, const coiVector3* pos);
+
+DLL void scenenode_get_derived_position(SceneNodeHandle handle, coiVector3* pos);
+//void setFixedYawAxis( bool useFixed, const Vector3& fixedAxis = Vector3::UNIT_Y );
+DLL void scenenode_set_fixed_yaw_axis(SceneNodeHandle handle, int use_fixed, const coiVector3* fixed_axis);
+DLL void scenenode_yaw_degree(SceneNodeHandle handle, coiReal angle, transform_space relative_to);
+DLL void scenenode_yaw(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
 
 DLL void scenenode_set_scale(SceneNodeHandle scenenode_handle, float x, float y, float z);
 
+DLL void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, float z, transform_space relative_to);
+DLL void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
+DLL void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians, transform_space relative_to);
+DLL SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle handle, const char* name, const coiVector3* translate, const coiQuaternion* rotate);
+
 DLL void scenenode_scale(SceneNodeHandle scenenode_handle, float x, float y, float z);
-
-DLL void scenenode_translate(SceneNodeHandle scenenode_handle, float x, float y, float z);
-
-DLL void scenenode_roll(SceneNodeHandle scenenode_handle, coiReal radians);
-
-DLL void scenenode_pitch(SceneNodeHandle scenenode_handle, coiReal radians);

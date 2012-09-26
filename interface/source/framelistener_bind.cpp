@@ -113,3 +113,59 @@ void remove_frame_listener(RootHandle root_handle, FrameListenerEvent frame_even
       }
     }
 }
+
+
+// Variation on FrameListenerBind, allows the client to pass void* userdata back and forth.
+class FrameListenerCTX: public Ogre::FrameListener
+{
+public:
+    FrameListenerCTX(FrameStarted started_cb, FrameQueued queued_cb, FrameEnded ended_cb, void* data)
+        : started(started_cb), queued(queued_cb), ended(ended_cb), userdata(data)
+    {
+    }
+
+    bool frameStarted(const Ogre::FrameEvent& evt)
+    {
+        FrameEvent e;
+        e.time_since_last_event = evt.timeSinceLastEvent;
+        e.time_since_last_frame = evt.timeSinceLastFrame;
+        return started(&e, userdata);
+    }
+
+    bool frameRenderingQueued(const Ogre::FrameEvent& evt)
+    {
+        FrameEvent e;
+        e.time_since_last_event = evt.timeSinceLastEvent;
+        e.time_since_last_frame = evt.timeSinceLastFrame;
+        return queued(&e, userdata);
+    }
+
+    bool frameEnded(const Ogre::FrameEvent& evt)
+    {
+        FrameEvent e;
+        e.time_since_last_event = evt.timeSinceLastEvent;
+        e.time_since_last_frame = evt.timeSinceLastFrame;
+        return ended(&e, userdata);
+    }
+
+    FrameStarted started;
+    FrameQueued queued;
+    FrameEnded ended;
+    void* userdata;
+};
+
+
+
+FrameListenerHandle add_frame_listener_ctx(FrameStarted started_cb, FrameQueued queued_cb, FrameEnded ended_cb, void* userdata)
+{
+    FrameListenerCTX *frameListener = new FrameListenerCTX(started_cb, queued_cb, ended_cb, userdata);
+    Ogre::Root::getSingletonPtr()->addFrameListener(frameListener);
+    return reinterpret_cast<FrameListenerHandle>(frameListener);
+}
+
+void remove_frame_listener_ctx(FrameListenerHandle handle)
+{
+    FrameListenerCTX* listener = reinterpret_cast<FrameListenerCTX*>(handle);
+    Ogre::Root::getSingletonPtr()->addFrameListener(listener);
+    delete listener;
+}

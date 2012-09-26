@@ -10,3 +10,5 @@ glob:interface/swig/*.log
 glob:*.fasl
 glob:interface/swig/ogredocs/*
 glob:interface/swig/*.so
+glob:*.swp
+glob:*.o

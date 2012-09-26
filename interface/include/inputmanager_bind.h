@@ -1,8 +1,14 @@
 #pragma once
 
+typedef void* InputManagerHandle;
+typedef void* ParamListHandle;
+
 #include "ois_interface.h"
 
 DLL InputManagerHandle create_input_system(unsigned int window_handle);
+
+// For sending parameters to the input constructor.
+DLL InputManagerHandle create_input_system_ex(ParamListHandle handle);
 
 DLL void destroy_input_system(InputManagerHandle input_manager_handle);
 

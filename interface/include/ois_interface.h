@@ -38,12 +38,14 @@
 
 #include "ogre_interface.h"
 
-typedef void* InputManagerHandle;
-typedef void* MouseInputHandle;
-typedef void* KeyboardInputHandle;
-
-#include "inputmanager_bind.h"
 #include "keyboard_bind.h"
 #include "mouse_bind.h"
+#include "inputmanager_bind.h"
 
 
+
+DLL ParamListHandle ois_create_paramlist();
+
+DLL void ois_destroy_paramlist(ParamListHandle handle);
+
+DLL void ois_add_pair(ParamListHandle handle, const char* field, const char* value);

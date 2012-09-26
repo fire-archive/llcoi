@@ -44,3 +44,25 @@ void destroy_keyboard_object(InputManagerHandle input_manager_handle, KeyboardIn
   OIS::Keyboard* keyboard = reinterpret_cast<OIS::Keyboard*>(keyboard_handle);
   input_manager->destroyInputObject(keyboard);
 }
+
+ParamListHandle ois_create_paramlist()
+{
+    OIS::ParamList* paramlist = new OIS::ParamList;
+    return reinterpret_cast<ParamListHandle>(paramlist);
+}
+
+void ois_destroy_paramlist(ParamListHandle handle)
+{
+    OIS::ParamList* paramlist = reinterpret_cast<OIS::ParamList*>(handle);
+    delete paramlist;
+}
+
+void ois_add_pair(ParamListHandle handle, const char* field, const char* value)
+{
+    OIS::ParamList* paramlist = reinterpret_cast<OIS::ParamList*>(handle);
+    paramlist->insert(
+        std::make_pair(
+            std::string(field), std::string(value)
+        )
+    );
+}

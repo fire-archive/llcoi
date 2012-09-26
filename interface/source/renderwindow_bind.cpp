@@ -90,6 +90,74 @@ int render_window_closed(RenderWindowHandle window_handle)
 }
 
 
+// Rendertarget->addViewport 
+ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, int zorder, float left, float top, float width, float height)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);
+    Ogre::Camera* camera = reinterpret_cast<Ogre::Camera*>(camera_handle);
+    return reinterpret_cast<ViewportHandle>(window->addViewport(camera, zorder, left, top, width, height));
+}
+
+// RenderWindow::isClosed
+int render_window_is_closed(RenderWindowHandle handle)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    if (window->isClosed())
+        return 1;
+    return 0;
+}
+
+void render_window_set_active(RenderWindowHandle handle, int state)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    window->setActive(state);
+}
+
+void render_window_swap_buffers(RenderWindowHandle handle, int wait_for_vsync)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    window->swapBuffers(wait_for_vsync);
+}
+
+void render_window_get_custom_attribute(RenderWindowHandle handle, const char* attribute, void* pdata)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    window->getCustomAttribute(attribute, pdata);
+}
+
+unsigned int render_window_get_width(RenderWindowHandle handle)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    return window->getWidth();
+}
+
+unsigned int render_window_get_height(RenderWindowHandle handle)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    return window->getHeight();
+}
+
+void renderwindow_get_statistics(RenderWindowHandle handle, FrameStats* stats)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    const Ogre::RenderTarget::FrameStats& fs = window->getStatistics();
+
+    stats->lastFPS         = fs.lastFPS;
+    stats->avgFPS          = fs.avgFPS;
+    stats->bestFPS         = fs.bestFPS;
+    stats->worstFPS        = fs.worstFPS;
+    stats->bestFrameTime   = fs.bestFrameTime;
+    stats->worstFrameTime  = fs.worstFrameTime;
+    stats->triangleCount   = fs.triangleCount;
+    stats->batchCount      = fs.batchCount;
+}
+
+void renderwindow_get_statistics_ex(RenderWindowHandle handle, float* lastFPS, float* avgFPS, float* bestFPS, float* worstFPS)
+{
+    Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
+    window->getStatistics(*lastFPS, *avgFPS, *bestFPS, *worstFPS);
+}
+
 /*
 Ogre::RenderWindow::operator=(Ogre::RenderWindow const&)
 Ogre::RenderWindow::RenderWindow(Ogre::RenderWindow const&)

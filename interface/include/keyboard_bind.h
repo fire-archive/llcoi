@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ois_interface.h"
+typedef void* KeyboardInputHandle;
 
 enum KeyCode
 {
@@ -163,6 +163,8 @@ enum Key_Modifier
     Ctrl  = 0x0000010,
     Alt   = 0x0000100
 };
+
+#include "ois_interface.h"
 
 DLL int keyboard_is_key_down(KeyboardInputHandle keyboard_handle, enum KeyCode key_code);
 

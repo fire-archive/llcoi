@@ -1,5 +1,4 @@
-#include <ogre_interface.h>
-#include <ois_interface.h>
+#include <llcoi.h>
 
 #undef LLCOI_TEST_USE_OPENINPUT
 
@@ -98,7 +97,7 @@ int main(int argc, char *argv[])
 
     viewport = add_viewport(myCamera);
 
-    viewport_set_background_colour(viewport, 0, 0, 0);
+    viewport_set_background_colour(viewport, 0, 0, 0, 1);
 
     camera_set_aspect_ratio(myCamera, 800, 600);
 
@@ -118,9 +117,9 @@ int main(int argc, char *argv[])
 
 	add_window_listener(renderwindow, window_event_listener_test);
 
-    create_input_system(render_window_get_hwnd(renderwindow));
-    keyboard = create_keyboard_object(0);
-    mouse = create_mouse_object(0);
+    InputSystemHandle input_system = create_input_system(render_window_get_hwnd(renderwindow));
+    keyboard = create_keyboard_object(input_system, 0);
+    mouse = create_mouse_object(input_system, 0);
     
     while(keep_going)
     {
@@ -197,9 +196,9 @@ int main(int argc, char *argv[])
     
 	remove_window_listener(renderwindow);
 
-    destroy_keyboard_object(keyboard);
-    destroy_mouse_object(mouse);
-    destroy_input_system();
+    destroy_keyboard_object(input_system, keyboard);
+    destroy_mouse_object(input_system, mouse);
+    destroy_input_system(input_system);
     release_engine();
 
     return 0;
