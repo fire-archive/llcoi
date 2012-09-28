@@ -49,41 +49,34 @@ SceneNodeHandle create_child_of_root_scenenode(SceneManagerHandle scene_manager_
     return reinterpret_cast<SceneNodeHandle>(scene_node);
 }
 
-EntityHandle create_entity(SceneManagerHandle scene_manager_handle, const char* entity_name, const char* mesh_file, const char* group_name)
+EntityHandle scenemanager_create_entity(SceneManagerHandle scene_manager_handle, const char* entity_name, const char* mesh_file, const char* group_name)
 {
     Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
     Ogre::Entity* entity = scene_manager->createEntity(entity_name, mesh_file, group_name);
     return reinterpret_cast<EntityHandle>(entity);
 }
 
-CameraHandle create_camera(SceneManagerHandle scene_manager_handle, const char* camera_name)
+CameraHandle scenemanager_create_camera(SceneManagerHandle scene_manager_handle, const char* camera_name)
 {
     Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
     Ogre::Camera* camera = scene_manager->createCamera(camera_name);
     return reinterpret_cast<CameraHandle>(camera);
 }
 
-LightHandle create_light(SceneManagerHandle scene_manager_handle, const char* light_name)
-{
-    Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
-    Ogre::Light* light = scene_manager->createLight(light_name);
-    return reinterpret_cast<LightHandle>(light);
-}
-
-CameraHandle get_camera(SceneManagerHandle scene_manager_handle, const char* camera_name)
+CameraHandle scenemanager_get_camera(SceneManagerHandle scene_manager_handle, const char* camera_name)
 {
     Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
     Ogre::Camera* camera =  scene_manager->getCamera(camera_name);
     return reinterpret_cast<CameraHandle>(camera);
 }
 
-void set_ambient_light_rgba(SceneManagerHandle scene_manager_handle, const float r, const float g, const float b, const float a)
+void scenemanager_set_ambient_light_rgba(SceneManagerHandle scene_manager_handle, const float r, const float g, const float b, const float a)
 {
     Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
     scene_manager->setAmbientLight(Ogre::ColourValue(r, g, b, a));
 }
 
-void set_ambient_light_rgb(SceneManagerHandle scene_manager_handle, const float r, const float g, const float b)
+void scenemanager_set_ambient_light_rgb(SceneManagerHandle scene_manager_handle, const float r, const float g, const float b)
 {
     Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
     scene_manager->setAmbientLight(Ogre::ColourValue(r, g, b));

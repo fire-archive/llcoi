@@ -34,8 +34,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  ******************************************************************************/
-#include "movableobject_bind.h"
 #include "binding_utils.h"
+#include "movableobject_bind.h"
 
 #include <OgreRoot.h>
 #include <OgreMovableObject.h>
@@ -349,7 +349,8 @@ unsigned int movableobject_get_default_visibility_flags()
 size_t movableobject_query_lights(const MovableObjectHandle handle, LightHandle result)
 {
     const Ogre::MovableObject* obj = static_cast<const Ogre::MovableObject*>(handle); 
-    const Ogre::LightList& ll = obj->queryLights();
+    // TODO: can we preserve constness here?
+    Ogre::LightList& ll = const_cast<Ogre::LightList&>(obj->queryLights());
     size_t len = ogre_light_list_to_llcoi(ll, result);
 }
 
