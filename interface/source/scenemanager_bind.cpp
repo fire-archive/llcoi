@@ -42,7 +42,7 @@
 #include <OgreSceneManager.h>
 
 
-SceneNodeHandle create_child_scenenode(SceneManagerHandle scene_manager_handle, const char* node_name)
+SceneNodeHandle create_child_of_root_scenenode(SceneManagerHandle scene_manager_handle, const char* node_name)
 {
     Ogre::SceneManager* scene_manager = reinterpret_cast<Ogre::SceneManager*>(scene_manager_handle);
     Ogre::SceneNode* scene_node = scene_manager->getRootSceneNode()->createChildSceneNode(node_name);

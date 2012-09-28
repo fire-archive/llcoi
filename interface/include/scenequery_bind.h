@@ -1,69 +1,6 @@
-/******************************************************************************
- * scenequery_bind.h -  bindings for Ogre::SceneQuery
- ******************************************************************************
- * This file is part of
- *     __ __              _ 
- *    / // /_____ ____   (_)
- *   / // // ___// __ \ / / 
- *  / // // /__ / /_/ // /  
- * /_//_/ \___/ \____//_/   
- *                          
- * Low Level C Ogre Interface (llcoi)
- *
- * See http://code.google.com/p/llcoi/ for more information.
- *
- * Copyright (c) 2011, Llcoi Team
- * 
- * License: MIT
- * 
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- * 
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- * 
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- ******************************************************************************/
 #pragma once
 
-typedef void* SceneQueryHandle;
-typedef void* RaySceneQueryHandle;
-typedef void* SceneQueryListenerHandle;
-typedef void* RaySceneQueryListenerHandle;
-typedef void* PlaneListHandle;
-typedef void* SceneQueryResultHandle;
-typedef void* RaySceneQueryResultHandle;
-typedef void* RayHandle;
-
 #include "ogre_interface.h"
-
-typedef struct world_fragment
-{
-    world_fragment_type fragment_type;
-    coiVector3 single_intersection;
-    PlaneListHandle planes;
-    void* geometry;
-    RenderOperationHandle render_op;
-    
-} world_fragment;
-
-typedef struct rayscenequery_result_entry
-{
-    coiReal distance;
-    MovableObjectHandle movable;
-    world_fragment* fragment;
-
-} rayscenequery_result_entry;
 
 // No create/destroy methods for these, as this is the job of the SceneManager.
 // SceneQuery::setQueryMask(uint32 mask)
@@ -88,15 +25,6 @@ DLL unsigned short rayscenequery_get_max_results(RaySceneQueryHandle handle);
 // typedef vector<RaySceneQueryResultEntry>::type RaySceneQueryResult;
 DLL size_t rayscenequeryresult_count(RaySceneQueryResultHandle handle);
 DLL void rayscenequeryresult_at(RaySceneQueryResultHandle handle, int index, rayscenequery_result_entry* result);
-
-
-
-typedef int(*SceneQueryFragmentResult)(const world_fragment* frag, void* userdata);
-typedef int(*SceneQueryObjectResult)(MovableObjectHandle handle, void* userdata);
-
-typedef int(*RaySceneQueryFragmentResult)(const world_fragment* frag, coiReal distance, void* userdata);
-typedef int(*RaySceneQueryObjectResult)(MovableObjectHandle handle, coiReal distance, void* userdata);
-
 
 // SceneQueryListener
 DLL SceneQueryListenerHandle create_scenequerylistener(SceneQueryFragmentResult fragment_callback, SceneQueryObjectResult object_callback, void* userdata);

@@ -178,14 +178,14 @@ ResourcePtrHandle resourcemanager_get_by_handle(ResourceManagerHandle handle, Re
 }
 
 //bool resourceExists(const String& name)
-bool resourcemanager_exists_by_name(ResourceManagerHandle handle, const char* name)
+int resourcemanager_exists_by_name(ResourceManagerHandle handle, const char* name)
 {
     Ogre::ResourceManager* manager = static_cast<Ogre::ResourceManager*>(handle);
     return manager->resourceExists(Ogre::String(name));
 }
 
 //bool resourceExists(ResourceHandle handle)
-bool resourcemanager_exists_by_handle(ResourceManagerHandle handle, ResourceHandle res_handle)
+int resourcemanager_exists_by_handle(ResourceManagerHandle handle, ResourceHandle res_handle)
 {
     Ogre::ResourceManager* manager = static_cast<Ogre::ResourceManager*>(handle);
     return manager->resourceExists(res_handle);

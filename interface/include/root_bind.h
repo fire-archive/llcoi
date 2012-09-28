@@ -1,8 +1,5 @@
 #pragma once
 
-typedef void* RootHandle;
-typedef void* RenderSystemListHandle;
-
 #include "ogre_interface.h"
 
 DLL RootHandle root_singleton();

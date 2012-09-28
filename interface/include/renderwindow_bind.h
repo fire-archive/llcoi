@@ -1,9 +1,5 @@
 #pragma once
 
-typedef void* RenderWindowHandle;
-typedef void* ViewportHandle;
-typedef void* CameraHandle;
-
 #include "ogre_interface.h"
 
 DLL RenderWindowHandle create_render_window(const char* name, const int width, const int height, const int full_screen);

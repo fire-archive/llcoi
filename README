@@ -1,0 +1,12 @@
+llcoi is licensed under the MIT license
+Copyright (c) 2011 - 2012 the llcoi developers
+for details see https://bitbucket.org/galaktor/llcoi
+
+
+TODO:
+- why is MouseButtonID causing cgo compile issues (when used in gogre3d)
+- re-add lightweight file headers with license and copyright reference
+- remove comment boilerplate
+- organize bindings better
+  - remove "_bind" from the file names
+  - several smaller fwd.h files?
