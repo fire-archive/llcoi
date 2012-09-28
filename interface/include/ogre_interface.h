@@ -49,10 +49,10 @@
 #   endif
 #endif
 
-// RAPH's hack: force extern "C" when not using CMake
-#ifdef __cplusplus
-#define DLL extern "C"
-#endif
+// galaktor's galakt-tic hack: force extern "C" when not using CMake
+//#ifdef __cplusplus
+//#define DLL extern "C"
+//#endif
 
 #include <stddef.h> // for size_t
 
