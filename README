@@ -4,7 +4,7 @@ for details see https://bitbucket.org/galaktor/llcoi
 
 
 TODO:
-- why is MouseButtonID causing cgo compile issues (when used in gogre3d)
+- make typedefs consistent (C-style): typedef enum {a,b,c} MyEnum;
 - re-add lightweight file headers with license and copyright reference
 - remove comment boilerplate
 - organize bindings better

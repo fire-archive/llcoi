@@ -86,5 +86,6 @@
 #include "overlaycontainer_bind.h"
 #include "resourcemanager_bind.h"
 #include "resource_bind.h"
+#include "texturemanager_bind.h"
 // probably some missing; check llcoi.h for complete(r) list
 

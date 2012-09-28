@@ -92,6 +92,7 @@ typedef void* SkeletonInstanceHandle;
 typedef void* SphereHandle;
 typedef void* TagPointHandle;
 typedef void* TechniqueHandle;
+typedef void* TextureManagerHandle;
 typedef void* TextAreaOverlayElementFactoryHandle;
 typedef void* TextAreaOverlayElementHandle;
 typedef void* TimerHandle;
@@ -786,11 +787,11 @@ typedef struct
     int buttons;
 } MouseState;
 
-enum MouseButtonID
+typedef enum
 {
     MB_Left = 0, MB_Right, MB_Middle,
     MB_Button3, MB_Button4, MB_Button5, MB_Button6, MB_Button7
-};
+} MouseButtonID;
 
 typedef struct _MouseEvent MouseEvent;
 struct _MouseEvent
@@ -800,15 +801,6 @@ struct _MouseEvent
 
 // Callbacks for MouseListeners
 typedef int(*MouseMovedEvent)(const MouseEvent* event, void* userdata);
-
-// TODO: find out why compiler complains about MouseButtonID!
-// error: 
-/*
-In file included from ./llcoihdr/ogre_interface.h:55,
-from camera.go:3:
-./llcoihdr/fwd.h:803: error: expected declaration specifiers or '...' before 'MouseButtonID'
-./llcoihdr/fwd.h:804: error: expected declaration specifiers or '...' before 'MouseButtonID'
-*/
 typedef int(*MousePressedEvent)(const MouseEvent* event, MouseButtonID id, void* userdata);
 typedef int(*MouseReleasedEvent)(const MouseEvent* event, MouseButtonID id, void* userdata);
 

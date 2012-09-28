@@ -5,6 +5,7 @@
 // creates a child on the rootscenenode
 DLL SceneNodeHandle create_child_of_root_scenenode(SceneManagerHandle scene_manager_handle, const char* node_name);
 
+// TODO: define enums or similar for groups Default, Autodetect etc.
 DLL EntityHandle scenemanager_create_entity(SceneManagerHandle handle, const char* name, const char* mesh_name, const char* group_name);
 //createCamera(const String& name);
 DLL CameraHandle scenemanager_create_camera(SceneManagerHandle handle, const char* name);
