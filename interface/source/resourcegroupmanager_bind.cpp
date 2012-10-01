@@ -40,6 +40,8 @@
 #include <OgreResourceManager.h>
 #include <OgreResourceGroupManager.h>
 
+
+/*
 ResourceGroupManagerHandle create_resourcegroupmanager()
 {
     Ogre::ResourceGroupManager* mgr = new Ogre::ResourceGroupManager;
@@ -51,6 +53,16 @@ void destroy_resourcegroupmanager(ResourceGroupManagerHandle handle)
     Ogre::ResourceGroupManager* mgr = static_cast<Ogre::ResourceGroupManager*>(handle);
     delete mgr;
 }
+*/
+
+ResourceGroupManagerHandle resourcegroupmanager_singleton()
+{
+    return static_cast<ResourceGroupManagerHandle>(
+        &Ogre::ResourceGroupManager::getSingleton()
+    );
+}
+
+
 void resourcegroupmanager_setup_resources(const char* resources_cfg)
 {
     // set up resources
@@ -110,22 +122,6 @@ size_t resourcegroupmanager_RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS()
 {
     return Ogre::ResourceGroupManager::RESOURCE_SYSTEM_NUM_REFERENCE_COUNTS;
 }
-
-
-ResourceGroupManagerHandle resourcegroupmanager_get_singleton()
-{
-    return static_cast<ResourceGroupManagerHandle>(
-        &Ogre::ResourceGroupManager::getSingleton()
-    );
-}
-
-ResourceGroupManagerHandle resourcegroupmanager_get_singleton_ptr()
-{
-    return static_cast<ResourceGroupManagerHandle>(
-        Ogre::ResourceGroupManager::getSingletonPtr()
-    );
-}
-
 
 /*
 Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME

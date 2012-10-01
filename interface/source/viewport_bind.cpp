@@ -88,7 +88,6 @@ float viewport_get_height(ViewportHandle viewport_handle)
 }
 
 
-
 int viewport_get_actual_top(ViewportHandle handle)
 {
     Ogre::Viewport* vp = reinterpret_cast<Ogre::Viewport*>(handle);

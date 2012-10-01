@@ -2,9 +2,6 @@
 
 #include "ogre_interface.h"
 
-DLL RenderWindowHandle create_render_window(const char* name, const int width, const int height, const int full_screen);
-DLL RenderWindowHandle create_render_window_gl_context(const char* name, const int width, const int height, const int full_screen);
-DLL RenderWindowHandle create_render_window_hwnd(const char* name, const int width, const int height, const int full_screen, unsigned long hwnd);
 DLL ViewportHandle render_window_add_viewport(RenderWindowHandle window_handle, CameraHandle camera_handle, int zorder, float left, float top, float width, float height);
 DLL void render_window_set_active(RenderWindowHandle handle, int state);
 DLL void render_window_swap_buffers(RenderWindowHandle handle, int wait_for_vsync);

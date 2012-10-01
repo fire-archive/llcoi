@@ -189,30 +189,34 @@ SceneManagerHandle create_scene_manager(RootHandle root_handle, const char* type
   return reinterpret_cast<SceneManagerHandle>(sm);
 }
 
-SceneManagerHandle get_scene_manager_by_name(const char* scene_manager_instance_name)
+SceneManagerHandle get_scene_manager_by_name(RootHandle root_handle, const char* scene_manager_instance_name)
 {
-  Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->getSceneManager(scene_manager_instance_name);
+  Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
+  Ogre::SceneManager* sm = root->getSceneManager(scene_manager_instance_name);
   return reinterpret_cast<SceneManagerHandle>(sm);
 }
 
 // Ogre::Root::getAvailableRenderers
-RenderSystemListHandle root_get_available_renderers()
+RenderSystemListHandle root_get_available_renderers(RootHandle root_handle)
 {
-  const Ogre::RenderSystemList& rslist = Ogre::Root::getSingletonPtr()->getAvailableRenderers();
+  Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
+  const Ogre::RenderSystemList& rslist = root->getAvailableRenderers();
   Ogre::RenderSystemList *l = new Ogre::RenderSystemList(rslist);
   return reinterpret_cast<RenderSystemListHandle>(l);
 }
 
 
-SceneManagerHandle root_create_scene_manager_by_mask(SceneTypeMask type_mask, const char* instance_name)
+SceneManagerHandle root_create_scene_manager_by_mask(RootHandle root_handle, SceneTypeMask type_mask, const char* instance_name)
 {
-  Ogre::SceneManager* sm = Ogre::Root::getSingletonPtr()->createSceneManager(type_mask, Ogre::String(instance_name));
+  Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
+  Ogre::SceneManager* sm = root->createSceneManager(type_mask, Ogre::String(instance_name));
   return reinterpret_cast<SceneManagerHandle>(sm);
 }
 
-TimerHandle root_get_timer()
+TimerHandle root_get_timer(RootHandle root_handle)
 {
-  Ogre::Timer* timer = Ogre::Root::getSingletonPtr()->getTimer();
+  Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
+  Ogre::Timer* timer = root->getTimer();
   return reinterpret_cast<TimerHandle>(timer);
 }
 
