@@ -14,7 +14,7 @@ void keyboard_capture(KeyboardInputHandle keyboard_handle)
     keyboard->capture();
 }
 
-int keyboard_is_key_down(KeyboardInputHandle keyboard_handle, enum KeyCode key_code)
+int keyboard_is_key_down(KeyboardInputHandle keyboard_handle, KeyCode key_code)
 {
   OIS::Keyboard* keyboard = reinterpret_cast<OIS::Keyboard*>(keyboard_handle);
   if(keyboard->isKeyDown((OIS::KeyCode)key_code))
@@ -22,7 +22,7 @@ int keyboard_is_key_down(KeyboardInputHandle keyboard_handle, enum KeyCode key_c
   return 0;
 }
 
-int keyboard_is_modifier_down(KeyboardInputHandle keyboard_handle, Key_Modifier key_modifier)
+int keyboard_is_modifier_down(KeyboardInputHandle keyboard_handle, KeyModifier key_modifier)
 {
   OIS::Keyboard* keyboard = reinterpret_cast<OIS::Keyboard*>(keyboard_handle);
   if(keyboard->isModifierDown((OIS::Keyboard::Modifier)key_modifier))

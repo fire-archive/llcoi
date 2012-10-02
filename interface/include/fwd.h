@@ -605,7 +605,7 @@ typedef int(*FrameEnded)(const FrameEvent* event, void* userdata);
 typedef int(*FrameQueued)(const FrameEvent* event, void* userdata);
 typedef int(*FrameListenerEvent)(float,float,int);
 
-enum KeyCode
+typedef enum
 {
     KC_UNASSIGNED  = 0x00,
     KC_ESCAPE      = 0x01,
@@ -752,20 +752,20 @@ enum KeyCode
     KC_MYCOMPUTER  = 0xEB,    // My Computer
     KC_MAIL        = 0xEC,    // Mail
     KC_MEDIASELECT = 0xED     // Media Select
-};
+}  KeyCode;
 
 typedef struct 
 {
-    enum KeyCode key;
+    KeyCode key;
     unsigned int text;
 } KeyEvent;
 
-enum Key_Modifier
+typedef enum
 {
     Shift = 0x0000001,
     Ctrl  = 0x0000010,
     Alt   = 0x0000100
-};
+} KeyModifier;
 
 typedef struct
 {
