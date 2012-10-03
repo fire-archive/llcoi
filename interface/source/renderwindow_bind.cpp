@@ -75,6 +75,12 @@ void render_window_resize(RenderWindowHandle window_handle, unsigned int width, 
   window->resize(width, height);
 }
 
+void render_window_reposition(RenderWindowHandle window_handle, int left, int top)
+{
+  Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);
+  window->reposition(left, top);
+}
+
 void render_window_moved_or_resized(RenderWindowHandle window_handle)
 {
   Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(window_handle);

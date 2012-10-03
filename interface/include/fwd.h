@@ -793,16 +793,16 @@ typedef enum
     MB_Button3, MB_Button4, MB_Button5, MB_Button6, MB_Button7
 } MouseButtonID;
 
-typedef struct _MouseEvent MouseEvent;
-struct _MouseEvent
-{
-    MouseState state;
-};
+//typedef struct _MouseEvent MouseEvent;
+//typedef struct _MouseEvent
+//{
+//    MouseState state;
+//};
 
 // Callbacks for MouseListeners
-typedef int(*MouseMovedEvent)(const MouseEvent* event, void* userdata);
-typedef int(*MousePressedEvent)(const MouseEvent* event, MouseButtonID id, void* userdata);
-typedef int(*MouseReleasedEvent)(const MouseEvent* event, MouseButtonID id, void* userdata);
+typedef int(*MouseMovedEvent)(const MouseState* event, void* userdata);
+typedef int(*MousePressedEvent)(const MouseState* event, MouseButtonID id, void* userdata);
+typedef int(*MouseReleasedEvent)(const MouseState* event, MouseButtonID id, void* userdata);
 
 typedef void(*LogListenerEvent)(const char* message, log_message_level lml, int maskDebug, const char* log_name, int skip_message);
 

@@ -400,28 +400,28 @@ MouseButtonID ois_mbid_to_llcoi_mbid(OIS::MouseButtonID id)
     return converted;
 }
 
-void ois_mouse_event_to_llcoi_mouse_event(const OIS::MouseEvent* oevent, MouseEvent* levent)
+void ois_mouse_event_to_llcoi_mouse_state(const OIS::MouseEvent* oevent, MouseState* lstate)
 {
     /* copy dimensions */
-    levent->state.width   = oevent->state.width;
-    levent->state.height  = oevent->state.height;
+    lstate->width   = oevent->state.width;
+    lstate->height  = oevent->state.height;
 
     /* copy Axis */
 
-    levent->state.X.abs  = oevent->state.X.abs;
-    levent->state.Y.abs  = oevent->state.Y.abs;
-    levent->state.Z.abs  = oevent->state.Z.abs;
+    lstate->X.abs  = oevent->state.X.abs;
+    lstate->Y.abs  = oevent->state.Y.abs;
+    lstate->Z.abs  = oevent->state.Z.abs;
 
-    levent->state.X.rel  = oevent->state.X.rel;
-    levent->state.Y.rel  = oevent->state.Y.rel;
-    levent->state.Z.rel  = oevent->state.Z.rel;
+    lstate->X.rel  = oevent->state.X.rel;
+    lstate->Y.rel  = oevent->state.Y.rel;
+    lstate->Z.rel  = oevent->state.Z.rel;
 
-    levent->state.X.absOnly  = oevent->state.X.absOnly;
-    levent->state.Y.absOnly  = oevent->state.Y.absOnly;
-    levent->state.Z.absOnly  = oevent->state.Z.absOnly;
+    lstate->X.absOnly  = oevent->state.X.absOnly;
+    lstate->Y.absOnly  = oevent->state.Y.absOnly;
+    lstate->Z.absOnly  = oevent->state.Z.absOnly;
 
     /* copy buttons. */
-    levent->state.buttons = oevent->state.buttons;
+    lstate->buttons = oevent->state.buttons;
 }
 
 

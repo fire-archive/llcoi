@@ -1,5 +1,5 @@
 #include "mouse_bind.h"
-#include "binding_utils.h" // ois_mouse_event_to_llcoi_mouse_event
+#include "binding_utils.h" // ois_mouse_event_to_llcoi_mouse_state
 
 #include <OISMouse.h>
 
@@ -47,46 +47,43 @@ public:
 
     bool mouseMoved(const OIS::MouseEvent &arg)
     {
-        MouseEvent evt;
+        MouseState state;
         bool result;
 
-        // Convert OIS MouseEvent to LLCOI MouseEvent
-        ois_mouse_event_to_llcoi_mouse_event(&arg, &evt);
+        ois_mouse_event_to_llcoi_mouse_state(&arg, &state);
 
         // Fire off the callback.
-        result = moved(&evt, userdata);
+        result = moved(&state, userdata);
         return result;
     }
 
     bool mousePressed(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
     {
-        MouseEvent evt;
+        MouseState state;
         MouseButtonID llcoi_id;
         bool result;
 
-        // Convert OIS MouseEvent to LLCOI MouseEvent
-        ois_mouse_event_to_llcoi_mouse_event(&arg, &evt);
+        ois_mouse_event_to_llcoi_mouse_state(&arg, &state);
 
         llcoi_id = ois_mbid_to_llcoi_mbid(id);
 
         // Fire off the callback.
-        result = pressed(&evt, llcoi_id, userdata);
+        result = pressed(&state, llcoi_id, userdata);
         return result;
     }
 
     bool mouseReleased(const OIS::MouseEvent &arg, OIS::MouseButtonID id)
     {
-        MouseEvent evt;
+        MouseState state;;
         MouseButtonID llcoi_id;
         bool result;
 
-        // Convert OIS MouseEvent to LLCOI MouseEvent
-        ois_mouse_event_to_llcoi_mouse_event(&arg, &evt);
+        ois_mouse_event_to_llcoi_mouse_state(&arg, &state);
 
         llcoi_id = ois_mbid_to_llcoi_mbid(id);
 
         // Fire off the callback.
-        result = released(&evt, llcoi_id, userdata);
+        result = released(&state, llcoi_id, userdata);
         return result;
     }
 
