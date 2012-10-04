@@ -15,14 +15,19 @@ void mouse_capture(MouseInputHandle mouse_handle)
     mouse->capture();
 }
 
+void mouse_set_display_area(MouseInputHandle mouse_handle, int width, int height) {
+  OIS::Mouse* mouse = reinterpret_cast<OIS::Mouse*>(mouse_handle);
+  OIS::MouseState state = mouse->getMouseState();
+  state.width = width;
+  state.height = height;
+}
+
 MouseState mouse_get_state(MouseInputHandle mouse_handle)
 {
     OIS::Mouse* mouse = reinterpret_cast<OIS::Mouse*>(mouse_handle);
     OIS::MouseState state = mouse->getMouseState();
     MouseState out_state;
     out_state.buttons = state.buttons;
-    out_state.height = state.height;
-    out_state.width = state.width;
     out_state.X.abs = state.X.abs;
     out_state.X.rel = state.X.rel;
     out_state.X.absOnly = state.X.absOnly;

@@ -402,12 +402,6 @@ MouseButtonID ois_mbid_to_llcoi_mbid(OIS::MouseButtonID id)
 
 void ois_mouse_event_to_llcoi_mouse_state(const OIS::MouseEvent* oevent, MouseState* lstate)
 {
-    /* copy dimensions */
-    lstate->width   = oevent->state.width;
-    lstate->height  = oevent->state.height;
-
-    /* copy Axis */
-
     lstate->X.abs  = oevent->state.X.abs;
     lstate->Y.abs  = oevent->state.Y.abs;
     lstate->Z.abs  = oevent->state.Z.abs;
