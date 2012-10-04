@@ -217,6 +217,11 @@ void scenenode_set_orientation(SceneNodeHandle scenenode_handle, float w, float 
     scene_node->setOrientation(w, x, y, z);
 }
 
+void scenenode_reset_orientation(SceneNodeHandle scenenode_handle) {
+    Ogre::SceneNode* scene_node = static_cast<Ogre::SceneNode*>(scenenode_handle);
+    scene_node->resetOrientation();
+}
+
 void scenenode_set_position(SceneNodeHandle scenenode_handle, float x, float y, float z)
 {
     Ogre::SceneNode* scene_node = static_cast<Ogre::SceneNode*>(scenenode_handle);
