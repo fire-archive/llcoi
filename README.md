@@ -1,7 +1,11 @@
-llcoi is licensed under the MIT license
-Copyright (c) 2011 - 2012 the llcoi developers
-for details see https://bitbucket.org/galaktor/llcoi
-
+    __ __              _ 
+   / // /_____ ____   (_)
+  / // // ___// __ \ / / 
+ / // // /__ / /_/ // /  
+/_//_/ \___/ \____//_/   
+https://bitbucket.org/galaktor/llcoi 
+copyright (c) 2011, llcoi Team
+MIT license applies - see file "LICENSE" for details.
 
 TODO:
 - make typedefs consistent (C-style): typedef enum {a,b,c} MyEnum;

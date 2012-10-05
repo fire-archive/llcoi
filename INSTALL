@@ -1,0 +1,34 @@
+    __ __              _ 
+   / // /_____ ____   (_)
+  / // // ___// __ \ / / 
+ / // // /__ / /_/ // /  
+/_//_/ \___/ \____//_/   
+https://bitbucket.org/galaktor/llcoi 
+copyright (c) 2011, llcoi Team
+
+The original llco project used CMake just like Ogre does.
+It has changed since, and the current maintainers don't use CMake (yet?).
+Using a simple g++ command has turned out to be sufficient, but is
+obviously not cross-platform.
+
+We will look at getting CMake (or similar) ready sometime soon.
+Until then you can use the temporary build script.
+
+##CMAKE
+(not sure if this works; needs testing)
+mkdir build && cd build && cmake .. && make -j4 && su -c 'make install'
+
+## Temporary script
+There is a very simple shell script for compiling llcoi: "simplebuild.sh"
+It's specific to Linux, but it uses g++ so the command can probably be used with very 
+little modification on Mac and Windows (mingw?) as well.
+Since the script bypasses CMake it becomes necessary to define the DLL global once "by hand".
+You can just add the following to the top of the "ogre_interface.h" header file:
+
+```c
+#ifdef __cplusplus
+#define DLL extern "C"
+#endif
+```
+
+This will export the binding functions in the compiled shared library - without it, the DLL will probably be useless to you.
