@@ -1,59 +1,169 @@
-#/******************************************************************************
-# * CMakeLists.txt - main llcoi CMake script
-# ******************************************************************************
-# * This file is part of
-# *     __ __              _ 
-# *    / // /_____ ____   (_)
-# *   / // // ___// __ \ / / 
-# *  / // // /__ / /_/ // /  
-# * /_//_/ \___/ \____//_/   
-# *                          
-# * Low Level C Ogre Interface (llcoi)
-# *
-# * See http://code.google.com/p/llcoi/ for more information.
-# *
-# * Copyright (c) 2011, Llcoi Team
-# * 
-# * License: MIT
-# * 
-# * Permission is hereby granted, free of charge, to any person obtaining a copy
-# * of this software and associated documentation files (the "Software"), to deal
-# * in the Software without restriction, including without limitation the rights
-# * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# * copies of the Software, and to permit persons to whom the Software is
-# * furnished to do so, subject to the following conditions:
-# * 
-# * The above copyright notice and this permission notice shall be included in
-# * all copies or substantial portions of the Software.
-# * 
-# * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# * THE SOFTWARE.
-# ******************************************************************************/
 cmake_minimum_required(VERSION 2.8)
 
-project(llcoi_project)
 
-option(LLCOI_DYNAMIC_BUILD "Build OgreInterface as shared library" TRUE)
-option(LLCOI_BUILD_TEST "Build test for LLCOI" FALSE)
-
+# project name
+project(llcoi)
 
 
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmakemodules;${CMAKE_MODULE_PATH}")
+####################
+#### PARAMETERS ####
+####################
+set(OGRE_BINARIES_DIR ~/downloads/ogrebuild/lib CACHE PATH "where the ogre binaries are, i.e. libOgreMain.so")
+set(OGRE_HEADERS_DIR ~/downloads/ogre_src_v1-8-0/OgreMain/include CACHE PATH "where the ogre header files are, i.e. OgreRoot.h")
+set(OGRE_BUILDSETTINGS_DIR ${OGRE_HEADERS_DIR} CACHE PATH "where OgreBuildSettings.h is located (created by Ogre cmake)")
+set(OIS_BINARIES_DIR ${OGRE_BINARIES_DIR} CACHE PATH "where the OIS binaries are, i.e. libOIS.so")
+set(OIS_HEADERS_DIR ${OGRE_HEADERS_DIR} CACHE PATH "where the OIS header files are, i.e. OIS.h")
 
-set(BUILD_ROOTDIR "${CMAKE_CURRENT_BINARY_DIR}")
-#set(CMAKE_INSTALL_PREFIX "${BUILD_ROOTDIR}/test/dist")
+# do not default to empty build type
+if (CMAKE_BUILD_TYPE STREQUAL "")
+  set(CMAKE_BUILD_TYPE "RelWithDebInfo" CACHE STRING "Choose the type of build, options are: None (CMAKE_CXX_FLAGS or CMAKE_C_FLAGS used) Debug Release RelWithDebInfo MinSizeRel." FORCE)
+endif ()
 
-include_directories(interface/include)
 
-add_subdirectory(interface)
+# TODO: boost
 
-if(LLCOI_BUILD_TEST)
-    option(LLCOI_TEST_USE_ALLEGRO "Build Test program with Allegro instead of OpenInput)" FALSE)
-    option(LLCOI_TEST_USE_OPENINPUT "Build test program with OpenInput instead of OIS" FALSE)
-    add_subdirectory(test)
-endif()
+
+#################
+#### COMPILE ####
+#################
+set(LLCOI_HEADER_FILES
+  ./interface/include/axisalignedbox_bind.h
+  ./interface/include/binding_utils.h
+  ./interface/include/bone_bind.h
+  ./interface/include/camera_bind.h
+  ./interface/include/colourvalue_bind.h
+  ./interface/include/configfile_bind.h
+  ./interface/include/entity_bind.h
+  ./interface/include/framelistener_bind.h
+  ./interface/include/fwd.h
+  ./interface/include/inputmanager_bind.h
+  ./interface/include/keyboard_bind.h
+  ./interface/include/light_bind.h
+  ./interface/include/llcoi.h
+  ./interface/include/log_bind.h
+  ./interface/include/logmanager_bind.h
+  ./interface/include/main.h
+  ./interface/include/manualobject_bind.h
+  ./interface/include/material_bind.h
+  ./interface/include/materialmanager_bind.h
+  ./interface/include/meshmanager_bind.h
+  ./interface/include/mouse_bind.h
+  ./interface/include/movableobject_bind.h
+  ./interface/include/node_bind.h
+  ./interface/include/ogre_interface.h
+  ./interface/include/ois_interface.h
+  ./interface/include/overlay_bind.h
+  ./interface/include/overlaycontainer_bind.h
+  ./interface/include/overlayelement_bind.h
+  ./interface/include/overlayelementfactory_bind.h
+  ./interface/include/overlaymanager_bind.h
+  ./interface/include/paneloverlayelement_bind.h
+  ./interface/include/pass_bind.h
+  ./interface/include/plane_bind.h
+  ./interface/include/planeboundedvolume_bind.h
+  ./interface/include/ray_bind.h
+  ./interface/include/renderoperation_bind.h
+  ./interface/include/rendersystem_bind.h
+  ./interface/include/renderwindow_bind.h
+  ./interface/include/resource_bind.h
+  ./interface/include/resourcegroupmanager_bind.h
+  ./interface/include/resourcemanager_bind.h
+  ./interface/include/root_bind.h
+  ./interface/include/scenemanager_bind.h
+  ./interface/include/scenenode_bind.h
+  ./interface/include/scenequery_bind.h
+  ./interface/include/skeleton_bind.h
+  ./interface/include/skeletoninstance_bind.h
+  ./interface/include/sphere_bind.h
+  ./interface/include/tagpoint_bind.h
+  ./interface/include/technique_bind.h
+  ./interface/include/textareaoverlayelement_bind.h
+  ./interface/include/texturemanager_bind.h
+  ./interface/include/timer_bind.h
+  ./interface/include/vector3_bind.h
+  ./interface/include/vertexindexdata_bind.h
+  ./interface/include/viewport_bind.h
+  ./interface/include/windoweventlistener_bind.h
+)
+
+set(LLCOI_SOURCE_FILES
+  ./interface/source/axisalignedbox_bind.cpp
+  ./interface/source/binding_utils.cpp
+  ./interface/source/bone_bind.cpp
+  ./interface/source/camera_bind.cpp
+  ./interface/source/colourvalue_bind.cpp
+  ./interface/source/configfile_bind.cpp
+  ./interface/source/entity_bind.cpp
+  ./interface/source/framelistener_bind.cpp
+  ./interface/source/inputmanager_bind.cpp
+  ./interface/source/keyboard_bind.cpp
+  ./interface/source/light_bind.cpp
+  ./interface/source/log_bind.cpp
+  ./interface/source/logmanager_bind.cpp
+  ./interface/source/main.cpp
+  ./interface/source/manualobject_bind.cpp
+  ./interface/source/material_bind.cpp
+  ./interface/source/materialmanager_bind.cpp
+  ./interface/source/meshmanager_bind.cpp
+  ./interface/source/mouse_bind.cpp
+  ./interface/source/movableobject_bind.cpp
+  ./interface/source/node_bind.cpp
+  ./interface/source/overlay_bind.cpp
+  ./interface/source/overlaycontainer_bind.cpp
+  ./interface/source/overlayelement_bind.cpp
+  ./interface/source/overlayelementfactory_bind.cpp
+  ./interface/source/overlaymanager_bind.cpp
+  ./interface/source/paneloverlayelement_bind.cpp
+  ./interface/source/pass_bind.cpp
+  ./interface/source/plane_bind.cpp
+  ./interface/source/planeboundedvolume_bind.cpp
+  ./interface/source/ray_bind.cpp
+  ./interface/source/renderoperation_bind.cpp
+  ./interface/source/rendersystem_bind.cpp
+  ./interface/source/renderwindow_bind.cpp
+  ./interface/source/resource_bind.cpp
+  ./interface/source/resourcegroupmanager_bind.cpp
+  ./interface/source/resourcemanager_bind.cpp
+  ./interface/source/root_bind.cpp
+  ./interface/source/scenemanager_bind.cpp
+  ./interface/source/scenenode_bind.cpp
+  ./interface/source/scenequery_bind.cpp
+  ./interface/source/skeleton_bind.cpp
+  ./interface/source/skeletoninstance_bind.cpp
+  ./interface/source/sphere_bind.cpp
+  ./interface/source/tagpoint_bind.cpp
+  ./interface/source/technique_bind.cpp
+  ./interface/source/textareaoverlayelement_bind.cpp
+  ./interface/source/texturemanager_bind.cpp
+  ./interface/source/timer_bind.cpp
+  ./interface/source/vector3_bind.cpp
+  ./interface/source/vertexindexdata_bind.cpp
+  ./interface/source/viewport_bind.cpp
+  ./interface/source/windoweventlistener_bind.cpp
+  )
+
+
+include_directories(${OGRE_HEADERS_DIR} ${OGRE_BUILDSETTINGS_DIR} ${OIS_HEADERS_DIR} "${CMAKE_SOURCE_DIR}/interface/include")
+add_library(llcoi SHARED ${LLCOI_HEADER_FILES} ${LLCOI_SOURCE_FILES})
+set(CMAKE_C++_CREATE_SHARED_LIBRARY 1)
+set_target_properties(llcoi PROPERTIES LINKER_LANGUAGE CXX)
+
+set_target_properties(llcoi PROPERTIES OUTPUT_NAME "llcoi" VERSION 0.1 SOVERSION 0.1)
+
+link_directories(${OGRE_BINARIES_DIR} ${OIS_BINARIES_DIR})
+target_link_libraries(llcoi OgreMain OIS)
+
+
+
+# TODO: create FindOgre.cmake module
+# TODO: create FindOIS.cmake module
+# TODO: create FindBoost.cmake module
+# NOTE! some of those might already exist in the ogre sources
+#option(OGRE_INCLUDE "Directory containing Ogre header files")
+
+# custom modules
+#set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmakemodules/")
+#set(BUILD_ROOTDIR "${CMAKE_CURRENT_BINARY_DIR}")
+
+#include_directories(interface/include)
+#add_subdirectory(interface)
