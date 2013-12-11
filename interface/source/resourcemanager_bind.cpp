@@ -19,7 +19,7 @@ void destroy_resourcemanager(ResourceManagerHandle handle)
 }
 
 //ResourcePtr createResource(const String& name, const String& group, bool isManual = false, ManualResourceLoader* loader = 0, const NameValuePairList* createParams = 0)
-ResourcePtrHandle resourcemanager_create(ResourceManagerHandle handle, const char* name, const char* group, int is_manual, ManualResourceLoaderHandle l, const NameValuePairListHandle nvp)
+ResourcePtrHandle resourcemanager_create_resource(ResourceManagerHandle handle, const char* name, const char* group, int is_manual, ManualResourceLoaderHandle l, const NameValuePairListHandle nvp)
 {
     Ogre::ResourceManager* manager = static_cast<Ogre::ResourceManager*>(handle); 
     Ogre::ManualResourceLoader* loader = static_cast<Ogre::ManualResourceLoader*>(l);
