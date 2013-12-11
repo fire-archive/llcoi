@@ -133,11 +133,11 @@ void resourcemanager_remove_unreferenced_resources(ResourceManagerHandle handle,
     manager->removeUnreferencedResources(reloadable_only);
 }
 
-//ResourcePtr getByName(const String& name, const String& groupName = ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME)
-ResourcePtrHandle resourcemanager_get_by_name(ResourceManagerHandle handle, const char* name, const char* group_name)
+//ResourcePtr getResourceByName(const String& name, const String& groupName = ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME)
+ResourcePtrHandle resourcemanager_get_resource_by_name(ResourceManagerHandle handle, const char* name, const char* group_name)
 {
     Ogre::ResourceManager* manager = static_cast<Ogre::ResourceManager*>(handle);
-    Ogre::ResourcePtr ptr(manager->getByName(Ogre::String(name), Ogre::String(group_name)));
+    Ogre::ResourcePtr ptr(manager->getResourceByName(Ogre::String(name), Ogre::String(group_name)));
     return static_cast<ResourcePtrHandle>(ptr.get());
 }
 
