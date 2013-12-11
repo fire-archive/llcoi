@@ -324,7 +324,7 @@ size_t movableobject_query_lights(const MovableObjectHandle handle, LightHandle 
     const Ogre::MovableObject* obj = static_cast<const Ogre::MovableObject*>(handle); 
     // TODO: can we preserve constness here?
     Ogre::LightList& ll = const_cast<Ogre::LightList&>(obj->queryLights());
-    size_t len = ogre_light_list_to_llcoi(ll, result);
+    return ogre_light_list_to_llcoi(ll, result);
 }
 
 ///uint32 getLightMask() const;
