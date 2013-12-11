@@ -151,7 +151,7 @@ set_target_properties(llcoi PROPERTIES LINKER_LANGUAGE CXX)
 set_target_properties(llcoi PROPERTIES OUTPUT_NAME "llcoi" VERSION 0.1 SOVERSION 0.1)
 
 link_directories(${OGRE_BINARIES_DIR} ${OIS_BINARIES_DIR})
-target_link_libraries(llcoi OgreMain OIS)
+target_link_libraries(llcoi OgreMain OIS OgreOverlay)
 
 
 
