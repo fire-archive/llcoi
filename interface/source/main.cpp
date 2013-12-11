@@ -43,10 +43,11 @@ void destroy_name_value_pair_list(NameValuePairListHandle params)
 }
 
 #ifdef PLATFORM_WIN
-BOOL APIENTRY DllMain( HANDLE /*hModule*/, DWORD /*ul_reason_for_call*/, LPVOID /*lpReserved*/ )
+BOOL APIENTRY DllMain(HANDLE /*hModule*/, DWORD /*ul_reason_for_call*/, LPVOID /*lpReserved*/)
 {
 #if defined( _MSC_VER ) && defined( _DEBUG )
-    //_crtBreakAlloc = 1397;
-    _CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
+	//_crtBreakAlloc = 1397;
+	_CrtSetDbgFlag ( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #endif
+}
 #endif
