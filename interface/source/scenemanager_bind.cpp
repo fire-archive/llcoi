@@ -168,7 +168,8 @@ RaySceneQueryHandle scenemanager_create_rayquery(SceneQueryHandle handle, RayHan
 {
     Ogre::SceneManager* sm = static_cast<Ogre::SceneManager*>(handle);
     Ogre::Ray* ray = static_cast<Ogre::Ray*>(ray_handle);
-    sm->createRayQuery(*ray, mask);
+    Ogre::RaySceneQuery* rsq = sm->createRayQuery(*ray, mask);
+    return static_cast<RaySceneQueryHandle>(rsq);
 }
 
 /*

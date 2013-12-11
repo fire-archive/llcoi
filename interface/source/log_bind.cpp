@@ -85,6 +85,7 @@ LogListenerHandle add_log_listener(LogListenerEvent log_event, LogHandle log_han
     Ogre::Log* log = reinterpret_cast<Ogre::Log*>(log_handle);
     LogListenerBind *listener = new LogListenerBind(log_event);
     log->addListener(listener);
+    return reinterpret_cast<LogListenerHandle>(listener);
 }
 
 

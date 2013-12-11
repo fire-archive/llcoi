@@ -119,6 +119,7 @@ IndexDataHandle indexdata_clone(const IndexDataHandle handle, int copy_data)
 {
     const Ogre::IndexData* idata = static_cast<const Ogre::IndexData*>(handle);
     Ogre::IndexData* cloned = idata->clone(copy_data);
+    return static_cast<IndexDataHandle>(cloned);
 }
 
 //void optimiseVertexCacheTriList(void);
