@@ -92,10 +92,10 @@ void render_window_set_active(RenderWindowHandle handle, int state)
     window->setActive(state);
 }
 
-void render_window_swap_buffers(RenderWindowHandle handle, int wait_for_vsync)
+void render_window_swap_buffers(RenderWindowHandle handle)
 {
     Ogre::RenderWindow* window = reinterpret_cast<Ogre::RenderWindow*>(handle);
-    window->swapBuffers(wait_for_vsync);
+    window->swapBuffers();
 }
 
 void render_window_get_custom_attribute(RenderWindowHandle handle, const char* attribute, void* pdata)
