@@ -9,7 +9,7 @@
 */
 #include "textareaoverlayelement_bind.h"
 #include "binding_utils.h"
-#include <OgreTextAreaOverlayElement.h>
+#include <Overlay/OgreTextAreaOverlayElement.h>
 
 //TextAreaOverlayElement(const String& name);
 TextAreaOverlayElementHandle create_textareaoverlayelement(const char* name)

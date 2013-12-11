@@ -9,7 +9,7 @@
 */
 #include "overlay_bind.h"
 #include "binding_utils.h"
-#include <OgreOverlay.h>
+#include <Overlay/OgreOverlay.h>
 
 const char* overlay_get_name(OverlayHandle handle)
 {

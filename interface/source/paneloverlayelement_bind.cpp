@@ -9,7 +9,7 @@
 */
 #include "paneloverlayelement_bind.h"
 #include "binding_utils.h"
-#include <OgrePanelOverlayElement.h>
+#include <Overlay/OgrePanelOverlayElement.h>
 
 //PanelOverlayElement(const String& name);
 PanelOverlayElementHandle create_paneloverlayelement(const char* name)

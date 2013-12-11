@@ -9,7 +9,7 @@
 */
 #include "overlaycontainer_bind.h"
 #include "binding_utils.h"
-#include <OgreOverlayContainer.h>
+#include <Overlay/OgreOverlayContainer.h>
 
 void destroy_overlaycontainer(OverlayContainerHandle handle)
 {

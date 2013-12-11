@@ -9,8 +9,8 @@
 */
 #include "overlaymanager_bind.h"
 #include "binding_utils.h"
-#include <OgreOverlayManager.h>
-#include <OgreOverlayElement.h>
+#include <Overlay/OgreOverlayManager.h>
+#include <Overlay/OgreOverlayElement.h>
 
 /*#define protected public
 #include <iostream>

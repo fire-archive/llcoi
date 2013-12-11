@@ -20,8 +20,8 @@
 #include <OgreSceneQuery.h>     // SceneQuery::WorldFragmentType
 #include <OgreHardwareBuffer.h> // HardwareBuffer::Usage
 #include <OgreFrustum.h>        // Ogre::OrientationMode
-#include <OgreOverlayElement.h> // GuiVerticalAlignment, GuiMetricsMode, GuiHorizontalAlignment
-#include <OgreTextAreaOverlayElement.h> // TextAreaOverlayElement::Alignment
+#include <Overlay/OgreOverlayElement.h> // GuiVerticalAlignment, GuiMetricsMode, GuiHorizontalAlignment
+#include <Overlay/OgreTextAreaOverlayElement.h> // TextAreaOverlayElement::Alignment
 #include <OgreRenderOperation.h> // RenderOperation::OperationType
 #include <OgreLight.h>          // Light::LightTypes
 #include <OgreNode.h>           // Node::TransformSpace

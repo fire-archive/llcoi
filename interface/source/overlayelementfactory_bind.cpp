@@ -9,9 +9,9 @@
 */
 #include "overlayelementfactory_bind.h"
 
-#include <OgreOverlayElementFactory.h>
-#include <OgreOverlayElement.h>
-#include <OgrePanelOverlayElement.h>
+#include <Overlay/OgreOverlayElementFactory.h>
+#include <Overlay/OgreOverlayElement.h>
+#include <Overlay/OgrePanelOverlayElement.h>
 
 class PanelOverlayElementFactoryBind : public Ogre::PanelOverlayElementFactory
 {
