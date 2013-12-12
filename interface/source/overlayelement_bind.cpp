@@ -9,9 +9,9 @@
 */
 #include "overlayelement_bind.h"
 #include "binding_utils.h"
-#include <overlay/OgreOverlayElement.h>
-#include <overlay/OgreOverlay.h>
-#include <overlay/OgreOverlayContainer.h>
+#include <Overlay/OgreOverlayElement.h>
+#include <Overlay/OgreOverlay.h>
+#include <Overlay/OgreOverlayContainer.h>
 #include <OgreCamera.h>
 
 void destroy_overlayelement(OverlayElementHandle handle)
