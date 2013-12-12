@@ -153,7 +153,9 @@ set_target_properties(llcoi PROPERTIES LINKER_LANGUAGE CXX)
 
 set_target_properties(llcoi PROPERTIES OUTPUT_NAME "llcoi" VERSION 0.1 SOVERSION 0.1)
 
-
+install (TARGETS llcoi DESTINATION bin)
+FILE (GLOB files "${CMAKE_CURRENT_SOURCE_DIR}/interface/include/*.h")
+install ( FILES ${files} DESTINATION include/llcoi)
 
 
 # TODO: create FindOgre.cmake module
