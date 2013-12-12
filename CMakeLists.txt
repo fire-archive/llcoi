@@ -8,11 +8,11 @@ project(llcoi)
 ####################
 #### PARAMETERS ####
 ####################
-set(OGRE_BINARIES_DIR ~/downloads/ogrebuild/lib CACHE PATH "where the ogre binaries are, i.e. libOgreMain.so")
-set(OGRE_HEADERS_DIR ~/downloads/ogre_src_v1-8-0/OgreMain/include CACHE PATH "where the ogre header files are, i.e. OgreRoot.h")
+set(OGRE_BINARIES_DIR ${CMAKE_INSTALL_PREFIX}/lib CACHE PATH "where the ogre binaries are, i.e. libOgreMain.so")
+set(OGRE_HEADERS_DIR ${CMAKE_INSTALL_PREFIX}/include/OGRE CACHE PATH "where the ogre header files are, i.e. OgreRoot.h")
 set(OGRE_BUILDSETTINGS_DIR ${OGRE_HEADERS_DIR} CACHE PATH "where OgreBuildSettings.h is located (created by Ogre cmake)")
 set(OIS_BINARIES_DIR ${OGRE_BINARIES_DIR} CACHE PATH "where the OIS binaries are, i.e. libOIS.so")
-set(OIS_HEADERS_DIR ${OGRE_HEADERS_DIR} CACHE PATH "where the OIS header files are, i.e. OIS.h")
+set(OIS_HEADERS_DIR ${CMAKE_INSTALL_PREFIX}/include/OIS CACHE PATH "where the OIS header files are, i.e. OIS.h")
 
 # do not default to empty build type
 if (CMAKE_BUILD_TYPE STREQUAL "")
@@ -144,13 +144,15 @@ set(LLCOI_SOURCE_FILES
 
 
 include_directories(${OGRE_HEADERS_DIR} ${OGRE_BUILDSETTINGS_DIR} ${OIS_HEADERS_DIR} "${CMAKE_SOURCE_DIR}/interface/include")
+link_directories(${OGRE_BINARIES_DIR} ${OIS_BINARIES_DIR})
+
 add_library(llcoi SHARED ${LLCOI_HEADER_FILES} ${LLCOI_SOURCE_FILES})
+target_link_libraries(llcoi OgreMain OIS OgreOverlay)
 set(CMAKE_C++_CREATE_SHARED_LIBRARY 1)
 set_target_properties(llcoi PROPERTIES LINKER_LANGUAGE CXX)
 
 set_target_properties(llcoi PROPERTIES OUTPUT_NAME "llcoi" VERSION 0.1 SOVERSION 0.1)
 
-target_link_libraries(llcoi ${CMAKE_SOURCE_DIR}/Build${OGRE_BINARIES_DIR}/OgreMain ${CMAKE_SOURCE_DIR}/Build/${OIS_BINARIES_DIR}/OIS ${CMAKE_SOURCE_DIR}/Build/${OGRE_BINARIES_DIR}/OgreOverlay)
 
 
 
