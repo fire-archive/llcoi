@@ -149,7 +149,7 @@ link_directories(${OGRE_BINARIES_DIR} ${OIS_BINARIES_DIR})
 add_definitions( -DLLCOI_BUILD_DYNAMIC )
 add_library(llcoi SHARED ${LLCOI_HEADER_FILES} ${LLCOI_SOURCE_FILES})
 target_link_libraries(llcoi OgreMain OIS OgreOverlay)
-set(CMAKE_C++_CREATE_SHARED_LIBRARY 1)
+# set(CMAKE_C++_CREATE_SHARED_LIBRARY 1)
 set_target_properties(llcoi PROPERTIES LINKER_LANGUAGE CXX)
 
 set_target_properties(llcoi PROPERTIES OUTPUT_NAME "llcoi" VERSION 0.1 SOVERSION 0.1)
