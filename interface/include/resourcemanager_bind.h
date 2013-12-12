@@ -13,8 +13,8 @@
 
 //~ResourceManager();
 DLL void destroy_resourcemanager(ResourceManagerHandle handle);
-//ResourcePtr create(const String& name, const String& group, bool isManual = false, ManualResourceLoader* loader = 0, const NameValuePairList* createParams = 0)
-DLL ResourcePtrHandle resourcemanager_create(ResourceManagerHandle handle, const char* name, const char* group, int is_manual, ManualResourceLoaderHandle loader, const NameValuePairListHandle create_params);
+//ResourcePtr create_resource(const String& name, const String& group, bool isManual = false, ManualResourceLoader* loader = 0, const NameValuePairList* createParams = 0)
+DLL ResourcePtrHandle resourcemanager_create_resource(ResourceManagerHandle handle, const char* name, const char* group, int is_manual, ManualResourceLoaderHandle loader, const NameValuePairListHandle create_params);
 //typedef std::pair<ResourcePtr, bool> ResourceCreateOrRetrieveResult
 //TODO: ResourceCreateOrRetrieveResult createOrRetrieve(const String& name, const String& group, bool isManual = false, ManualResourceLoader* loader = 0, const NameValuePairList* createParams = 0)
 //void setMemoryBudget( size_t bytes)
