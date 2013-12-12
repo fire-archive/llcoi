@@ -26,24 +26,23 @@
 #   if !defined( PLATFORM_LINUX )
 #       define PLATFORM_LINUX
 #   endif
-#endif
-
+#endif     
 #if defined(LLCOI_BUILD_DYNAMIC)
 #   if defined( WIN32 ) || defined( _WINDOWS )
-#       ifndef llcoi_EXPORTS
-#           define DLL __declspec(dllimport)
-#       else
+#       ifndef llcoi_EXPORTS     
 #           define DLL extern "C" __declspec(dllexport)
+#       else
+#			define DLL __declspec(dllimport)
 #       endif
 #   else
 #       ifndef llcoi_EXPORTS
-#           define DLL
-#       else
 #           if defined( __GNUC__ ) && __GNUC__ >= 4
 #               define DLL extern "C" __attribute__ ((visibility("default")))
 #           else
 #               define DLL extern "C"
 #           endif
+#       else
+#			define DLL
 #       endif
 #   endif
 #else
