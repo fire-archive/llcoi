@@ -28,7 +28,7 @@
 #   endif
 #endif
 
-#if defined(LLCOI_BUILD_DYNAMIC)
+#ifndef (LLCOI_BUILD_STATIC)
 #   if defined( WIN32 ) || defined( _WINDOWS )
 #       ifdef llcoi_EXPORTS
 #           define DLL extern "C" __declspec(dllexport)
@@ -45,17 +45,16 @@
 #       else
 #           define DLL
 #       endif
-#   endif
-#else
-#   if defined( LLCOI_BUILD_STATIC )
+#endif
+
+#if defined( LLCOI_BUILD_STATIC )
 #       if defined( __GNUC__ ) && __GNUC__ >= 4
 #           define DLL extern "C" __attribute__ ((visibility("default")))
 #       else
 #           define DLL extern "C"
 #       endif
-#   else
+#else
 #       define DLL
-#   endif
 #endif
 
 #include <stddef.h> // for size_t
