@@ -45,9 +45,10 @@
 #       else
 #           define DLL
 #       endif
+#   endif
 #endif
 
-#if defined( LLCOI_BUILD_STATIC )
+#if defined LLCOI_BUILD_STATIC
 #       if defined( __GNUC__ ) && __GNUC__ >= 4
 #           define DLL extern "C" __attribute__ ((visibility("default")))
 #       else
