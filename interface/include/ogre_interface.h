@@ -28,7 +28,7 @@
 #   endif
 #endif
 
-#ifndef (LLCOI_BUILD_STATIC)
+#ifndef LLCOI_BUILD_STATIC
 #   if defined( WIN32 ) || defined( _WINDOWS )
 #       ifdef llcoi_EXPORTS
 #           define DLL extern "C" __declspec(dllexport)
