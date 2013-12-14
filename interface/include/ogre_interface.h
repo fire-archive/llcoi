@@ -58,13 +58,6 @@
 #   endif
 #endif
 
-#ifndef LLCOI_BUILD_DYNAMIC
-// galaktor's galakt-tic hack: force extern "C" when not using CMake
-#ifdef __cplusplus
-#define DLL extern "C"
-#endif
-#endif
-
 #include <stddef.h> // for size_t
 
 // TODO: merge common/fwd etc
