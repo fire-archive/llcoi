@@ -144,11 +144,11 @@ set(LLCOI_SOURCE_FILES
 
 
 include_directories(${OGRE_HEADERS_DIR} ${OGRE_BUILDSETTINGS_DIR} ${OIS_HEADERS_DIR} "${CMAKE_SOURCE_DIR}/interface/include")
-link_directories(${OGRE_BINARIES_DIR} ${CMAKE_INSTALL_PREFIX}/lib/RelWithDebInfo ${OIS_BINARIES_DIR} )
+link_directories(${OGRE_BINARIES_DIR} ${OIS_BINARIES_DIR} )
 
 add_definitions(-Dllcoi_EXPORTS)
 add_library(llcoi SHARED ${LLCOI_HEADER_FILES} ${LLCOI_SOURCE_FILES})
-set(CMAKE_LIBRARY_PATH ${CMAKE_INSTALL_PREFIX}/lib/relwithdebinfo ${CMAKE_INSTALL_PREFIX}/lib/release)
+set(CMAKE_LIBRARY_PATH ${CMAKE_INSTALL_PREFIX}/lib/RelWithDebInfo ${CMAKE_INSTALL_PREFIX}/lib/Release)
 target_link_libraries(llcoi OgreMain OIS OgreOverlay)
 # set(CMAKE_C++_CREATE_SHARED_LIBRARY 1)
 set_target_properties(llcoi PROPERTIES LINKER_LANGUAGE CXX)
