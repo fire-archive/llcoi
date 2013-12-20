@@ -144,7 +144,7 @@ set(LLCOI_SOURCE_FILES
 
 
 include_directories(${OGRE_HEADERS_DIR} ${OGRE_BUILDSETTINGS_DIR} ${OIS_HEADERS_DIR} "${CMAKE_SOURCE_DIR}/interface/include")
-link_directories(${OGRE_BINARIES_DIR} ${OGRE_BINARIES_DIR}/RelWithDebInfo ${OIS_BINARIES_DIR} )
+link_directories(${OGRE_BINARIES_DIR} ${CMAKE_INSTALL_PREFIX}/lib/RelWithDebInfo ${OIS_BINARIES_DIR} )
 
 add_definitions(-Dllcoi_EXPORTS)
 add_library(llcoi SHARED ${LLCOI_HEADER_FILES} ${LLCOI_SOURCE_FILES})
