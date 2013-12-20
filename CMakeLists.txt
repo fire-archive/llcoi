@@ -153,7 +153,7 @@ set(CMAKE_LIBRARY_PATH ${CMAKE_INSTALL_PREFIX}/lib/RelWithDebInfo ${CMAKE_INSTAL
 find_library(OGRE_MAIN OgreMain ${OGRE_BINARIES_DIR})
 find_library(OIS_LIB OIS ${OIS_BINARIES_DIR})
 find_library(OGRE_OVERLAY OgreOverlay ${OGRE_BINARIES_DIR})
-target_link_libraries(llcoi OGRE_MAIN OIS_LIB OGRE_OVERLAY)
+target_link_libraries(llcoi ${OGRE_MAIN} ${OIS_LIB} ${OGRE_OVERLAY})
 
 # set(CMAKE_C++_CREATE_SHARED_LIBRARY 1)
 set_target_properties(llcoi PROPERTIES LINKER_LANGUAGE CXX)
