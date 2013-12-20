@@ -150,7 +150,12 @@ add_definitions(-Dllcoi_EXPORTS)
 add_library(llcoi SHARED ${LLCOI_HEADER_FILES} ${LLCOI_SOURCE_FILES})
 set(CMAKE_LIBRARY_PATH ${CMAKE_INSTALL_PREFIX}/lib/RelWithDebInfo ${CMAKE_INSTALL_PREFIX}/lib/Release)
 
+IF(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 find_library(OGRE_MAIN OgreMain ${OGRE_BINARIES_DIR})
+ELSE
+find_library(OGRE_MAIN Ogre ${OGRE_BINARIES_DIR})
+ENDIF()
+
 find_library(OIS_LIB OIS ${OIS_BINARIES_DIR})
 find_library(OGRE_OVERLAY OgreOverlay ${OGRE_BINARIES_DIR})
 target_link_libraries(llcoi ${OGRE_MAIN} ${OIS_LIB} ${OGRE_OVERLAY})
