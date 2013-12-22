@@ -39,10 +39,10 @@ RenderWindowHandle root_initialise(RootHandle root_handle, int auto_create_windo
 }
 
 
-RenderWindowHandle create_render_window(RootHandle root_handle, const char* name, const int width, const int height, const int full_screen)
+RenderWindowHandle create_render_window(RootHandle root_handle, const char* name, const int width, const int height, const int full_screen, NameValuePairListHandle params)
 {
   Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
-  Ogre::RenderWindow* window = root->createRenderWindow(name, width, height, full_screen);
+  Ogre::RenderWindow* window = root->createRenderWindow(name, width, height, full_screen, reinterpret_cast<NameValuePairList>(&params));
   return reinterpret_cast<RenderWindowHandle>(window);
 }
 
