@@ -17,7 +17,9 @@ DLL RootHandle create_root(const char* pluginFileName, const char* configFileNam
 DLL TimerHandle root_get_timer(RootHandle root_handle);
 
 DLL SceneManagerHandle root_create_scene_manager_by_mask(RootHandle root_handle, SceneTypeMask type_mask, const char* instance_name);
-//DLL RenderWindowHandle root_create_render_window(const char* name, unsigned int width, unsigned int height, int fullscreen, NameValuePairListHandle params);
+
+DLL RenderWindowHandle root_create_render_window(const char* name, unsigned int width, unsigned int height, int fullscreen, NameValuePairListHandle params);
+
 DLL RenderSystemListHandle root_get_available_renderers(RootHandle root_handle);
 
 DLL void delete_root(RootHandle root_handle);
