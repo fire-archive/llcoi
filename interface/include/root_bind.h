@@ -26,7 +26,7 @@ DLL void delete_root(RootHandle root_handle);
 
 DLL RenderWindowHandle root_initialise(RootHandle root_handle, int auto_create_window, const char* render_window_title);
 
-DLL RenderWindowHandle create_render_window(RootHandle root_handle, const char* name, const int width, const int height, const int full_screen, NameValuePAirListHandle params);
+DLL RenderWindowHandle create_render_window(RootHandle root_handle, const char* name, const int width, const int height, const int full_screen, NameValuePairListHandle params);
 
 DLL RenderWindowHandle create_render_window_hwnd(RootHandle root_handle, const char* name, const int width, const int height, const int full_screen, unsigned long hwnd);
 
