@@ -32,7 +32,7 @@ NameValuePairListHandle create_name_value_pair_list()
 void add_pair(NameValuePairListHandle params, const char* name, const char* value)
 {
     Ogre::NameValuePairList* pair_list = reinterpret_cast<Ogre::NameValuePairList*>(params);
-    pair_list->insert(std::make_pair(Ogre::StringConverter::toString(name), Ogre::StringConverter::toString(value)));
+    pair_list->insert(std::make_pair(std::string str(name), std::string str(value)));
 }
 
 void destroy_name_value_pair_list(NameValuePairListHandle params)
