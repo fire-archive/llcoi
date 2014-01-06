@@ -159,11 +159,16 @@ ENDIF()
 
 find_library(OIS_LIB OIS ${OIS_BINARIES_DIR})
 find_library(OGRE_OVERLAY OgreOverlay ${OGRE_BINARIES_DIR})
+
+IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 find_library(CORE_FOUNDATION CoreFoundation)
 find_library(IO_KIT IOKit)
 find_library(APPLICATION_SERVICES ApplicationServices)
 find_library(COCOA Cocoa)
 target_link_libraries(llcoi ${OGRE_MAIN} ${OIS_LIB} ${OGRE_OVERLAY} ${CORE_FOUNDATION} ${IO_KIT} ${APPLICATION_SERVICES} ${COCOA} -stdlib=libstdc++)
+ELSE()
+target_link_libraries(llcoi ${OGRE_MAIN} ${OIS_LIB} ${OGRE_OVERLAY})
+ENDIF()
 
 # set(CMAKE_C++_CREATE_SHARED_LIBRARY 1)
 set_target_properties(llcoi PROPERTIES LINKER_LANGUAGE CXX)
