@@ -75,6 +75,7 @@
 #include "manualobject_bind.h"
 #include "light_bind.h"
 #include "sphere_bind.h"
+#include "matrix3_bind.h"
 #include "movableobject_bind.h"
 #include "scenequery_bind.h"
 #include "scenenode_bind.h"

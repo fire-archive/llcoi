@@ -22,6 +22,7 @@
 #include "light_bind.h"
 #include "log_bind.h"
 #include "logmanager_bind.h"
+#include "matrix3_bind.h"
 #include "main.h"
 #include "manualobject_bind.h"
 #include "meshmanager_bind.h"

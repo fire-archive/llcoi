@@ -42,6 +42,7 @@ set(LLCOI_HEADER_FILES
   ./interface/include/llcoi.h
   ./interface/include/log_bind.h
   ./interface/include/logmanager_bind.h
+  ./interface/include/matrix3_bind.h
   ./interface/include/main.h
   ./interface/include/manualobject_bind.h
   ./interface/include/material_bind.h
@@ -100,6 +101,7 @@ set(LLCOI_SOURCE_FILES
   ./interface/source/light_bind.cpp
   ./interface/source/log_bind.cpp
   ./interface/source/logmanager_bind.cpp
+  ./interface/source/matrix3_bind.cpp
   ./interface/source/main.cpp
   ./interface/source/manualobject_bind.cpp
   ./interface/source/material_bind.cpp
