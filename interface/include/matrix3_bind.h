@@ -11,5 +11,5 @@
 
 #include "ogre_interface.h"
 
-DLL coiMatrix3 matrix_3_from_euler_angles_Y_X_Z( RadianHandle y_angle, 
-	RadianHandle x_angle, RadianHandle z_angle);
+DLL coiMatrix3 matrix_3_from_euler_angles_Y_X_Z( coiRadian y_angle, 
+	coiRadian x_angle, coiRadian z_angle);
