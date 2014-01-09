@@ -16,5 +16,5 @@ coiMatrix3 matrix_3_from_euler_angles_Y_X_Z( coiRadian y_angle,
 	Ogre::Matrix3* mat = new Ogre::Matrix3
 	mat->FromEulerAnglesYXZ(y_angle, x_angle, z_angle);
 	
-	return mat.m
+	return mat->m;
 }
