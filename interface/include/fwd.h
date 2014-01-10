@@ -17,9 +17,6 @@
 
 /******* SIMPLE TYPES *******/
 typedef float coiReal;
-// From OgreMath.h
-typedef coiReal coiRadian;
-typedef coiReal coiAngle;
 // From OgrePlatform.h
 typedef unsigned int uint32;
 typedef unsigned short uint16;

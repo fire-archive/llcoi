@@ -10,8 +10,8 @@
 #include "matrix3_bind.h"
 #include <OgreMatrix3.h>
 
-coiMatrix3 matrix_3_from_euler_angles_Y_X_Z( coiRadian y_angle, 
-	coiRadian x_angle, coiRadian z_angle) 
+coiMatrix3 matrix_3_from_euler_angles_Y_X_Z( coiReal y_angle, 
+	coiReal x_angle, coiReal z_angle) 
 {
 	Ogre::Matrix3* mat = new Ogre::Matrix3;
 	Ogre::Radian yangle(y_angle), xangle(x_angle), zangle(z_angle);
