@@ -62,6 +62,7 @@ set(LLCOI_HEADER_FILES
   ./interface/include/pass_bind.h
   ./interface/include/plane_bind.h
   ./interface/include/planeboundedvolume_bind.h
+  ./interface/include/quaternion_bind.h
   ./interface/include/ray_bind.h
   ./interface/include/renderoperation_bind.h
   ./interface/include/rendersystem_bind.h
@@ -119,6 +120,7 @@ set(LLCOI_SOURCE_FILES
   ./interface/source/pass_bind.cpp
   ./interface/source/plane_bind.cpp
   ./interface/source/planeboundedvolume_bind.cpp
+  ./interface/source/quaternion_bind.cpp
   ./interface/source/ray_bind.cpp
   ./interface/source/renderoperation_bind.cpp
   ./interface/source/rendersystem_bind.cpp

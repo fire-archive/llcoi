@@ -73,6 +73,7 @@
 #include "entity_bind.h"
 #include "node_bind.h"
 #include "manualobject_bind.h"
+#include "quaternion_bind.h"
 #include "light_bind.h"
 #include "sphere_bind.h"
 #include "matrix3_bind.h"
