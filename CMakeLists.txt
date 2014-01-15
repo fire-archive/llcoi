@@ -179,6 +179,7 @@ set_target_properties(llcoi PROPERTIES OUTPUT_NAME "llcoi" VERSION 0.1 SOVERSION
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 install (TARGETS llcoi DESTINATION bin)
+install (TARGETS llcoi DESTINATION lib)
 ENDIF()
 IF(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 install (TARGETS llcoi DESTINATION lib)
