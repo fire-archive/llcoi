@@ -35,3 +35,23 @@ void quaternion_to_rotation_matrix(QuaternionHandle handle, coiMatrix3 *rot) {
 	rot->m[2][2] = *mat[2][2]; 
 	delete mat;
 }
+
+coiReal quaternion_get_w(QuaternionHandle handle) {
+	Ogre::Quaternion *quat = reinterpret_cast<Ogre::Quaternion*>(handle);
+	return coiReal(quat->w);
+}
+
+coiReal quaternion_get_x(QuaternionHandle handle) {
+	Ogre::Quaternion *quat = reinterpret_cast<Ogre::Quaternion*>(handle);
+	return coiReal(quat->x);
+}
+
+coiReal quaternion_get_y(QuaternionHandle handle) {
+	Ogre::Quaternion *quat = reinterpret_cast<Ogre::Quaternion*>(handle);
+	return coiReal(quat->y);
+}
+
+coiReal quaternion_get_z(QuaternionHandle handle) {
+	Ogre::Quaternion *quat = reinterpret_cast<Ogre::Quaternion*>(handle);
+	return coiReal(quat->z);
+}

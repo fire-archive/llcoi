@@ -13,3 +13,7 @@
 
 DLL QuaternionHandle quaternion_from_rotation_matrix(coiMatrix3 *rot);
 DLL void quaternion_to_rotation_matrix(QuaternionHandle quat, coiMatrix3 *rot);
+DLL coiReal quaternion_get_w(QuaternionHandle quat);
+DLL coiReal quaternion_get_x(QuaternionHandle quat);
+DLL coiReal quaternion_get_y(QuaternionHandle quat);
+DLL coiReal quaternion_get_z(QuaternionHandle quat);
