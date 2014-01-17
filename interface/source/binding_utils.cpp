@@ -8,9 +8,11 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #include "binding_utils.h"
-#include <OISMouse.h>
 #include <OgreMatrix3.h>
 #include <OgreMatrix4.h>
+#ifdef OIS_SUPPORTED
+#include <OISMouse.h>
+#endif
 
 void ogre_matrix3_to_llcoi_matrix3(const Ogre::Matrix3& o, coiMatrix3& l)
 {
@@ -338,7 +340,7 @@ plane_side ogre_plane_side_to_llcoi_plane_side(Ogre::Plane::Side side)
 
     return converted;
 }
-
+#ifdef OIS_SUPPORTED
 MouseButtonID ois_mbid_to_llcoi_mbid(OIS::MouseButtonID id)
 {
     MouseButtonID converted;
@@ -389,7 +391,7 @@ void ois_mouse_event_to_llcoi_mouse_state(const OIS::MouseEvent* oevent, MouseSt
     /* copy buttons. */
     lstate->buttons = oevent->state.buttons;
 }
-
+#endif
 
 logging_level ogre_ll_to_llcoi_ll(Ogre::LoggingLevel ll)
 {
