@@ -7,6 +7,7 @@
  * copyright (c) 2011, llcoi Team
  * MIT license applies - see file "LICENSE" for details.
 */
+#ifdef OIS_SUPPORTED
 #include "inputmanager_bind.h"
 
 #include <OISInputManager.h>
@@ -75,3 +76,4 @@ void ois_add_pair(ParamListHandle handle, const char* field, const char* value)
         )
     );
 }
+#endif
