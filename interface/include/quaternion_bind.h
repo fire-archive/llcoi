@@ -11,4 +11,5 @@
 
 #include "ogre_interface.h"
 
-DLL coiQuaternion quaternion_from_rotation_matrix(coiMatrix3 rot);
+DLL QuaternionHandle quaternion_from_rotation_matrix(coiMatrix3 *rot);
+DLL void quaternion_to_rotation_matrix(QuaternionHandle quat, coiMatrix3 *rot);

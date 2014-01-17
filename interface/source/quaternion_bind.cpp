@@ -11,19 +11,29 @@
 #include <OgreQuaternion.h>
 #include <OgreMatrix3.h>
 
-coiQuaternion quaternion_from_rotation_matrix(coiMatrix3 rot) {
-	Ogre::Matrix3 * mat = new Ogre::Matrix3(rot.m[0][0], rot.m[0][1], 
-		rot.m[0][2], rot.m[1][0], rot.m[1][1], rot.m[1][2], rot.m[2][0], rot.m[2][1],
-		rot.m[2][2]);
-	Ogre::Quaternion * quat = new Ogre::Quaternion();
-	quat->FromRotationMatrix(*mat);
+
+
+QuaternionHandle quaternion_from_rotation_matrix(coiMatrix3 *rot) {
+	Ogre::Matrix3 * mat = new Ogre::Matrix3(rot->m[0][0], rot->m[0][1], 
+		rot->m[0][2], rot->m[1][0], rot->m[1][1], rot->m[1][2], rot->m[2][0], rot->m[2][1],
+		rot->m[2][2]);
+	Ogre::Quaternion * quat = new Ogre::Quaternion(*mat);
+	delete mat;   
+    reinterpret_cast<QuaternionHandle>(quat);
+}
+
+void quaternion_to_rotation_matrix(QuaternionHandle handle, coiMatrix3 *rot) {
+	Ogre::Matrix3 *mat = new Ogre::Matrix3();
+	Ogre::Quaternion *quat = reinterpret_cast<Ogre::Quaternion*>(handle);
+	quat->ToRotationMatrix(*mat);
+	rot->m[0][0] = *mat[0][0];
+	rot->m[0][1] = *mat[0][1];
+	rot->m[0][2] = *mat[0][2];
+	rot->m[1][0] = *mat[1][0];
+	rot->m[1][1] = *mat[1][1];
+	rot->m[1][2] = *mat[1][2];
+	rot->m[2][0] = *mat[2][0];
+	rot->m[2][1] = *mat[2][1];
+	rot->m[2][2] = *mat[2][2]; 
 	delete mat;
-	coiQuaternion coiquat;
-	coiquat.w = quat->w;
-	coiquat.x = quat->x;
-	coiquat.y = quat->y;
-	coiquat.z = quat->z;
-    delete quat;
-    
-    return coiquat;
 }
