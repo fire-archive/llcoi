@@ -11,15 +11,13 @@
 #include <OgreQuaternion.h>
 #include <OgreMatrix3.h>
 
-
-
 QuaternionHandle quaternion_from_rotation_matrix(coiMatrix3 *rot) {
 	Ogre::Matrix3 * mat = new Ogre::Matrix3(rot->m[0][0], rot->m[0][1], 
 		rot->m[0][2], rot->m[1][0], rot->m[1][1], rot->m[1][2], rot->m[2][0], rot->m[2][1],
 		rot->m[2][2]);
 	Ogre::Quaternion * quat = new Ogre::Quaternion(*mat);
 	delete mat;   
-    reinterpret_cast<QuaternionHandle>(quat);
+    return reinterpret_cast<QuaternionHandle>(quat);
 }
 
 void quaternion_to_rotation_matrix(QuaternionHandle handle, coiMatrix3 *rot) {
