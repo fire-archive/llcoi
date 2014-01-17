@@ -8,6 +8,7 @@
  * copyright (c) 2011, llcoi Team
  * MIT license applies - see file "LICENSE" for details.
 */
+#ifdef OIS_SUPPORTED
 #include "keyboard_bind.h"
 
 #include <OISKeyboard.h>
@@ -39,3 +40,4 @@ int keyboard_is_modifier_down(KeyboardInputHandle keyboard_handle, KeyModifier k
     return 1;
   return 0;
 }
+#endif
