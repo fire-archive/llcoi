@@ -7,6 +7,7 @@
  * copyright (c) 2011, llcoi Team
  * MIT license applies - see file "LICENSE" for details.
 */
+#ifdef OIS_SUPPORTED
 #include "mouse_bind.h"
 #include "binding_utils.h" // ois_mouse_event_to_llcoi_mouse_state
 
@@ -125,3 +126,4 @@ void mouse_remove_event_callback(MouseInputHandle mouse_handle, MouseListenerHan
     mouse->setEventCallback(0);
     delete listener;
 }
+#endif

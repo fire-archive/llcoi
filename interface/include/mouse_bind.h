@@ -8,7 +8,7 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #pragma once
-
+#ifdef OIS_SUPPORTED
 #include "ois_interface.h"
 
 DLL MouseListenerHandle mouse_set_event_callback(MouseInputHandle handle, MouseMovedEvent moved, MousePressedEvent pressed, MouseReleasedEvent released, void* userdata);
@@ -22,3 +22,4 @@ DLL void mouse_set_buffered(MouseInputHandle mouse_handle, int buffered);
 DLL void mouse_capture(MouseInputHandle mouse_handle);
 
 DLL void mouse_set_display_area(MouseInputHandle mouse_handle, int width, int height);
+#endif
