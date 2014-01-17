@@ -20,6 +20,11 @@ QuaternionHandle quaternion_from_rotation_matrix(coiMatrix3 *rot) {
     return reinterpret_cast<QuaternionHandle>(quat);
 }
 
+QuaternionHandle quaternion_from_values(coiReal fW, coiReal fX, coiReal fY, coiReal fZ){
+	Ogre::Quaternion * quat = new Ogre::Quaternion(fW, fX, fY, fZ);  
+    return reinterpret_cast<QuaternionHandle>(quat);
+}
+
 void quaternion_to_rotation_matrix(QuaternionHandle handle, coiMatrix3 *rot) {
 	Ogre::Matrix3 *mat = new Ogre::Matrix3();
 	Ogre::Quaternion *quat = reinterpret_cast<Ogre::Quaternion*>(handle);

@@ -17,3 +17,4 @@ DLL coiReal quaternion_get_w(QuaternionHandle quat);
 DLL coiReal quaternion_get_x(QuaternionHandle quat);
 DLL coiReal quaternion_get_y(QuaternionHandle quat);
 DLL coiReal quaternion_get_z(QuaternionHandle quat);
+DLL QuaternionHandle quaternion_from_values(coiReal fW, coiReal fX, coiReal fY, coiReal fZ);
