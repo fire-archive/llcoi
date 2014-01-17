@@ -8,7 +8,7 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #pragma once
-
+#ifdef OIS_SUPPORTED
 #include "ogre_interface.h"
 
 #include "keyboard_bind.h"
@@ -22,3 +22,4 @@ DLL ParamListHandle ois_create_paramlist();
 DLL void ois_destroy_paramlist(ParamListHandle handle);
 
 DLL void ois_add_pair(ParamListHandle handle, const char* field, const char* value);
+#endif

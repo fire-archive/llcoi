@@ -147,7 +147,7 @@ Ogre::PolygonMode enum_converter(polygon_mode arg);
 polygon_mode enum_converter(Ogre::PolygonMode arg);
 
 
-
+#ifdef OIS_SUPPORTED
 /* OIS MouseState <-> LLCOI MouseState converters */
 #include <OISMouse.h>           // OIS::MouseButtonID
 namespace OIS
@@ -157,3 +157,4 @@ namespace OIS
 
 void ois_mouse_event_to_llcoi_mouse_state(const OIS::MouseEvent* ois_mouse_event, MouseState* llcoi_mouse_state);
 MouseButtonID ois_mbid_to_llcoi_mbid(OIS::MouseButtonID id);
+#endif
