@@ -10,7 +10,7 @@
 #include "matrix3_bind.h"
 #include <OgreMatrix3.h>
 
-coiMatrix3 matrix_3_from_euler_angles_Y_X_Z( coiReal y_angle, 
+coiMatrix3 matrix_3_from_euler_angles_y_x_z( coiReal y_angle, 
 	coiReal x_angle, coiReal z_angle) 
 {
 	Ogre::Matrix3* mat = new Ogre::Matrix3;
@@ -32,7 +32,7 @@ coiMatrix3 matrix_3_from_euler_angles_Y_X_Z( coiReal y_angle,
 	return coimat;
 }
 
-void matrix_3_to_euler_angles_Y_X_Z(coiMatrix3 mat, coiRadian *y_angle, 
+void matrix_3_to_euler_angles_y_x_z(coiMatrix3 mat, coiRadian *y_angle, 
 	coiRadian *x_angle, coiRadian *z_angle)
 {
 	Ogre::Matrix3 m(mat.m);
