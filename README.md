@@ -19,3 +19,14 @@ MIT license applies - see file "LICENSE" for details. Copyright (c) 2011, llcoi 
 * organize bindings better
  * remove "_bind" from the file names
  * several smaller fwd.h files?
+
+# Building 
+
+Copy ogre mingw files into Build/Run/
+
+```
+$ mkdir Build
+$ cd Build
+$ cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./Run/ ..
+$ c:/mingw/bin/mingw32-make install
+```
