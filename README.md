@@ -20,9 +20,29 @@ MIT license applies - see file "LICENSE" for details. Copyright (c) 2011, llcoi 
  * remove "_bind" from the file names
  * several smaller fwd.h files?
 
-# Building 
+# Building on Windows
 
-Copy ogre mingw files into Build/Run/
+```
+mkdir Build
+cd Build
+cmake -G "MinGW Makefiles" -DCMAKE_CXX_FLAGS=-fpermissive -DOGREDEPS_BUILD_OIS=0 -DCMAKE_INSTALL_PREFIX=./Run/ ..
+c:/mingw/bin/mingw32-make install
+
+mkdir Build-Debug
+cd Build-Debug
+cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS=-fpermissive -DOGREDEPS_BUILD_OIS=0 -DCMAKE_INSTALL_PREFIX=./Run/ ..
+c:/mingw/bin/mingw32-make install
+```
+Copy Build/Run and Build-Debug/Run into Build/Run
+
+```
+mkdir Build
+cd Build
+cmake -G "MinGW Makefiles" -DOGRE_PLATFORM_X64=1 -DOGRE_BUILD_RENDERSYSTEM_D3D11=0 -DOGRE_BUILD_RENDERSYSTEM_D3D9=0 -DOGRE_BUILD_RENDERSYSTEM_GL3PLUS=1 -DOGRE_BUILD_RENDERSYSTEM_GL=1 -DOGRE_BUILD_RENDERSYSTEM_GL=0 -DOGRE_DEPENDENCIES_DIR=./Run/ -DOGRE_BUILD_SAMPLES=0 -DOGRE_UNITY_BUILD=1 -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./Run/ ..
+c:/mingw/bin/mingw32-make install
+```
+
+Copy ogre mingw files from Build/Run into Build/Run/
 
 ```
 $ mkdir Build
