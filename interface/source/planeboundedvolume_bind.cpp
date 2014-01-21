@@ -8,6 +8,7 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #include "planeboundedvolume_bind.h"
+#include <OgreString.h>
 #include "binding_utils.h"  // for llcoi_plane_side_to_ogre_plane_side
 #include <OgrePlaneBoundedVolume.h>
 #include <OgrePlane.h>

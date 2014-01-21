@@ -8,7 +8,8 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #include "main.h"
-
+#include <OgreLogManager.h>
+#include <OgreTextureManager.h>
 #include <OgreRoot.h>
 
 void log_message(const char* message)
@@ -45,6 +46,7 @@ void destroy_name_value_pair_list(NameValuePairListHandle params)
 }
 
 #ifdef PLATFORM_WIN
+#include <windows.h>
 BOOL APIENTRY DllMain(HANDLE /*hModule*/, DWORD /*ul_reason_for_call*/, LPVOID /*lpReserved*/)
 {
 #if defined( _MSC_VER ) && defined( _DEBUG )

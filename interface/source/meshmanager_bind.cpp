@@ -8,6 +8,7 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #include "ogre_interface.h"
+#include <OgreString.h>
 #include "meshmanager_bind.h"
 #include "binding_utils.h" // llcoi_hbu_to_ogre_hbu
 

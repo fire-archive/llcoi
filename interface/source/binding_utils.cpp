@@ -7,6 +7,7 @@
  * copyright (c) 2011, llcoi Team
  * MIT license applies - see file "LICENSE" for details.
 */
+#include "OgreString.h"
 #include "binding_utils.h"
 #include <OgreMatrix3.h>
 #include <OgreMatrix4.h>

@@ -8,7 +8,6 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #include "overlayelementfactory_bind.h"
-
 #include <Overlay/OgreOverlayElementFactory.h>
 #include <Overlay/OgreOverlayElement.h>
 #include <Overlay/OgrePanelOverlayElement.h>

@@ -8,10 +8,11 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #include "ogre_interface.h"
+#include "OgreString.h"
 #include "axisalignedbox_bind.h"
 #include "binding_utils.h" // llcoi_extent_to_ogre_extent
 #include "OgreAxisAlignedBox.h"
-#include "OgreVector3.h"
+
 
 AxisAlignedBoxHandle create_axis_aligned_box()
 {

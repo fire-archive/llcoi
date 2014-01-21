@@ -8,6 +8,7 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #include "bone_bind.h"
+#include "OgreString.h"
 #include "binding_utils.h"
 #include <OgreBone.h>
 #include <OgreSkeleton.h>

@@ -9,6 +9,7 @@
 */
 #include "scenemanager_bind.h"
 
+#include <OgreSceneNode.h>
 #include <OgreCamera.h>
 #include <OgreLight.h>
 #include <OgreEntity.h>

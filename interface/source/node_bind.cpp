@@ -8,6 +8,7 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #include "node_bind.h"
+#include <OgreString.h>
 #include "binding_utils.h"
 #include <OgreNode.h>
 

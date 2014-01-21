@@ -8,6 +8,7 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #include "paneloverlayelement_bind.h"
+#include <OgreString.h>
 #include "binding_utils.h"
 #include <Overlay/OgrePanelOverlayElement.h>
 

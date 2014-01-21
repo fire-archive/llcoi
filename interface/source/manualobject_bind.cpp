@@ -8,8 +8,8 @@
  * MIT license applies - see file "LICENSE" for details.
 */
 #include "manualobject_bind.h"
+#include <OgreString.h>
 #include "binding_utils.h"
-
 #include <OgreManualObject.h>
 
 //ManualObject(const String& name)
