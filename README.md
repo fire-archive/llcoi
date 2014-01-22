@@ -33,7 +33,7 @@ cd Build-Debug
 cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS=-fpermissive -DOGREDEPS_BUILD_OIS=0 -DCMAKE_INSTALL_PREFIX=./Run/ ..
 c:/mingw/bin/mingw32-make install
 ```
-Copy Build/Run and Build-Debug/Run into Build/Run
+Copy Build/Run and Build-Debug/Run into the next Build/Run
 ### Build Ogre
 
 
@@ -44,7 +44,7 @@ cmake -G "MinGW Makefiles" -DOGRE_PLATFORM_X64=1 -DOGRE_BUILD_RENDERSYSTEM_D3D11
 c:/mingw/bin/mingw32-make install
 ```
 
-Copy ogre mingw files from Build/Run into Build/Run/
+Copy ogre mingw files from Build/Run into the next Build/Run/
 ### Build llcoi
 ```
 $ mkdir Build
