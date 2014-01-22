@@ -20,8 +20,8 @@ MIT license applies - see file "LICENSE" for details. Copyright (c) 2011, llcoi 
  * remove "_bind" from the file names
  * several smaller fwd.h files?
 
-# Building on Windows
-
+## Building on Windows
+###Build Ogredeps
 ```
 mkdir Build
 cd Build
@@ -34,6 +34,8 @@ cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_FLAGS=-fpermissi
 c:/mingw/bin/mingw32-make install
 ```
 Copy Build/Run and Build-Debug/Run into Build/Run
+### Build Ogre
+
 
 ```
 mkdir Build
@@ -43,7 +45,7 @@ c:/mingw/bin/mingw32-make install
 ```
 
 Copy ogre mingw files from Build/Run into Build/Run/
-
+### Build llcoi
 ```
 $ mkdir Build
 $ cd Build
