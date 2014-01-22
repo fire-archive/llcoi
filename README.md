@@ -52,3 +52,25 @@ $ cd Build
 $ cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=./Run/ ..
 $ c:/mingw/bin/mingw32-make install
 ```
+## Building on the mac
+### Ogredeps
+```
+mkdir Build || true
+cd Build
+cmake -G "Xcode" -DOGREDEPS_BUILD_OIS=1 -DCMAKE_INSTALL_PREFIX=Run/ ..
+xcodebuild -project Ogredeps.xcodeproj -configuration Release -target install
+```
+### Ogre
+```
+mkdir Build || true
+cd Build
+cmake -G "Xcode" -DOGRE_UNITY_BUILD=1 -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -v -stdlib=libstdc++" -DCMAKE_INSTALL_PREFIX=Run/ ..
+xcodebuild -project Ogre.xcodeproj -configuration Release -target install
+```
+### llcoi
+```
+mkdir Build || true
+cd Build
+cmake -G "Xcode" -DCMAKE_INSTALL_PREFIX=Run/ -DOGRE_BINARIES_DIR=/Users/fire/.jenkins/jobs/llcoi/workspace/Build/Run/lib/macosx/Release -DOIS_BINARIES_DIR=/Users/fire/.jenkins/jobs/llcoi/workspace/Build/Run/lib/ ..
+xcodebuild -project llcoi.xcodeproj -configuration Release -target install
+```
