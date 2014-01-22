@@ -156,6 +156,21 @@ int render_one_frame_ex(RootHandle root_handle, float time_since_last_frame)
   return 0;
 }
 
+bool root_fire_frame_started(RootHandle root_handle) {
+	Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
+	return root->_fireFrameStarted();
+}
+
+bool root_fire_frame_rendering_queued(RootHandle root_handle) {
+	Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
+	return root->_fireFrameRenderingQueued();
+}
+
+bool root_fire_frame_ended(RootHandle root_handle) {
+	Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
+	return root->_fireFrameEnded();
+}
+
 SceneManagerHandle create_scene_manager(RootHandle root_handle, const char* type_name, const char* instance_name)
 {
   Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
@@ -238,13 +253,10 @@ TimerHandle root_get_timer(RootHandle root_handle)
   Ogre::Root::uninstallPlugin(Ogre::Plugin*)
   Ogre::Root::getInstalledPlugins() const
   Ogre::Root::getTimer()
+  Ogre::Root::getNextFrameNumber() const
   Ogre::Root::_fireFrameStarted(Ogre::FrameEvent&)
   Ogre::Root::_fireFrameRenderingQueued(Ogre::FrameEvent&)
   Ogre::Root::_fireFrameEnded(Ogre::FrameEvent&)
-  Ogre::Root::_fireFrameStarted()
-  Ogre::Root::_fireFrameRenderingQueued()
-  Ogre::Root::_fireFrameEnded()
-  Ogre::Root::getNextFrameNumber() const
   Ogre::Root::_getCurrentSceneManager() const
   Ogre::Root::_pushCurrentSceneManager(Ogre::SceneManager*)
   Ogre::Root::_popCurrentSceneManager(Ogre::SceneManager*)

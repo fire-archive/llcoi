@@ -24,6 +24,12 @@ DLL RenderSystemListHandle root_get_available_renderers(RootHandle root_handle);
 
 DLL void delete_root(RootHandle root_handle);
 
+DLL bool root_fire_frame_started(RootHandle root_handle);
+
+DLL bool root_fire_frame_rendering_queued(RootHandle root_handle);
+
+DLL bool root_fire_frame_ended(RootHandle root_handle);
+
 DLL RenderWindowHandle root_initialise(RootHandle root_handle, int auto_create_window, const char* render_window_title);
 
 DLL RenderWindowHandle create_render_window(RootHandle root_handle, const char* name, const int width, const int height, const int full_screen, NameValuePairListHandle params);
