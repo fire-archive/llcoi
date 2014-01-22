@@ -156,17 +156,17 @@ int render_one_frame_ex(RootHandle root_handle, float time_since_last_frame)
   return 0;
 }
 
-bool root_fire_frame_started(RootHandle root_handle) {
+int root_fire_frame_started(RootHandle root_handle) {
 	Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
 	return root->_fireFrameStarted();
 }
 
-bool root_fire_frame_rendering_queued(RootHandle root_handle) {
+int root_fire_frame_rendering_queued(RootHandle root_handle) {
 	Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
 	return root->_fireFrameRenderingQueued();
 }
 
-bool root_fire_frame_ended(RootHandle root_handle) {
+int root_fire_frame_ended(RootHandle root_handle) {
 	Ogre::Root* root = reinterpret_cast<Ogre::Root*>(root_handle);
 	return root->_fireFrameEnded();
 }

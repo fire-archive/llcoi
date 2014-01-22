@@ -24,11 +24,11 @@ DLL RenderSystemListHandle root_get_available_renderers(RootHandle root_handle);
 
 DLL void delete_root(RootHandle root_handle);
 
-DLL bool root_fire_frame_started(RootHandle root_handle);
+DLL int root_fire_frame_started(RootHandle root_handle);
 
-DLL bool root_fire_frame_rendering_queued(RootHandle root_handle);
+DLL int root_fire_frame_rendering_queued(RootHandle root_handle);
 
-DLL bool root_fire_frame_ended(RootHandle root_handle);
+DLL int root_fire_frame_ended(RootHandle root_handle);
 
 DLL RenderWindowHandle root_initialise(RootHandle root_handle, int auto_create_window, const char* render_window_title);
 
