@@ -80,6 +80,7 @@ set(LLCOI_HEADER_FILES
   ./interface/include/textareaoverlayelement_bind.h
   ./interface/include/texturemanager_bind.h
   ./interface/include/timer_bind.h
+  ./interface/include/vector2_bind.h
   ./interface/include/vector3_bind.h
   ./interface/include/vertexindexdata_bind.h
   ./interface/include/viewport_bind.h
@@ -138,6 +139,7 @@ set(LLCOI_SOURCE_FILES
   ./interface/source/textareaoverlayelement_bind.cpp
   ./interface/source/texturemanager_bind.cpp
   ./interface/source/timer_bind.cpp
+  ./interface/source/vector2_bind.cpp
   ./interface/source/vector3_bind.cpp
   ./interface/source/vertexindexdata_bind.cpp
   ./interface/source/viewport_bind.cpp
