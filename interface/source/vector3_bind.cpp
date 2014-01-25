@@ -117,25 +117,28 @@ coiVector3 vector3_divide_vector3(Vector3Handle lhs, Vector3Handle rhs)
 }
 
 
-coiVector3 vector3_multiply_vector3(coiVector3 lhs, coiVector3 rhs)
+coiVector3 vector3_multiply_vector3(Vector3Handle lhs, Vector3Handle rhs)
 {
     coiVector3 result;
-    result.x = lhs.x * rhs.x;
-    result.y = lhs.y * rhs.y;
-    result.z = lhs.z * rhs.z;
+    Ogre::Vector3 *lhs_bind = reinterpret_cast<Ogre::Vector3*>(lhs);
+    Ogre::Vector3 *rhs_bind = reinterpret_cast<Ogre::Vector3*>(rhs);
+    Ogre::Vector3 temp = lhs_bind->operator*(*rhs_bind);
+    result.x = temp.x;
+    result.y = temp.y;
+    result.z = temp.z;
     return result;
 }
 
-int vector3_is_nan(coiVector3& v3)
+int vector3_is_nan(Vector3Handle v3)
 {
-    Ogre::Vector3 vector3(v3.x, v3.y, v3.z);
-    return (vector3.isNaN()) ? 1 : 0;
+    Ogre::Vector3 *vector3 = reinterpret_cast<Ogre::Vector3*>(v3);
+    return vector3->isNaN();
 }
 
-coiVector3 vector3_primary_axis(coiVector3& v3)
+coiVector3 vector3_primary_axis(Vector3Handle v3)
 {
-    Ogre::Vector3 vector3(v3.x, v3.y, v3.z);
-    Ogre::Vector3 tmp = vector3.primaryAxis();
+    Ogre::Vector3 *vector3 = reinterpret_cast<Ogre::Vector3*>(v3);
+    Ogre::Vector3 tmp = vector3->primaryAxis();
     coiVector3 result;
     result.x = tmp.x;
     result.y = tmp.y;

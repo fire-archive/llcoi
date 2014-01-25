@@ -45,13 +45,13 @@ DLL coiVector3 vector3_negate(Vector3Handle handle);
 DLL coiVector3 vector3_divide_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 // Vector3::operator*
-DLL coiVector3 vector3_multiply_vector3(coiVector3 lhs, coiVector3 rhs);
+DLL coiVector3 vector3_multiply_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 // Vector3::isNaN
-DLL int vector3_is_nan(coiVector3 v3);
+DLL int vector3_is_nan(Vector3Handle v3);
 
 //Vector3::primaryAxis
-DLL coiVector3 vector3_primary_axis(coiVector3);
+DLL coiVector3 vector3_primary_axis(Vector3Handle v3);
 
 // Vector3::ZERO
 DLL coiVector3 vector3_ZERO();
