@@ -17,6 +17,11 @@ Vector3Handle vector3_create() {
     return reinterpret_cast<Vector3Handle>(vector3);
 }
 
+void vector3_destroy(Vector3Handle handle) {
+    Ogre::Vector3 *vector3 = reinterpret_cast<Ogre::Vector3*>(handle);
+    delete vector3;
+}
+
 coiReal vector3_x(Vector3Handle handle) {
     Ogre::Vector3 *vector3 = reinterpret_cast<Ogre::Vector3*>(handle);
     return coiReal(vector3->x);

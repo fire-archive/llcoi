@@ -16,6 +16,7 @@
 // structs on the stack, as was done with coiColourValue. 
 
 DLL Vector3Handle vector3_create();
+DLL void vector3_destroy(Vector3Handle handle);
 DLL coiReal vector3_x(Vector3Handle handle);
 DLL coiReal vector3_y(Vector3Handle handle);
 DLL coiReal vector3_z(Vector3Handle handle);
