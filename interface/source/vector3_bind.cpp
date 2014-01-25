@@ -92,7 +92,7 @@ void vector3_update_subtract_vector3(Vector3Handle lhs, Vector3Handle rhs)
 }
 
 //Vector3::operator - 
-coiVector3  vector3_negate(Vector3Handle handle)
+coiVector3 vector3_negate(Vector3Handle handle)
 {
     Ogre::Vector3 *vec = reinterpret_cast<Ogre::Vector3*>(handle);
     vec->operator-();
@@ -104,12 +104,15 @@ coiVector3  vector3_negate(Vector3Handle handle)
 }
 
 // Vector3::operator/ 
-coiVector3 vector3_divide_vector3(coiVector3& lhs, coiVector3& rhs)
+coiVector3 vector3_divide_vector3(Vector3Handle lhs, Vector3Handle rhs)
 {
     coiVector3 result;
-    result.x = lhs.x / rhs.x;
-    result.y = lhs.y / rhs.y;
-    result.z = lhs.z / rhs.z;
+    Ogre::Vector3 *lhs_bind = reinterpret_cast<Ogre::Vector3*>(lhs);
+    Ogre::Vector3 *rhs_bind = reinterpret_cast<Ogre::Vector3*>(rhs);
+    Ogre::Vector3 temp = lhs_bind->operator/(*rhs_bind);
+    result.x = temp.x;
+    result.y = temp.y;
+    result.z = temp.z;
     return result;
 }
 

@@ -112,6 +112,7 @@ typedef void* TimerHandle;
 typedef void (*unloadingCompleteCB)(coiResourceHandle handle, void* userdata);
 typedef void* VertexDataHandle;
 typedef void* ViewportHandle;
+typedef void* Vector3Handle;
 typedef void(*WindowListenerEvent)(RenderWindowHandle);
 typedef void* WindowListenerHandle;
 

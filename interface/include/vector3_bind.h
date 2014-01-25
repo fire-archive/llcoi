@@ -14,33 +14,38 @@
 // Vector3
 // TODO: Probably change these to pass pointers to coiV3 rather than passing the 
 // structs on the stack, as was done with coiColourValue. 
+
+DLL Vector3Handle vector3_create();
+DLL coiReal vector3_x(Vector3Handle handle);
+DLL coiReal vector3_y(Vector3Handle handle);
+DLL coiReal vector3_z(Vector3Handle handle);
+
 //Vector3::operator !=
-DLL int vector3_notequals_vector3(coiVector3 lhs, coiVector3 rhs);
+DLL int vector3_notequals_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 //Vector3::operator ==
-DLL int vector3_equals_vector3(coiVector3 lhs, coiVector3 rhs);
+DLL int vector3_equals_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 //Vector3::operator +
-DLL coiVector3 vector3_add_vector3(coiVector3 lhs, coiVector3 rhs);
+DLL coiVector3 vecotr3_add_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 //Vector3::operator +=
-DLL void vector3_update_add_vector3(coiVector3 lhs, coiVector3 rhs);
+DLL Vector3Handle vector3_update_add_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 //Vector3::operator -
-DLL coiVector3 vector3_subtract_vector3(coiVector3 lhs, coiVector3 rhs);
+DLL coiVector3 vector3_subtract_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 //Vector3::operator -=
-DLL void vector3_update_subtract_vector3(coiVector3 lhs, coiVector3 rhs);
+DLL void vector3_update_subtract_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 //Vector3::operator - 
-DLL coiVector3 vector3_negate(coiVector3 v3);
+DLL coiVector3 vector3_negate(Vector3Handle handle);
 
 // Vector3::operator/ 
-DLL coiVector3 vector3_divide_vector3(coiVector3 lhs, coiVector3 rhs);
+DLL coiVector3 vector3_divide_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 // Vector3::operator*
 DLL coiVector3 vector3_multiply_vector3(coiVector3 lhs, coiVector3 rhs);
-
 
 // Vector3::isNaN
 DLL int vector3_is_nan(coiVector3 v3);
