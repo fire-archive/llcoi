@@ -37,6 +37,21 @@ coiReal vector3_z(Vector3Handle handle) {
     return coiReal(vector3->z);
 }
 
+void vector3_set_x(Vector3Handle handle, coiReal real) {
+    Ogre::Vector3 *vector3 = reinterpret_cast<Ogre::Vector3*>(handle);
+    vector3->x = Ogre::Real(real);
+}
+
+void vector3_set_y(Vector3Handle handle, coiReal real) {
+    Ogre::Vector3 *vector3 = reinterpret_cast<Ogre::Vector3*>(handle);
+    vector3->y = Ogre::Real(real);
+}
+
+void vector3_set_z(Vector3Handle handle, coiReal real) {
+    Ogre::Vector3 *vector3 = reinterpret_cast<Ogre::Vector3*>(handle);
+    vector3->z = Ogre::Real(real);
+}
+
 //Vector3::operator !=
 int vector3_notequals_vector3(Vector3Handle lhs, Vector3Handle rhs)
 {

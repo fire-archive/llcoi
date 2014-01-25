@@ -20,6 +20,9 @@ DLL void vector3_destroy(Vector3Handle handle);
 DLL coiReal vector3_x(Vector3Handle handle);
 DLL coiReal vector3_y(Vector3Handle handle);
 DLL coiReal vector3_z(Vector3Handle handle);
+DLL void vector3_set_x(Vector3Handle handle, coiReal real);
+DLL void vector3_set_y(Vector3Handle handle, coiReal real);
+DLL void vector3_set_z(Vector3Handle handle, coiReal real);
 
 //Vector3::operator !=
 DLL int vector3_notequals_vector3(Vector3Handle lhs, Vector3Handle rhs);
