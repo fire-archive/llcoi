@@ -9,3 +9,13 @@
 */
 #include "ogre_interface.h"
 #include <OgreVector2.h>
+
+Vector2Handle vector2_create() {
+    Ogre::Vector2 *vector2 = new Ogre::Vector2();
+    return reinterpret_cast<Vector2Handle>(vector2);
+}
+
+Vector2Handle vector2_create_from_values(coiReal fX, coiReal fY) {
+    Ogre::Vector2 *vector2 = new Ogre::Vector2(fX, fY);
+    return reinterpret_cast<Vector2Handle>(vector2);
+}

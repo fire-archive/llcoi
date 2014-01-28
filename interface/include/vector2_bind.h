@@ -10,3 +10,6 @@
 #pragma once
 
 #include "ogre_interface.h"
+
+DLL Vector2Handle vector2_create();
+DLL Vector2Handle vector2_create_from_values(coiReal fX, coiReal fY);
