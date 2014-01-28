@@ -30,10 +30,10 @@ QuaternionHandle quaternion_from_values(coiReal fW, coiReal fX, coiReal fY, coiR
         return reinterpret_cast<QuaternionHandle>(quat);
 }
 
-void quaternion_from_angle_axis(QuaternionHandle handle, coiRadian rfAngle, coiVector3 rkAxis) {
+void quaternion_from_angle_axis(QuaternionHandle handle, coiRadian rfAngle, Vector3Handle vecHandle) {
         Ogre::Quaternion *quat = reinterpret_cast<Ogre::Quaternion*>(handle);
-        Ogre::Vector3 vec(rkAxis.x, rkAxis.y, rkAxis.z);
-        quat->FromAngleAxis(Ogre::Radian(rfAngle), vec);
+        Ogre::Vector3 *rkAxis = reinterpret_cast<Ogre::Vector3*>(vecHandle);
+        quat->FromAngleAxis(Ogre::Radian(rfAngle), *rkAxis);
 }
 
 void quaternion_to_rotation_matrix(QuaternionHandle handle, coiMatrix3 *rot) {
