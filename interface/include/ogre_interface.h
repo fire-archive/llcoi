@@ -83,6 +83,8 @@
 #include "scenemanager_bind.h"
 #include "root_bind.h"
 #include "viewport_bind.h"
+#include "vector2_bind.h"
+#include "vector3_bind.h"
 #include "resourcegroupmanager_bind.h"
 #include "windoweventlistener_bind.h"
 #include "framelistener_bind.h"
