@@ -27,7 +27,13 @@ void quaternion_from_rotation_matrix(QuaternionHandle handle, coiMatrix3 *rot) {
 
 QuaternionHandle quaternion_from_values(coiReal fW, coiReal fX, coiReal fY, coiReal fZ){
 	Ogre::Quaternion * quat = new Ogre::Quaternion(fW, fX, fY, fZ);  
-    return reinterpret_cast<QuaternionHandle>(quat);
+        return reinterpret_cast<QuaternionHandle>(quat);
+}
+
+void quaternion_from_angle_axis(QuaternionHandle handle, coiRadian rfAngle, coiVector3 rkAxis) {
+        Ogre::Quaternion *quat = reinterpret_cast<Ogre::Quaternion*>(handle);
+        Ogre::Vector3 vec(rkAxis.x, rkAxis.y, rkAxis.z);
+        quat->FromAngleAxis(Ogre::Radian(rfAngle), vec);
 }
 
 void quaternion_to_rotation_matrix(QuaternionHandle handle, coiMatrix3 *rot) {
