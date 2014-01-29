@@ -22,4 +22,4 @@ DLL coiReal quaternion_get_y(QuaternionHandle quat);
 DLL coiReal quaternion_get_z(QuaternionHandle quat);
 DLL QuaternionHandle quaternion_multiply_quaternion(QuaternionHandle lhs, QuaternionHandle rhs);
 DLL QuaternionHandle quaternion_subtract_quaternion(QuaternionHandle lhs, QuaternionHandle rhs);
-DLL QuaternionHandle quaternion_unit_inverse(QuaternionHandle lhs, QuaternionHandle rhs);
+DLL QuaternionHandle quaternion_unit_inverse(QuaternionHandle q);
