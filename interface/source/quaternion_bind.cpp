@@ -97,3 +97,8 @@ QuaternionHandle quaternion_unit_inverse(QuaternionHandle q) {
         *quat = quat->UnitInverse(); 
         return reinterpret_cast<QuaternionHandle>(quat);
 }
+
+coiReal quaternion_normalise(QuaternionHandle q) {
+        Ogre::Quaternion *quat = reinterpret_cast<Ogre::Quaternion*>(q);
+        return quat->normalise();
+}

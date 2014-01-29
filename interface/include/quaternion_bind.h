@@ -24,3 +24,4 @@ DLL QuaternionHandle quaternion_multiply_quaternion(QuaternionHandle lhs, Quater
 DLL QuaternionHandle quaternion_subtract_quaternion(QuaternionHandle lhs, QuaternionHandle rhs);
 DLL QuaternionHandle quaternion_unit_inverse(QuaternionHandle q);
 DLL QuaternionHandle quaternion_multiply_scalar(QuaternionHandle lhs, coiReal scalar);
+DLL coiReal quaternion_normalise(QuaternionHandle q);
