@@ -79,6 +79,12 @@ QuaternionHandle quaternion_multiply_quaternion(QuaternionHandle lhs, Quaternion
         return reinterpret_cast<QuaternionHandle>(lhs_bind);
 }
 
+QuaternionHandle quaternion_multiply_scalar(QuaternionHandle lhs, coiReal scalar) {
+        Ogre::Quaternion *lhs_bind = reinterpret_cast<Ogre::Quaternion*>(lhs);
+        *lhs_bind = lhs_bind->operator*(scalar); 
+        return reinterpret_cast<QuaternionHandle>(lhs_bind);
+}
+
 QuaternionHandle quaternion_subtract_quaternion(QuaternionHandle lhs, QuaternionHandle rhs) {
         Ogre::Quaternion *lhs_bind = reinterpret_cast<Ogre::Quaternion*>(lhs);
         Ogre::Quaternion *rhs_bind = reinterpret_cast<Ogre::Quaternion*>(rhs);
