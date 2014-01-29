@@ -25,3 +25,4 @@ DLL QuaternionHandle quaternion_subtract_quaternion(QuaternionHandle lhs, Quater
 DLL QuaternionHandle quaternion_unit_inverse(QuaternionHandle q);
 DLL QuaternionHandle quaternion_multiply_scalar(QuaternionHandle lhs, coiReal scalar);
 DLL coiReal quaternion_normalise(QuaternionHandle q);
+DLL void quaternion_to_angle_axis_degree(QuaternionHandle q, coiDegree dAngle, Vector3Handle Axis);
