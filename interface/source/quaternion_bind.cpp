@@ -102,3 +102,10 @@ coiReal quaternion_normalise(QuaternionHandle q) {
         Ogre::Quaternion *quat = reinterpret_cast<Ogre::Quaternion*>(q);
         return quat->normalise();
 }
+
+void quaternion_to_angle_axis_degree(QuaternionHandle q, coiDegree dAngle, Vector3Handle Axis) {
+        Ogre::Quaternion *quat = static_cast<Ogre::Quaternion*>(q);
+        Ogre::Vector3 *vec = static_cast<Ogre::Vector3*>(Axis);
+        Ogre::Degree degree(dAngle);
+        quat->ToAngleAxis(degree, *vec);
+}

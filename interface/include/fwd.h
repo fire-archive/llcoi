@@ -19,7 +19,7 @@
 typedef float coiReal;
 // From OgreMath.h
 typedef coiReal coiRadian;
-typedef coiReal coiAngle;
+typedef coiReal coiDegree;
 // From OgrePlatform.h
 typedef unsigned int uint32;
 typedef unsigned short uint16;
