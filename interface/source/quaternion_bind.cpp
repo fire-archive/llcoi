@@ -71,3 +71,24 @@ coiReal quaternion_get_z(QuaternionHandle handle) {
 	Ogre::Quaternion *quat = reinterpret_cast<Ogre::Quaternion*>(handle);
 	return coiReal(quat->z);
 }
+
+QuaternionHandle quaternion_multiply_quaternion(QuaternionHandle lhs, QuaternionHandle rhs) {
+        Ogre::Quaternion *lhs_bind = reinterpret_cast<Ogre::Quaternion*>(lhs);
+        Ogre::Quaternion *rhs_bind = reinterpret_cast<Ogre::Quaternion*>(rhs);
+        *lhs_bind = lhs_bind->operator*(*rhs_bind); 
+        return reinterpret_cast<QuaternionHandle>(lhs_bind);
+}
+
+QuaternionHandle quaternion_subtract_quaternion(QuaternionHandle lhs, QuaternionHandle rhs) {
+        Ogre::Quaternion *lhs_bind = reinterpret_cast<Ogre::Quaternion*>(lhs);
+        Ogre::Quaternion *rhs_bind = reinterpret_cast<Ogre::Quaternion*>(rhs);
+        *lhs_bind = lhs_bind->operator-(rhs_bind); 
+        return reinterpret_cast<QuaternionHandle>(lhs_bind);
+}
+
+QuaternionHandle quaternion_unit_inverse(QuaternionHandle lhs, QuaternionHandle rhs) {
+        Ogre::Quaternion *lhs_bind = reinterpret_cast<Ogre::Quaternion*>(lhs);
+        Ogre::Quaternion *rhs_bind = reinterpret_cast<Ogre::Quaternion*>(rhs);
+        *lhs_bind = lhs_bind->UnitInverse(); 
+        return reinterpret_cast<QuaternionHandle>(lhs_bind);
+}
