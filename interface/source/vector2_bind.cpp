@@ -25,3 +25,23 @@ Vector2Handle vector2_multiply_scalar(Vector2Handle lhs, coiReal scalar) {
         *lhs_bind = lhs_bind->operator*(scalar); 
         return reinterpret_cast<Vector2Handle>(lhs_bind);
 }
+
+coiReal vector2_x(Vector2Handle handle) {
+    Ogre::Vector2 *vector2 = reinterpret_cast<Ogre::Vector2*>(handle);
+    return coiReal(vector2->x);
+}
+
+coiReal vector2_y(Vector2Handle handle) {
+    Ogre::Vector2 *vector2 = reinterpret_cast<Ogre::Vector2*>(handle);
+    return coiReal(vector2->y);
+}
+
+void vector2_set_x(Vector2Handle handle, coiReal real) {
+    Ogre::Vector2 *vector2 = reinterpret_cast<Ogre::Vector2*>(handle);
+    vector2->x = Ogre::Real(real);
+}
+
+void vector2_set_y(Vector2Handle handle, coiReal real) {
+    Ogre::Vector2 *vector2 = reinterpret_cast<Ogre::Vector2*>(handle);
+    vector2->y = Ogre::Real(real);
+}
