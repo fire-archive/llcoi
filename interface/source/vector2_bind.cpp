@@ -19,3 +19,9 @@ Vector2Handle vector2_create_from_values(coiReal fX, coiReal fY) {
     Ogre::Vector2 *vector2 = new Ogre::Vector2(fX, fY);
     return reinterpret_cast<Vector2Handle>(vector2);
 }
+
+Vector2Handle vector2_multiply_scalar(Vector2Handle lhs, coiReal scalar) {
+        Ogre::Vector2 *lhs_bind = reinterpret_cast<Ogre::Vector2*>(lhs);
+        *lhs_bind = lhs_bind->operator*(scalar); 
+        return reinterpret_cast<Vector2Handle>(lhs_bind);
+}
