@@ -64,7 +64,7 @@ xcodebuild -project Ogredeps.xcodeproj -configuration Release -target install
 ```
 mkdir Build || true
 cd Build
-cmake -G "Xcode" -DOGRE_UNITY_BUILD=1 -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -v -stdlib=libstdc++" -DCMAKE_INSTALL_PREFIX=Run/ ..
+cmake -G "Xcode" -DOGRE_UNITY_BUILD=1 -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -v -stdlib=libc++ -std=c++11"  -DCMAKE_INSTALL_PREFIX=Run/ ..
 xcodebuild -project Ogre.xcodeproj -configuration Release -target install
 ```
 ### llcoi
