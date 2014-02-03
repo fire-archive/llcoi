@@ -57,20 +57,20 @@ $ c:/mingw/bin/mingw32-make install
 ```
 mkdir Build || true
 cd Build
-cmake -G "Xcode" -DOGREDEPS_BUILD_OIS=1 -DCMAKE_INSTALL_PREFIX=Run/ ..
+cmake -G "Xcode" -DCMAKE_CXX_FLAGS="-mmacosx-version-min=10.7 -stdlib=libc++ -std=c++11" -DOGREDEPS_BUILD_OIS=0 -DCMAKE_INSTALL_PREFIX=Run/ ..
 xcodebuild -project Ogredeps.xcodeproj -configuration Release -target install
 ```
 ### Ogre
 ```
 mkdir Build || true
 cd Build
-cmake -G "Xcode" -DOGRE_UNITY_BUILD=1 -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -v -stdlib=libc++ -std=c++11"  -DCMAKE_INSTALL_PREFIX=Run/ ..
+cmake -G "Xcode" -DOGRE_UNITY_BUILD=1 -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -v -stdlib=libc++ -std=c++11" -DCMAKE_INSTALL_PREFIX=Run/ ..
 xcodebuild -project Ogre.xcodeproj -configuration Release -target install
 ```
 ### llcoi
 ```
 mkdir Build || true
 cd Build
-cmake -G "Xcode" -DCMAKE_INSTALL_PREFIX=Run/ -DOGRE_BINARIES_DIR=/Users/fire/.jenkins/jobs/llcoi/workspace/Build/Run/lib/macosx/Release -DOIS_BINARIES_DIR=/Users/fire/.jenkins/jobs/llcoi/workspace/Build/Run/lib/ ..
+cmake -G "Xcode" -DCMAKE_CXX_FLAGS="${CMAKE_CXX_FLAGS} -v -stdlib=libc++ -std=c++11" -DCMAKE_INSTALL_PREFIX=Run/ ..
 xcodebuild -project llcoi.xcodeproj -configuration Release -target install
 ```
