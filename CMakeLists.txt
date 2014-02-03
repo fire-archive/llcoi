@@ -8,7 +8,7 @@ project(llcoi)
 ####################
 #### PARAMETERS ####
 ####################
-set(OGRE_BINARIES_DIR ${CMAKE_INSTALL_PREFIX}/lib CACHE PATH "where the ogre binaries are, i.e. libOgreMain.so")
+set(OGRE_BINARIES_DIR ${CMAKE_INSTALL_PREFIX}/lib/Release CACHE PATH "where the ogre binaries are, i.e. libOgreMain.so")
 set(OGRE_HEADERS_DIR ${CMAKE_INSTALL_PREFIX}/include/OGRE CACHE PATH "where the ogre header files are, i.e. OgreRoot.h")
 set(OGRE_BUILDSETTINGS_DIR ${OGRE_HEADERS_DIR} CACHE PATH "where OgreBuildSettings.h is located (created by Ogre cmake)")
 
