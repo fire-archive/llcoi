@@ -162,8 +162,6 @@ find_library(OGRE_MAIN OgreMain ${OGRE_BINARIES_DIR})
 ELSE()
 find_library(OGRE_MAIN NAMES Ogre PATHS ${OGRE_BINARIES_DIR} ${CMAKE_INSTALL_PREFIX}/lib/macosx/Release )
 find_library(OGRE_OVERLAY NAMES OgreOverlay PATHS ${OGRE_BINARIES_DIR} ${CMAKE_INSTALL_PREFIX}/lib/macosx/Release )
-
-set(CMAKE_CXX_FLAGS "-stdlib=libstdc++")
 ENDIF()
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
