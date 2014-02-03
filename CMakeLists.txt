@@ -172,6 +172,7 @@ find_library(COCOA Cocoa)
 target_link_libraries(llcoi ${OGRE_MAIN} ${OGRE_OVERLAY} ${CORE_FOUNDATION} ${IO_KIT} ${APPLICATION_SERVICES} ${COCOA} -stdlib=libstdc++)
 ELSE()
 target_link_libraries(llcoi ${OGRE_MAIN} ${OGRE_OVERLAY})
+set(CMAKE_CXX_FLAGS "-stdlib=libc++")
 ENDIF()
 
 # set(CMAKE_C++_CREATE_SHARED_LIBRARY 1)
