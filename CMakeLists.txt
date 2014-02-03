@@ -154,14 +154,17 @@ add_definitions(-Dllcoi_EXPORTS)
 add_library(llcoi SHARED ${LLCOI_HEADER_FILES} ${LLCOI_SOURCE_FILES})
 set(CMAKE_LIBRARY_PATH ${CMAKE_INSTALL_PREFIX}/lib/RelWithDebInfo ${CMAKE_INSTALL_PREFIX}/lib/Release)
 
+
+find_library(OGRE_OVERLAY OgreOverlay ${OGRE_BINARIES_DIR})
+
 IF(NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 find_library(OGRE_MAIN OgreMain ${OGRE_BINARIES_DIR})
 ELSE()
 find_library(OGRE_MAIN NAMES Ogre PATHS ${OGRE_BINARIES_DIR} ${CMAKE_INSTALL_PREFIX}/lib/macosx/Release )
+find_library(OGRE_OVERLAY NAMES OgreOverlay PATHS ${OGRE_BINARIES_DIR} ${CMAKE_INSTALL_PREFIX}/lib/macosx/Release )
+
 set(CMAKE_CXX_FLAGS "-stdlib=libstdc++")
 ENDIF()
-
-find_library(OGRE_OVERLAY OgreOverlay ${OGRE_BINARIES_DIR})
 
 IF(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 find_library(CORE_FOUNDATION CoreFoundation)
