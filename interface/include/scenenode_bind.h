@@ -13,6 +13,8 @@
 
 DLL void scenenode_attach_entity(SceneNodeHandle scenenode_handle, EntityHandle entity_handle);
 
+DLL void scenenode_attach_object(SceneNodeHandle node_handle, MovableObjectHandle object_handle);
+
 DLL SceneNodeHandle scenenode_create_child_scenenode(SceneNodeHandle parent_handle, const char*  name, Vector3Handle translate_handle, const QuaternionHandle rotate_handle);
 
 DLL SceneNodeHandle scenenode_create_child_scenenode_anon(SceneNodeHandle handle, const coiVector3* translate, const coiQuaternion* rotate);

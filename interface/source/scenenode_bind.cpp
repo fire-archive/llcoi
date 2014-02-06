@@ -31,6 +31,13 @@ SceneNodeHandle scenenode_create_child_scenenode_anon(SceneNodeHandle handle, co
 }
 
 // Ogre::SceneNode::attachObject(Ogre::MovableObject*)
+void scenenode_attach_object(SceneNodeHandle node_handle, MovableObjectHandle object_handle) 
+{
+    Ogre::SceneNode* node = static_cast<Ogre::SceneNode*>(node_handle);
+    Ogre::MovableObject* obj = static_cast<Ogre::MovableObject*>(object_handle);
+    node->attachObject(obj);
+}
+
 void scenenode_attach_entity(SceneNodeHandle scenenode_handle, EntityHandle entity_handle)
 {
     Ogre::Entity* entity = static_cast<Ogre::Entity*>(entity_handle);
