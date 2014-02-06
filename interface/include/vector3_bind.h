@@ -31,7 +31,7 @@ DLL int vector3_notequals_vector3(Vector3Handle lhs, Vector3Handle rhs);
 DLL int vector3_equals_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 //Vector3::operator +
-DLL coiVector3 vecotr3_add_vector3(Vector3Handle lhs, Vector3Handle rhs);
+DLL coiVector3 vector3_add_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 //Vector3::operator +=
 DLL Vector3Handle vector3_update_add_vector3(Vector3Handle lhs, Vector3Handle rhs);
@@ -50,6 +50,7 @@ DLL coiVector3 vector3_divide_vector3(Vector3Handle lhs, Vector3Handle rhs);
 
 // Vector3::operator*
 DLL coiVector3 vector3_multiply_vector3(Vector3Handle lhs, Vector3Handle rhs);
+DLL coiVector3 vector3_multiply_scalar(Vector3Handle lhs, coiReal rhs);
 
 // Vector3::isNaN
 DLL int vector3_is_nan(Vector3Handle v3);

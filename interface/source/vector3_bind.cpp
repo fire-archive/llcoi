@@ -69,7 +69,7 @@ int vector3_equals_vector3(Vector3Handle lhs, Vector3Handle rhs)
 }
 
 //Vector3::operator +
-coiVector3 vecotr3_add_vector3(Vector3Handle lhs, Vector3Handle rhs)
+coiVector3 vector3_add_vector3(Vector3Handle lhs, Vector3Handle rhs)
 {
     Ogre::Vector3 *lhs_bind = reinterpret_cast<Ogre::Vector3*>(lhs);
     Ogre::Vector3 *rhs_bind = reinterpret_cast<Ogre::Vector3*>(rhs);  
@@ -148,6 +148,18 @@ coiVector3 vector3_multiply_vector3(Vector3Handle lhs, Vector3Handle rhs)
     result.z = temp.z;
     return result;
 }
+
+coiVector3 vector3_multiply_scalar(Vector3Handle lhs, coiReal rhs)
+{
+    coiVector3 result;
+    Ogre::Vector3 *lhs_bind = reinterpret_cast<Ogre::Vector3*>(lhs);
+    Ogre::Vector3 temp = lhs_bind->operator*(rhs);
+    result.x = temp.x;
+    result.y = temp.y;
+    result.z = temp.z;
+    return result;
+}
+
 
 int vector3_is_nan(Vector3Handle v3)
 {
