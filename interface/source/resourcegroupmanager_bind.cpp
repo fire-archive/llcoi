@@ -28,13 +28,24 @@ void destroy_resourcegroupmanager(ResourceGroupManagerHandle handle)
 }
 */
 
+const char * GetAutoDetectResourceGroupName() {
+    return Ogre::ResourceGroupManager::AUTODETECT_RESOURCE_GROUP_NAME.c_str();
+}
+
+const char * GetDefaultResourceGroupName() {
+    return Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME.c_str();
+}
+
+const char * GetInternalResourceGroupName() {
+    return Ogre::ResourceGroupManager::INTERNAL_RESOURCE_GROUP_NAME.c_str(); 
+} 
+
 ResourceGroupManagerHandle resourcegroupmanager_singleton()
 {
     return static_cast<ResourceGroupManagerHandle>(
         &Ogre::ResourceGroupManager::getSingleton()
     );
 }
-
 
 void resourcegroupmanager_setup_resources(const char* resources_cfg)
 {
