@@ -109,3 +109,9 @@ void quaternion_to_angle_axis_degree(QuaternionHandle q, coiDegree dAngle, Vecto
         Ogre::Degree degree(dAngle);
         quat->ToAngleAxis(degree, *vec);
 }
+
+QuaternionHandle quaternion_slerp(coiReal fT, QuaternionHandle a, QuaternionHandle b, int shortestPath) {
+        Ogre::Quaternion *quatA = static_cast<Ogre::Quaternion*>(a);
+        Ogre::Quaternion *quatB = static_cast<Ogre::Quaternion*>(b);
+        Ogre::Quaternion::Slerp(fT, *quatA, *quatB, shortestPath);
+}
