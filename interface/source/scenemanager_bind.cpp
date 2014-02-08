@@ -173,6 +173,14 @@ RaySceneQueryHandle scenemanager_create_rayquery(SceneQueryHandle handle, RayHan
     return static_cast<RaySceneQueryHandle>(rsq);
 }
 
+// Ogre::SceneManager::getSceneNode(std::string const&) const
+SceneNodeHandle scenemanager_get_scene_node(SceneNodeHandle handle, const char * name) 
+{
+    Ogre::SceneManager* sm = static_cast<Ogre::SceneManager*>(handle);
+    Ogre::SceneNode *sn = sm->getSceneNode(Ogre::String(name));
+    return static_cast<SceneNodeHandle>(sn);
+}
+
 /*
 <<<<<<< local
 Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK
@@ -222,7 +230,6 @@ Ogre::SceneManager::createSceneNode(std::string const&)
 Ogre::SceneManager::destroySceneNode(std::string const&)
 Ogre::SceneManager::destroySceneNode(Ogre::SceneNode*)
 Ogre::SceneManager::getRootSceneNode()
-Ogre::SceneManager::getSceneNode(std::string const&) const
 Ogre::SceneManager::hasSceneNode(std::string const&) const
 Ogre::SceneManager::createEntity(std::string const&, std::string const&, std::string const&)
 Ogre::SceneManager::createEntity(std::string const&)
