@@ -174,7 +174,7 @@ RaySceneQueryHandle scenemanager_create_rayquery(SceneQueryHandle handle, RayHan
 }
 
 // Ogre::SceneManager::getSceneNode(std::string const&) const
-SceneNodeHandle scenemanager_get_scene_node(SceneNodeHandle handle, const char * name) 
+SceneNodeHandle scenemanager_get_scene_node(SceneManagerHandle handle, const char * name) 
 {
     Ogre::SceneManager* sm = static_cast<Ogre::SceneManager*>(handle);
     Ogre::SceneNode *sn = sm->getSceneNode(Ogre::String(name));

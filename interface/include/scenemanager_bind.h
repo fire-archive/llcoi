@@ -52,4 +52,4 @@ DLL const char* scenemanager_get_name(SceneManagerHandle handle);
 DLL void scenemanager_destroy_scenequery(SceneManagerHandle handle, SceneQueryHandle query);
 //RaySceneQuery* SceneManager::createRayQuery(const Ray& ray, unsigned long mask = 0xFFFFFFFF)
 DLL RaySceneQueryHandle scenemanager_create_rayquery(SceneQueryHandle handle, RayHandle ray_handle, unsigned long mask);
-DLL SceneNodeHandle scenemanager_get_scene_node(SceneNodeHandle handle, const char * name);
+DLL SceneNodeHandle scenemanager_get_scene_node(SceneManagerHandle handle, const char * name);
