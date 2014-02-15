@@ -43,7 +43,7 @@ const char * GetInternalResourceGroupName() {
 ResourceGroupManagerHandle resourcegroupmanager_singleton()
 {
     return static_cast<ResourceGroupManagerHandle>(
-        &Ogre::ResourceGroupManager::getSingleton()
+        Ogre::ResourceGroupManager::getSingletonPtr()
     );
 }
 
